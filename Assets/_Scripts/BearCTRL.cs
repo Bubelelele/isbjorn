@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BearCTRL : MonoBehaviour
 {
-    public float movementSpeed = 5f;
-    public float rotSpeed = 0.005f;
+    public float movementSpeed = 11f;
+    public float rotSpeed = 10f;
 
 
     [SerializeField] Transform target;
@@ -40,7 +40,10 @@ public class BearCTRL : MonoBehaviour
 
 
         }
-
+        if (!charController.isGrounded)
+        {
+            movement += Physics.gravity;
+        }
         movement *= Time.deltaTime;
         charController.Move(movement);
 
