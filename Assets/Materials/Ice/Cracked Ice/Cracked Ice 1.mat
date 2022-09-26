@@ -81,6 +81,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Parallax_1f915222085849babef205371b1c489a_Texture2D_3929965161:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_6f750b7c4c9e4909bb7fd43670717e42_Texture_1:
         m_Texture: {fileID: 2800000, guid: baa238542cc8f09408f9b6c358f26841, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -99,6 +103,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Smoothness:
         m_Texture: {fileID: 2800000, guid: d92157417e19ec747bee536fb6eeab03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Snow_Albedo:
+        m_Texture: {fileID: 2800000, guid: 040fcbc2ab8019742b542fda642e5c4e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Snow_Normal:
+        m_Texture: {fileID: 2800000, guid: f097869f1d0635c4b97e6d25f20b536d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
