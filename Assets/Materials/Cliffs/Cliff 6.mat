@@ -7,38 +7,40 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cracked Ice 1
-  m_Shader: {fileID: -6465566751694194690, guid: e981765c09d4a4248b4973a3c072807d,
-    type: 3}
-  m_ValidKeywords: []
+  m_Name: Cliff 6
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ValidKeywords:
+  - _EMISSION
+  - _NORMALMAP
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Base_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Normal_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Albedo:
-        m_Texture: {fileID: 2800000, guid: cb956a2120dfdf14abe94395f0d0cdd6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5ddc73aeeeeecf04daf485c6f774fdf2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a6d38eece76fa96438dc27380c87f472, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageAlbedo:
+        m_Texture: {fileID: 2800000, guid: 6dc430d5c113ab14c91065b0117acafb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageMap:
+        m_Texture: {fileID: 2800000, guid: f372ecf27e5c4954c8bf0015e21ca538, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageNormals:
+        m_Texture: {fileID: 2800000, guid: 51954d6e0de971a43ac1ba884c6836f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -53,24 +55,32 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Detailnormal:
+        m_Texture: {fileID: 2800000, guid: 06bdf21e154425948b0978955fd687b4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
+    - _Globalalbedo:
+        m_Texture: {fileID: 2800000, guid: 90c15e788b01a3646a1f0b65505c9972, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Mask:
-        m_Texture: {fileID: 2800000, guid: baa238542cc8f09408f9b6c358f26841, type: 3}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 5ddc73aeeeeecf04daf485c6f774fdf2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 2800000, guid: fbfb16839334a1049b3f305b60de5f97, type: 3}
+    - _Objectalbedo:
+        m_Texture: {fileID: 2800000, guid: d7ed88b50cd38d24dbe8a21e35d1fd47, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Objectnormals:
+        m_Texture: {fileID: 2800000, guid: a6d38eece76fa96438dc27380c87f472, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -81,44 +91,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Parallax_1f915222085849babef205371b1c489a_Texture2D_3929965161:
+    - _PigmentMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_6f750b7c4c9e4909bb7fd43670717e42_Texture_1:
-        m_Texture: {fileID: 2800000, guid: baa238542cc8f09408f9b6c358f26841, type: 3}
+    - _SnowAlbedo:
+        m_Texture: {fileID: -1782295886, guid: 7154642c7e2a90e42ac41a57d23f7317, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_9a523379a6b34dea82d1dc54022e9132_Texture_1:
-        m_Texture: {fileID: 2800000, guid: cb956a2120dfdf14abe94395f0d0cdd6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_a3095afab38b445887c5255cade660c9_Texture_1:
-        m_Texture: {fileID: 2800000, guid: fbfb16839334a1049b3f305b60de5f97, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_fb651d41251b4fc6affe2f5565ea929b_Texture_1:
-        m_Texture: {fileID: 2800000, guid: d92157417e19ec747bee536fb6eeab03, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Smoothness:
-        m_Texture: {fileID: 2800000, guid: d92157417e19ec747bee536fb6eeab03, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Snow_Albedo:
-        m_Texture: {fileID: 2800000, guid: 040fcbc2ab8019742b542fda642e5c4e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Snow_Normal:
-        m_Texture: {fileID: 2800000, guid: f097869f1d0635c4b97e6d25f20b536d, type: 3}
+    - _SnowNormals:
+        m_Texture: {fileID: 417745122, guid: 7154642c7e2a90e42ac41a57d23f7317, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_94f084b5fc9c4860bf62de4d14be2e0a_Out_0:
-        m_Texture: {fileID: 2800000, guid: baa238542cc8f09408f9b6c358f26841, type: 3}
+    - _texcoord:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -135,47 +125,53 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Normal_Blend: 0.5
     - _AlphaClip: 0
     - _Blend: 0
-    - _BumpScale: 1
+    - _BumpScale: 0.5
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _CoverageAmount: 1
+    - _CoverageTiling: 8
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DecalMeshBiasType: 0
-    - _DecalMeshDepthBias: 0
-    - _DecalMeshViewBias: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DrawOrder: 0
+    - _Detailstrength: 0.28
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
+    - _Float4: 0.13
+    - _Globaltiling: 0.163
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _MaskClipValue: 0.5
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
-    - _Parallax: 0.005
-    - _Parallax_Offset: -0.0015
-    - _QueueControl: 0
+    - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Roughness: 0.276
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _SnowCover: 1
+    - _SnowTiling: 7
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
-    - _Albedo_Tint: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GlobalColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ObjectColor: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &6426169896298557578
+--- !u!114 &569487379765443493
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
