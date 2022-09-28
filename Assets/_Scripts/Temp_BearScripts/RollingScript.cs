@@ -8,12 +8,12 @@ public class RollingScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             bearAnim.SetBool("IsRolling", true);
             rotationPivot.Rotate(Vector3.left * -rollingSpeed * Time.deltaTime);
         }
-        else if (Input.GetKeyUp(KeyCode.R))
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             bearAnim.SetBool("IsRolling", false);
             rotationPivot.localRotation = Quaternion.Euler(0,0,0);

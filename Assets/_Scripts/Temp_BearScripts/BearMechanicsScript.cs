@@ -12,7 +12,7 @@ public class BearMechanicsScript : MonoBehaviour
             bearAnim.SetTrigger("Sniff");
         }
         //Roaring
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             bearAnim.SetTrigger("Roar");
         }
