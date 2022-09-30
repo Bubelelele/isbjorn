@@ -4580,7 +4580,7 @@ MonoBehaviour:
   songDelayRange: {x: 60, y: 120}
   chordsDelayRange: {x: 10, y: 20}
   delayGracePeriod: 2
-  ambianceBlockSet: {fileID: 0}
+  ambianceBlockSet: {fileID: 11400000, guid: 8419de8b8093f5f4d82f3a8d56f62c4c, type: 2}
   windSource: {fileID: 1441351420}
   pianoSource: {fileID: 1178871834}
 --- !u!4 &146645374
@@ -29589,7 +29589,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 775b877aeb46dfe4bb3ae43b891f66f8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

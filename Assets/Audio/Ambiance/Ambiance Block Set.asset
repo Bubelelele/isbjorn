@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30528f9fc97849e429c0a919084808b3, type: 3}
+  m_Name: Ambiance Block Set
+  m_EditorClassIdentifier: 
+  songBlocks:
+  - clip: {fileID: 8300000, guid: 0498edd9204abab45b524edd7cd27d52, type: 3}
+    additionalWeight: 0
+  - clip: {fileID: 8300000, guid: 010bec474a769e942baeb569453bdf12, type: 3}
+    additionalWeight: 0
+  chordBlocks:
+  - clip: {fileID: 8300000, guid: 2291eb56a5fd7d240ba5a8dcc26fe5e8, type: 3}
+    additionalWeight: 0
+  - clip: {fileID: 8300000, guid: 796c1067ce85a2149a4434d9e0fc0dc2, type: 3}
+    additionalWeight: 0
+  - clip: {fileID: 8300000, guid: 5cb2b598b33ac52479c165c24b1e5bb4, type: 3}
+    additionalWeight: 0
