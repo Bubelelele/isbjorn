@@ -23,6 +23,7 @@ public class JumpingScript : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
+            bearAnim.SetBool("IsFalling", false);
             bearAnim.SetBool("IsJumping", false);
         }
 
@@ -31,9 +32,16 @@ public class JumpingScript : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             bearAnim.SetBool("IsJumping", true);
+            bearAnim.SetBool("IsFalling", true);
+        }
+        //Falling
+        else if (!isGrounded)
+        {
+            bearAnim.SetBool("IsFalling", true);
         }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
 }
