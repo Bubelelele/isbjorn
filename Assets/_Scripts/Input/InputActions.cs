@@ -89,6 +89,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseLook"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ab67b61e-a8ce-46ce-99e0-8007f24610db"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Smell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13fd977f-c511-4059-adfb-959b7e362833"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Roar = m_Player.FindAction("Roar", throwIfNotFound: true);
         m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
         m_Player_Smell = m_Player.FindAction("Smell", throwIfNotFound: true);
+        m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Roar;
     private readonly InputAction m_Player_Slash;
     private readonly InputAction m_Player_Smell;
+    private readonly InputAction m_Player_MouseLook;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -304,6 +326,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Roar => m_Wrapper.m_Player_Roar;
         public InputAction @Slash => m_Wrapper.m_Player_Slash;
         public InputAction @Smell => m_Wrapper.m_Player_Smell;
+        public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +357,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Smell.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
                 @Smell.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
                 @Smell.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
+                @MouseLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
+                @MouseLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
+                @MouseLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +385,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Smell.started += instance.OnSmell;
                 @Smell.performed += instance.OnSmell;
                 @Smell.canceled += instance.OnSmell;
+                @MouseLook.started += instance.OnMouseLook;
+                @MouseLook.performed += instance.OnMouseLook;
+                @MouseLook.canceled += instance.OnMouseLook;
             }
         }
     }
@@ -372,5 +401,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnRoar(InputAction.CallbackContext context);
         void OnSlash(InputAction.CallbackContext context);
         void OnSmell(InputAction.CallbackContext context);
+        void OnMouseLook(InputAction.CallbackContext context);
     }
 }
