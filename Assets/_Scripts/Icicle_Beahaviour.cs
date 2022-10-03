@@ -1,5 +1,4 @@
- using System.Collections;
-using System.Collections.Generic;
+using _Scripts.Input;
 using UnityEngine;
 
 public class Icicle_Beahaviour : MonoBehaviour
@@ -7,13 +6,14 @@ public class Icicle_Beahaviour : MonoBehaviour
     public BoxCollider _bCGroundCollider;
     public float gravityForce = 0.5f;
     public GameObject particleChild;
+    [SerializeField] private PlayerInput input;
 
 
     [SerializeField]
     private float waitTime;
 
     private Rigidbody rB;
-    private bool iCanFall, falling, hasFallen;
+    public bool iCanFall, falling, hasFallen;
 
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     {
         if (iCanFall && !hasFallen)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (input.Roaring)
             {
                 //falling = true;
                 Invoke("ActivateFall", waitTime);
@@ -65,7 +65,8 @@ public class Icicle_Beahaviour : MonoBehaviour
         {
             falling = false;
             hasFallen = true;
-            particleChild.SetActive(true); 
+            particleChild.SetActive(true);
+            rB.isKinematic = true;
         }
     }
 
