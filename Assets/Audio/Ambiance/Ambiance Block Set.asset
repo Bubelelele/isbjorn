@@ -18,9 +18,9 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 7d38aba0beb9037479d7f86a1831403e, type: 3}
     additionalWeight: 0
   chordBlocks:
-  - clip: {fileID: 8300000, guid: 2291eb56a5fd7d240ba5a8dcc26fe5e8, type: 3}
+  - clip: {fileID: 8300000, guid: 0653c533d8a4f394aa97be1b39e6412c, type: 3}
     additionalWeight: 0
-  - clip: {fileID: 8300000, guid: 796c1067ce85a2149a4434d9e0fc0dc2, type: 3}
+  - clip: {fileID: 8300000, guid: 0b080f3712e1e9147a7c3bea5944b374, type: 3}
     additionalWeight: 0
-  - clip: {fileID: 8300000, guid: 5cb2b598b33ac52479c165c24b1e5bb4, type: 3}
+  - clip: {fileID: 8300000, guid: c068e3f3c67076744b3fc22a29c707a5, type: 3}
     additionalWeight: 0
