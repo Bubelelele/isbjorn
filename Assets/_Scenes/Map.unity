@@ -479,8 +479,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37395076}
-  m_LocalRotation: {x: 0.070889026, y: -0.000000016643241, z: 0.0000000011827989,
-    w: 0.9974842}
+  m_LocalRotation: {x: 0.07088901, y: 0.000000018227158, z: -0.0000000012953639, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14436,7 +14435,7 @@ PrefabInstance:
     - target: {fileID: 3702653984661215612, guid: 981931ef30c4eff4eaa909f3b0793909,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3702653984661215612, guid: 981931ef30c4eff4eaa909f3b0793909,
         type: 3}
@@ -14496,7 +14495,7 @@ PrefabInstance:
     - target: {fileID: 5470465785419315492, guid: 981931ef30c4eff4eaa909f3b0793909,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7984856155063397116, guid: 981931ef30c4eff4eaa909f3b0793909,
         type: 3}
@@ -16121,7 +16120,7 @@ MonoBehaviour:
   freezeTime: 0
   hideHud: 1
   canPlayMultipleTimes: 0
-  playableDirector: {fileID: 0}
+  playableDirector: {fileID: 1786012124}
   onCutsceneFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -16146,7 +16145,43 @@ MonoBehaviour:
   storyCutsceneId: 
   onCutsceneFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497651524}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 925265067}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 961739749}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &371147744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50395,7 +50430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &925265068
 Transform:
   m_ObjectHideFlags: 0
@@ -52092,7 +52127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &961739750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52184,7 +52219,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.1476714, y: 0.00000001701774, z: -0.0000000025408904, w: 0.9890365}
+  m_LocalRotation: {x: 0.1476714, y: -0.00000001701774, z: 0.0000000025408904, w: 0.9890365}
   m_LocalPosition: {x: 597.09106, y: 145.89, z: 1186.5171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -54448,7 +54483,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087402064}
-  m_LocalRotation: {x: 0.1476714, y: 0.00000001701774, z: -0.0000000025408904, w: 0.9890365}
+  m_LocalRotation: {x: 0.1476714, y: -0.00000001701774, z: 0.0000000025408904, w: 0.9890365}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -75905,6 +75940,14 @@ PlayableDirector:
     value: {fileID: 1026984120}
   - key: {fileID: 3869246995314913759, guid: fd202e1f8e6de1141a79a4f40919d965, type: 2}
     value: {fileID: 2000858825}
+  - key: {fileID: 8787240479426568953, guid: fd202e1f8e6de1141a79a4f40919d965, type: 2}
+    value: {fileID: 1497651524}
+  - key: {fileID: -3687939390448541108, guid: fd202e1f8e6de1141a79a4f40919d965, type: 2}
+    value: {fileID: 925265067}
+  - key: {fileID: 2879827599955347207, guid: fd202e1f8e6de1141a79a4f40919d965, type: 2}
+    value: {fileID: 28481779}
+  - key: {fileID: 3598369399515248208, guid: fd202e1f8e6de1141a79a4f40919d965, type: 2}
+    value: {fileID: 622204932}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1790673005
@@ -89057,7 +89100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2102409457
 Transform:
   m_ObjectHideFlags: 0
@@ -90412,7 +90455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &6307924769690274646
 PrefabInstance:
   m_ObjectHideFlags: 0
