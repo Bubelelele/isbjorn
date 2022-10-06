@@ -8,11 +8,13 @@ public class FishAreaManager : MonoBehaviour
     public Animator fish2Anim;
 
     private int fishEaten = 0;
+    private CutscenePlayer timeLine3;
 
     private void Start()
     {
         fishCanvas.SetActive(false);
         InvokeRepeating("Fish2Animator", 0f, 0.5f);
+        timeLine3 = GetComponent<CutscenePlayer>();
     }
 
     public void AddOneFish()
@@ -31,6 +33,7 @@ public class FishAreaManager : MonoBehaviour
     private void Done()
     {
         fishCanvas.SetActive(false);
+        timeLine3.Play();
     }
     private void Fish2Animator()
     {
