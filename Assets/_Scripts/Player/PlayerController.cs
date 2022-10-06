@@ -293,7 +293,8 @@ namespace _Scripts.Player
         // Skipped explanation in the tutorial on how this works in detail.
         private float PlayerJump()
         {
-            animator.SetBool("IsJumping", input.JumpIsPressed);
+            animator.SetBool("IsJumping", playerIsJumping);
+            animator.SetBool("IsFalling", !playerIsGrounded);
             
             var calculatedJumpInput = _playerMovement.y;
 
