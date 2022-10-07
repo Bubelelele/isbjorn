@@ -8,8 +8,8 @@ public class AmbianceBlockSetSO : ScriptableObject {
     [SerializeField] private AmbianceBlock[] songBlocks;
     [SerializeField] private AmbianceBlock[] chordBlocks;
 
-    public List<AmbianceBlock> Songs { get; private set; }
-    public List<AmbianceBlock> Chords { get; private set; }
+    public List<AmbianceBlock> Songs { get; } = new();
+    public List<AmbianceBlock> Chords { get; } = new();
 
     private void OnEnable() {
         foreach (var block in songBlocks) {
