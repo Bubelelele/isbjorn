@@ -10,7 +10,7 @@ public class Lift : MonoBehaviour
     private float timer;
     private int liftNumber;
 
-    private void Update()
+    private void LateUpdate()
     {
         timer += Time.deltaTime;
         if(timer >= waitTime)

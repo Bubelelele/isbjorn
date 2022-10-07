@@ -15,7 +15,6 @@ public class ParentToLift : MonoBehaviour
         {
             other.transform.parent = transform;
             playerRB = other.GetComponent<Rigidbody>();
-            playerRB.useGravity = false;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -24,7 +23,10 @@ public class ParentToLift : MonoBehaviour
         {
             other.transform.parent = null;
             playerRB = null;
-            playerRB.useGravity = true;
         }
+    }
+    private void Update()
+    {
+        Debug.Log(rb.velocity.y);
     }
 }

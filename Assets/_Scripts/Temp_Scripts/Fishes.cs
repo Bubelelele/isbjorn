@@ -49,17 +49,4 @@ public class Fishes : MonoBehaviour
     }
     public void CanRoar() { canRoar = true; }
     public void NoRoar() { canRoar = false; }
-
-    private void FishSound()
-	{
-        audioSound.Play();
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("Water"))
-		{
-            FishSound();
-		}
-	}
 }
