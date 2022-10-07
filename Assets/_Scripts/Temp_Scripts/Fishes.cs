@@ -1,11 +1,10 @@
-using _Scripts.Input;
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Fishes : MonoBehaviour
 {
     public UnityEvent onHit;
-    public PlayerInput input;
     public Transform player;
     public float pushForce;
 
@@ -31,7 +30,7 @@ public class Fishes : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (input.Roaring && !isDown && canRoar)
+            if (Keyboard.current.eKey.wasPressedThisFrame && !isDown && canRoar)
             {  
                 rb.isKinematic = false;
                 fishAnim.enabled = false;
@@ -39,7 +38,7 @@ public class Fishes : MonoBehaviour
                 isDown = true;
                 
             }
-            if (input.Slashing && Vector3.Distance(transform.position, player.transform.position) < 3 && !isHit && isDown)
+            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3 && !isHit && isDown)
             {
                 onHit.Invoke();
                 Destroy(gameObject, 0.2f);

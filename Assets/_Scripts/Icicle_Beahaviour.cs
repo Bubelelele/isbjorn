@@ -1,12 +1,12 @@
 using _Scripts.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Icicle_Beahaviour : MonoBehaviour
 {
     public BoxCollider _bCGroundCollider;
     public float gravityForce = 0.5f;
     public GameObject particleChild;
-    [SerializeField] private PlayerInput input;
     private AudioSource icicleSound;
 
 
@@ -29,7 +29,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     {
         if (iCanFall && !hasFallen)
         {
-            if (input.Roaring)
+            if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 //falling = true;
                 Invoke("ActivateFall", waitTime);
