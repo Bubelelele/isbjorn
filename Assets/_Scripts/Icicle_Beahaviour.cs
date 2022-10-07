@@ -7,6 +7,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     public float gravityForce = 0.5f;
     public GameObject particleChild;
     [SerializeField] private PlayerInput input;
+    private AudioSource icicleSound;
 
 
     [SerializeField]
@@ -20,6 +21,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     void Start()
     {
         rB = gameObject.GetComponent<Rigidbody>();
+        icicleSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -67,6 +69,7 @@ public class Icicle_Beahaviour : MonoBehaviour
             hasFallen = true;
             particleChild.SetActive(true);
             rB.isKinematic = true;
+            IcicleAudio();
         }
     }
 
@@ -76,5 +79,8 @@ public class Icicle_Beahaviour : MonoBehaviour
 
     }
 
-
+    private void IcicleAudio()
+	{
+        icicleSound.Play();
+	}
 }
