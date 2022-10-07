@@ -15,11 +15,13 @@ public class Fishes : MonoBehaviour
     private bool canRoar;
     private bool isDown;
     private bool isHit;
+    private AudioSource audioSound;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         fishAnim = GetComponent<Animator>();
+        audioSound = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -47,4 +49,17 @@ public class Fishes : MonoBehaviour
     }
     public void CanRoar() { canRoar = true; }
     public void NoRoar() { canRoar = false; }
+
+    private void FishSound()
+	{
+        audioSound.Play();
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Water"))
+		{
+            FishSound();
+		}
+	}
 }

@@ -9,7 +9,7 @@ public class Punch : MonoBehaviour
 
     private void Awake()
     {
-        hitArea = GameObject.Find("Player/PunchArea");
+        hitArea = GameObject.Find("Player/HitArea");
     }
 
 

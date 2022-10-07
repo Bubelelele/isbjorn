@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4000010766231838}
   - component: {fileID: 205000011427498984}
   - component: {fileID: 64000011487076046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cliff 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8548250212349174967, guid: 1e67224959136b54180e3bf7271e8369, type: 3}
 --- !u!1 &1000013867484940

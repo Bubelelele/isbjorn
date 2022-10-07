@@ -1515,6 +1515,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.8833333
+    functionName: Call
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.1666667
     functionName: CanRoar
     data: 
@@ -1524,6 +1531,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.8333333
     functionName: NoRoar
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.8666666
+    functionName: Call
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -1543,6 +1557,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 4.883333
+    functionName: Call
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 6.1666665
     functionName: CanRoar
     data: 
@@ -1557,6 +1578,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 6.866667
+    functionName: Call
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 8.166667
     functionName: CanRoar
     data: 
@@ -1566,6 +1594,13 @@ AnimationClip:
     messageOptions: 0
   - time: 8.833333
     functionName: NoRoar
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.866667
+    functionName: Call
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
