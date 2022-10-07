@@ -1,9 +1,8 @@
-using _Scripts.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DestroyIceTrigger : MonoBehaviour
 {
-    public PlayerInput input;
     public GameObject destroyableIce;
     public GameObject breakingIceEffectPrefab;
     
@@ -18,7 +17,7 @@ public class DestroyIceTrigger : MonoBehaviour
 
     void Update()
     {
-        if(canDestroy && input.Slashing && !isDestroyed)
+        if(canDestroy && Mouse.current.leftButton.wasPressedThisFrame && !isDestroyed)
         {
             blockAnim.SetTrigger("Activate");
             destroyableIce.SetActive(false);
