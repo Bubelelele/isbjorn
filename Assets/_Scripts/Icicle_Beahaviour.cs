@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Icicle_Beahaviour : MonoBehaviour
 {
-    public BoxCollider _bCGroundCollider;
+    //public BoxCollider _bCGroundCollider;
     public float gravityForce = 0.5f;
     public GameObject particleChild;
     private AudioSource icicleSound;
@@ -29,7 +29,8 @@ public class Icicle_Beahaviour : MonoBehaviour
     {
         if (iCanFall && !hasFallen)
         {
-            if (Keyboard.current.eKey.wasPressedThisFrame)
+            //if (Keyboard.current.eKey.wasPressedThisFrame)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 //falling = true;
                 Invoke("ActivateFall", waitTime);
@@ -70,8 +71,16 @@ public class Icicle_Beahaviour : MonoBehaviour
             particleChild.SetActive(true);
             rB.isKinematic = true;
             IcicleAudio();
+            Invoke("TurnOffPS", 4f + waitTime);
         }
     }
+
+    private void TurnOffPS()
+    {
+        particleChild.SetActive(false);
+
+    }
+
 
     private void ActivateFall()
     {
