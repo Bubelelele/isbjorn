@@ -6,7 +6,7 @@ public class YearCounter : MonoBehaviour
     public TextMeshProUGUI yearText;
     public float waitTime;
 
-    public bool IsCounting;
+    private bool IsCounting;
     private int year = 2000;
     private float timer;
     private void Update()
@@ -25,7 +25,7 @@ public class YearCounter : MonoBehaviour
 
         }
     }
-    private void StartCounting()
+    public void StartCounting()
     {
         IsCounting = true;
     }
