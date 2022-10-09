@@ -25,8 +25,4 @@ public class ParentToLift : MonoBehaviour
             playerRB = null;
         }
     }
-    private void Update()
-    {
-        Debug.Log(rb.velocity.y);
-    }
 }
