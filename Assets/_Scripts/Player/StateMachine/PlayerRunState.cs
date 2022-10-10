@@ -8,7 +8,8 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
-        
+        Context.Animator.SetBool("IsWalking", true);
+        Context.Animator.SetBool("IsRunning", true);
     }
 
     protected override void UpdateState()
@@ -22,7 +23,8 @@ public class PlayerRunState : PlayerBaseState
 
     protected override void ExitState()
     {
-        
+        Context.Animator.SetBool("IsWalking", false);
+        Context.Animator.SetBool("IsRunning", false);
     }
 
     public override void ShouldStateSwitch()

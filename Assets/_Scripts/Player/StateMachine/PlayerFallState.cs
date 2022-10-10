@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerFallState : PlayerBaseState
 {
+    private float _fallTimer;
     public PlayerFallState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
         IsRootState = true;
@@ -11,18 +12,26 @@ public class PlayerFallState : PlayerBaseState
     public override void EnterState()
     {
         //Debug.Log("Enter - " + Context.CurrentState);
+        _fallTimer = Context.FallAnimationTimer;
     }
 
     protected override void UpdateState()
     {
         //Debug.Log(Context.CurrentState);
         HandleGravity();
+
+        _fallTimer -= Time.fixedDeltaTime;
+        if (_fallTimer < 0.0f)
+        {
+            Context.Animator.SetBool("IsFalling", true);
+        }
+
         ShouldStateSwitch();
     }
 
     protected override void ExitState()
     {
-        
+        Context.Animator.SetBool("IsFalling", false);
     }
 
     public override void ShouldStateSwitch()

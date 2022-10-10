@@ -63,7 +63,11 @@ public class PlayerStateMachine : MonoBehaviour
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
     private float _relativeSlopeAngle;
+<<<<<<< Updated upstream
     private Transform _bearTransform;
+=======
+    private float _fallAnimationTimer = 0.5f;
+>>>>>>> Stashed changes
 
     // Getters and setters.
     public float RollMultiplier => rollMultiplier;
@@ -191,6 +195,11 @@ public class PlayerStateMachine : MonoBehaviour
     public float MaxRollableSlopeAngle {
         get => maxRollableSlopeAngle;
         set => maxRollableSlopeAngle = value;
+    }
+    public float FallAnimationTimer
+    {
+        get => _fallAnimationTimer;
+        set => _fallAnimationTimer = value;
     }
 
     public Transform PlayerTransform => _playerTransform;

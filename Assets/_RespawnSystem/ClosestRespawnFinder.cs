@@ -7,7 +7,12 @@ public class ClosestRespawnFinder : MonoBehaviour
     public Vector3 closestRespawnLocation;
     public PlayerStateMachine playerStateMachine;
     public float timeGrounded = 5f;
-    private float groundedTimer; 
+    private float groundedTimer;
+
+    private void Start()
+    {
+        FindClosestRespawn();
+    }
 
     private void Update()
     {
