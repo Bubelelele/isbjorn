@@ -23,7 +23,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.RollIsPressed && Context.GoingDownHill)
+        if (Context.Input.RollIsPressed && Context.GroundAngleRollable)
             SwitchState(Factory.Roll());
         else if (Context.Input.MoveIsPressed && Context.Input.RunIsPressed)
             SwitchState(Factory.Run());

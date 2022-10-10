@@ -41,9 +41,10 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float gravity = -9.8f;
 
     [Header("Rolling")]
-    [SerializeField] private bool goingDownHill;
+    [SerializeField] private bool groundAngleRollable;
     [SerializeField] private bool isRolling;
     [SerializeField] private float groundSlopeAngle;
+    [SerializeField] [Range(-90f, 0f)] private float maxRollableSlopeAngle = -45f;
     [SerializeField] private float drag = 10.0f;
     [SerializeField] private float rollMultiplier = 80.0f;
 
@@ -174,16 +175,21 @@ public class PlayerStateMachine : MonoBehaviour
         set => _playerMovement = value;
     }
 
-    public bool GoingDownHill
+    public bool GroundAngleRollable
     {
-        get => goingDownHill;
-        set => goingDownHill = value;
+        get => groundAngleRollable;
+        set => groundAngleRollable = value;
     }
 
     public bool IsRolling
     {
         get => isRolling;
         set => isRolling = value;
+    }
+    
+    public float MaxRollableSlopeAngle {
+        get => maxRollableSlopeAngle;
+        set => maxRollableSlopeAngle = value;
     }
 
     public Transform PlayerTransform => _playerTransform;

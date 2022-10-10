@@ -38,7 +38,7 @@ public class PlayerGroundedState : PlayerBaseState
 
     public sealed override void InitialiseSubState()
     {
-        if (Context.Input.RollIsPressed && Context.GoingDownHill)
+        if (Context.Input.RollIsPressed && Context.GroundAngleRollable)
             SetSubState(Factory.Roll());
         else if (Context.Input.MoveIsPressed && !Context.Input.RunIsPressed)
             SetSubState(Factory.Walk());
@@ -61,12 +61,11 @@ public class PlayerGroundedState : PlayerBaseState
             Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
             
             Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-            Context.GoingDownHill = Context.RelativeSlopeAngle > 0.0f;
+            Context.GroundAngleRollable = Context.RelativeSlopeAngle > Context.MaxRollableSlopeAngle;
         }
         else
         {
-            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-            Context.GoingDownHill = Context.RelativeSlopeAngle > 0.0f;
+            Context.GroundAngleRollable = true;
             Context.IsOnSlope = false;
         }
     }
