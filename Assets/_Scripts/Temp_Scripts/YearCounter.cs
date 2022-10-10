@@ -9,7 +9,10 @@ public class YearCounter : MonoBehaviour
     private bool IsCounting;
     private int year = 2000;
     private float timer;
-    private void Update()
+    public AudioSource oddNumber;
+    public AudioSource evenNumber;
+	
+	private void Update()
     {
         yearText.text = year.ToString();
         timer += Time.deltaTime;
@@ -17,6 +20,16 @@ public class YearCounter : MonoBehaviour
         if (IsCounting && timer >= waitTime && year < 2070)
         {
             year++;
+            //Even numbers
+			if (year %2 == 0)
+			{
+                EvenNumber();
+			}
+            //Odd numbers
+			else
+			{
+                OddNumber();
+			}
             timer = 0;
             if(waitTime > 0.05)
             {
@@ -29,4 +42,13 @@ public class YearCounter : MonoBehaviour
     {
         IsCounting = true;
     }
+    private void OddNumber()
+	{
+        oddNumber.Play();
+	}
+
+    private void EvenNumber()
+	{
+        evenNumber.Play();
+	}
 }
