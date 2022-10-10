@@ -29,8 +29,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     {
         if (iCanFall && !hasFallen)
         {
-            //if (Keyboard.current.eKey.wasPressedThisFrame)
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 //falling = true;
                 Invoke("ActivateFall", waitTime);
