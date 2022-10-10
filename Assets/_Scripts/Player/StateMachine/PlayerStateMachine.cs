@@ -212,6 +212,7 @@ public class PlayerStateMachine : MonoBehaviour
             _mainCameraTransform = Camera.main.transform;
         _animator = GetComponentInChildren<Animator>();
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        input = GameObject.Find("InputHandler").GetComponent<PlayerInput>();
         SetupJumpVariables();
         
         _state = new PlayerStateFactory(this);
