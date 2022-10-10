@@ -996,6 +996,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
+--- !u!114 &-3692821066339394482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b22792c3b570444eb18cb78c2af3a74, type: 3}
+  m_Name: Audio Track (4)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+  m_TrackProperties:
+    volume: 1
+    stereoPan: 0
+    spatialBlend: 0
 --- !u!114 &-3535065891509414356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1259,6 +1286,7 @@ MonoBehaviour:
   - {fileID: 3301159706719399418}
   - {fileID: -1955169713049103772}
   - {fileID: -5642206270228447367}
+  - {fileID: -3692821066339394482}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -1290,7 +1318,7 @@ MonoBehaviour:
     m_Start: 8.199999960263572
     m_ClipIn: 0
     m_Asset: {fileID: 2692136059982306713}
-    m_Duration: 11.350000039736429
+    m_Duration: 12.816666706403094
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1006464432706484231}
     m_EaseInDuration: 0
@@ -1686,7 +1714,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 9.5
+        time: 11
         value: 1
         inSlope: 0
         outSlope: 0
@@ -1695,7 +1723,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10.5
+        time: 12
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1731,7 +1759,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 10.5
+    m_StopTime: 12
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -1769,7 +1797,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 9.5
+        time: 11
         value: 1
         inSlope: 0
         outSlope: 0
@@ -1778,7 +1806,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10.5
+        time: 12
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1892,7 +1920,7 @@ MonoBehaviour:
     m_Start: 8.533333333333335
     m_ClipIn: 0
     m_Asset: {fileID: -5046824348952002931}
-    m_Duration: 10.5
+    m_Duration: 11.95
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2914165331652383683}
     m_EaseInDuration: 0
@@ -2172,7 +2200,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10.783334
+        time: 12
         value: 1
         inSlope: 0
         outSlope: 0
@@ -2181,7 +2209,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 11.283334
+        time: 12.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2217,7 +2245,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 11.283334
+    m_StopTime: 12.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -2255,7 +2283,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10.783334
+        time: 12
         value: 1
         inSlope: 0
         outSlope: 0
@@ -2264,7 +2292,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 11.283334
+        time: 12.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2810,7 +2838,7 @@ MonoBehaviour:
     m_Start: 8.15
     m_ClipIn: 0
     m_Asset: {fileID: 3330658389838087061}
-    m_Duration: 11.550000000000002
+    m_Duration: 12.866666666666665
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6191804737449353966}
     m_EaseInDuration: 0
@@ -3489,7 +3517,7 @@ MonoBehaviour:
     m_Start: 8.15
     m_ClipIn: 0
     m_Asset: {fileID: -3250046285916612274}
-    m_Duration: 11.550000000000002
+    m_Duration: 12.866666666666665
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8305483087446440514}
     m_EaseInDuration: 0

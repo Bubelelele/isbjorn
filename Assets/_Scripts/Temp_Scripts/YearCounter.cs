@@ -11,6 +11,7 @@ public class YearCounter : MonoBehaviour
     private float timer;
     public AudioSource oddNumber;
     public AudioSource evenNumber;
+    private int count;
 	
 	private void Update()
     {
@@ -19,9 +20,22 @@ public class YearCounter : MonoBehaviour
 
         if (IsCounting && timer >= waitTime && year < 2070)
         {
-            year++;
+			if (year >= 2020)
+			{
+                year += 2;
+			}
+			else if (year >= 2050)
+			{
+                year += 5;
+			}
+			else
+			{
+                year++;
+			}
+            count++;
+           
             //Even numbers
-			if (year %2 == 0)
+			if (count %2 == 0)
 			{
                 EvenNumber();
 			}
@@ -31,9 +45,9 @@ public class YearCounter : MonoBehaviour
                 OddNumber();
 			}
             timer = 0;
-            if(waitTime > 0.05)
+            if(waitTime > 0.045)
             {
-                waitTime -= 0.03f;
+                waitTime -= 0.015f;
             }
 
         }
