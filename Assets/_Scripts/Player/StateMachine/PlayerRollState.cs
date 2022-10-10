@@ -6,6 +6,9 @@ public class PlayerRollState : PlayerBaseState
     {
     }
 
+    private float _lastFrameAngle;
+    private bool _groundedLastFrame;
+    
     public override void EnterState()
     {
         Context.Animator.SetBool("IsRolling", true);
@@ -15,8 +18,6 @@ public class PlayerRollState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.Log(Context.GroundAngleRollable);
-        Context.PlayerMovement = Vector3.zero;
-        HandleGravity();
         HandleRollingMovement();
         ShouldStateSwitch();
     }
@@ -42,11 +43,29 @@ public class PlayerRollState : PlayerBaseState
     }
 
     private void HandleRollingMovement() {
-        Debug.Log("big boner balls");
+        
+        Context.PlayerMovement = Vector3.zero;
+        
         Context.PlayerMovementZ = Context.RollMultiplier;
-    }
-    
-    private void HandleGravity() {
-        Context.PlayerMovementY = Context.Gravity;
+        if (Context.RelativeSlopeAngle < 0f) Context.PlayerMovementZ = Context.RollMultiplier * 5;
+        
+        Context.PlayerMovementY = -10f;
+        if (!Context.PlayerIsGrounded) {
+            if (_groundedLastFrame && _lastFrameAngle < 0f) {
+                Context.PlayerMovement = Vector3.zero;
+                Context.PlayerMovementY = 100f;
+                return;
+            } else {
+                Context.PlayerMovementY = -1000f;
+            }
+
+            _groundedLastFrame = false;
+        } else {
+            _groundedLastFrame = true;
+        }
+        
+        _lastFrameAngle = Context.RelativeSlopeAngle;
+
+        Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
     }
 }
