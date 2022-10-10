@@ -53,7 +53,10 @@ public class PlayerRollState : PlayerBaseState
         }
 
         if (Context.GroundSlopeAngle == 0.0f)
-            Context.PlayerMovement = Context.GroundSlopeAngle * Context.PlayerMovement;
+        {
+            Context.PlayerMovementY = 0.0f;
+            Context.Rigidbody.AddForce(Context.GlobalForward * Context.RollMultiplier, ForceMode.Force);
+        }
         else
             Context.PlayerMovementY = Context.GroundSlopeAngle * Context.Gravity;
     }

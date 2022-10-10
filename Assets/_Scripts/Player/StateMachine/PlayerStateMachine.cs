@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -204,8 +205,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        
         _rigidbody = GetComponent<Rigidbody>();
         _playerTransform = _rigidbody.transform;
         if (Camera.main != null)
@@ -231,6 +230,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+            Invoke(nameof(LockCursor), 0.1f);
+        
         PlayerLookRelativeToCamera();
         Debug.DrawRay(_playerPosition, _playerTransform.TransformDirection(_playerMovement), Color.red);
         Debug.Log(GroundSlopeAngle);
@@ -278,5 +280,10 @@ public class PlayerStateMachine : MonoBehaviour
         var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance;
 
         return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, groundLayerMask);
+    }
+
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
