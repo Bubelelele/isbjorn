@@ -63,7 +63,8 @@ public class PlayerStateMachine : MonoBehaviour
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
     private float _relativeSlopeAngle;
-    
+    private Transform _bearTransform;
+
     // Getters and setters.
     public float RollMultiplier => rollMultiplier;
     public Vector3 GlobalForward => _globalForward;
@@ -213,6 +214,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerTransform = _rigidbody.transform;
+        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
         _animator = GetComponentInChildren<Animator>();
@@ -268,14 +270,13 @@ public class PlayerStateMachine : MonoBehaviour
 
         var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
 
-        var bear = _playerTransform.GetChild(0);
         if (_input.MoveIsPressed && !_input.RollIsPressed)
         {
             _playerTransform.forward = _globalForward;
-            bear.forward = Vector3.Slerp(bear.forward, lookDirection, rotationSpeed * Time.deltaTime);
+            _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
         }
         else if (_input.RollIsPressed)
-            bear.forward = _playerTransform.forward = _globalForward;
+            _bearTransform.forward = _playerTransform.forward = _globalForward;
     }
 
     private bool PlayerGroundCheck()

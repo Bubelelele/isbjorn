@@ -7,6 +7,8 @@ public class Fishes : MonoBehaviour
     public UnityEvent onHit;
     public Transform player;
     public float pushForce;
+    public GameObject icon;
+    public Material slashIcon;
 
     private Rigidbody rb;
     private Animator fishAnim;
@@ -36,6 +38,7 @@ public class Fishes : MonoBehaviour
                 fishAnim.enabled = false;
                 rb.AddForce(dir * Time.deltaTime * pushForce);
                 isDown = true;
+                icon.GetComponent<MeshRenderer>().material = slashIcon;
                 
             }
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3 && !isHit && isDown)
@@ -46,6 +49,6 @@ public class Fishes : MonoBehaviour
             }
         }
     }
-    public void CanRoar() { canRoar = true; }
-    public void NoRoar() { canRoar = false; }
+    public void CanRoar() { canRoar = true; icon.SetActive(true); }
+    public void NoRoar() { canRoar = false; icon.SetActive(false); }
 }

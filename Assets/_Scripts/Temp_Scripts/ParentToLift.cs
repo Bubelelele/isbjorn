@@ -7,7 +7,7 @@ public class ParentToLift : MonoBehaviour
     private Rigidbody playerRB;
     private Rigidbody _platformRigidbody;
     private Vector3 _platformPositionLastFrame;
-    
+
     [SerializeField] private List<Rigidbody> rigidbodiesOnPlatform = new List<Rigidbody>();
 
     private void Start()
@@ -60,4 +60,3 @@ public class ParentToLift : MonoBehaviour
         }
     }
 }
-
