@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
@@ -26,10 +27,13 @@ public class CutsceneTrigger : MonoBehaviour {
         if (freezeTime) playableDirector.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
         if (isStoryCutscene && storyCutsceneId == "") 
             Debug.LogWarning($"{gameObject.name} needs a story cutscene ID to function correctly!");
+    }
+
+    private void Start() {
         if (playOnStart)
             CutsceneManager.PlayCutscene(playableDirector, hideHud);
     }
-    
+
     private void OnDestroy() => CutsceneManager.OnCutscenePlaying -= OnCutscenePlaying;
 
     private void OnTriggerEnter(Collider other) {
