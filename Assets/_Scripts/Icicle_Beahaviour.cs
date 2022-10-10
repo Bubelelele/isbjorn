@@ -1,4 +1,3 @@
-using _Scripts.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -24,7 +24,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerLand"",
             ""id"": ""b7b42c89-228b-4084-960b-b6c71e72fbad"",
             ""actions"": [
                 {
@@ -64,18 +64,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Roar"",
+                    ""name"": ""Slash"",
                     ""type"": ""Button"",
-                    ""id"": ""cb739a8c-fad7-4fc5-89fe-1cca8fcbb3d7"",
+                    ""id"": ""5e926b30-91a8-4b25-8b35-d987029c66fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Slash"",
+                    ""name"": ""Roar"",
                     ""type"": ""Button"",
-                    ""id"": ""5e926b30-91a8-4b25-8b35-d987029c66fb"",
+                    ""id"": ""cb739a8c-fad7-4fc5-89fe-1cca8fcbb3d7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -86,15 +86,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""68e4cd4d-46bb-43c7-8ef8-e37f75e74fa6"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MouseLook"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""ab67b61e-a8ce-46ce-99e0-8007f24610db"",
-                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -202,17 +193,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8b8cc6ba-8192-46ae-8d5e-059c7867b6b2"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Slash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f6268357-6ec5-44a6-a2d2-8d7bbf8a7cfb"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -224,12 +204,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""13fd977f-c511-4059-adfb-959b7e362833"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""8b8cc6ba-8192-46ae-8d5e-059c7867b6b2"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseLook"",
+                    ""action"": ""Slash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -238,16 +218,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
-        m_Player_Roar = m_Player.FindAction("Roar", throwIfNotFound: true);
-        m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
-        m_Player_Smell = m_Player.FindAction("Smell", throwIfNotFound: true);
-        m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
+        // PlayerLand
+        m_PlayerLand = asset.FindActionMap("PlayerLand", throwIfNotFound: true);
+        m_PlayerLand_Move = m_PlayerLand.FindAction("Move", throwIfNotFound: true);
+        m_PlayerLand_Run = m_PlayerLand.FindAction("Run", throwIfNotFound: true);
+        m_PlayerLand_Jump = m_PlayerLand.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerLand_Roll = m_PlayerLand.FindAction("Roll", throwIfNotFound: true);
+        m_PlayerLand_Slash = m_PlayerLand.FindAction("Slash", throwIfNotFound: true);
+        m_PlayerLand_Roar = m_PlayerLand.FindAction("Roar", throwIfNotFound: true);
+        m_PlayerLand_Smell = m_PlayerLand.FindAction("Smell", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,64 +283,59 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Roll;
-    private readonly InputAction m_Player_Roar;
-    private readonly InputAction m_Player_Slash;
-    private readonly InputAction m_Player_Smell;
-    private readonly InputAction m_Player_MouseLook;
-    public struct PlayerActions
+    // PlayerLand
+    private readonly InputActionMap m_PlayerLand;
+    private IPlayerLandActions m_PlayerLandActionsCallbackInterface;
+    private readonly InputAction m_PlayerLand_Move;
+    private readonly InputAction m_PlayerLand_Run;
+    private readonly InputAction m_PlayerLand_Jump;
+    private readonly InputAction m_PlayerLand_Roll;
+    private readonly InputAction m_PlayerLand_Slash;
+    private readonly InputAction m_PlayerLand_Roar;
+    private readonly InputAction m_PlayerLand_Smell;
+    public struct PlayerLandActions
     {
         private @InputActions m_Wrapper;
-        public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Roll => m_Wrapper.m_Player_Roll;
-        public InputAction @Roar => m_Wrapper.m_Player_Roar;
-        public InputAction @Slash => m_Wrapper.m_Player_Slash;
-        public InputAction @Smell => m_Wrapper.m_Player_Smell;
-        public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public PlayerLandActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerLand_Move;
+        public InputAction @Run => m_Wrapper.m_PlayerLand_Run;
+        public InputAction @Jump => m_Wrapper.m_PlayerLand_Jump;
+        public InputAction @Roll => m_Wrapper.m_PlayerLand_Roll;
+        public InputAction @Slash => m_Wrapper.m_PlayerLand_Slash;
+        public InputAction @Roar => m_Wrapper.m_PlayerLand_Roar;
+        public InputAction @Smell => m_Wrapper.m_PlayerLand_Smell;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerLand; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerLandActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerLandActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerLandActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Roll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
-                @Roll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
-                @Roll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
-                @Roar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoar;
-                @Roar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoar;
-                @Roar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoar;
-                @Slash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
-                @Slash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
-                @Slash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
-                @Smell.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
-                @Smell.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
-                @Smell.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSmell;
-                @MouseLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
-                @MouseLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
-                @MouseLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
+                @Move.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnMove;
+                @Run.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRun;
+                @Jump.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnJump;
+                @Roll.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoll;
+                @Roll.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoll;
+                @Roll.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoll;
+                @Slash.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSlash;
+                @Slash.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSlash;
+                @Slash.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSlash;
+                @Roar.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
+                @Roar.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
+                @Roar.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
+                @Smell.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
+                @Smell.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
+                @Smell.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerLandActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
@@ -376,31 +350,27 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
-                @Roar.started += instance.OnRoar;
-                @Roar.performed += instance.OnRoar;
-                @Roar.canceled += instance.OnRoar;
                 @Slash.started += instance.OnSlash;
                 @Slash.performed += instance.OnSlash;
                 @Slash.canceled += instance.OnSlash;
+                @Roar.started += instance.OnRoar;
+                @Roar.performed += instance.OnRoar;
+                @Roar.canceled += instance.OnRoar;
                 @Smell.started += instance.OnSmell;
                 @Smell.performed += instance.OnSmell;
                 @Smell.canceled += instance.OnSmell;
-                @MouseLook.started += instance.OnMouseLook;
-                @MouseLook.performed += instance.OnMouseLook;
-                @MouseLook.canceled += instance.OnMouseLook;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
-    public interface IPlayerActions
+    public PlayerLandActions @PlayerLand => new PlayerLandActions(this);
+    public interface IPlayerLandActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
-        void OnRoar(InputAction.CallbackContext context);
         void OnSlash(InputAction.CallbackContext context);
+        void OnRoar(InputAction.CallbackContext context);
         void OnSmell(InputAction.CallbackContext context);
-        void OnMouseLook(InputAction.CallbackContext context);
     }
 }
