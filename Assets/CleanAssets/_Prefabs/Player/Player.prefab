@@ -333,7 +333,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 326d0ec246e46c0418412598e8545158, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -461,7 +461,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3c8f5af43d3362b408a315412938edbe, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.8
   Loop: 0
@@ -722,9 +722,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &568410688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,7 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe82afb700d764ab28af1771a6c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 0}
   rotationSpeed: 5
   movementMultiplier: 80
   runMultiplier: 1.75
@@ -767,11 +766,12 @@ MonoBehaviour:
   playerFallTimer: 0
   groundedGravity: 0
   gravity: -9.8
-  goingDownHill: 0
+  groundAngleRollable: 0
   isRolling: 0
   groundSlopeAngle: 0
+  maxRollableSlopeAngle: -45
   drag: 10
-  rollMultiplier: 80
+  rollMultiplier: 150
 --- !u!1 &4400091867181516035
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +815,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0ebc8c74055426741ab3ff46045382f8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1559,7 +1559,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 79bd3c831a497734fa55cc473194f212, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
