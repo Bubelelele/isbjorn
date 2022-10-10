@@ -232,19 +232,17 @@ MonoBehaviour:
   continualJumpForceMultiplier: 0.1
   jumpTime: 0.175
   jumpTimeCounter: 0
-  coyoteTime: 0.15
+  coyoteTime: 0.3
   coyoteTimeCounter: 0
   jumpBufferTime: 0.2
   jumpBufferTimeCounter: 0
   playerIsJumping: 0
   jumpWasPressedLastFrame: 0
   playerGoingUpRamp: 0
-  momentumModeMultiplier: 30
   playerRollTimer: 0
   playerRollGravityIncrementFrequency: 1
   playerRollGravityIncrementAmount: -50
   shootForce: 75000
-  roarRadius: 100
 --- !u!82 &2252300834597353906
 AudioSource:
   m_ObjectHideFlags: 0
