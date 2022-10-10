@@ -15,7 +15,7 @@ public class YearCounter : MonoBehaviour
 	
 	private void Update()
     {
-        yearText.text = year.ToString();
+        yearText.text = "Year:" + year.ToString();
         timer += Time.deltaTime;
 
         if (IsCounting && timer >= waitTime && year < 2070)
