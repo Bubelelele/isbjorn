@@ -211,7 +211,7 @@ public class PlayerStateMachine : MonoBehaviour
             _mainCameraTransform = Camera.main.transform;
         _animator = GetComponentInChildren<Animator>();
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-        _input = GameObject.Find("InputHandler").GetComponent<PlayerInput>();
+        _input = FindObjectOfType<PlayerInput>();
         SetupJumpVariables();
         
         _state = new PlayerStateFactory(this);
@@ -221,7 +221,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerIsGrounded = PlayerGroundCheck();
+        PlayerIsGrounded = PlayerGroundCheck();
         _playerMovement = MoveDirection();
         _currentState.UpdateStates();
         
@@ -286,4 +286,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
+    
+    
 }
