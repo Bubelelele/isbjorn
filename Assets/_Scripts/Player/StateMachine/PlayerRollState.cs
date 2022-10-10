@@ -6,17 +6,19 @@ public class PlayerRollState : PlayerBaseState
     {
     }
 
+    private float _lastFrameAngle;
+    private bool _groundedLastFrame;
+    
     public override void EnterState()
     {
         Context.Animator.SetBool("IsRolling", true);
         Context.IsRolling = true;
-        Context.Rigidbody.drag = Context.Drag * 0.5f;
     }
 
     protected override void UpdateState()
     {
-        Debug.Log(Context.GoingDownHill);
-        HandleGravity();
+        Debug.Log(Context.GroundAngleRollable);
+        HandleRollingMovement();
         ShouldStateSwitch();
     }
 
@@ -24,14 +26,14 @@ public class PlayerRollState : PlayerBaseState
     {
         Context.Animator.SetBool("IsRolling", false);
         Context.IsRolling = false;
-        Context.Rigidbody.drag = Context.Drag;
+        Debug.LogWarning("byebye");
     }
 
     public override void ShouldStateSwitch()
     {
         if (Context.PlayerIsGrounded && !Context.Input.RollIsPressed)
             SwitchState(Factory.Grounded());
-        else if (!Context.PlayerIsGrounded)
+        else if (!Context.PlayerIsGrounded && !Context.Input.RollIsPressed)
             SwitchState(Factory.Fall());
     }
 
@@ -39,25 +41,31 @@ public class PlayerRollState : PlayerBaseState
     {
         throw new System.NotImplementedException();
     }
-    
-    private void HandleGravity()
-    {
-        Context.PlayerFallTimer -= Time.fixedDeltaTime;
-        if (Context.PlayerFallTimer < 0.0f)
-        {
-            if (Context.Gravity > Context.MaximumGravity)
-            {
-                Context.Gravity += Context.IncrementAmount;
-            }
-            Context.PlayerFallTimer = Context.IncrementFrequency;
-        }
 
-        if (Context.GroundSlopeAngle == 0.0f)
-        {
-            Context.PlayerMovementY = 0.0f;
-            Context.Rigidbody.AddForce(Context.GlobalForward * Context.RollMultiplier, ForceMode.Force);
+    private void HandleRollingMovement() {
+        
+        Context.PlayerMovement = Vector3.zero;
+        
+        Context.PlayerMovementZ = Context.RollMultiplier;
+        if (Context.RelativeSlopeAngle < 0f) Context.PlayerMovementZ = Context.RollMultiplier * 5;
+        
+        Context.PlayerMovementY = -10f;
+        if (!Context.PlayerIsGrounded) {
+            if (_groundedLastFrame && _lastFrameAngle < 0f) {
+                Context.PlayerMovement = Vector3.zero;
+                Context.PlayerMovementY = 100f;
+                return;
+            } else {
+                Context.PlayerMovementY = -1000f;
+            }
+
+            _groundedLastFrame = false;
+        } else {
+            _groundedLastFrame = true;
         }
-        else
-            Context.PlayerMovementY = Context.GroundSlopeAngle * Context.Gravity;
+        
+        _lastFrameAngle = Context.RelativeSlopeAngle;
+
+        Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
     }
 }

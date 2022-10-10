@@ -27,7 +27,7 @@ public class PlayerRunState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.RollIsPressed && Context.GoingDownHill)
+        if (Context.Input.RollIsPressed && Context.GroundAngleRollable)
             SwitchState(Factory.Roll());
         else if (!Context.Input.MoveIsPressed)
             SwitchState(Factory.Idle());
