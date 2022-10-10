@@ -6,6 +6,7 @@ public class TempRespawnDeactivate : MonoBehaviour
 {
 
     public GameObject firstRespawnPoint;
+    public GameObject firstFoodItem;
 
 
     private void OnTriggerEnter(Collider other)
@@ -13,6 +14,7 @@ public class TempRespawnDeactivate : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             firstRespawnPoint.SetActive(false); 
+            firstFoodItem.SetActive(false); 
         }
     }
 }
