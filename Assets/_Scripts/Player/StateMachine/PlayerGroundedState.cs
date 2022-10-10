@@ -30,6 +30,7 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
+        
         if (!Context.PlayerIsJumping && Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
         else if (!Context.PlayerIsGrounded)

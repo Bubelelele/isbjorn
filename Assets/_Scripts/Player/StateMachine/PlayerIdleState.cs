@@ -23,7 +23,13 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.RollIsPressed)
+        if (Context.Input.Roaring)
+            SwitchState(Factory.Roar());
+        else if (Context.Input.Smelling)
+            SwitchState(Factory.Sniff());
+        else if (Context.Input.Slashing)
+            SwitchState(Factory.Slash());
+        else if (Context.Input.RollIsPressed)
             SwitchState(Factory.Roll());
         else if (Context.Input.MoveIsPressed && Context.Input.RunIsPressed)
             SwitchState(Factory.Run());

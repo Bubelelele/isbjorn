@@ -15,4 +15,6 @@ public class PlayerStateFactory
     public PlayerBaseState Jump() { return new PlayerJumpState(_context, this); }
     public PlayerBaseState Roar() { return new PlayerRoarState(_context, this); }
     public PlayerBaseState Fall() { return new PlayerFallState(_context, this); }
+    public PlayerBaseState Slash() { return new PlayerSlashState(_context, this); }
+    public PlayerBaseState Sniff() { return new PlayerSniffState(_context, this); }
 }

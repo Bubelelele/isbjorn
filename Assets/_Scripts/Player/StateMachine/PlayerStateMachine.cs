@@ -63,11 +63,11 @@ public class PlayerStateMachine : MonoBehaviour
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
     private float _relativeSlopeAngle;
-<<<<<<< Updated upstream
+
     private Transform _bearTransform;
-=======
+
     private float _fallAnimationTimer = 0.5f;
->>>>>>> Stashed changes
+
 
     // Getters and setters.
     public float RollMultiplier => rollMultiplier;
