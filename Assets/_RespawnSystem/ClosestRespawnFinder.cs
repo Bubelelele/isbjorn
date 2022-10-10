@@ -35,7 +35,7 @@ public class ClosestRespawnFinder : MonoBehaviour
         //FindClosestRespawn();
     }
 
-    public void FindClosestRespawn()
+    private void FindClosestRespawn()
     {
         float distanceToClosestRespawn = Mathf.Infinity;
         RespawnPoint closestRespawn = null;
