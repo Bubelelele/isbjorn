@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear_Thin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 707c86dd46c8c894dbc139c108a92b4f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 707c86dd46c8c894dbc139c108a92b4f, type: 3}
 --- !u!1 &67401406 stripped
@@ -2476,7 +2481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   m_LocalRotation: {x: 0.1476714, y: -0.00000001701774, z: 0.0000000025408904, w: 0.9890365}
-  m_LocalPosition: {x: 266.95468, y: 239.4, z: 713.1264}
+  m_LocalPosition: {x: 63.8, y: 207.97, z: 638.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3136,6 +3141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ambiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109571420132414249, guid: 250544344ad2fe546b31d7e3bf5f4207,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5109571420132414251, guid: 250544344ad2fe546b31d7e3bf5f4207,
         type: 3}
@@ -4009,7 +4019,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5209,22 +5219,22 @@ PrefabInstance:
     - target: {fileID: 5205934861311183597, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861311183597, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 266.95468
+      value: 63.8
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861311183597, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 239.4
+      value: 207.97
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861311183597, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 713.1264
+      value: 638.72
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861311183597, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
@@ -5284,12 +5294,12 @@ PrefabInstance:
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001664324
+      value: -0.000000016570313
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000011827987
+      value: 0.0000000011776159
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861949811973, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
@@ -5309,12 +5319,12 @@ PrefabInstance:
     - target: {fileID: 5205934862341574198, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 7
+      value: 5.087085
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862738845821, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 7
+      value: 5.087085
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862754404536, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
@@ -5324,17 +5334,17 @@ PrefabInstance:
     - target: {fileID: 5205934862754404536, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001701774
+      value: -0.000000017017744
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862754404536, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000025408904
+      value: 0.000000002540891
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862837684955, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 7
+      value: 5.087085
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbd761be2044e964ea65d01da6bd1a25, type: 3}
@@ -5417,27 +5427,27 @@ PrefabInstance:
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 266.95468
+      value: 63.8
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 232.4
+      value: 200.97
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 727.1264
+      value: 652.72
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.9914448
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
@@ -5447,7 +5457,7 @@ PrefabInstance:
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.13052672
       objectReference: {fileID: 0}
     - target: {fileID: 3957473259188042865, guid: bde8716d2bf78704db17b1cb86a04a47,
         type: 3}
