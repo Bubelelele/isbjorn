@@ -7,6 +7,7 @@ public class Fishes : MonoBehaviour
     public UnityEvent onHit;
     public Transform player;
     public float pushForce;
+    public GameObject icon;
 
     private Rigidbody rb;
     private Animator fishAnim;
@@ -46,6 +47,6 @@ public class Fishes : MonoBehaviour
             }
         }
     }
-    public void CanRoar() { canRoar = true; }
-    public void NoRoar() { canRoar = false; }
+    public void CanRoar() { canRoar = true; icon.SetActive(true); }
+    public void NoRoar() { canRoar = false; icon.SetActive(false); }
 }
