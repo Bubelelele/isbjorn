@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Scripts.Input
+public class PlayerInput : MonoBehaviour
 {
-    public class PlayerInput : MonoBehaviour
-    {
         public Vector2 MoveInput { get; private set; }
         public bool MoveIsPressed { get; private set; }
         public bool RunIsPressed { get; private set; }
@@ -19,61 +17,62 @@ namespace _Scripts.Input
         private void OnEnable()
         {
             _input = new InputActions();
-            _input.Player.Enable();
+            _input.PlayerLand.Enable();
 
-            _input.Player.Move.performed += StoreMoveInput;
-            _input.Player.Move.canceled += StoreMoveInput;
+            _input.PlayerLand.Move.started += StoreMoveInput;
+            _input.PlayerLand.Move.performed += StoreMoveInput;
+            _input.PlayerLand.Move.canceled += StoreMoveInput;
             
-            _input.Player.Run.started += SetRun;
-            _input.Player.Run.canceled += SetRun;
+            _input.PlayerLand.Run.started += SetRun;
+            _input.PlayerLand.Run.canceled += SetRun;
             
-            _input.Player.Jump.started += SetJump;
-            _input.Player.Jump.canceled += SetJump;
+            _input.PlayerLand.Jump.started += SetJump;
+            _input.PlayerLand.Jump.canceled += SetJump;
             
-            _input.Player.Roll.started += SetRoll;
-            _input.Player.Roll.canceled += SetRoll;
+            _input.PlayerLand.Roll.started += SetRoll;
+            _input.PlayerLand.Roll.canceled += SetRoll;
             
-            _input.Player.Roar.started += Roar;
-            _input.Player.Roar.canceled += Roar;
+            _input.PlayerLand.Slash.started += Slash;
+            _input.PlayerLand.Slash.canceled += Slash;
             
-            _input.Player.Slash.started += Slash;
-            _input.Player.Slash.canceled += Slash;
-            
-            _input.Player.Smell.started += Smell;
-            _input.Player.Smell.canceled += Smell;
+            _input.PlayerLand.Roar.started += Roar;
+            _input.PlayerLand.Roar.canceled += Roar;
+
+            _input.PlayerLand.Smell.started += Smell;
+            _input.PlayerLand.Smell.canceled += Smell;
         }
         
         private void OnDisable()
         {
-            _input.Player.Move.performed -= StoreMoveInput;
-            _input.Player.Move.canceled -= StoreMoveInput;
+            _input.PlayerLand.Move.started -= StoreMoveInput;
+            _input.PlayerLand.Move.performed -= StoreMoveInput;
+            _input.PlayerLand.Move.canceled -= StoreMoveInput;
             
-            _input.Player.Run.started -= SetRun;
-            _input.Player.Run.canceled -= SetRun;
+            _input.PlayerLand.Run.started -= SetRun;
+            _input.PlayerLand.Run.canceled -= SetRun;
             
-            _input.Player.Jump.started -= SetJump;
-            _input.Player.Jump.canceled -= SetJump;
+            _input.PlayerLand.Jump.started -= SetJump;
+            _input.PlayerLand.Jump.canceled -= SetJump;
             
-            _input.Player.Roll.started -= SetRoll;
-            _input.Player.Roll.canceled -= SetRoll;
+            _input.PlayerLand.Roll.started -= SetRoll;
+            _input.PlayerLand.Roll.canceled -= SetRoll;
             
-            _input.Player.Roar.started -= Roar;
-            _input.Player.Roar.canceled -= Roar;
+            _input.PlayerLand.Slash.started -= Slash;
+            _input.PlayerLand.Slash.canceled -= Slash;
             
-            _input.Player.Slash.started -= Slash;
-            _input.Player.Slash.canceled -= Slash;
-            
-            _input.Player.Smell.started -= Smell;
-            _input.Player.Smell.canceled -= Smell;
+            _input.PlayerLand.Roar.started -= Roar;
+            _input.PlayerLand.Roar.canceled -= Roar;
 
-            _input.Player.Disable();
+            _input.PlayerLand.Smell.started -= Smell;
+            _input.PlayerLand.Smell.canceled -= Smell;
+
+            _input.PlayerLand.Disable();
         }
         
         private void StoreMoveInput(InputAction.CallbackContext context)
         {
             MoveInput = context.ReadValue<Vector2>();
             MoveIsPressed = MoveInput != Vector2.zero;
-
         }
 
         private void SetRun(InputAction.CallbackContext context)
@@ -91,19 +90,18 @@ namespace _Scripts.Input
             RollIsPressed = context.started;
         }
 
-        private void Roar(InputAction.CallbackContext context)
-        {
-            Roaring = context.started;
-        }
-        
         private void Slash(InputAction.CallbackContext context)
         {
             Slashing = context.started;
         }
         
+        private void Roar(InputAction.CallbackContext context)
+        {
+            Roaring = context.started;
+        }
+
         private void Smell(InputAction.CallbackContext context)
         {
             Smelling = context.started;
         }
-    }
 }

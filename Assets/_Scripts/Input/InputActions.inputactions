@@ -2,7 +2,7 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "PlayerLand",
             "id": "b7b42c89-228b-4084-960b-b6c71e72fbad",
             "actions": [
                 {
@@ -42,18 +42,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Roar",
+                    "name": "Slash",
                     "type": "Button",
-                    "id": "cb739a8c-fad7-4fc5-89fe-1cca8fcbb3d7",
+                    "id": "5e926b30-91a8-4b25-8b35-d987029c66fb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slash",
+                    "name": "Roar",
                     "type": "Button",
-                    "id": "5e926b30-91a8-4b25-8b35-d987029c66fb",
+                    "id": "cb739a8c-fad7-4fc5-89fe-1cca8fcbb3d7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -64,15 +64,6 @@
                     "type": "Button",
                     "id": "68e4cd4d-46bb-43c7-8ef8-e37f75e74fa6",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MouseLook",
-                    "type": "PassThrough",
-                    "id": "ab67b61e-a8ce-46ce-99e0-8007f24610db",
-                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -180,17 +171,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8b8cc6ba-8192-46ae-8d5e-059c7867b6b2",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Slash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f6268357-6ec5-44a6-a2d2-8d7bbf8a7cfb",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -202,12 +182,12 @@
                 },
                 {
                     "name": "",
-                    "id": "13fd977f-c511-4059-adfb-959b7e362833",
-                    "path": "<Mouse>/delta",
+                    "id": "8b8cc6ba-8192-46ae-8d5e-059c7867b6b2",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MouseLook",
+                    "action": "Slash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
