@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField] private PlayerInput input;
+    private PlayerInput _input;
     
     [Header("Movement")]
     [SerializeField] private float rotationSpeed = 5.0f;
@@ -97,7 +97,7 @@ public class PlayerStateMachine : MonoBehaviour
         get => _currentState;
         set => _currentState = value;
     }
-    public PlayerInput Input => input;
+    public PlayerInput Input => _input;
     public float JumpBufferTime => jumpBufferTime;
     public float JumpBufferTimeCounter
     {
@@ -212,7 +212,7 @@ public class PlayerStateMachine : MonoBehaviour
             _mainCameraTransform = Camera.main.transform;
         _animator = GetComponentInChildren<Animator>();
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-        input = GameObject.Find("InputHandler").GetComponent<PlayerInput>();
+        _input = GameObject.Find("InputHandler").GetComponent<PlayerInput>();
         SetupJumpVariables();
         
         _state = new PlayerStateFactory(this);
@@ -245,7 +245,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private Vector3 MoveDirection()
     {
-        return new Vector3(input.MoveInput.x, 0.0f, input.MoveInput.y);
+        return new Vector3(_input.MoveInput.x, 0.0f, _input.MoveInput.y);
     }
     
     private void PlayerLookRelativeToCamera()
@@ -261,12 +261,12 @@ public class PlayerStateMachine : MonoBehaviour
         var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
 
         var bear = _playerTransform.GetChild(0);
-        if (input.MoveIsPressed && !input.RollIsPressed)
+        if (_input.MoveIsPressed && !_input.RollIsPressed)
         {
             _playerTransform.forward = _globalForward;
             bear.forward = Vector3.Slerp(bear.forward, lookDirection, rotationSpeed * Time.deltaTime);
         }
-        else if (input.RollIsPressed)
+        else if (_input.RollIsPressed)
             bear.forward = _playerTransform.forward = _globalForward;
     }
 
