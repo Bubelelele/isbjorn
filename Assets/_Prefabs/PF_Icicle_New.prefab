@@ -2852,7 +2852,7 @@ GameObject:
   - component: {fileID: 4783083359015193816}
   - component: {fileID: 4783083359015193819}
   m_Layer: 6
-  m_Name: SphereCollider
+  m_Name: RoarCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
