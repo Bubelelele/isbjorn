@@ -878,7 +878,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1507743444}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 299, y: 48, z: 335}
 --- !u!95 &205115321
 Animator:
@@ -1724,9 +1724,10 @@ Transform:
   m_LocalPosition: {x: -2.283956, y: 1.1953259, z: 0.92964095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2043736968}
   m_Father: {fileID: 1507743444}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -3, z: 2}
 --- !u!95 &670727511
 Animator:
@@ -1855,7 +1856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &717876463
 Transform:
   m_ObjectHideFlags: 0
@@ -1915,6 +1916,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 4757730629172956190, guid: d299e8c314825dc499adc00774101bff, type: 2}
     value: {fileID: 1016888223}
+  - key: {fileID: -1873110669002420746, guid: d299e8c314825dc499adc00774101bff, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &717876465
@@ -3926,7 +3929,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2043736968}
   - {fileID: 205115320}
   - {fileID: 670727510}
   m_Father: {fileID: 1011026094}
@@ -4007,7 +4009,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4911,7 +4913,7 @@ RectTransform:
   m_Children:
   - {fileID: 180918746}
   - {fileID: 1573788226}
-  m_Father: {fileID: 1507743444}
+  m_Father: {fileID: 670727510}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5277,17 +5279,17 @@ PrefabInstance:
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07088901
+      value: 0.070889026
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000018227157
+      value: 0.00000001664324
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000012953638
+      value: -0.0000000011827987
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861949811973, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
