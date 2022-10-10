@@ -65,6 +65,7 @@ public class PlayerGroundedState : PlayerBaseState
         }
         else
         {
+            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
             Context.GroundAngleRollable = true;
             Context.IsOnSlope = false;
         }
