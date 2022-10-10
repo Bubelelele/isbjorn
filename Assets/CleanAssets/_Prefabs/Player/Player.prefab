@@ -34,6 +34,38 @@ Transform:
   m_Father: {fileID: 5997152113563236318}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &217276177018348614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6222731974513734770}
+  m_Layer: 0
+  m_Name: BearPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6222731974513734770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217276177018348614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.805, z: -0.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3558263218518483045}
+  m_Father: {fileID: 3957473259188042865}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &461863295254716165
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +717,7 @@ GameObject:
   - component: {fileID: 3957473259188042865}
   - component: {fileID: 3957473259188042864}
   - component: {fileID: 568410688}
+  - component: {fileID: 4680585309960642261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -704,7 +737,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3558263218518483045}
+  - {fileID: 6222731974513734770}
   - {fileID: 5997152113563236318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -772,6 +805,20 @@ MonoBehaviour:
   maxRollableSlopeAngle: -45
   drag: 10
   rollMultiplier: 150
+--- !u!136 &4680585309960642261
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957473259188042866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4400091867181516035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,7 +1696,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3957473259188042865}
+    m_TransformParent: {fileID: 6222731974513734770}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
@@ -1664,12 +1711,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.805
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
@@ -1679,17 +1726,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
@@ -1730,20 +1777,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3957473258610919310}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1699168455
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4191352790256302815}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &5476594243534630038
 Animator:
   serializedVersion: 4

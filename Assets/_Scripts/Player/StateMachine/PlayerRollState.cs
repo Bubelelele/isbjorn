@@ -8,7 +8,8 @@ public class PlayerRollState : PlayerBaseState
 
     private float _lastFrameAngle;
     private bool _groundedLastFrame;
-    
+    private float _eulerAngleVelocity = 10f;
+
     public override void EnterState()
     {
         Context.Animator.SetBool("IsRolling", true);
@@ -18,6 +19,7 @@ public class PlayerRollState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.Log(Context.GroundAngleRollable);
+        //RotateBear();
         HandleRollingMovement();
         ShouldStateSwitch();
     }
@@ -67,5 +69,10 @@ public class PlayerRollState : PlayerBaseState
         _lastFrameAngle = Context.RelativeSlopeAngle;
 
         Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
+    }
+    
+    private void RotateBear()
+    {
+        Context.PlayerTransform.GetChild(0).Rotate(Vector3.right * _eulerAngleVelocity, Space.Self);
     }
 }
