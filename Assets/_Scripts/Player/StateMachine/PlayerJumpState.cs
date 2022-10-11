@@ -12,6 +12,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         //Debug.Log("Enter" + Context.CurrentState);
         PlayerJump();
+        Context.Animator.SetTrigger("Jumping");
     }
 
     protected override void UpdateState()
@@ -23,15 +24,16 @@ public class PlayerJumpState : PlayerBaseState
 
     protected override void ExitState()
     {
-        
+
     }
 
     public override void ShouldStateSwitch()
     {
         if (!Context.Input.JumpIsPressed && Context.PlayerIsJumping && Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());
-        else if (Context.PlayerMovementY <= 0.0f)
+        else if (Context.PlayerMovementY <= -0.0f)
             SwitchState(Factory.Fall());
+            
     }
 
     public sealed override void InitialiseSubState()
