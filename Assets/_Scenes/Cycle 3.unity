@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19591501, g: 0.23728395, b: 0.31093928, a: 1}
+  m_IndirectSpecularColor: {r: 0.19591802, g: 0.23728359, b: 0.3109178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2831,7 +2831,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.1476714, y: 0.00000001701774, z: -0.0000000025408904, w: 0.9890365}
+  m_LocalRotation: {x: 0.1476714, y: -0.00000001701774, z: 0.0000000025408904, w: 0.9890365}
   m_LocalPosition: {x: 63.8, y: 207.97, z: 638.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5657,12 +5657,12 @@ PrefabInstance:
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018227158
+      value: -0.000000018227158
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861719043125, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000012953639
+      value: 0.0000000012953639
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861949811973, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
@@ -5672,22 +5672,22 @@ PrefabInstance:
     - target: {fileID: 5205934861949811973, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001701774
+      value: -0.00000001701774
       objectReference: {fileID: 0}
     - target: {fileID: 5205934861949811973, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000025408904
+      value: 0.0000000025408904
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862341574198, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 10.68493
+      value: 9.516044
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862738845821, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 10.68493
+      value: 9.516044
       objectReference: {fileID: 0}
     - target: {fileID: 5205934862754404536, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
@@ -5707,7 +5707,7 @@ PrefabInstance:
     - target: {fileID: 5205934862837684955, guid: bbd761be2044e964ea65d01da6bd1a25,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 10.68493
+      value: 9.516044
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbd761be2044e964ea65d01da6bd1a25, type: 3}
