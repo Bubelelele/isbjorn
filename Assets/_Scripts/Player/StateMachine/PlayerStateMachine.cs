@@ -239,7 +239,10 @@ public class PlayerStateMachine : MonoBehaviour
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
-            Invoke(nameof(LockCursor), 0.1f);
+            Invoke(nameof(LockCursor), 0.2f);
+        else if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            Cursor.lockState = CursorLockMode.None;
+        }
         
         PlayerLookRelativeToCamera();
         Debug.DrawRay(_playerPosition, _playerTransform.TransformDirection(_playerMovement), Color.red);
