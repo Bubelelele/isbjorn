@@ -3,18 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private PlayerInput _input;
-    
     [Header("Movement")]
     [SerializeField] private float rotationSpeed = 5.0f;
     [SerializeField] private float movementMultiplier = 80.0f;
     [SerializeField] private float runMultiplier = 1.75f;
-
-    [Header("Ground Check")]
-    [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private bool playerIsGrounded;
-    [SerializeField] [Range(0.0f, 1.8f)] private float groundCheckRadiusMultiplier = 0.9f;
-    [SerializeField] [Range(-0.95f, 1.05f)] private float groundCheckDistance = 0.05f;
+    
     [SerializeField] private bool isOnSlope;
     
     [Header("Jumping")]
@@ -38,7 +31,8 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float incrementFrequency = 0.05f;
     [SerializeField] private float playerFallTimer;
     [SerializeField] private float groundedGravity = -1.0f;
-    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float gravity = 9.81f;
+    
 
     [Header("Rolling")]
     [SerializeField] private bool groundAngleRollable;
@@ -58,7 +52,6 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _playerMovement;
     private bool _animationPlaying;
     private float _animationPlayingTimer;
-    private RaycastHit _groundCheckHit;
     private CapsuleCollider _capsuleCollider;
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
@@ -87,11 +80,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsFalling => isFalling;
     public float MaximumJumpHeight => maximumJumpHeight;
     public float MaximumJumpTime => maximumJumpTime;
-    public float Gravity
-    {
-        get => gravity;
-        set => gravity = value;
-    }
+    
 
     public bool IsOnSlope
     {
@@ -104,7 +93,7 @@ public class PlayerStateMachine : MonoBehaviour
         get => _currentState;
         set => _currentState = value;
     }
-    public PlayerInput Input => _input;
+    
     public float JumpBufferTime => jumpBufferTime;
     public float JumpBufferTimeCounter
     {
@@ -128,12 +117,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         get => initialJumpForce;
         set => initialJumpForce = value;
-    }
-
-    public bool PlayerIsGrounded
-    {
-        get => playerIsGrounded;
-        set => playerIsGrounded = value;
     }
     public Rigidbody Rigidbody => _rigidbody;
     public Animator Animator => _animator;
@@ -205,7 +188,6 @@ public class PlayerStateMachine : MonoBehaviour
     public Transform PlayerTransform => _playerTransform;
     public float MovementMultiplier => movementMultiplier;
     public float RunMultiplier => runMultiplier;
-    public RaycastHit GroundCheckHit => _groundCheckHit;
     public Vector3 PlayerPosition => _playerPosition;
     public Quaternion SlopeAngleRotation
     {
@@ -218,19 +200,29 @@ public class PlayerStateMachine : MonoBehaviour
         get => _relativeSlopeAngle;
         set => _relativeSlopeAngle = value;
     }
+    // Gravity
+    public float Gravity { get => gravity; set => gravity = value; }
+    
+    
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Organised variables.
+
+    [Header("Ground Check")]
+    [SerializeField] [Range(0.0f, 1.8f)] private float groundCheckRadiusMultiplier = 0.9f;
+    [SerializeField] [Range(-0.95f, 1.05f)] private float groundCheckDistance = 0.05f;
+    [SerializeField] private LayerMask groundLayerMask;
+    private RaycastHit _groundCheckHit;
+
+    // Organised getters and setters.
+    public PlayerInput Input { get; private set; }
+
+    // Ground Check
+    public RaycastHit GroundCheckHit => _groundCheckHit;
+    public bool PlayerIsGrounded { get; private set; }
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _playerTransform = _rigidbody.transform;
-        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
-        if (Camera.main != null)
-            _mainCameraTransform = Camera.main.transform;
-        _animator = GetComponentInChildren<Animator>();
-        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-        _input = FindObjectOfType<PlayerInput>();
-        SetupJumpVariables();
-        
+        InitializeVariables();
         _state = new PlayerStateFactory(this);
         _currentState = _state.Grounded();
         _currentState.EnterState();
@@ -239,24 +231,20 @@ public class PlayerStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerIsGrounded = PlayerGroundCheck();
-        _playerMovement = MoveDirection();
+
         _currentState.UpdateStates();
-        
-        _rigidbody.AddRelativeForce(_playerMovement, ForceMode.Force);
     }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            Invoke(nameof(LockCursor), 0.2f);
-        else if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-            Cursor.lockState = CursorLockMode.None;
-        }
+        CursorLockToggle();
         
-        PlayerLookRelativeToCamera();
-        Debug.DrawRay(_playerPosition, _playerTransform.TransformDirection(_playerMovement), Color.red);
-        Debug.Log(GroundSlopeAngle);
+        //PlayerLookRelativeToCamera();
+        //Debug.DrawRay(_playerPosition, _playerTransform.TransformDirection(_playerMovement), Color.red);
     }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    
     
     private void SetupJumpVariables()
     {
@@ -265,32 +253,41 @@ public class PlayerStateMachine : MonoBehaviour
         initialJumpForce = 1000 * maximumJumpHeight / timeToApex;
     }
 
-    private Vector3 MoveDirection()
+    // private void PlayerLookRelativeToCamera()
+    // {
+    //     _globalForward = _mainCameraTransform.forward.normalized;
+    //     var right = _mainCameraTransform.right.normalized;
+    //     _globalForward.y = 0;
+    //     right.y = 0;
+    //
+    //     var relativeForwardLookDirection = MoveDirection().z * _globalForward;
+    //     var relativeRightLookDirection = MoveDirection().x * right;
+    //
+    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
+    //
+    //     if (Input.MoveIsPressed && !Input.RollIsPressed)
+    //     {
+    //         _playerTransform.forward = _globalForward;
+    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
+    //     }
+    //     else if (Input.RollIsPressed)
+    //         _bearTransform.forward = _playerTransform.forward = _globalForward;
+    // }
+    
+    private void InitializeVariables()
     {
-        return new Vector3(_input.MoveInput.x, 0.0f, _input.MoveInput.y);
+        _rigidbody = GetComponent<Rigidbody>();
+        _playerTransform = _rigidbody.transform;
+        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+        if (Camera.main != null)
+            _mainCameraTransform = Camera.main.transform;
+        _animator = GetComponentInChildren<Animator>();
+        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        Input = FindObjectOfType<PlayerInput>();
     }
     
-    private void PlayerLookRelativeToCamera()
-    {
-        _globalForward = _mainCameraTransform.forward.normalized;
-        var right = _mainCameraTransform.right.normalized;
-        _globalForward.y = 0;
-        right.y = 0;
-
-        var relativeForwardLookDirection = MoveDirection().z * _globalForward;
-        var relativeRightLookDirection = MoveDirection().x * right;
-
-        var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
-
-        if (_input.MoveIsPressed && !_input.RollIsPressed)
-        {
-            _playerTransform.forward = _globalForward;
-            _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
-        }
-        else if (_input.RollIsPressed)
-            _bearTransform.forward = _playerTransform.forward = _globalForward;
-    }
-
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Working as intended, values not yet tweaked.
     private bool PlayerGroundCheck()
     {
         _playerPosition = _rigidbody.position;
@@ -300,11 +297,26 @@ public class PlayerStateMachine : MonoBehaviour
 
         return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, groundLayerMask);
     }
-
+    private void OnDrawGizmosSelected()
+    {
+        var sphereCastRadius = _capsuleCollider.radius * groundCheckRadiusMultiplier;
+        var sphereCastTravelDistance = new Vector3(0.0f, _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance, 0.0f);
+        
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(_playerPosition - _capsuleCollider.center - sphereCastTravelDistance, sphereCastRadius);
+    }
+    
+    // Working as intended with values tweaked.
+    private void CursorLockToggle()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+            Invoke(nameof(LockCursor), 0.2f);
+        else if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
-    
 }

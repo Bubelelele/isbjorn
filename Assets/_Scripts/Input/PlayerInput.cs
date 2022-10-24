@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+        private InputActions _input;
         public Vector2 MoveInput { get; private set; }
         public bool MoveIsPressed { get; private set; }
         public bool RunIsPressed { get; private set; }
@@ -12,8 +13,6 @@ public class PlayerInput : MonoBehaviour
         public bool Slashing { get; private set; }
         public bool Smelling { get; private set; }
 
-        private InputActions _input;
-        
         private void OnEnable()
         {
             _input = new InputActions();
@@ -41,7 +40,6 @@ public class PlayerInput : MonoBehaviour
             _input.PlayerLand.Smell.started += Smell;
             _input.PlayerLand.Smell.canceled += Smell;
         }
-        
         private void OnDisable()
         {
             _input.PlayerLand.Move.started -= StoreMoveInput;
