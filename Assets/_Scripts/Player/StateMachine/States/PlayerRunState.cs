@@ -8,33 +8,25 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-        Context.Animator.SetBool("IsWalking", true);
-        Context.Animator.SetBool("IsRunning", true);
+        
     }
 
     protected override void UpdateState()
     {
-        Context.PlayerMovementX *= Context.MovementMultiplier * Context.RunMultiplier;
-        Context.PlayerMovementZ *= Context.MovementMultiplier * Context.RunMultiplier;
-        if (Context.IsOnSlope && !Context.PlayerIsJumping)
-            Context.PlayerMovementY *= Context.MovementMultiplier * Context.RunMultiplier;
+        Debug.LogWarning("CURRENT SUBSTATE: PlayerRunState");
+        Context.MovementVectorX = Context.MovementDirection.x * Context.MovementSpeed * Context.RunMultiplier;
+        Context.MovementVectorZ = Context.MovementDirection.z * Context.MovementSpeed * Context.RunMultiplier;
         ShouldStateSwitch();
     }
 
     protected override void ExitState()
     {
-        Context.Animator.SetBool("IsWalking", false);
-        Context.Animator.SetBool("IsRunning", false);
+        
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.RollIsPressed && Context.GroundAngleRollable)
-            SwitchState(Factory.Roll());
-        else if (!Context.Input.MoveIsPressed)
-            SwitchState(Factory.Idle());
-        else if (Context.Input.MoveIsPressed && !Context.Input.RunIsPressed)
+        if (!Context.Input.RunIsPressed)
             SwitchState(Factory.Walk());
     }
 

@@ -8,12 +8,13 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
+        
     }
 
     protected override void UpdateState()
     {
-        
+        Debug.LogWarning("CURRENT SUBSTATE: PlayerIdleState");
+        ShouldStateSwitch();
     }
 
     protected override void ExitState()
@@ -23,7 +24,8 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        
+        if (Context.Input.MoveIsPressed)
+            SwitchState(Factory.Walk());
     }
 
     public override void InitializeSubState()

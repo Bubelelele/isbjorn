@@ -9,7 +9,6 @@ public class PlayerFallState : PlayerBaseState
         InitializeSubState();
     }
 
-    private float _gravityIncreaseTimer = 0.0f;
     public override void EnterState()
     {
         
@@ -17,10 +16,8 @@ public class PlayerFallState : PlayerBaseState
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-
-        
-        
+        Debug.LogWarning("CURRENT STATE: PlayerFallState");
+        Context.MovementVectorY = HandleGravity();
         ShouldStateSwitch();
     }
 
@@ -37,27 +34,26 @@ public class PlayerFallState : PlayerBaseState
 
     public sealed override void InitializeSubState()
     {
-        
+        if (!Context.Input.MoveIsPressed)
+            SetSubState(Factory.Idle());
+        else if (Context.Input.RunIsPressed)
+            SetSubState(Factory.Run());
+        else
+            SetSubState(Factory.Walk());
     }
 
-    private void HandleGravity()
+    private float HandleGravity()
     {
-        // Context.PlayerFallTimer -= Time.fixedDeltaTime;
-        // if (Context.PlayerFallTimer < 0.0f)
-        // {
-        //     if (Context.Gravity > Context.MaximumGravity)
-        //     {
-        //         Context.Gravity += Context.IncrementAmount;
-        //     }
-        //     Context.PlayerFallTimer = Context.IncrementFrequency;
-        // }
-        
-        // _gravityIncreaseTimer += Time.deltaTime;
-        // if (_gravityIncreaseTimer > 1.0f)
-        // {
-        //     Context.Gravity += Context.Gravity;
-        //     _gravityIncreaseTimer = 0.0f;
-        // }
-        Context.Rigidbody.MovePosition(Context.Rigidbody.position + Vector3.down * Context.Gravity * Time.fixedDeltaTime);
+        Context.PlayerFallTimer -= Time.fixedDeltaTime;
+        if (Context.PlayerFallTimer < 0.0f)
+        {
+            if (Context.CurrentGravity > Context.MaximumGravity)
+            {
+                Context.CurrentGravity += Context.IncrementAmount;
+            }
+            Context.PlayerFallTimer = Context.IncrementFrequency;
+            Context.Gravity = Context.CurrentGravity;
+        }
+        return Context.Gravity;
     }
 }
