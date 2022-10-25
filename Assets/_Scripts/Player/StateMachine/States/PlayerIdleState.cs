@@ -24,8 +24,15 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.MoveIsPressed)
-            SwitchState(Factory.Walk());
+        switch (Context.Input.MoveIsPressed)
+        {
+            case true when Context.Input.RunIsPressed:
+                SwitchState(Factory.Run());
+                break;
+            case true:
+                SwitchState(Factory.Walk());
+                break;
+        }
     }
 
     public override void InitializeSubState()

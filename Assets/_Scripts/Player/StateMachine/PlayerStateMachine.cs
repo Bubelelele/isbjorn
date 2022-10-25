@@ -30,7 +30,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     private PlayerBaseState _currentState;
     private PlayerStateFactory _state;
-    private Animator _animator;
     private Rigidbody _rigidbody;
     private Transform _mainCameraTransform;
     private Transform _playerTransform;
@@ -64,7 +63,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float ContinualJumpForceMultiplier => continualJumpForceMultiplier;
     public float InitialJumpForce { get => initialJumpForce; set => initialJumpForce = value; }
     public Rigidbody Rigidbody => _rigidbody;
-    public Animator Animator => _animator;
+    
     public bool PlayerIsJumping { get => playerIsJumping; set => playerIsJumping = value; }
     public float IncrementAmount => incrementAmount;
     public float MaximumGravity => maximumGravity;
@@ -84,13 +83,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Organised variables.
-
     [Header("Ground Check")]
     [SerializeField] [Range(0.0f, 1.8f)] private float sphereRadiusMultiplier = 0.9f;
     [SerializeField] [Range(-0.95f, 1.05f)] private float groundCheckDistance = 0.05f;
     [SerializeField] private LayerMask groundLayerMask;
     private RaycastHit _groundCheckHit;
-
+    
     [Header("Movement")]
     private Vector3 _movementVector;
     [SerializeField] private float movementSpeed = 30.0f;
@@ -104,14 +102,16 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float incrementFrequency = 0.05f;
     [SerializeField] private float playerFallTimer;
     [SerializeField] private float gravity;
-
+    
     // Organised getters and setters.
+    // General
     public PlayerInput Input { get; private set; }
+    public Animator Animator { get; private set; }
     // Ground Check
     public RaycastHit GroundCheckHit => _groundCheckHit;
     public bool PlayerIsGrounded { get; private set; }
     // Movement
-    public Vector3 MovementDirection { get; set; }
+    public Vector3 MovementDirection { get; private set; }
     public float MovementVectorX { get => _movementVector.x; set => _movementVector.x = value; }
     public float MovementVectorY { get => _movementVector.y; set => _movementVector.y = value; }
     public float MovementVectorZ { get => _movementVector.z; set => _movementVector.z = value; }
@@ -137,7 +137,6 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerIsGrounded = PlayerGroundCheck();
         _currentState.UpdateStates();
         Debug.DrawRay(_playerPosition, _movementVector, Color.red);
-        Debug.Log(_movementVector);
         _rigidbody.AddRelativeForce(_movementVector, ForceMode.Force);
     }
 
@@ -178,14 +177,15 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void InitializeVariables()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _playerTransform = _rigidbody.transform;
-        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
-        if (Camera.main != null)
-            _mainCameraTransform = Camera.main.transform;
-        _animator = GetComponentInChildren<Animator>();
-        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Input = FindObjectOfType<PlayerInput>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        Animator = GetComponentInChildren<Animator>();
+        
+        // _playerTransform = _rigidbody.transform;
+        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+        // if (Camera.main != null)
+        //     _mainCameraTransform = Camera.main.transform;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

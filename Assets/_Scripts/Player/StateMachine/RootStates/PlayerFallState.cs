@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerFallState : PlayerBaseState
 {
-    private float _fallTimer;
+    private readonly int _isFalling = Animator.StringToHash("IsFalling");
+
     public PlayerFallState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
         IsRootState = true;
@@ -11,7 +12,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
-        
+        Context.Animator.SetBool(_isFalling, true);
     }
 
     protected override void UpdateState()
@@ -23,7 +24,7 @@ public class PlayerFallState : PlayerBaseState
 
     protected override void ExitState()
     {
-        
+        Context.Animator.SetBool(_isFalling, false);
     }
 
     public override void ShouldStateSwitch()
