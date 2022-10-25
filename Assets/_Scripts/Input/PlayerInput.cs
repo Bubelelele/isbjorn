@@ -75,31 +75,31 @@ public class PlayerInput : MonoBehaviour
 
         private void SetRun(InputAction.CallbackContext context)
         {
-            RunIsPressed = context.started;
+            RunIsPressed = context.ReadValueAsButton();
         }
         
         private void SetJump(InputAction.CallbackContext context)
         {
-            JumpIsPressed = context.started;
+            JumpIsPressed = context.ReadValueAsButton();
         }
         
         private void SetRoll(InputAction.CallbackContext context)
         {
-            RollIsPressed = context.started;
+            RollIsPressed = context.ReadValueAsButton();
         }
 
         private void Slash(InputAction.CallbackContext context)
         {
-            Slashing = context.started;
+            Slashing = context.ReadValueAsButton();
         }
         
         private void Roar(InputAction.CallbackContext context)
         {
-            Roaring = context.started;
+            Roaring = context.ReadValueAsButton();
         }
 
         private void Smell(InputAction.CallbackContext context)
         {
-            Smelling = context.started;
+            Smelling = context.ReadValueAsButton();
         }
 }

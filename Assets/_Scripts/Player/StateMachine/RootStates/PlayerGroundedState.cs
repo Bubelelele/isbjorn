@@ -27,7 +27,9 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (!Context.PlayerIsGrounded)
+        if (Context.Input.JumpIsPressed)
+            SwitchState(Factory.Jump());
+        else if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
     }
 
@@ -44,7 +46,6 @@ public class PlayerGroundedState : PlayerBaseState
     private void HandleSlopes()
     {
         // var playerUp = Context.PlayerTransform.up;
-        // var localGroundCheckHitNormal = Context.PlayerTransform.InverseTransformDirection(Context.GroundCheckHit.normal);
         // Context.GroundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, playerUp);
         // Debug.Log(Context.GroundSlopeAngle);
         // if (Context.GroundSlopeAngle != 0.0f)

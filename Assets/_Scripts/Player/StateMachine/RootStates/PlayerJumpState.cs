@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState
 {
+    private readonly int _jumping = Animator.StringToHash("Jumping");
+    private readonly int _isJumping = Animator.StringToHash("IsJumping");
+    private bool _decent;
+
     public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
         IsRootState = true;
@@ -10,50 +14,61 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-        PlayerJump();
-        Context.Animator.SetTrigger("Jumping");
+        // Context.Animator.SetTrigger(_jumping);
+        // Context.Animator.SetBool(_isJumping, true);
+        Context.MovementVectorY = Context.JumpForce;
     }
 
     protected override void UpdateState()
     {
-        //Debug.Log(Context.CurrentState);
-        HandleGravity();
+        Debug.LogWarning("CURRENT STATE: PlayerJumpState");
+        Context.MovementVectorY = HandleGravity();
         ShouldStateSwitch();
     }
 
     protected override void ExitState()
     {
-
+        // Context.Animator.SetBool(_isJumping, false);
+        _decent = false;
     }
 
     public override void ShouldStateSwitch()
     {
-        if (!Context.Input.JumpIsPressed && Context.PlayerIsJumping && Context.PlayerIsGrounded)
+        if (Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());
-        else if (Context.PlayerMovementY <= -0.0f)
-            SwitchState(Factory.Fall());
-            
     }
 
     public sealed override void InitializeSubState()
     {
-        if (!Context.Input.MoveIsPressed && !Context.Input.RunIsPressed)
+        if (!Context.Input.MoveIsPressed)
             SetSubState(Factory.Idle());
-        else if (Context.Input.MoveIsPressed && !Context.Input.RunIsPressed)
-            SetSubState(Factory.Walk());
-        else
+        else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
+        else
+            SetSubState(Factory.Walk());
     }
-
-    private void PlayerJump()
+    
+    private float HandleGravity()
     {
-        Context.PlayerIsJumping = true;
-        Context.PlayerMovementY = Context.InitialJumpForce;
-    }
-
-    private void HandleGravity()
-    {
-        Context.PlayerMovementY = Context.Gravity;
+        Context.PlayerFallTimer -= Time.fixedDeltaTime;
+        if (Context.PlayerFallTimer < 0.0f)
+        {
+            if (Context.CurrentGravity < 500.0f && !_decent)
+            {
+                Context.CurrentGravity -= Context.IncrementAmount;
+            }
+            else if (Context.CurrentGravity > Context.MaximumGravity && _decent)
+            {
+                Context.CurrentGravity += Context.IncrementAmount;
+            }
+            else
+            {
+                Context.CurrentGravity = Context.MinimumGravity;
+                _decent = true;
+            }
+            Context.PlayerFallTimer = Context.IncrementFrequency;
+            Context.Gravity = Context.CurrentGravity;
+        }
+        return Context.Gravity;
     }
 }

@@ -18,6 +18,7 @@ public class PlayerFallState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerFallState");
+        CoyoteTimer();
         Context.MovementVectorY = HandleGravity();
         ShouldStateSwitch();
     }
@@ -25,11 +26,14 @@ public class PlayerFallState : PlayerBaseState
     protected override void ExitState()
     {
         Context.Animator.SetBool(_isFalling, false);
+        Context.CoyoteTimer = Context.CoyoteTime;
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.PlayerIsGrounded)
+        if (Context.CoyoteTimer > 0.0f && Context.Input.JumpIsPressed)
+            SwitchState(Factory.Jump());
+        else if (Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());
     }
 
@@ -56,5 +60,10 @@ public class PlayerFallState : PlayerBaseState
             Context.Gravity = Context.CurrentGravity;
         }
         return Context.Gravity;
+    }
+
+    private void CoyoteTimer()
+    {
+        Context.CoyoteTimer -= Time.fixedDeltaTime;
     }
 }

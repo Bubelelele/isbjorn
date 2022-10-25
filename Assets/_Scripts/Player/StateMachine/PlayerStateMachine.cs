@@ -1,33 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerStateMachine : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 5.0f;
     [SerializeField] private bool isOnSlope;
-    
-    [Header("Jumping")]
-    [SerializeField] private float initialJumpForce = 750.0f;
     [SerializeField] private float continualJumpForceMultiplier = 0.1f;
     [SerializeField] private float jumpTime = 0.175f;
     [SerializeField] private float jumpTimeCounter;
-    [SerializeField] private float coyoteTime = 0.15f;
-    [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private float jumpBufferTimeCounter;
     [SerializeField] private bool playerIsJumping;
     [SerializeField] private float maximumJumpHeight = 1.0f;
     [SerializeField] private float maximumJumpTime = 0.5f;
     [SerializeField] private bool isFalling;
-
-    [Header("Rolling")]
     [SerializeField] private bool groundAngleRollable;
     [SerializeField] private bool isRolling;
     [SerializeField] private float groundSlopeAngle;
     [SerializeField] [Range(-90f, 0f)] private float maxRollableSlopeAngle = -45f;
     [SerializeField] private float drag = 10.0f;
     [SerializeField] private float rollMultiplier = 80.0f;
-
     private PlayerBaseState _currentState;
     private PlayerStateFactory _state;
     private Rigidbody _rigidbody;
@@ -43,7 +36,6 @@ public class PlayerStateMachine : MonoBehaviour
     private float _relativeSlopeAngle;
     private Transform _bearTransform;
     private float _fallAnimationTimer = 0.5f;
-    
     // Getters and setters.
     public float RollMultiplier => rollMultiplier;
     public Vector3 GlobalForward => _globalForward;
@@ -56,14 +48,10 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public float JumpBufferTime => jumpBufferTime;
     public float JumpBufferTimeCounter { get => jumpBufferTimeCounter; set => jumpBufferTimeCounter = value; }
-    public float CoyoteTimeCounter { get => coyoteTimeCounter; set => coyoteTimeCounter = value; }
     public float JumpTimeCounter { get => jumpTimeCounter; set => jumpTimeCounter = value; }
     public float JumpTime => jumpTime;
-    public float CoyoteTime => coyoteTime;
     public float ContinualJumpForceMultiplier => continualJumpForceMultiplier;
-    public float InitialJumpForce { get => initialJumpForce; set => initialJumpForce = value; }
     public Rigidbody Rigidbody => _rigidbody;
-    
     public bool PlayerIsJumping { get => playerIsJumping; set => playerIsJumping = value; }
     public float IncrementAmount => incrementAmount;
     public float MaximumGravity => maximumGravity;
@@ -90,9 +78,10 @@ public class PlayerStateMachine : MonoBehaviour
     private RaycastHit _groundCheckHit;
     
     [Header("Movement")]
+    [SerializeField] private float movementSpeed = 5.5f;
+    [SerializeField] private float runMultiplier = 2.0f;
     private Vector3 _movementVector;
-    [SerializeField] private float movementSpeed = 30.0f;
-    [SerializeField] private float runMultiplier = 1.75f;
+    private const float _toMetricMultiplier = 4.35f;
     
     [Header("Gravity")]
     [SerializeField] private float currentGravity;
@@ -103,6 +92,13 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float playerFallTimer;
     [SerializeField] private float gravity;
     
+    [Header("Jump")]
+    [SerializeField] private float jumpForce = 750.0f;
+    
+    [Header("Jump Timers")]
+    [SerializeField] private float coyoteTime = 0.15f;
+    [SerializeField] private float coyoteTimer;
+    
     // Organised getters and setters.
     // General
     public PlayerInput Input { get; private set; }
@@ -112,16 +108,23 @@ public class PlayerStateMachine : MonoBehaviour
     public bool PlayerIsGrounded { get; private set; }
     // Movement
     public Vector3 MovementDirection { get; private set; }
+    public Vector3 MovementVector { get => _movementVector; set => _movementVector = value; }
     public float MovementVectorX { get => _movementVector.x; set => _movementVector.x = value; }
     public float MovementVectorY { get => _movementVector.y; set => _movementVector.y = value; }
     public float MovementVectorZ { get => _movementVector.z; set => _movementVector.z = value; }
     public float MovementSpeed => movementSpeed;
     public float RunMultiplier => runMultiplier;
+    public float ToMetricMultiplier => _toMetricMultiplier;
     // Gravity
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
     public float MinimumGravity => minimumGravity;
     public float PlayerFallTimer { get => playerFallTimer; set => playerFallTimer = value; }
     public float Gravity { get => gravity; set => gravity = value; }
+    // Jump
+    public float JumpForce { get => jumpForce; set => jumpForce = value; }
+    // Jump Timers
+    public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
+    public float CoyoteTime => coyoteTime;
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
@@ -136,8 +139,10 @@ public class PlayerStateMachine : MonoBehaviour
     {
         PlayerIsGrounded = PlayerGroundCheck();
         _currentState.UpdateStates();
-        Debug.DrawRay(_playerPosition, _movementVector, Color.red);
-        _rigidbody.AddRelativeForce(_movementVector, ForceMode.Force);
+        Debug.DrawRay(_playerPosition, MovementVector, Color.red);
+        Debug.Log("Vector: " + MovementVector);
+        Debug.Log("Velocity: " + _rigidbody.velocity);
+        _rigidbody.AddRelativeForce(MovementVector, ForceMode.Force);
     }
 
     private void Update()
@@ -146,14 +151,6 @@ public class PlayerStateMachine : MonoBehaviour
         MovementDirection = MoveInput();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private void SetupJumpVariables()
-    {
-        var timeToApex = maximumJumpTime * 0.5f;
-        currentGravity = -2 * maximumJumpHeight / Mathf.Pow(timeToApex, 2);
-        initialJumpForce = 1000 * maximumJumpHeight / timeToApex;
-    }
-
     // private void PlayerLookRelativeToCamera()
     // {
     //     _globalForward = _mainCameraTransform.forward.normalized;
