@@ -15,9 +15,10 @@ public class PlayerRunState : PlayerBaseState
 
     protected override void UpdateState()
     {
+        var runSpeed = Context.MovementSpeed * Context.RunMultiplier;
         Debug.LogWarning("CURRENT SUBSTATE: PlayerRunState");
-        Context.MovementVectorX = Context.MovementDirection.x * Context.MovementSpeed * Context.RunMultiplier;
-        Context.MovementVectorZ = Context.MovementDirection.z * Context.MovementSpeed * Context.RunMultiplier;
+        Context.MovementVectorX = Context.MovementDirection.x * runSpeed;
+        Context.MovementVectorZ = Context.MovementDirection.z * runSpeed;
         ShouldStateSwitch();
     }
 

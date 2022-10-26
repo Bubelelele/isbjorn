@@ -10,13 +10,12 @@ public class PlayerGroundedState : PlayerBaseState
     
     public override void EnterState()
     {
-        
+        Context.MovementVectorY = ResetGravity();
     }
 
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
-        Context.MovementVectorY = HandleGravity();
         ShouldStateSwitch();
     }
 
@@ -43,8 +42,9 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Walk());
     }
 
-    private void HandleSlopes()
+    private Vector3 HandleSlopes()
     {
+        return Vector3.ProjectOnPlane(Context.MovementVector, Context.GroundCheckHit.normal);
         // var playerUp = Context.PlayerTransform.up;
         // Context.GroundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, playerUp);
         // Debug.Log(Context.GroundSlopeAngle);
@@ -71,10 +71,10 @@ public class PlayerGroundedState : PlayerBaseState
         // }
     }
 
-    private float HandleGravity()
+    private float ResetGravity()
     {
-        Context.Gravity = 0.0f;
+        Context.AppliedGravity = 0.0f;
         Context.CurrentGravity = Context.MinimumGravity;
-        return Context.Gravity;
+        return Context.AppliedGravity;
     }
 }

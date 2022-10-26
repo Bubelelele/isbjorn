@@ -57,9 +57,9 @@ public class PlayerFallState : PlayerBaseState
                 Context.CurrentGravity += Context.IncrementAmount;
             }
             Context.PlayerFallTimer = Context.IncrementFrequency;
-            Context.Gravity = Context.CurrentGravity;
+            Context.AppliedGravity = Context.CurrentGravity;
         }
-        return Context.Gravity;
+        return Context.AppliedGravity;
     }
 
     private void CoyoteTimer()

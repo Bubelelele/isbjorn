@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState
 {
-    private readonly int _jumping = Animator.StringToHash("Jumping");
     private readonly int _isJumping = Animator.StringToHash("IsJumping");
-    private bool _decent;
 
     public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
@@ -14,27 +12,25 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        // Context.Animator.SetTrigger(_jumping);
-        // Context.Animator.SetBool(_isJumping, true);
-        Context.MovementVectorY = Context.JumpForce;
+        Context.Animator.SetBool(_isJumping, true);
+        Context.CurrentGravity = Context.InitialVelocity;
     }
 
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerJumpState");
-        Context.MovementVectorY = HandleGravity();
+        Context.MovementVectorY = HandleJump();
         ShouldStateSwitch();
     }
 
     protected override void ExitState()
     {
-        // Context.Animator.SetBool(_isJumping, false);
-        _decent = false;
+        Context.Animator.SetBool(_isJumping, false);
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.PlayerIsGrounded)
+        if (Context.PlayerIsGrounded && Context.MovementVectorY < 0.0f)
             SwitchState(Factory.Grounded());
     }
 
@@ -48,27 +44,30 @@ public class PlayerJumpState : PlayerBaseState
             SetSubState(Factory.Walk());
     }
     
-    private float HandleGravity()
+    private float HandleJump()
     {
         Context.PlayerFallTimer -= Time.fixedDeltaTime;
         if (Context.PlayerFallTimer < 0.0f)
         {
-            if (Context.CurrentGravity < 500.0f && !_decent)
+            if (Context.MovementVectorY >= 0.0f)
             {
-                Context.CurrentGravity -= Context.IncrementAmount;
-            }
-            else if (Context.CurrentGravity > Context.MaximumGravity && _decent)
-            {
-                Context.CurrentGravity += Context.IncrementAmount;
+                Context.CurrentGravity -= Context.RiseDecrementAmount;
+                Context.PlayerFallTimer = Context.IncrementFrequency;
+                Context.AppliedGravity = Context.CurrentGravity;
             }
             else
-            {
-                Context.CurrentGravity = Context.MinimumGravity;
-                _decent = true;
-            }
-            Context.PlayerFallTimer = Context.IncrementFrequency;
-            Context.Gravity = Context.CurrentGravity;
+                HandleFall();
         }
-        return Context.Gravity;
+        return Context.AppliedGravity;
+    }
+    
+    private void HandleFall()
+    {
+        if (Context.CurrentGravity > Context.MaximumGravity)
+        {
+            Context.CurrentGravity += Context.FallIncrementAmount;
+        }
+        Context.PlayerFallTimer = Context.IncrementFrequency;
+        Context.AppliedGravity = Context.CurrentGravity;
     }
 }

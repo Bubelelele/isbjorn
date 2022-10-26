@@ -19,7 +19,6 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private bool isRolling;
     [SerializeField] private float groundSlopeAngle;
     [SerializeField] [Range(-90f, 0f)] private float maxRollableSlopeAngle = -45f;
-    [SerializeField] private float drag = 10.0f;
     [SerializeField] private float rollMultiplier = 80.0f;
     private PlayerBaseState _currentState;
     private PlayerStateFactory _state;
@@ -39,7 +38,6 @@ public class PlayerStateMachine : MonoBehaviour
     // Getters and setters.
     public float RollMultiplier => rollMultiplier;
     public Vector3 GlobalForward => _globalForward;
-    public float Drag { get => drag; set => drag = value; }
     public float GroundSlopeAngle { get => groundSlopeAngle; set => groundSlopeAngle = value; }
     public bool IsFalling => isFalling;
     public float MaximumJumpHeight => maximumJumpHeight;
@@ -53,7 +51,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float ContinualJumpForceMultiplier => continualJumpForceMultiplier;
     public Rigidbody Rigidbody => _rigidbody;
     public bool PlayerIsJumping { get => playerIsJumping; set => playerIsJumping = value; }
-    public float IncrementAmount => incrementAmount;
+    public float IncrementAmount { get => incrementAmount; set => incrementAmount = value; }
     public float MaximumGravity => maximumGravity;
     public float IncrementFrequency => incrementFrequency;
     public float PlayerMovementZ { get => _playerMovement.z; set => _playerMovement.z = value; }
@@ -81,19 +79,21 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float movementSpeed = 5.5f;
     [SerializeField] private float runMultiplier = 2.0f;
     private Vector3 _movementVector;
-    private const float _toMetricMultiplier = 4.35f;
-    
+    private const float Drag = 25.0f;
+
     [Header("Gravity")]
     [SerializeField] private float currentGravity;
-    [SerializeField] private float minimumGravity = -100.0f;
-    [SerializeField] private float maximumGravity = -500.0f;
-    [SerializeField] [Range(-35.0f, -5.0f)] private float incrementAmount = -20.0f;
+    [SerializeField] private float minimumGravity = 0.0f;
+    [SerializeField] private float maximumGravity = -100.0f;
+    [SerializeField] [Range(-10.0f, -1.0f)] private float incrementAmount = -1.0f;
     [SerializeField] private float incrementFrequency = 0.05f;
     [SerializeField] private float playerFallTimer;
-    [SerializeField] private float gravity;
+    [SerializeField] private float appliedGravity;
     
     [Header("Jump")]
-    [SerializeField] private float jumpForce = 750.0f;
+    [SerializeField] private float initialVelocity = 10.0f;
+    [SerializeField] [Range(1.0f, 10.0f)] private float riseDecrementAmount = 1.0f;
+    [SerializeField] [Range(-10.0f, -1.0f)] private float fallIncrementAmount = -1.0f;
     
     [Header("Jump Timers")]
     [SerializeField] private float coyoteTime = 0.15f;
@@ -114,18 +114,19 @@ public class PlayerStateMachine : MonoBehaviour
     public float MovementVectorZ { get => _movementVector.z; set => _movementVector.z = value; }
     public float MovementSpeed => movementSpeed;
     public float RunMultiplier => runMultiplier;
-    public float ToMetricMultiplier => _toMetricMultiplier;
+    public float CounterDragMultiplier => Drag * 2.0f;
     // Gravity
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
     public float MinimumGravity => minimumGravity;
     public float PlayerFallTimer { get => playerFallTimer; set => playerFallTimer = value; }
-    public float Gravity { get => gravity; set => gravity = value; }
+    public float AppliedGravity { get => appliedGravity; set => appliedGravity = value; }
     // Jump
-    public float JumpForce { get => jumpForce; set => jumpForce = value; }
+    public float RiseDecrementAmount => riseDecrementAmount;
+    public float FallIncrementAmount => fallIncrementAmount;
+    public float InitialVelocity => initialVelocity;
     // Jump Timers
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
     public float CoyoteTime => coyoteTime;
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -140,9 +141,7 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerIsGrounded = PlayerGroundCheck();
         _currentState.UpdateStates();
         Debug.DrawRay(_playerPosition, MovementVector, Color.red);
-        Debug.Log("Vector: " + MovementVector);
-        Debug.Log("Velocity: " + _rigidbody.velocity);
-        _rigidbody.AddRelativeForce(MovementVector, ForceMode.Force);
+        _rigidbody.AddRelativeForce(MovementVector * CounterDragMultiplier, ForceMode.Force);
     }
 
     private void Update()
@@ -178,7 +177,8 @@ public class PlayerStateMachine : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
-        
+        _rigidbody.drag = Drag;
+
         // _playerTransform = _rigidbody.transform;
         // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
         // if (Camera.main != null)
