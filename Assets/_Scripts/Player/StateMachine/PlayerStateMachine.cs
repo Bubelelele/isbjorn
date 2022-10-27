@@ -148,28 +148,28 @@ public class PlayerStateMachine : MonoBehaviour
     {
         CursorLockToggle();
         MovementDirection = MoveInput();
+        PlayerLookRelativeToCamera();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // private void PlayerLookRelativeToCamera()
-    // {
-    //     _globalForward = _mainCameraTransform.forward.normalized;
-    //     var right = _mainCameraTransform.right.normalized;
-    //     _globalForward.y = 0;
-    //     right.y = 0;
-    //
-    //     var relativeForwardLookDirection = MoveDirection().z * _globalForward;
-    //     var relativeRightLookDirection = MoveDirection().x * right;
-    //
-    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
-    //
-    //     if (Input.MoveIsPressed && !Input.RollIsPressed)
-    //     {
-    //         _playerTransform.forward = _globalForward;
-    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
-    //     }
-    //     else if (Input.RollIsPressed)
-    //         _bearTransform.forward = _playerTransform.forward = _globalForward;
-    // }
+    // Just for Tormod and Edvart to greybox levels.
+    private void PlayerLookRelativeToCamera()
+    {
+        _globalForward = _mainCameraTransform.forward.normalized;
+        var right = _mainCameraTransform.right.normalized;
+        _globalForward.y = 0;
+        right.y = 0;
+    
+        var relativeForwardLookDirection = MovementDirection.z * _globalForward;
+        var relativeRightLookDirection = MovementDirection.x * right;
+    
+        var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
+    
+        if (Input.MoveIsPressed)
+        {
+            _playerTransform.forward = _globalForward;
+            _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
+        }
+    }
     
     private void InitializeVariables()
     {
@@ -178,11 +178,12 @@ public class PlayerStateMachine : MonoBehaviour
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
-
-        // _playerTransform = _rigidbody.transform;
-        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
-        // if (Camera.main != null)
-        //     _mainCameraTransform = Camera.main.transform;
+        
+        // Just for Tormod and Edvart to greybox levels.
+        if (Camera.main != null)
+            _mainCameraTransform = Camera.main.transform;
+        _playerTransform = _rigidbody.transform;
+        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
