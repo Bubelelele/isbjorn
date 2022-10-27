@@ -99,8 +99,6 @@ MonoBehaviour:
   continualJumpForceMultiplier: 0.1
   jumpTime: 0.175
   jumpTimeCounter: 0
-  jumpBufferTime: 20
-  jumpBufferTimeCounter: 0
   playerIsJumping: 0
   maximumJumpHeight: 1
   maximumJumpTime: 0.5
@@ -122,7 +120,7 @@ MonoBehaviour:
   maximumGravity: -100
   incrementAmount: -5
   incrementFrequency: 0.05
-  playerFallTimer: 0
+  playerInAirTimer: 0
   appliedGravity: 0
   initialVelocity: 35
   riseDecrementAmount: 5
@@ -420,6 +418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bear_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 762bedd3d240604418d314d99044a4fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 958834793386119886, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}
