@@ -17,7 +17,7 @@ public class PlayerGroundedState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
-        Context.Rigidbody.velocity = AdjustVectorToSlope(Context.Rigidbody.velocity);
+        // Context.Rigidbody.velocity = AdjustVectorToSlope(Context.Rigidbody.velocity);
         ShouldStateSwitch();
     }
 
