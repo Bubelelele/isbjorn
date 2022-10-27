@@ -24,7 +24,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # JetBrains Rider lifetime counter
-.idea/.idea.isbjorn/.idea/workspace.xml
+/.idea/.idea.isbjorn/.idea/workspace.xml
 
 # Visual Studio cache directory
 .vs/
@@ -75,7 +75,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Probuilder settings
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
-.idea/.idea.isbjorn/.idea/workspace.xml
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
+/ProjectSettings/Packages/com.unity.probuilder/Settings.json

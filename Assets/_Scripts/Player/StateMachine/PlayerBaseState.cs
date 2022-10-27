@@ -4,7 +4,7 @@ public abstract class PlayerBaseState
     protected PlayerStateMachine Context { get; }
     protected PlayerStateFactory Factory { get; }
     
-    private PlayerBaseState _currentSuperState;
+    private PlayerBaseState _currentRootState;
     private PlayerBaseState _currentSubState;
 
     protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
@@ -34,19 +34,19 @@ public abstract class PlayerBaseState
         if (IsRootState)
             Context.CurrentState = newState;
         else
-            _currentSuperState?.SetSubState(newState);
+            _currentRootState?.SetSubState(newState);
     }
     
-    public abstract void InitialiseSubState();
+    public abstract void InitializeSubState();
     
-    private void SetSuperState(PlayerBaseState newSuperState)
+    private void SetRootState(PlayerBaseState newRootState)
     {
-        _currentSuperState = newSuperState;
+        _currentRootState = newRootState;
     }
     
     protected void SetSubState(PlayerBaseState newSubState)
     {
         _currentSubState = newSubState;
-        newSubState.SetSuperState(this);
+        newSubState.SetRootState(this);
     }
 }

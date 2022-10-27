@@ -16,30 +16,30 @@
                 },
                 {
                     "name": "Run",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "1512423e-73c1-4b51-ae29-13ba14c027a3",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "f2f8bdb3-29f6-483a-bc26-60e388b52769",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Roll",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "3d993310-09d8-4876-9e3b-3a8f37c6710e",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Slash",

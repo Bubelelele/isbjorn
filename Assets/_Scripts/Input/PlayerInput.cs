@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+        private InputActions _input;
         public Vector2 MoveInput { get; private set; }
         public bool MoveIsPressed { get; private set; }
         public bool RunIsPressed { get; private set; }
@@ -12,8 +13,6 @@ public class PlayerInput : MonoBehaviour
         public bool Slashing { get; private set; }
         public bool Smelling { get; private set; }
 
-        private InputActions _input;
-        
         private void OnEnable()
         {
             _input = new InputActions();
@@ -41,7 +40,6 @@ public class PlayerInput : MonoBehaviour
             _input.PlayerLand.Smell.started += Smell;
             _input.PlayerLand.Smell.canceled += Smell;
         }
-        
         private void OnDisable()
         {
             _input.PlayerLand.Move.started -= StoreMoveInput;
@@ -77,31 +75,31 @@ public class PlayerInput : MonoBehaviour
 
         private void SetRun(InputAction.CallbackContext context)
         {
-            RunIsPressed = context.started;
+            RunIsPressed = context.ReadValueAsButton();
         }
         
         private void SetJump(InputAction.CallbackContext context)
         {
-            JumpIsPressed = context.started;
+            JumpIsPressed = context.ReadValueAsButton();
         }
         
         private void SetRoll(InputAction.CallbackContext context)
         {
-            RollIsPressed = context.started;
+            RollIsPressed = context.ReadValueAsButton();
         }
 
         private void Slash(InputAction.CallbackContext context)
         {
-            Slashing = context.started;
+            Slashing = context.ReadValueAsButton();
         }
         
         private void Roar(InputAction.CallbackContext context)
         {
-            Roaring = context.started;
+            Roaring = context.ReadValueAsButton();
         }
 
         private void Smell(InputAction.CallbackContext context)
         {
-            Smelling = context.started;
+            Smelling = context.ReadValueAsButton();
         }
 }
