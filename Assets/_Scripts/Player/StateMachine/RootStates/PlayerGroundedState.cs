@@ -28,10 +28,10 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.JumpIsPressed)
-            SwitchState(Factory.Jump());
-        else if (!Context.PlayerIsGrounded)
+        if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
+        else if (Context.Input.JumpIsPressed)
+            SwitchState(Factory.Jump());
     }
 
     public sealed override void InitializeSubState()
