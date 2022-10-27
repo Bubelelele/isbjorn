@@ -46,13 +46,13 @@ public class PlayerJumpState : PlayerBaseState
     
     private float HandleJump()
     {
-        Context.PlayerFallTimer -= Time.fixedDeltaTime;
-        if (Context.PlayerFallTimer < 0.0f)
+        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        if (Context.PlayerInAirTimer < 0.0f)
         {
             if (Context.MovementVectorY >= 0.0f)
             {
                 Context.CurrentGravity -= Context.RiseDecrementAmount;
-                Context.PlayerFallTimer = Context.IncrementFrequency;
+                Context.PlayerInAirTimer = Context.IncrementFrequency;
                 Context.AppliedGravity = Context.CurrentGravity;
             }
             else
@@ -67,7 +67,7 @@ public class PlayerJumpState : PlayerBaseState
         {
             Context.CurrentGravity += Context.FallIncrementAmount;
         }
-        Context.PlayerFallTimer = Context.IncrementFrequency;
+        Context.PlayerInAirTimer = Context.IncrementFrequency;
         Context.AppliedGravity = Context.CurrentGravity;
     }
 }

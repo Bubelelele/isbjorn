@@ -10,12 +10,14 @@ public class PlayerGroundedState : PlayerBaseState
     
     public override void EnterState()
     {
+        Context.CoyoteTimer = Context.CoyoteTime;
         Context.MovementVectorY = ResetGravity();
     }
 
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
+        Context.Rigidbody.velocity = AdjustVectorToSlope(Context.Rigidbody.velocity);
         ShouldStateSwitch();
     }
 
@@ -42,16 +44,24 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Walk());
     }
 
-    private Vector3 HandleSlopes()
+    private Vector3 AdjustVectorToSlope(Vector3 movementVector)
     {
-        return Vector3.ProjectOnPlane(Context.MovementVector, Context.GroundCheckHit.normal);
-        // var playerUp = Context.PlayerTransform.up;
-        // Context.GroundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, playerUp);
+        var ray = new Ray(Context.PlayerPosition, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+        {
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var adjustedMovementVector = slopeRotation * movementVector;
+
+            if (adjustedMovementVector.y < 0.0f)
+                return adjustedMovementVector;
+        }
+
+        return movementVector;
+
         // Debug.Log(Context.GroundSlopeAngle);
         // if (Context.GroundSlopeAngle != 0.0f)
         // {
-        //     Context.SlopeAngleRotation = Quaternion.FromToRotation(Context.PlayerTransform.up, localGroundCheckHitNormal);
-        //     Context.MovementDirection = Context.SlopeAngleRotation * Context.MovementDirection;
+
         // }
         //
         // if (Context.GroundSlopeAngle != 0.0f)

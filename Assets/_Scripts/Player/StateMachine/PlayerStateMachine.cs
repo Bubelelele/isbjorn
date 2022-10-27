@@ -9,8 +9,6 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float continualJumpForceMultiplier = 0.1f;
     [SerializeField] private float jumpTime = 0.175f;
     [SerializeField] private float jumpTimeCounter;
-    [SerializeField] private float jumpBufferTime = 0.2f;
-    [SerializeField] private float jumpBufferTimeCounter;
     [SerializeField] private bool playerIsJumping;
     [SerializeField] private float maximumJumpHeight = 1.0f;
     [SerializeField] private float maximumJumpTime = 0.5f;
@@ -44,8 +42,6 @@ public class PlayerStateMachine : MonoBehaviour
     public float MaximumJumpTime => maximumJumpTime;
     public bool IsOnSlope { get => isOnSlope; set => isOnSlope = value; }
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
-    public float JumpBufferTime => jumpBufferTime;
-    public float JumpBufferTimeCounter { get => jumpBufferTimeCounter; set => jumpBufferTimeCounter = value; }
     public float JumpTimeCounter { get => jumpTimeCounter; set => jumpTimeCounter = value; }
     public float JumpTime => jumpTime;
     public float ContinualJumpForceMultiplier => continualJumpForceMultiplier;
@@ -87,17 +83,19 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float maximumGravity = -100.0f;
     [SerializeField] [Range(-10.0f, -1.0f)] private float incrementAmount = -1.0f;
     [SerializeField] private float incrementFrequency = 0.05f;
-    [SerializeField] private float playerFallTimer;
+    [SerializeField] private float playerInAirTimer;
     [SerializeField] private float appliedGravity;
     
     [Header("Jump")]
     [SerializeField] private float initialVelocity = 10.0f;
     [SerializeField] [Range(1.0f, 10.0f)] private float riseDecrementAmount = 1.0f;
     [SerializeField] [Range(-10.0f, -1.0f)] private float fallIncrementAmount = -1.0f;
-    
+
     [Header("Jump Timers")]
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float coyoteTimer;
+    // [SerializeField] private float jumpBufferTime = 0.2f;
+    // [SerializeField] private float jumpBufferTimer;
     
     // Organised getters and setters.
     // General
@@ -107,7 +105,7 @@ public class PlayerStateMachine : MonoBehaviour
     public RaycastHit GroundCheckHit => _groundCheckHit;
     public bool PlayerIsGrounded { get; private set; }
     // Movement
-    public Vector3 MovementDirection { get; private set; }
+    public Vector3 MovementDirection { get; set; }
     public Vector3 MovementVector { get => _movementVector; set => _movementVector = value; }
     public float MovementVectorX { get => _movementVector.x; set => _movementVector.x = value; }
     public float MovementVectorY { get => _movementVector.y; set => _movementVector.y = value; }
@@ -118,15 +116,19 @@ public class PlayerStateMachine : MonoBehaviour
     // Gravity
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
     public float MinimumGravity => minimumGravity;
-    public float PlayerFallTimer { get => playerFallTimer; set => playerFallTimer = value; }
+    public float PlayerInAirTimer { get => playerInAirTimer; set => playerInAirTimer = value; }
     public float AppliedGravity { get => appliedGravity; set => appliedGravity = value; }
     // Jump
     public float RiseDecrementAmount => riseDecrementAmount;
     public float FallIncrementAmount => fallIncrementAmount;
     public float InitialVelocity => initialVelocity;
+    // public bool JumpIsQueued { get; set; }
+    // public bool JumpWasPressedLastFrame { get; set; }
     // Jump Timers
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
     public float CoyoteTime => coyoteTime;
+    // public float JumpBufferTimer { get => jumpBufferTimer; set => jumpBufferTimer = value; }
+    // public float JumpBufferTime => jumpBufferTime;
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -151,6 +153,7 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerLookRelativeToCamera();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<<<<<<< Updated upstream
     // Just for Tormod and Edvart to greybox levels.
     private void PlayerLookRelativeToCamera()
     {
@@ -171,6 +174,28 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     
+=======
+    // private void PlayerLookRelativeToCamera()
+    // {
+    //     _globalForward = _mainCameraTransform.forward.normalized;
+    //     var right = _mainCameraTransform.right.normalized;
+    //     _globalForward.y = 0;
+    //     right.y = 0;
+    //
+    //     var relativeForwardLookDirection = MoveDirection().z * _globalForward;
+    //     var relativeRightLookDirection = MoveDirection().x * right;
+    //
+    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
+    //
+    //     if (Input.MoveIsPressed && !Input.RollIsPressed)
+    //     {
+    //         _playerTransform.forward = _globalForward;
+    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
+    //     }
+    //     else if (Input.RollIsPressed)
+    //         _bearTransform.forward = _playerTransform.forward = _globalForward;
+    // }
+>>>>>>> Stashed changes
     private void InitializeVariables()
     {
         Input = FindObjectOfType<PlayerInput>();
@@ -178,14 +203,30 @@ public class PlayerStateMachine : MonoBehaviour
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
+<<<<<<< Updated upstream
         
         // Just for Tormod and Edvart to greybox levels.
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
         _playerTransform = _rigidbody.transform;
         _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+=======
+        _playerTransform = _rigidbody.transform;
+        
+        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+        // if (Camera.main != null)
+        //     _mainCameraTransform = Camera.main.transform;
+>>>>>>> Stashed changes
     }
 
+    private Vector3 HandleSlopes()
+    {
+        var playerUp = PlayerTransform.up;
+        var localGroundCheckHitNormal = PlayerTransform.InverseTransformDirection(GroundCheckHit.normal);
+        GroundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, playerUp);
+        SlopeAngleRotation = Quaternion.FromToRotation(playerUp, localGroundCheckHitNormal);
+        return SlopeAngleRotation * MovementVector;
+    }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Working as intended, values not yet tweaked.
     private bool PlayerGroundCheck()

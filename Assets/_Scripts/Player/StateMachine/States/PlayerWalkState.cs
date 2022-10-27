@@ -15,10 +15,10 @@ public class PlayerWalkState : PlayerBaseState
 
     protected override void UpdateState()
     {
-        var walkSpeed = Context.MovementSpeed;
         Debug.LogWarning("CURRENT SUBSTATE: PlayerWalkState");
-        Context.MovementVectorX = Context.MovementDirection.x * walkSpeed;
-        Context.MovementVectorZ = Context.MovementDirection.z * walkSpeed;
+        Context.MovementVectorX = Context.MovementDirection.x * Context.MovementSpeed;
+        Context.MovementVectorZ = Context.MovementDirection.z * Context.MovementSpeed;
+        
         ShouldStateSwitch();
     }
 

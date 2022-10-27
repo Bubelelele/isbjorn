@@ -26,7 +26,6 @@ public class PlayerFallState : PlayerBaseState
     protected override void ExitState()
     {
         Context.Animator.SetBool(_isFalling, false);
-        Context.CoyoteTimer = Context.CoyoteTime;
     }
 
     public override void ShouldStateSwitch()
@@ -49,14 +48,14 @@ public class PlayerFallState : PlayerBaseState
 
     private float HandleGravity()
     {
-        Context.PlayerFallTimer -= Time.fixedDeltaTime;
-        if (Context.PlayerFallTimer < 0.0f)
+        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        if (Context.PlayerInAirTimer < 0.0f)
         {
             if (Context.CurrentGravity > Context.MaximumGravity)
             {
                 Context.CurrentGravity += Context.IncrementAmount;
             }
-            Context.PlayerFallTimer = Context.IncrementFrequency;
+            Context.PlayerInAirTimer = Context.IncrementFrequency;
             Context.AppliedGravity = Context.CurrentGravity;
         }
         return Context.AppliedGravity;
