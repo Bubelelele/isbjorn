@@ -43,10 +43,12 @@ public class ClosestRespawnFinder : MonoBehaviour
     private void FindClosestRespawn()
     {
         float distanceToClosestRespawn = Mathf.Infinity;
-        RespawnPoint closestRespawn = null;
-        RespawnPoint[] allResLoc = GameObject.FindObjectsOfType<RespawnPoint>();
+        //RespawnPoint closestRespawn = null;
+        Checkpoint closestRespawn = null;
+        //RespawnPoint[] allResLoc = GameObject.FindObjectsOfType<RespawnPoint>();
+        Checkpoint[] allResLoc = GameObject.FindObjectsOfType<Checkpoint>();
 
-        foreach (RespawnPoint currentRespawnLoc in allResLoc)
+        foreach (Checkpoint currentRespawnLoc in allResLoc)
         {
             float distanceToResLoc = (currentRespawnLoc.transform.position - this.transform.position).sqrMagnitude;
             if (distanceToResLoc < distanceToClosestRespawn)
