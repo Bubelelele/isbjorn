@@ -15,7 +15,7 @@ MonoBehaviour:
   songBlocks:
   - clip: {fileID: 8300000, guid: 0498edd9204abab45b524edd7cd27d52, type: 3}
     additionalWeight: 0
-  - clip: {fileID: 8300000, guid: 7d38aba0beb9037479d7f86a1831403e, type: 3}
+  - clip: {fileID: 8300000, guid: 010bec474a769e942baeb569453bdf12, type: 3}
     additionalWeight: 0
   chordBlocks:
   - clip: {fileID: 8300000, guid: 0653c533d8a4f394aa97be1b39e6412c, type: 3}

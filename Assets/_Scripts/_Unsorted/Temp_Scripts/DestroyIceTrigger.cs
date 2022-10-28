@@ -12,6 +12,7 @@ public class DestroyIceTrigger : MonoBehaviour
 
     private void Start()
     {
+        if(GetComponent<Animator>() != null)
         blockAnim = GetComponent<Animator>();
     }
 
@@ -19,7 +20,10 @@ public class DestroyIceTrigger : MonoBehaviour
     {
         if(canDestroy && Mouse.current.leftButton.wasPressedThisFrame && !isDestroyed)
         {
-            blockAnim.SetTrigger("Activate");
+            if(blockAnim != null)
+            {
+                blockAnim.SetTrigger("Activate");
+            }
             destroyableIce.SetActive(false);
             GameObject effect = Instantiate(breakingIceEffectPrefab, transform.position + transform.up, Quaternion.identity);
             Destroy(effect, 1f);

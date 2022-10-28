@@ -36,6 +36,13 @@ public class ParentToLift : MonoBehaviour
             if (!rigidbodiesOnPlatform.Contains(other.attachedRigidbody))
                 rigidbodiesOnPlatform.Add(other.attachedRigidbody);
         }
+
+        return;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.parent = transform;
+            playerRB = other.GetComponent<Rigidbody>();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -43,6 +50,13 @@ public class ParentToLift : MonoBehaviour
         {
             if (rigidbodiesOnPlatform.Contains(other.attachedRigidbody))
                 rigidbodiesOnPlatform.Remove(other.attachedRigidbody);
+        }
+
+        return;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.parent = null;
+            playerRB = null;
         }
     }
 }
