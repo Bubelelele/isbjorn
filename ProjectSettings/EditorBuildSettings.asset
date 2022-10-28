@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Unsorted/Cycle 1 MIDTERM.unity
     guid: b756a2c7904a2db4687cb8f29a9579dc
   - enabled: 1
-    path: Assets/_Scenes/_Unsorted/Cycle 3.unity
+    path: Assets/_Scenes/Cycle 3.unity
     guid: 4d0d64d3247e4c742b1a92127c52faa2
   m_configObjects: {}
