@@ -932,7 +932,7 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 25
-    m_Radius: 7
+    m_Radius: 1
   - m_Height: 7
     m_Radius: 14
   - m_Height: 0.5
