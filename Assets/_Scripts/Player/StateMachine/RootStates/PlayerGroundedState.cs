@@ -17,7 +17,7 @@ public class PlayerGroundedState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
-        // Context.Rigidbody.velocity = AdjustVectorToSlope(Context.Rigidbody.velocity);
+        HandleSlopes();
         ShouldStateSwitch();
     }
 
@@ -44,41 +44,24 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Walk());
     }
 
-    private Vector3 AdjustVectorToSlope(Vector3 movementVector)
+    private void HandleSlopes()
     {
-        var ray = new Ray(Context.PlayerPosition, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+        var playerUp = Context.PlayerTransform.up;
+        if (Context.GroundSlopeAngle != 0.0f)
         {
-            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-            var adjustedMovementVector = slopeRotation * movementVector;
-
-            if (adjustedMovementVector.y < 0.0f)
-                return adjustedMovementVector;
+            Context.IsOnSlope = true;
+            Context.SlopeAngleRotation = Quaternion.FromToRotation(Context.PlayerTransform.up, Context.GroundCheckHit.normal);
+            Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
+            
+            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
+            Context.GroundAngleRollable = Context.RelativeSlopeAngle > Context.MaxRollableSlopeAngle;
         }
-
-        return movementVector;
-
-        // Debug.Log(Context.GroundSlopeAngle);
-        // if (Context.GroundSlopeAngle != 0.0f)
-        // {
-
-        // }
-        //
-        // if (Context.GroundSlopeAngle != 0.0f)
-        // {
-        //     Context.IsOnSlope = true;
-        //     Context.SlopeAngleRotation = Quaternion.FromToRotation(Context.PlayerTransform.up, localGroundCheckHitNormal);
-        //     Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
-        //     
-        //     Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-        //     Context.GroundAngleRollable = Context.RelativeSlopeAngle > Context.MaxRollableSlopeAngle;
-        // }
-        // else
-        // {
-        //     Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-        //     Context.GroundAngleRollable = true;
-        //     Context.IsOnSlope = false;
-        // }
+        else
+        {
+            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
+            Context.GroundAngleRollable = true;
+            Context.IsOnSlope = false;
+        }
     }
 
     private float ResetGravity()

@@ -142,6 +142,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerIsGrounded = PlayerGroundCheck();
+        //MovementVector = MovementDirection;
         _currentState.UpdateStates();
         Debug.DrawRay(_playerPosition, MovementVector, Color.red);
         _rigidbody.AddRelativeForce(MovementVector * CounterDragMultiplier, ForceMode.Force);
@@ -174,26 +175,6 @@ public class PlayerStateMachine : MonoBehaviour
             _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
         }
     }
-    // private void PlayerLookRelativeToCamera()
-    // {
-    //     _globalForward = _mainCameraTransform.forward.normalized;
-    //     var right = _mainCameraTransform.right.normalized;
-    //     _globalForward.y = 0;
-    //     right.y = 0;
-    //
-    //     var relativeForwardLookDirection = MoveDirection().z * _globalForward;
-    //     var relativeRightLookDirection = MoveDirection().x * right;
-    //
-    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
-    //
-    //     if (Input.MoveIsPressed && !Input.RollIsPressed)
-    //     {
-    //         _playerTransform.forward = _globalForward;
-    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
-    //     }
-    //     else if (Input.RollIsPressed)
-    //         _bearTransform.forward = _playerTransform.forward = _globalForward;
-    // }
     private void InitializeVariables()
     {
         Input = FindObjectOfType<PlayerInput>();
