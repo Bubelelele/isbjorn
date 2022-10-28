@@ -153,7 +153,7 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerLookRelativeToCamera();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-<<<<<<< Updated upstream
+
     // Just for Tormod and Edvart to greybox levels.
     private void PlayerLookRelativeToCamera()
     {
@@ -173,8 +173,6 @@ public class PlayerStateMachine : MonoBehaviour
             _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
         }
     }
-    
-=======
     // private void PlayerLookRelativeToCamera()
     // {
     //     _globalForward = _mainCameraTransform.forward.normalized;
@@ -195,7 +193,6 @@ public class PlayerStateMachine : MonoBehaviour
     //     else if (Input.RollIsPressed)
     //         _bearTransform.forward = _playerTransform.forward = _globalForward;
     // }
->>>>>>> Stashed changes
     private void InitializeVariables()
     {
         Input = FindObjectOfType<PlayerInput>();
@@ -203,20 +200,12 @@ public class PlayerStateMachine : MonoBehaviour
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
-<<<<<<< Updated upstream
         
         // Just for Tormod and Edvart to greybox levels.
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
         _playerTransform = _rigidbody.transform;
         _bearTransform = _playerTransform.GetChild(0).GetChild(0);
-=======
-        _playerTransform = _rigidbody.transform;
-        
-        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
-        // if (Camera.main != null)
-        //     _mainCameraTransform = Camera.main.transform;
->>>>>>> Stashed changes
     }
 
     private Vector3 HandleSlopes()
