@@ -10,6 +10,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Input/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Player/StateMachine/PlayerStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Player/StateMachine/RootStates/PlayerGroundedState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/_Unsorted/Temp_Scripts/OldBear/RollingScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -89,6 +90,7 @@
       <workItem from="1666801596691" duration="13448000" />
       <workItem from="1666817333171" duration="2353000" />
       <workItem from="1666873841252" duration="903000" />
+      <workItem from="1666934996621" duration="1180000" />
     </task>
     <servers />
   </component>

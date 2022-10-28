@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -240,10 +241,14 @@ public class PlayerStateMachine : MonoBehaviour
     }
     private void CursorLockToggle()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            Invoke(nameof(LockCursor), 0.2f);
-        else if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-            Cursor.lockState = CursorLockMode.None;
+        switch (Cursor.lockState == CursorLockMode.Locked)
+        {
+            case true when Keyboard.current.escapeKey.wasPressedThisFrame:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            case false when Mouse.current.leftButton.wasPressedThisFrame:
+                Invoke(nameof(LockCursor), 0.2f);
+                break;
         }
     }
     private void LockCursor()
