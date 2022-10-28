@@ -8,11 +8,11 @@ public class JumpingScript : MonoBehaviour
     public Animator bearAnim;
 
     public float groundDistance = 0.4f;
-    public float gravity = -9.18f;
+    public float gravity = -60f;
     public float jumpHeight = 3f;
 
     private Vector3 velocity;
-    private bool isGrounded;
+    public bool isGrounded;
 
 
     void Update()

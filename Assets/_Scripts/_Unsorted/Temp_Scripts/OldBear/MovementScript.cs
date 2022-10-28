@@ -2,36 +2,57 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
-    public CharacterController controller;
+    [Header("References")]
     public Transform cam;
     public Animator bearAnim;
 
+    [Header("Values")]
     public float speed = 6f;
     public float runSpeed = 12f;
     public float turnSmoothTime = 0.1f;
+    public float testNumber;
 
+    [HideInInspector] public Vector3 moveDir;
+
+    private CharacterController controller;
+    private SlopeDetection slopeDetection;
+    private RollingScript rollingScript;
     private float turnSmoothVelocity;
+    private float horizontal;
+    private float vertical;
+    
+    private void Start()
+    {
+        slopeDetection = GetComponent<SlopeDetection>();
+        rollingScript = GetComponent<RollingScript>();
+        controller = GetComponent<CharacterController>();
+    }
 
     void Update()
     {
-        //Input from movement keys
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        if (!rollingScript.isRolling)
+        {
+            //Input from movement keys
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
+
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if(direction.magnitude >= 0.1f)
+        //Rotation angle and smooth turning
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+        //Movement direction
+        moveDir = Quaternion.Euler(slopeDetection.currentAngle, targetAngle, 0f) * Vector3.forward;
+
+        if (direction.magnitude >= 0.1f && !rollingScript.isRolling)
         {
             //Walking animation
-            bearAnim.SetBool("IsWalking", true);
-
-            //Rotation angle and smooth turning
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            bearAnim.SetBool("IsWalking", true);           
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            //Movement direction
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
+            //Running animation
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
