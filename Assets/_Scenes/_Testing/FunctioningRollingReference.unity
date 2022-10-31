@@ -203,7 +203,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24140
+  m_Name: pb_Mesh31622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1501,7 +1501,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.0000000066266725, y: 0.9622047, z: -0.27232718, w: -0.000000023413804}
+  m_LocalRotation: {x: 8.404376e-10, y: 0.9622047, z: -0.27232724, w: 0.00000000296949}
   m_LocalPosition: {x: 31.77, y: 212.2, z: -352.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1742,8 +1742,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269912690}
-  m_LocalRotation: {x: -0, y: 0.95709205, z: -0.28978413, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000000020418625, y: 0.9976502, z: 0.06851352, w: 0.000000029732297}
+  m_LocalPosition: {x: 0, y: -8.690002, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2264,7 +2264,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579899482}
-  m_LocalRotation: {x: -0.0000000066266725, y: 0.96220475, z: -0.27232718, w: -0.000000023413808}
+  m_LocalRotation: {x: 8.404375e-10, y: 0.96220475, z: -0.2723272, w: 0.0000000029694902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2469,7 +2469,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749694359}
-  m_LocalRotation: {x: -0.000000004902179, y: 0.9669868, z: -0.25482658, w: -0.000000018602229}
+  m_LocalRotation: {x: 0.000000008490825, y: 0.9669868, z: -0.25482664, w: 0.000000032220008}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2658,12 +2658,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a3cfbde34eff145a9b54ffa98e1749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
   cam: {fileID: 963194228}
   bearAnim: {fileID: 2143582730}
   speed: 6
   runSpeed: 12
   turnSmoothTime: 0.1
+  testNumber: 0
+  moveDir: {x: 0, y: 0, z: 0}
 --- !u!143 &1909702284
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2703,6 +2704,7 @@ MonoBehaviour:
   groundDistance: 0.6
   gravity: -60
   jumpHeight: 4
+  isGrounded: 0
 --- !u!114 &1909702286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,9 +2717,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ab2f6bbe9f1fc47b2b61fd381c0b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollingSpeed: 10
   rotationPivot: {fileID: 1861792959}
   bearAnim: {fileID: 2143582730}
+  cam: {fileID: 963194228}
+  cinemachineFreeLook: {fileID: 461664648}
+  maxSlopeBeforeDecelaration: 5
+  turnSmoothTime: 0.1
+  accelerationForce: 1
+  decelerationForce: 200
+  jumpBoost: 10
+  animationMultiplier: 10
+  camSpeed: 10
+  isRolling: 0
 --- !u!114 &1909702287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2980,7 +2991,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2594
+  m_Name: pb_Mesh31714
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
