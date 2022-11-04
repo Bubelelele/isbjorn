@@ -27,6 +27,10 @@ public class PlayerHunger : MonoBehaviour
         {
             hunger = 0;
         }
+        if (hunger > 100)
+        {
+            hunger = 100; 
+        }
 
         UpdateSliders();
     }
