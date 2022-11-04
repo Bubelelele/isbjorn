@@ -33,6 +33,8 @@ public class PlayerWalkState : PlayerBaseState
             SwitchState(Factory.Idle());
         else if (Context.Input.RunIsPressed)
             SwitchState(Factory.Run());
+        else if (Context.Input.RollIsPressed)
+            SwitchState(Factory.Roll());
     }
 
     public sealed override void InitializeSubState()

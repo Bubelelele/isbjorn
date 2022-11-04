@@ -3,21 +3,23 @@ using UnityEngine;
 public class PlayerSlashState : PlayerBaseState
 {
     private float _animationTimer;
-    
+    private readonly int _slash = Animator.StringToHash("Slash");
+
     public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
     }
 
     public override void EnterState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-        Context.Animator.SetTrigger("Slash");
-        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
+        Context.Animator.SetTrigger(_slash);
+        //_animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     protected override void UpdateState()
     {
-        _animationTimer -= Time.deltaTime;
+        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        _animationTimer -= Time.fixedDeltaTime;
+        Debug.Log(_animationTimer);
         ShouldStateSwitch();
     }
 
@@ -29,11 +31,16 @@ public class PlayerSlashState : PlayerBaseState
     public override void ShouldStateSwitch()
     {
         if (_animationTimer < 0)
-            SwitchState(Factory.Grounded());
+            SwitchState(Factory.Idle());
     }
 
     public override void InitializeSubState()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void ActionEnded()
+    {
+        Debug.Log("action ended");
     }
 }

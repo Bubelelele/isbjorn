@@ -32,6 +32,8 @@ public class PlayerFallState : PlayerBaseState
     {
         if (Context.CoyoteTimer > 0.0f && Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
+        else if (Context.landedOnWalrus)
+            SwitchState(Factory.Jump());
         else if (Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());
     }
@@ -59,6 +61,16 @@ public class PlayerFallState : PlayerBaseState
             Context.AppliedGravity = Context.CurrentGravity;
         }
         return Context.AppliedGravity;
+    }
+    
+    private void HandleFall()
+    {
+        if (Context.CurrentGravity > Context.MaximumGravity)
+        {
+            Context.CurrentGravity += Context.FallIncrementAmount;
+        }
+        Context.PlayerInAirTimer = Context.IncrementFrequency;
+        Context.AppliedGravity = Context.CurrentGravity;
     }
 
     private void CoyoteTimer()

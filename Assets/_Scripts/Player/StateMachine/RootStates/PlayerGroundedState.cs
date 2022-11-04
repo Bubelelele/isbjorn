@@ -7,17 +7,21 @@ public class PlayerGroundedState : PlayerBaseState
         IsRootState = true;
         InitializeSubState();
     }
-    
+
     public override void EnterState()
     {
+        if (!Context.landedOnWalrus)
+        {
+            Context.MovementVectorY = ResetGravity();
+        }
         Context.CoyoteTimer = Context.CoyoteTime;
-        Context.MovementVectorY = ResetGravity();
+        
     }
 
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
-        HandleSlopes();
+        // HandleSlopes();
         ShouldStateSwitch();
     }
 
@@ -28,10 +32,10 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (!Context.PlayerIsGrounded)
+        if (Context.landedOnWalrus)
+            SwitchState(Factory.Jump());
+        else if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        else if (Context.Input.RollIsPressed)
-            SwitchState(Factory.Roll());
         else if (Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
     }
@@ -42,6 +46,8 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Idle());
         else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
+        else if (Context.Input.Slashing)
+            SwitchState(Factory.Slash());
         else
             SetSubState(Factory.Walk());
     }

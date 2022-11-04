@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -34,23 +33,84 @@ public class PlayerStateMachine : MonoBehaviour
     private float _relativeSlopeAngle;
     private Transform _bearTransform;
     private float _fallAnimationTimer = 0.5f;
+    public CharacterController characterController;
+    public RollingScript rollingScript;
+    public SlopeDetection slopeDetection;
+    public MovementScript movementScript;
+    public JumpingScript jumpingScript;
+    public GameObject groundCheck;
+    public GameObject rotationPivot;
+    public GameObject rollPivot;
+    public bool landedOnWalrus;
+    public LayerMask walrusLayerMask;
+
     // Getters and setters.
-    public float RollMultiplier => rollMultiplier;
-    public Vector3 GlobalForward => _globalForward;
+    public float RollMultiplier
+    {
+        get => rollMultiplier;
+        set => rollMultiplier = value;
+    }
+
+    public Vector3 GlobalForward
+    {
+        get => _globalForward;
+        set => _globalForward = value;
+    }
+
     public float GroundSlopeAngle { get => groundSlopeAngle; set => groundSlopeAngle = value; }
-    public bool IsFalling => isFalling;
-    public float MaximumJumpHeight => maximumJumpHeight;
-    public float MaximumJumpTime => maximumJumpTime;
+    public bool IsFalling
+    {
+        get => isFalling;
+        set => isFalling = value;
+    }
+
+    public float MaximumJumpHeight
+    {
+        get => maximumJumpHeight;
+        set => maximumJumpHeight = value;
+    }
+
+    public float MaximumJumpTime
+    {
+        get => maximumJumpTime;
+        set => maximumJumpTime = value;
+    }
+
     public bool IsOnSlope { get => isOnSlope; set => isOnSlope = value; }
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public float JumpTimeCounter { get => jumpTimeCounter; set => jumpTimeCounter = value; }
-    public float JumpTime => jumpTime;
-    public float ContinualJumpForceMultiplier => continualJumpForceMultiplier;
-    public Rigidbody Rigidbody => _rigidbody;
+    public float JumpTime
+    {
+        get => jumpTime;
+        set => jumpTime = value;
+    }
+
+    public float ContinualJumpForceMultiplier
+    {
+        get => continualJumpForceMultiplier;
+        set => continualJumpForceMultiplier = value;
+    }
+
+    public Rigidbody Rigidbody
+    {
+        get => _rigidbody;
+        set => _rigidbody = value;
+    }
+
     public bool PlayerIsJumping { get => playerIsJumping; set => playerIsJumping = value; }
     public float IncrementAmount { get => incrementAmount; set => incrementAmount = value; }
-    public float MaximumGravity => maximumGravity;
-    public float IncrementFrequency => incrementFrequency;
+    public float MaximumGravity
+    {
+        get => maximumGravity;
+        set => maximumGravity = value;
+    }
+
+    public float IncrementFrequency
+    {
+        get => incrementFrequency;
+        set => incrementFrequency = value;
+    }
+
     public float PlayerMovementZ { get => _playerMovement.z; set => _playerMovement.z = value; }
     public float PlayerMovementX { get => _playerMovement.x; set => _playerMovement.x = value; }
     public float PlayerMovementY { get => _playerMovement.y; set => _playerMovement.y = value; }
@@ -59,8 +119,18 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsRolling { get => isRolling; set => isRolling = value; }
     public float MaxRollableSlopeAngle { get => maxRollableSlopeAngle; set => maxRollableSlopeAngle = value; }
     public float FallAnimationTimer { get => _fallAnimationTimer; set => _fallAnimationTimer = value; }
-    public Transform PlayerTransform => _playerTransform;
-    public Vector3 PlayerPosition => _playerPosition;
+    public Transform PlayerTransform
+    {
+        get => _playerTransform;
+        set => _playerTransform = value;
+    }
+
+    public Vector3 PlayerPosition
+    {
+        get => _playerPosition;
+        set => _playerPosition = value;
+    }
+
     public Quaternion SlopeAngleRotation { get => _slopeAngleRotation; set => _slopeAngleRotation = value; }
     public float RelativeSlopeAngle { get => _relativeSlopeAngle; set => _relativeSlopeAngle = value; }
 
@@ -103,7 +173,12 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public Animator Animator { get; private set; }
     // Ground Check
-    public RaycastHit GroundCheckHit => _groundCheckHit;
+    public RaycastHit GroundCheckHit
+    {
+        get => _groundCheckHit;
+        set => _groundCheckHit = value;
+    }
+
     public bool PlayerIsGrounded { get; private set; }
     // Movement
     public Vector3 MovementDirection { get; set; }
@@ -111,23 +186,63 @@ public class PlayerStateMachine : MonoBehaviour
     public float MovementVectorX { get => _movementVector.x; set => _movementVector.x = value; }
     public float MovementVectorY { get => _movementVector.y; set => _movementVector.y = value; }
     public float MovementVectorZ { get => _movementVector.z; set => _movementVector.z = value; }
-    public float MovementSpeed => movementSpeed;
-    public float RunMultiplier => runMultiplier;
-    public float CounterDragMultiplier => Drag * 2.0f;
+    public float MovementSpeed
+    {
+        get => movementSpeed;
+        set => movementSpeed = value;
+    }
+
+    public float RunMultiplier
+    {
+        get => runMultiplier;
+        set => runMultiplier = value;
+    }
+
+    public float CounterDragMultiplier
+    {
+        get => Drag * 2.0f;
+        set => throw new NotImplementedException();
+    }
+
     // Gravity
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
-    public float MinimumGravity => minimumGravity;
+    public float MinimumGravity
+    {
+        get => minimumGravity;
+        set => minimumGravity = value;
+    }
+
     public float PlayerInAirTimer { get => playerInAirTimer; set => playerInAirTimer = value; }
     public float AppliedGravity { get => appliedGravity; set => appliedGravity = value; }
     // Jump
-    public float RiseDecrementAmount => riseDecrementAmount;
-    public float FallIncrementAmount => fallIncrementAmount;
-    public float InitialVelocity => initialVelocity;
+    public float RiseDecrementAmount
+    {
+        get => riseDecrementAmount;
+        set => riseDecrementAmount = value;
+    }
+
+    public float FallIncrementAmount
+    {
+        get => fallIncrementAmount;
+        set => fallIncrementAmount = value;
+    }
+
+    public float InitialVelocity
+    {
+        get => initialVelocity;
+        set => initialVelocity = value;
+    }
+
     // public bool JumpIsQueued { get; set; }
     // public bool JumpWasPressedLastFrame { get; set; }
     // Jump Timers
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
-    public float CoyoteTime => coyoteTime;
+    public float CoyoteTime
+    {
+        get => coyoteTime;
+        set => coyoteTime = value;
+    }
+
     // public float JumpBufferTimer { get => jumpBufferTimer; set => jumpBufferTimer = value; }
     // public float JumpBufferTime => jumpBufferTime;
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -143,7 +258,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         PlayerIsGrounded = PlayerGroundCheck();
         //MovementVector = MovementDirection;
+        landedOnWalrus = CheckForWalrus();
         _currentState.UpdateStates();
+        Debug.Log(landedOnWalrus);
         //Debug.DrawRay(_playerPosition, MovementVector, Color.red);
         _rigidbody.AddRelativeForce(MovementVector * CounterDragMultiplier, ForceMode.Force);
     }
@@ -157,6 +274,7 @@ public class PlayerStateMachine : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Just for Tormod and Edvart to greybox levels.
+
     private void PlayerLookRelativeToCamera()
     {
         _globalForward = _mainCameraTransform.forward.normalized;
@@ -183,6 +301,13 @@ public class PlayerStateMachine : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
         
+        // Initialize rolling components.
+        characterController = GetComponent<CharacterController>();
+        rollingScript = GetComponent<RollingScript>();
+        slopeDetection = GetComponent<SlopeDetection>();
+        movementScript = GetComponent<MovementScript>();
+        jumpingScript = GetComponent<JumpingScript>();
+
         // Just for Tormod and Edvart to greybox levels.
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
@@ -198,6 +323,26 @@ public class PlayerStateMachine : MonoBehaviour
         SlopeAngleRotation = Quaternion.FromToRotation(playerUp, localGroundCheckHitNormal);
         return SlopeAngleRotation * MovementVector;
     }
+    
+    private bool CheckForWalrus()
+    {
+        _playerPosition = _rigidbody.position;
+        var sphereCastRadius = _capsuleCollider.radius * sphereRadiusMultiplier;
+        var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance * 2.0f;
+        return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, walrusLayerMask);
+    }
+
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     landedOnWalrus = collision.transform.CompareTag("Walrus");
+    // }
+    //
+    // private void OnCollisionExit()
+    // {
+    //     landedOnWalrus = false;
+    // }
+
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Working as intended, values not yet tweaked.
     private bool PlayerGroundCheck()

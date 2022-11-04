@@ -52,7 +52,7 @@ public class RollingScript : MonoBehaviour
         {
             isRolling = true;
             camBack = false;
-            cinemachineFreeLook.m_XAxis.m_MaxSpeed = 50;
+            cinemachineFreeLook.m_XAxis.m_MaxSpeed = 0.05f;
             cinemachineFreeLook.m_Lens.FieldOfView = Mathf.SmoothStep(cinemachineFreeLook.m_Lens.FieldOfView, 60, camSpeed * Time.deltaTime);
             bearAnim.SetBool("IsRolling", true);
 

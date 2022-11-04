@@ -13,7 +13,10 @@ public class PlayerJumpState : PlayerBaseState
     public override void EnterState()
     {
         Context.Animator.SetBool(_isJumping, true);
-        Context.CurrentGravity = Context.InitialVelocity;
+        if (Context.landedOnWalrus)
+            Context.CurrentGravity = -Context.CurrentGravity;
+        else
+            Context.CurrentGravity = Context.InitialVelocity;
     }
 
     protected override void UpdateState()
@@ -30,7 +33,9 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.PlayerIsGrounded && Context.MovementVectorY < 0.0f)
+        if (Context.MovementVectorY < 0.0f)
+            SwitchState(Factory.Fall());
+        else if (Context.PlayerIsGrounded && Context.MovementVectorY < 0.0f)
             SwitchState(Factory.Grounded());
     }
 
@@ -55,19 +60,7 @@ public class PlayerJumpState : PlayerBaseState
                 Context.PlayerInAirTimer = Context.IncrementFrequency;
                 Context.AppliedGravity = Context.CurrentGravity;
             }
-            else
-                HandleFall();
         }
         return Context.AppliedGravity;
-    }
-    
-    private void HandleFall()
-    {
-        if (Context.CurrentGravity > Context.MaximumGravity)
-        {
-            Context.CurrentGravity += Context.FallIncrementAmount;
-        }
-        Context.PlayerInAirTimer = Context.IncrementFrequency;
-        Context.AppliedGravity = Context.CurrentGravity;
     }
 }

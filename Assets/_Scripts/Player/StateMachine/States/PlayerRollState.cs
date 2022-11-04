@@ -12,6 +12,15 @@ public class PlayerRollState : PlayerBaseState
 
     public override void EnterState()
     {
+        Context.MovementVector = Vector3.zero;
+        Context.characterController.enabled = true;
+        Context.rollingScript.enabled = true;
+        Context.slopeDetection.enabled = true;
+        Context.movementScript.enabled = true;
+        Context.jumpingScript.enabled = true;
+        Context.groundCheck.SetActive(true);
+        Context.rotationPivot.SetActive(true);
+        Context.rollPivot.SetActive(false);
         // Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
         // Context.Animator.SetBool("IsRolling", true);
         // Context.IsRolling = true;
@@ -19,6 +28,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void UpdateState()
     {
+        Debug.LogWarning("CURRENT STATE: PlayerRollState");
         // Debug.Log(Context.GroundAngleRollable);
         // RotateBear();
         // HandleRollingMovement();
@@ -27,6 +37,14 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
+        Context.characterController.enabled = false;
+        Context.rollingScript.enabled = false;
+        Context.slopeDetection.enabled = false;
+        Context.movementScript.enabled = false;
+        Context.jumpingScript.enabled = false;
+        Context.groundCheck.SetActive(false);
+        Context.rotationPivot.SetActive(false);
+        Context.rollPivot.SetActive(true);
         // Context.Animator.SetBool("IsRolling", false);
         // Context.IsRolling = false;
         // Debug.LogWarning("byebye");
@@ -34,6 +52,8 @@ public class PlayerRollState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
+        if (!Context.Input.RollIsPressed)
+            SwitchState(Factory.Idle());
         // if (Context.PlayerIsGrounded && !Context.Input.RollIsPressed)
         //     SwitchState(Factory.Grounded());
         // else if (!Context.PlayerIsGrounded && !Context.Input.RollIsPressed)

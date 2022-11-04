@@ -33,6 +33,8 @@ public class PlayerRunState : PlayerBaseState
             SwitchState(Factory.Idle());
         else if (!Context.Input.RunIsPressed)
             SwitchState(Factory.Walk());
+        else if (Context.Input.RollIsPressed)
+            SwitchState(Factory.Roll());
     }
 
     public override void InitializeSubState()
