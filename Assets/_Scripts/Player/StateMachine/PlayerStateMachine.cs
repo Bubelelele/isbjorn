@@ -144,7 +144,7 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerIsGrounded = PlayerGroundCheck();
         //MovementVector = MovementDirection;
         _currentState.UpdateStates();
-        Debug.DrawRay(_playerPosition, MovementVector, Color.red);
+        //Debug.DrawRay(_playerPosition, MovementVector, Color.red);
         _rigidbody.AddRelativeForce(MovementVector * CounterDragMultiplier, ForceMode.Force);
     }
 
@@ -164,8 +164,8 @@ public class PlayerStateMachine : MonoBehaviour
         _globalForward.y = 0;
         right.y = 0;
     
-        var relativeForwardLookDirection = MovementDirection.z * _globalForward;
-        var relativeRightLookDirection = MovementDirection.x * right;
+        var relativeForwardLookDirection = _movementVector.z * _globalForward;
+        var relativeRightLookDirection = _movementVector.x * right;
     
         var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
     

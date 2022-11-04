@@ -30,6 +30,8 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
+        else if (Context.Input.RollIsPressed)
+            SwitchState(Factory.Roll());
         else if (Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
     }
