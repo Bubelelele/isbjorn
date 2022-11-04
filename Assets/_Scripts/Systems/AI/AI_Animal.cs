@@ -11,7 +11,7 @@ public class AI_Animal : MonoBehaviour
     public float maxDistanceToFood;
 
     public float distance;
-    public FoodIsDroppedChecker fDC;
+    public Food _food;
 
 
     //private bool goToFood;
@@ -81,7 +81,7 @@ public class AI_Animal : MonoBehaviour
         if ((closestFoodLocation - this.transform.position).sqrMagnitude < maxDistanceToFood)
         {
             //if (foodIsDropped)
-            if (fDC.foodIsDropped)
+            if (_food.foodIsDropped)
             {
                 _agent.SetDestination(closestFoodLocation);
             }
@@ -112,7 +112,7 @@ public class AI_Animal : MonoBehaviour
                 distanceToClosestFood = distanceToFood;
                 closestFood = currentFood;
                 closestFoodLocation = closestFood.transform.position;
-                fDC = currentFood.GetComponent<FoodIsDroppedChecker>();
+                _food = currentFood.GetComponent<Food>();
             }
             //if (distanceToFood < maxDistanceToFood)
             //{

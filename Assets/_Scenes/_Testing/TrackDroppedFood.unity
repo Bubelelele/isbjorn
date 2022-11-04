@@ -318,7 +318,6 @@ GameObject:
   - component: {fileID: 1684438816}
   - component: {fileID: 1684438815}
   - component: {fileID: 1684438814}
-  - component: {fileID: 1684438819}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -338,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9ef6a808156b5469d891a915255058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodIsDropped: 0
 --- !u!65 &1684438815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -416,19 +416,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1684438819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684438813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c81f5a2f50eb484eb7a29e1dd14fb94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodIsDropped: 0
 --- !u!1 &1822716139
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +569,7 @@ MonoBehaviour:
   stationary: 1
   maxDistanceToFood: 1000
   distance: 0
-  fDC: {fileID: 0}
+  _food: {fileID: 0}
 --- !u!195 &2043824343
 NavMeshAgent:
   m_ObjectHideFlags: 0
