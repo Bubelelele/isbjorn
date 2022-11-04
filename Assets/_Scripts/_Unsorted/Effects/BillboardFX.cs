@@ -8,7 +8,6 @@ public class BillboardFX : MonoBehaviour {
     void Start() {
         var cam = Camera.main;
         _camTransform = cam.transform;
-        GetComponent<Canvas>().worldCamera = cam;
         _originalRotation = transform.rotation;
     }
 
