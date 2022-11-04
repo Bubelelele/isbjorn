@@ -1,19 +1,25 @@
 using UnityEngine;
+using Cinemachine;
 
 public class FallingRamp : MonoBehaviour
 {
     public Animator rampAnim;
+    public Animator pendelAnim;
+    public CinemachineVirtualCamera rampCam;
     public GameObject ice1, ice2, ice3;
     public GameObject pendelIce;
     public GameObject breakingIceEffectPrefab;
-    public Animator pendelAnim;
+
+    private bool isActivaded;
 
     private void Update()
     {
-        if(!ice1.activeSelf && !ice2.activeSelf && !ice3.activeSelf)
+        if(!ice1.activeSelf && !ice2.activeSelf && !ice3.activeSelf && !isActivaded)
         {
-            Debug.Log("yes");
-            RampDown();
+            Invoke("RampDown", 0.5f);
+            Invoke("ResetCam", 5f);
+            rampCam.m_Priority = 11;
+            isActivaded = true;
         }
     }
 
@@ -29,5 +35,9 @@ public class FallingRamp : MonoBehaviour
         Destroy(effect, 1f);
         Destroy(pendelIce, 1f);
         pendelAnim.SetTrigger("StartPendel");
+    }
+    private void ResetCam()
+    {
+        rampCam.m_Priority = 9;
     }
 }
