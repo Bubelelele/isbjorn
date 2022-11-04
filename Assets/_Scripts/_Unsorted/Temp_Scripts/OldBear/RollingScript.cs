@@ -76,28 +76,28 @@ public class RollingScript : MonoBehaviour
             
             
             //When you hit a slope
-            if(slopeDetection.targetAngle < 0 && !UpSlope)
-            {
-                prevMoveDir = moveDir;
-                Debug.Log("1");
-                UpSlope = true;
-                
-            }
-            if(slopeDetection.targetAngle >= 0 && UpSlope && !jumpingScript.isGrounded)
-            {
-                Debug.Log("2");
-                UpSlope = false;
-                leap = true;
-                rollingSpeed += jumpBoost;
-                
-            }
-            if (leap)
-            {
-                Debug.Log("leap");
-                moveDir = new Vector3(moveDir.x, prevMoveDir.y + 0.5f, moveDir.z);
-                Invoke("LeapDone", 0.2f);
-
-            }
+            // if(slopeDetection.targetAngle < 0 && !UpSlope)
+            // {
+            //     prevMoveDir = moveDir;
+            //     Debug.Log("1");
+            //     UpSlope = true;
+            //     
+            // }
+            // if(slopeDetection.targetAngle >= 0 && UpSlope && !jumpingScript.isGrounded)
+            // {
+            //     Debug.Log("2");
+            //     UpSlope = false;
+            //     leap = true;
+            //     rollingSpeed += jumpBoost;
+            //     
+            // }
+            // if (leap)
+            // {
+            //     Debug.Log("leap");
+            //     moveDir = new Vector3(moveDir.x, prevMoveDir.y + 0.5f, moveDir.z);
+            //     Invoke("LeapDone", 0.2f);
+            //
+            // }
 
             controller.Move(moveDir.normalized * rollingSpeed * Time.deltaTime);
             rotationPivot.Rotate(Vector3.left, -rollingSpeed * animationMultiplier * Time.deltaTime, Space.Self);

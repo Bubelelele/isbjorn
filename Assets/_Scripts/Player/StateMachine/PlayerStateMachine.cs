@@ -331,6 +331,12 @@ public class PlayerStateMachine : MonoBehaviour
         var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance * 2.0f;
         return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, walrusLayerMask);
     }
+    
+    public void SlashEnded()
+    {
+        Debug.Log("goofy ah");
+        _currentState = _state.Idle();
+    }
 
     // private void OnCollisionEnter(Collision collision)
     // {

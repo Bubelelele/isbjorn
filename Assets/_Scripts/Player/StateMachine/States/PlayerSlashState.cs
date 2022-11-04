@@ -12,13 +12,12 @@ public class PlayerSlashState : PlayerBaseState
     public override void EnterState()
     {
         Context.Animator.SetTrigger(_slash);
-        //_animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
+        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     protected override void UpdateState()
     {
-        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        _animationTimer -= Time.fixedDeltaTime;
+        _animationTimer -= Time.deltaTime;
         Debug.Log(_animationTimer);
         ShouldStateSwitch();
     }
@@ -37,10 +36,5 @@ public class PlayerSlashState : PlayerBaseState
     public override void InitializeSubState()
     {
         throw new System.NotImplementedException();
-    }
-
-    public void ActionEnded()
-    {
-        Debug.Log("action ended");
     }
 }
