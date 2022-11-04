@@ -87,9 +87,9 @@ MonoBehaviour:
   spawnHeightRange: {x: 80, y: 150}
   spawnDistanceRange: {x: 100, y: 200}
   spawnDeviation: 50
-  timeBetweenSpawnsRange: {x: 3, y: 6}
-  lifetimeMoveDistance: 100
-  lifetimeMoveTime: 10
+  timeBetweenSpawnsRange: {x: 10, y: 20}
+  lifetimeMoveDistance: 200
+  lifetimeMoveTime: 20
 --- !u!1 &5109571421105986124
 GameObject:
   m_ObjectHideFlags: 0
