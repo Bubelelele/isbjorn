@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerAudioTest : MonoBehaviour
+public class VoiceLineTrigger : MonoBehaviour
 {
     public AudioObject clipToBePlayed;
 
