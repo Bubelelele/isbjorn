@@ -22,14 +22,14 @@ public class Food : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.gKey.wasPressedThisFrame && !foodIsEaten)
-        {
-            EatFood();
-        }
-    }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (Keyboard.current.gKey.wasPressedThisFrame && !foodIsEaten)
+    //    {
+    //        EatFood();
+    //    }
+    //}
 
 
     public void EatFood()
