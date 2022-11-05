@@ -24,7 +24,7 @@ public class FishInMouth : MonoBehaviour
     {
         if (Keyboard.current.fKey.wasPressedThisFrame && !hasEaten)
         {
-            Debug.Log("Eat");
+            //Debug.Log("Eat");
             Eat();
         }
 
