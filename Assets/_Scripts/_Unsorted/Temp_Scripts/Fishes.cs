@@ -18,11 +18,23 @@ public class Fishes : MonoBehaviour
     private bool isHit;
     private AudioSource audioSound;
 
+    private GameObject fishInMouth;                 //Kevin
+    public Food food;                              //Kevin
+
+    private void Awake()            
+    {
+        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         fishAnim = GetComponent<Animator>();
         audioSound = GetComponent<AudioSource>();
+
+        fishInMouth.SetActive(false);       //Kevin
+        food = gameObject.GetComponent<Food>();     //Kevin
+
     }
     private void Update()
     {
@@ -43,6 +55,8 @@ public class Fishes : MonoBehaviour
             }
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3 && !isHit && isDown)
             {
+                fishInMouth.SetActive(true);        //Kevin
+                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
                 onHit.Invoke();
                 Destroy(gameObject, 0.2f);
                 isHit = true;
