@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -268,29 +269,27 @@ public class PlayerStateMachine : MonoBehaviour
     {
         CursorLockToggle();
         MovementDirection = MoveInput();
+        PlayerLookRelativeToCamera();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Just for Tormod and Edvart to greybox levels.
 
-    // private void PlayerLookRelativeToCamera()
-    // {
-    //     _globalForward = _mainCameraTransform.forward.normalized;
-    //     var right = _mainCameraTransform.right.normalized;
-    //     _globalForward.y = 0;
-    //     right.y = 0;
-    //
-    //     var relativeForwardLookDirection = _movementVector.z * _globalForward;
-    //     var relativeRightLookDirection = _movementVector.x * right;
-    //
-    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
-    //
-    //     if (Input.MoveIsPressed)
-    //     {
-    //         _playerTransform.forward = _globalForward;
-    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
-    //     }
-    // }
+    private void PlayerLookRelativeToCamera()
+    {
+        var forward = _mainCameraTransform.forward.normalized;
+        var right = _mainCameraTransform.right.normalized;
+        forward.y = 0;
+        right.y = 0;
+    
+        var relativeForwardLookDirection = _movementVector.z * forward;
+        var relativeRightLookDirection = _movementVector.x * right;
+    
+        var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
+
+        if (!Input.MoveIsPressed) return;
+        // _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
+    }
     private void InitializeVariables()
     {
         Input = FindObjectOfType<PlayerInput>();
@@ -300,10 +299,10 @@ public class PlayerStateMachine : MonoBehaviour
         _rigidbody.drag = Drag;
 
         // Just for Tormod and Edvart to greybox levels.
-        // if (Camera.main != null)
-        //     _mainCameraTransform = Camera.main.transform;
-        // _playerTransform = _rigidbody.transform;
-        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+        if (Camera.main != null)
+            _mainCameraTransform = Camera.main.transform;
+        _playerTransform = _rigidbody.transform;
+        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

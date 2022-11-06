@@ -12,7 +12,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.Animator.SetBool(_isFalling, true);
+        
     }
 
     protected override void UpdateState()
@@ -76,5 +76,8 @@ public class PlayerFallState : PlayerBaseState
     private void CoyoteTimer()
     {
         Context.CoyoteTimer -= Time.fixedDeltaTime;
+        if (Context.CoyoteTimer > 0.0f) return;
+        Context.Animator.SetBool(_isFalling, true);
+        Context.CoyoteTimer = 0.0f;
     }
 }
