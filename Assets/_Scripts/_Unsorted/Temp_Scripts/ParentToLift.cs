@@ -10,7 +10,7 @@ public class ParentToLift : MonoBehaviour
     [SerializeField] private List<Rigidbody> rigidbodiesOnPlatform = new List<Rigidbody>();
 
     private void Start()
-    {
+    {   
         _platformRigidbody = GetComponent<Rigidbody>();
     }
 

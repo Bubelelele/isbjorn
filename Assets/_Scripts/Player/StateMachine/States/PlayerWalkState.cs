@@ -16,8 +16,9 @@ public class PlayerWalkState : PlayerBaseState
     protected override void UpdateState()
     {
         Debug.LogWarning("CURRENT SUBSTATE: PlayerWalkState");
-        Context.MovementVectorX = Context.MovementDirection.x * Context.MovementSpeed;
-        Context.MovementVectorZ = Context.MovementDirection.z * Context.MovementSpeed;
+        Context.MovementVector = new Vector3(Context.MovementVector.x * Context.MovementSpeed, Context.MovementVector.y, Context.MovementVector.z * Context.MovementSpeed);
+        // Context.MovementVectorX = Context.MovementDirection.x * Context.MovementSpeed;
+        // Context.MovementVectorZ = Context.MovementDirection.z * Context.MovementSpeed;
         
         ShouldStateSwitch();
     }
@@ -33,8 +34,8 @@ public class PlayerWalkState : PlayerBaseState
             SwitchState(Factory.Idle());
         else if (Context.Input.RunIsPressed)
             SwitchState(Factory.Run());
-        else if (Context.Input.RollIsPressed)
-            SwitchState(Factory.Roll());
+        // else if (Context.Input.RollIsPressed)
+        //     SwitchState(Factory.Roll());
     }
 
     public sealed override void InitializeSubState()

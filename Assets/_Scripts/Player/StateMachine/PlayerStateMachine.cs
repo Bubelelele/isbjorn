@@ -257,42 +257,40 @@ public class PlayerStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerIsGrounded = PlayerGroundCheck();
-        //MovementVector = MovementDirection;
-        landedOnWalrus = CheckForWalrus();
+        _movementVector = new Vector3(Input.MoveInput.x, 0.0f, Input.MoveInput.y);
         _currentState.UpdateStates();
-        Debug.Log(landedOnWalrus);
-        //Debug.DrawRay(_playerPosition, MovementVector, Color.red);
-        _rigidbody.AddRelativeForce(MovementVector * CounterDragMultiplier, ForceMode.Force);
+        _movementVector = Vector3.ProjectOnPlane(_movementVector, _groundCheckHit.normal);
+        Debug.DrawRay(_playerPosition, _movementVector, Color.red);
+        _rigidbody.AddRelativeForce(_movementVector * CounterDragMultiplier, ForceMode.Force);
     }
 
     private void Update()
     {
         CursorLockToggle();
         MovementDirection = MoveInput();
-        PlayerLookRelativeToCamera();
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Just for Tormod and Edvart to greybox levels.
 
-    private void PlayerLookRelativeToCamera()
-    {
-        _globalForward = _mainCameraTransform.forward.normalized;
-        var right = _mainCameraTransform.right.normalized;
-        _globalForward.y = 0;
-        right.y = 0;
-    
-        var relativeForwardLookDirection = _movementVector.z * _globalForward;
-        var relativeRightLookDirection = _movementVector.x * right;
-    
-        var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
-    
-        if (Input.MoveIsPressed)
-        {
-            _playerTransform.forward = _globalForward;
-            _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
-        }
-    }
+    // private void PlayerLookRelativeToCamera()
+    // {
+    //     _globalForward = _mainCameraTransform.forward.normalized;
+    //     var right = _mainCameraTransform.right.normalized;
+    //     _globalForward.y = 0;
+    //     right.y = 0;
+    //
+    //     var relativeForwardLookDirection = _movementVector.z * _globalForward;
+    //     var relativeRightLookDirection = _movementVector.x * right;
+    //
+    //     var lookDirection = relativeForwardLookDirection + relativeRightLookDirection;
+    //
+    //     if (Input.MoveIsPressed)
+    //     {
+    //         _playerTransform.forward = _globalForward;
+    //         _bearTransform.forward = Vector3.Slerp(_bearTransform.forward, lookDirection, rotationSpeed * Time.deltaTime);
+    //     }
+    // }
     private void InitializeVariables()
     {
         Input = FindObjectOfType<PlayerInput>();
@@ -300,54 +298,13 @@ public class PlayerStateMachine : MonoBehaviour
         _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
-        
-        // Initialize rolling components.
-        characterController = GetComponent<CharacterController>();
-        rollingScript = GetComponent<RollingScript>();
-        slopeDetection = GetComponent<SlopeDetection>();
-        movementScript = GetComponent<MovementScript>();
-        jumpingScript = GetComponent<JumpingScript>();
 
         // Just for Tormod and Edvart to greybox levels.
-        if (Camera.main != null)
-            _mainCameraTransform = Camera.main.transform;
-        _playerTransform = _rigidbody.transform;
-        _bearTransform = _playerTransform.GetChild(0).GetChild(0);
+        // if (Camera.main != null)
+        //     _mainCameraTransform = Camera.main.transform;
+        // _playerTransform = _rigidbody.transform;
+        // _bearTransform = _playerTransform.GetChild(0).GetChild(0);
     }
-
-    private Vector3 HandleSlopes()
-    {
-        var playerUp = PlayerTransform.up;
-        var localGroundCheckHitNormal = PlayerTransform.InverseTransformDirection(GroundCheckHit.normal);
-        GroundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, playerUp);
-        SlopeAngleRotation = Quaternion.FromToRotation(playerUp, localGroundCheckHitNormal);
-        return SlopeAngleRotation * MovementVector;
-    }
-    
-    private bool CheckForWalrus()
-    {
-        _playerPosition = _rigidbody.position;
-        var sphereCastRadius = _capsuleCollider.radius * sphereRadiusMultiplier;
-        var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance * 2.0f;
-        return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, walrusLayerMask);
-    }
-    
-    public void SlashEnded()
-    {
-        Debug.Log("goofy ah");
-        _currentState = _state.Idle();
-    }
-
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     landedOnWalrus = collision.transform.CompareTag("Walrus");
-    // }
-    //
-    // private void OnCollisionExit()
-    // {
-    //     landedOnWalrus = false;
-    // }
-
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Working as intended, values not yet tweaked.
@@ -358,8 +315,10 @@ public class PlayerStateMachine : MonoBehaviour
         var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance;
         return Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, groundLayerMask);
     }
+    
     private void OnDrawGizmosSelected()
     {
+        if (_capsuleCollider == null) return;
         var sphereCastRadius = _capsuleCollider.radius * sphereRadiusMultiplier;
         var sphereCastTravelDistance = new Vector3(0.0f, _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance, 0.0f);
         Gizmos.color = Color.magenta;
