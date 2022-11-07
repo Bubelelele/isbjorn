@@ -26,7 +26,7 @@ public class Seal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("yes");
+            // Debug.Log("yes");
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 rb.isKinematic = false;

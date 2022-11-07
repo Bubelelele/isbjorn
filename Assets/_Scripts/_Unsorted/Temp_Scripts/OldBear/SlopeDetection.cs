@@ -40,7 +40,7 @@ public class SlopeDetection : MonoBehaviour
 
             if (!rollingScript.isRolling)
             {
-                rotatePivot.localRotation = Quaternion.Euler(currentAngle, 0, 0);
+                //rotatePivot.localRotation = Quaternion.Euler(currentAngle, 0, 0);
             }
             
         }

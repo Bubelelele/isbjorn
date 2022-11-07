@@ -8,6 +8,7 @@ TagManager:
   - DestroyedWall
   - Ground
   - Punch
+  - Walrus
   layers:
   - Default
   - TransparentFX
