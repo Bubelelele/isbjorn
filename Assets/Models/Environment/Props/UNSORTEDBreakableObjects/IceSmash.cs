@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class IceSmash : MonoBehaviour
+public class IceSmash : PlayerStateMachine
 {
+
 	public GameObject originalGameObject;
 	public GameObject[] fracturedObject;
 	public float originalSpawnDelay;
-
 	private bool isPressed;
+
+
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-			SpawnFracturedObject();
+		//	SpawnFracturedObject();
         }
 		
     }
@@ -30,6 +32,16 @@ public class IceSmash : MonoBehaviour
 		}
 
 
+	}
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.CompareTag("Player"))
+		{
+			if (IsRolling)
+			{
+				SpawnFracturedObject();
+			}
+		}
 	}
 
 }
