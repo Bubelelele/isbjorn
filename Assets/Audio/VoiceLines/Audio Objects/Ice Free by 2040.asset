@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Ice Free by 2040
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 7e8c004c8e3feb34c8c5cedfaa346846, type: 3}
+  subtitle: We lose Arctic sea ice at an alarming rate. The Arctic could be ice-free
+    in the summer by 2040.
