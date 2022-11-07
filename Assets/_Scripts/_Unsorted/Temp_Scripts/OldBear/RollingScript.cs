@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Cinemachine;
 
@@ -102,15 +103,14 @@ public class RollingScript : MonoBehaviour
             controller.Move(moveDir.normalized * rollingSpeed * Time.deltaTime);
             rotationPivot.Rotate(Vector3.left, -rollingSpeed * animationMultiplier * Time.deltaTime, Space.Self);
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            isRolling= false;
-            camBack = true;
-            rollingSpeed = 0f;
-            bearAnim.SetBool("IsRolling", false);
-            cinemachineFreeLook.m_XAxis.m_MaxSpeed = normalCinemachineCamSpeed;
-            
-        }
+        // else if (Input.GetKeyUp(KeyCode.Mouse1))
+        // {
+        //     isRolling= false;
+        //     camBack = true;
+        //     rollingSpeed = 0f;
+        //     bearAnim.SetBool("IsRolling", false);
+        //     cinemachineFreeLook.m_XAxis.m_MaxSpeed = normalCinemachineCamSpeed;
+        // }
 
         if (camBack)
         {
@@ -126,5 +126,14 @@ public class RollingScript : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, moveDir * 5);
+    }
+
+    private void OnDisable()
+    {
+        isRolling= false;
+        camBack = true;
+        rollingSpeed = 0f;
+        bearAnim.SetBool("IsRolling", false);
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = normalCinemachineCamSpeed;
     }
 }
