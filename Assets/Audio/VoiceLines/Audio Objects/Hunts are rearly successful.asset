@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Hunts are rearly successful
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 1a8fb488970d7904dbe7666d2f0a7eb3, type: 3}
+  subtitle: "Although about half of a polar bear\u2019s life is spent hunting for
+    food, their hunts are rarely successful. "

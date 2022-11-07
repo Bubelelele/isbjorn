@@ -10,6 +10,7 @@ TagManager:
   - Punch
   - Walrus
   - Water
+  - Cutscene Player
   layers:
   - Default
   - TransparentFX

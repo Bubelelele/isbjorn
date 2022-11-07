@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Ringed Seal, Favorite Meal
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 0c9d51875ae6bb14baaec700c4f01e7b, type: 3}
+  subtitle: "The ringed seal\_is the polar bear's favourite meal."

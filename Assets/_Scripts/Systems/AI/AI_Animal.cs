@@ -19,7 +19,9 @@ public class AI_Animal : MonoBehaviour
     private int _index = 0;
     private NavMeshAgent _agent;
 
+    private GameObject foodObject;
     private GameObject pathOne;
+    private Animator walrusAnim;
 
 
     private void Awake()
@@ -45,6 +47,7 @@ public class AI_Animal : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _agent.autoBraking = false;
+        walrusAnim = GetComponent<Animator>();
     }
 
     public void GoToNextWaypoint()
@@ -84,17 +87,34 @@ public class AI_Animal : MonoBehaviour
             if (_food.foodIsDropped)
             {
                 _agent.SetDestination(closestFoodLocation);
+                walrusAnim.SetBool("Walking", true);
             }
 
         }
         //float distanceToFood = (currentFood.transform.position - this.transform.position).sqrMagnitude;
 
         distance = (closestFoodLocation - this.transform.position).sqrMagnitude;
+        
+        if(distance < 11f)
+        {
+            walrusAnim.SetBool("Walking", false);
+            walrusAnim.SetTrigger("Eating");
+            _agent.isStopped = true;
+            foodObject.SetActive(false);
 
+
+        }
+        else
+        {
+            _agent.isStopped = false;
+        }
 
     }
 
-
+    public void JumpedOn()
+    {
+        walrusAnim.SetTrigger("JumpedOn");
+    }
 
 
 
@@ -113,6 +133,7 @@ public class AI_Animal : MonoBehaviour
                 closestFood = currentFood;
                 closestFoodLocation = closestFood.transform.position;
                 _food = currentFood.GetComponent<Food>();
+                foodObject = _food.gameObject;
             }
             //if (distanceToFood < maxDistanceToFood)
             //{

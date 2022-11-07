@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Thick Coats
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 930f8ce1b47d4ba49b3744f599e875f4, type: 3}
+  subtitle: Polar bears have such thick coats that sometimes they get too warm. Then
+    they dive in the icy water to cool off.

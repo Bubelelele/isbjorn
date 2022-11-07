@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Imagine beeing the seal
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 9940e45a5e2e7ca43a25d11635bed0b6, type: 3}
+  subtitle: You may think you had a bad day, but imagine being the seal.
