@@ -14,10 +14,15 @@ public class IceSmash : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			if (other.GetComponent<PlayerStateMachine>().Input.RollIsPressed)
+			if (other.GetComponent<PlayerStateMachine>().Input.RollIsPressed) 
 			{
 				SpawnFracturedObject();
 			}
 		}
+		else if (other.CompareTag("Cutscene Player"))
+		{
+			SpawnFracturedObject();
+		}
+		
 	}
 }
