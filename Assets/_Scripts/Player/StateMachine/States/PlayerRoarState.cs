@@ -17,7 +17,6 @@ public class PlayerRoarState : PlayerBaseState
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: PlayerRoarState");
         _animationTimer -= Time.deltaTime;
         ShouldStateSwitch();
     }
@@ -29,8 +28,8 @@ public class PlayerRoarState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (_animationTimer < 0)
-            SwitchState(Factory.Grounded());
+        if (_animationTimer < 0.0f)
+            SwitchState(Factory.Idle());
     }
 
     public override void InitializeSubState()

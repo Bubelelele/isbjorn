@@ -12,13 +12,15 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
+        //Debug.Log("Entered jump state.");
         Context.Animator.SetBool(_isJumping, true);
-        Context.CurrentGravity = Context.InitialVelocity;
+        Context.CoyoteTimer = 0.0f;
+        Context.CurrentGravity = Context.LandedOnWalrus ? Context.BounceVelocity : Context.InitialVelocity;
     }
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: PlayerJumpState");
+        // Debug.LogWarning("CURRENT STATE: PlayerJumpState");
         Context.MovementVectorY = HandleJump();
         ShouldStateSwitch();
     }
@@ -26,12 +28,16 @@ public class PlayerJumpState : PlayerBaseState
     protected override void ExitState()
     {
         Context.Animator.SetBool(_isJumping, false);
+        Context.LandedOnWalrus = false;
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.PlayerIsGrounded && Context.MovementVectorY < 0.0f)
-            SwitchState(Factory.Grounded());
+        if (Context.MovementVectorY < 0.0f)
+        {
+            Context.IsLandingJump = true;
+            SwitchState(Factory.Fall());
+        }
     }
 
     public sealed override void InitializeSubState()
@@ -49,25 +55,10 @@ public class PlayerJumpState : PlayerBaseState
         Context.PlayerInAirTimer -= Time.fixedDeltaTime;
         if (Context.PlayerInAirTimer < 0.0f)
         {
-            if (Context.MovementVectorY >= 0.0f)
-            {
-                Context.CurrentGravity -= Context.RiseDecrementAmount;
-                Context.PlayerInAirTimer = Context.IncrementFrequency;
-                Context.AppliedGravity = Context.CurrentGravity;
-            }
-            else
-                HandleFall();
+            Context.CurrentGravity -= Context.RiseDecrementAmount;
+            Context.PlayerInAirTimer = Context.IncrementFrequency;
         }
-        return Context.AppliedGravity;
-    }
-    
-    private void HandleFall()
-    {
-        if (Context.CurrentGravity > Context.MaximumGravity)
-        {
-            Context.CurrentGravity += Context.FallIncrementAmount;
-        }
-        Context.PlayerInAirTimer = Context.IncrementFrequency;
         Context.AppliedGravity = Context.CurrentGravity;
+        return Context.AppliedGravity;
     }
 }

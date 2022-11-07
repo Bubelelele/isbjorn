@@ -16,9 +16,11 @@ public class PlayerRunState : PlayerBaseState
     protected override void UpdateState()
     {
         var runSpeed = Context.MovementSpeed * Context.RunMultiplier;
-        Debug.LogWarning("CURRENT SUBSTATE: PlayerRunState");
-        Context.MovementVectorX = Context.MovementDirection.x * runSpeed;
-        Context.MovementVectorZ = Context.MovementDirection.z * runSpeed;
+        // Debug.LogWarning("CURRENT SUBSTATE: PlayerRunState");
+        Context.MovementVectorX *= runSpeed;
+        Context.MovementVectorZ *= runSpeed;
+        // Context.MovementVectorX = Context.MovementDirection.x * runSpeed;
+        // Context.MovementVectorZ = Context.MovementDirection.z * runSpeed;
         ShouldStateSwitch();
     }
 
@@ -33,6 +35,14 @@ public class PlayerRunState : PlayerBaseState
             SwitchState(Factory.Idle());
         else if (!Context.Input.RunIsPressed)
             SwitchState(Factory.Walk());
+        else if (Context.Input.RollIsPressed)
+            SwitchState(Factory.Roll());
+        else if (Context.Input.Slashing)
+            SwitchState(Factory.Slash());
+        else if (Context.Input.Roaring)
+            SwitchState(Factory.Roar());
+        else if (Context.Input.Sniffing)
+            SwitchState(Factory.Sniff());
     }
 
     public override void InitializeSubState()

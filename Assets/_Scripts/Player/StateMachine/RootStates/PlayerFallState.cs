@@ -12,19 +12,20 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.Animator.SetBool(_isFalling, true);
+        //Debug.Log("Entered fall state.");
     }
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: PlayerFallState");
+        // Debug.LogWarning("CURRENT STATE: PlayerFallState");
         CoyoteTimer();
-        Context.MovementVectorY = HandleGravity();
+        Context.MovementVectorY = Context.IsLandingJump ? HandleFall() : HandleGravity();
         ShouldStateSwitch();
     }
 
     protected override void ExitState()
     {
+        Context.IsLandingJump = false;
         Context.Animator.SetBool(_isFalling, false);
     }
 
@@ -32,6 +33,10 @@ public class PlayerFallState : PlayerBaseState
     {
         if (Context.CoyoteTimer > 0.0f && Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
+        else if (Context.LandedOnWalrus)
+        {
+            SwitchState(Factory.Jump());
+        }
         else if (Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());
     }
@@ -57,6 +62,23 @@ public class PlayerFallState : PlayerBaseState
             }
             Context.PlayerInAirTimer = Context.IncrementFrequency;
             Context.AppliedGravity = Context.CurrentGravity;
+            Context.BounceVelocity = -Context.AppliedGravity;
+        }
+        return Context.AppliedGravity;
+    }
+
+    private float HandleFall()
+    {
+        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        if (Context.PlayerInAirTimer < 0.0f)
+        {
+            if (Context.CurrentGravity > Context.MaximumGravity)
+            {
+                Context.CurrentGravity += Context.FallIncrementAmount;
+            }
+            Context.PlayerInAirTimer = Context.IncrementFrequency;
+            Context.AppliedGravity = Context.CurrentGravity;
+            Context.BounceVelocity = -Context.AppliedGravity;
         }
         return Context.AppliedGravity;
     }
@@ -64,5 +86,8 @@ public class PlayerFallState : PlayerBaseState
     private void CoyoteTimer()
     {
         Context.CoyoteTimer -= Time.fixedDeltaTime;
+        if (Context.CoyoteTimer > 0.0f) return;
+        Context.Animator.SetBool(_isFalling, true);
+        Context.CoyoteTimer = 0.0f;
     }
 }

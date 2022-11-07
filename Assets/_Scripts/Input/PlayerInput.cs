@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
         public bool RollIsPressed { get; private set; }
         public bool Roaring { get; private set; }
         public bool Slashing { get; private set; }
-        public bool Smelling { get; private set; }
+        public bool Sniffing { get; private set; }
 
         private void OnEnable()
         {
@@ -37,8 +37,8 @@ public class PlayerInput : MonoBehaviour
             _input.PlayerLand.Roar.started += Roar;
             _input.PlayerLand.Roar.canceled += Roar;
 
-            _input.PlayerLand.Smell.started += Smell;
-            _input.PlayerLand.Smell.canceled += Smell;
+            _input.PlayerLand.Sniff.started += Sniff;
+            _input.PlayerLand.Sniff.canceled += Sniff;
         }
         private void OnDisable()
         {
@@ -61,8 +61,8 @@ public class PlayerInput : MonoBehaviour
             _input.PlayerLand.Roar.started -= Roar;
             _input.PlayerLand.Roar.canceled -= Roar;
 
-            _input.PlayerLand.Smell.started -= Smell;
-            _input.PlayerLand.Smell.canceled -= Smell;
+            _input.PlayerLand.Sniff.started -= Sniff;
+            _input.PlayerLand.Sniff.canceled -= Sniff;
 
             _input.PlayerLand.Disable();
         }
@@ -98,8 +98,8 @@ public class PlayerInput : MonoBehaviour
             Roaring = context.ReadValueAsButton();
         }
 
-        private void Smell(InputAction.CallbackContext context)
+        private void Sniff(InputAction.CallbackContext context)
         {
-            Smelling = context.ReadValueAsButton();
+            Sniffing = context.ReadValueAsButton();
         }
 }

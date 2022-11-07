@@ -82,7 +82,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Smell"",
+                    ""name"": ""Sniff"",
                     ""type"": ""Button"",
                     ""id"": ""68e4cd4d-46bb-43c7-8ef8-e37f75e74fa6"",
                     ""expectedControlType"": ""Button"",
@@ -198,7 +198,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Smell"",
+                    ""action"": ""Sniff"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -226,7 +226,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_PlayerLand_Roll = m_PlayerLand.FindAction("Roll", throwIfNotFound: true);
         m_PlayerLand_Slash = m_PlayerLand.FindAction("Slash", throwIfNotFound: true);
         m_PlayerLand_Roar = m_PlayerLand.FindAction("Roar", throwIfNotFound: true);
-        m_PlayerLand_Smell = m_PlayerLand.FindAction("Smell", throwIfNotFound: true);
+        m_PlayerLand_Sniff = m_PlayerLand.FindAction("Sniff", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -292,7 +292,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerLand_Roll;
     private readonly InputAction m_PlayerLand_Slash;
     private readonly InputAction m_PlayerLand_Roar;
-    private readonly InputAction m_PlayerLand_Smell;
+    private readonly InputAction m_PlayerLand_Sniff;
     public struct PlayerLandActions
     {
         private @InputActions m_Wrapper;
@@ -303,7 +303,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_PlayerLand_Roll;
         public InputAction @Slash => m_Wrapper.m_PlayerLand_Slash;
         public InputAction @Roar => m_Wrapper.m_PlayerLand_Roar;
-        public InputAction @Smell => m_Wrapper.m_PlayerLand_Smell;
+        public InputAction @Sniff => m_Wrapper.m_PlayerLand_Sniff;
         public InputActionMap Get() { return m_Wrapper.m_PlayerLand; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -331,9 +331,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Roar.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
                 @Roar.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
                 @Roar.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnRoar;
-                @Smell.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
-                @Smell.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
-                @Smell.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSmell;
+                @Sniff.started -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSniff;
+                @Sniff.performed -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSniff;
+                @Sniff.canceled -= m_Wrapper.m_PlayerLandActionsCallbackInterface.OnSniff;
             }
             m_Wrapper.m_PlayerLandActionsCallbackInterface = instance;
             if (instance != null)
@@ -356,9 +356,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Roar.started += instance.OnRoar;
                 @Roar.performed += instance.OnRoar;
                 @Roar.canceled += instance.OnRoar;
-                @Smell.started += instance.OnSmell;
-                @Smell.performed += instance.OnSmell;
-                @Smell.canceled += instance.OnSmell;
+                @Sniff.started += instance.OnSniff;
+                @Sniff.performed += instance.OnSniff;
+                @Sniff.canceled += instance.OnSniff;
             }
         }
     }
@@ -371,6 +371,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnSlash(InputAction.CallbackContext context);
         void OnRoar(InputAction.CallbackContext context);
-        void OnSmell(InputAction.CallbackContext context);
+        void OnSniff(InputAction.CallbackContext context);
     }
 }

@@ -7,17 +7,18 @@ public class PlayerGroundedState : PlayerBaseState
         IsRootState = true;
         InitializeSubState();
     }
-    
+
     public override void EnterState()
     {
-        Context.CoyoteTimer = Context.CoyoteTime;
+        //Debug.Log("Entered grounded state.");
         Context.MovementVectorY = ResetGravity();
+        Context.BounceVelocity = 0.0f;
+        Context.CoyoteTimer = Context.CoyoteTime;
     }
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
-        HandleSlopes();
+        // Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
         ShouldStateSwitch();
     }
 
@@ -40,28 +41,10 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Idle());
         else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
+        // else if (Context.Input.Slashing)
+        //     SwitchState(Factory.Slash());
         else
             SetSubState(Factory.Walk());
-    }
-
-    private void HandleSlopes()
-    {
-        var playerUp = Context.PlayerTransform.up;
-        if (Context.GroundSlopeAngle != 0.0f)
-        {
-            Context.IsOnSlope = true;
-            Context.SlopeAngleRotation = Quaternion.FromToRotation(Context.PlayerTransform.up, Context.GroundCheckHit.normal);
-            Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
-            
-            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-            Context.GroundAngleRollable = Context.RelativeSlopeAngle > Context.MaxRollableSlopeAngle;
-        }
-        else
-        {
-            Context.RelativeSlopeAngle = Vector3.Angle(Context.PlayerMovement, playerUp) - 90.0f;
-            Context.GroundAngleRollable = true;
-            Context.IsOnSlope = false;
-        }
     }
 
     private float ResetGravity()
