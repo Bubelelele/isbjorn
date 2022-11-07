@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: No Natural Predators
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: adea5a02a2b8d394a9b6258a934dda2d, type: 3}
-  subtitle: Adult polar bears have no natural predators except other polar bears.
+  clip: {fileID: 8300000, guid: d98a71da05e24af4181b9095697b676d, type: 3}
+  subtitle: "Adult polar bears have no natural predators except other polar bears,
+    and knows\_no fear of humans, making it an extremely dangerous animal"
