@@ -5,14 +5,15 @@ using UnityEngine;
 public class PlayerSniffState : PlayerBaseState
 {
     private float _animationTimer;
+    private readonly int _sniff = Animator.StringToHash("Sniff");
+    
     public PlayerSniffState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
     }
 
     public override void EnterState()
     {
-        Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-        Context.Animator.SetTrigger("Sniff");
+        Context.Animator.SetTrigger(_sniff);
         _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
@@ -24,13 +25,13 @@ public class PlayerSniffState : PlayerBaseState
 
     protected override void ExitState()
     {
-        Debug.Log("Sniff has ended.");
+        
     }
 
     public override void ShouldStateSwitch()
     {
-        if (_animationTimer < 0)
-            SwitchState(Factory.Grounded());
+        if (_animationTimer < 0.0f)
+            SwitchState(Factory.Idle());
     }
 
     public override void InitializeSubState()

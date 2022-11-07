@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Smell",
+                    "name": "Sniff",
                     "type": "Button",
                     "id": "68e4cd4d-46bb-43c7-8ef8-e37f75e74fa6",
                     "expectedControlType": "Button",
@@ -176,7 +176,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Smell",
+                    "action": "Sniff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
