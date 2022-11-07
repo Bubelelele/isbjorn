@@ -37,4 +37,8 @@ public class Food : MonoBehaviour
         playerHunger.AddFood(howMuchFood);
         foodIsEaten = true;
     }
+    public void FoodIsDropped()
+    {
+        foodIsDropped = true;
+    } 
 }
