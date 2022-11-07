@@ -111,7 +111,10 @@ public class AI_Animal : MonoBehaviour
 
     }
 
-
+    public void JumpedOn()
+    {
+        walrusAnim.SetTrigger("JumpedOn");
+    }
 
 
 
