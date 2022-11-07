@@ -231,7 +231,10 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Walrus"))
+        {
             LandedOnWalrus = true;
+            other.transform.parent.parent.GetComponent<AI_Animal>().JumpedOn();
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
