@@ -40,6 +40,7 @@ public class IceSmash : PlayerStateMachine
 			if (IsRolling)
 			{
 				SpawnFracturedObject();
+
 			}
 		}
 	}
