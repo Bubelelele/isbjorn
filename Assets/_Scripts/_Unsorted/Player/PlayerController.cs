@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerGoingUpRamp);
+        // Debug.Log(playerGoingUpRamp);
         
         PlayerRolling();
         PlayerSlash();
@@ -388,7 +388,7 @@ public class PlayerController : MonoBehaviour
     }
     private void PlaySmellAnimation()
     {
-        if (input.Smelling && !_animationPlaying)
+        if (input.Sniffing && !_animationPlaying)
         {
             animator.SetTrigger("Sniff");
             _animationPlayingTimer = animator.GetCurrentAnimatorStateInfo(0).length;

@@ -24,7 +24,7 @@ public abstract class PlayerBaseState
     
     protected abstract void ExitState();
     public abstract void ShouldStateSwitch();
-    
+
     protected void SwitchState(PlayerBaseState newState)
     {
         ExitState();

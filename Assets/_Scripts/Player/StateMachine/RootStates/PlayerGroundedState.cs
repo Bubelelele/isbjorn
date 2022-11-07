@@ -10,13 +10,15 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void EnterState()
     {
+        //Debug.Log("Entered grounded state.");
         Context.MovementVectorY = ResetGravity();
+        Context.BounceVelocity = 0.0f;
         Context.CoyoteTimer = Context.CoyoteTime;
     }
 
     protected override void UpdateState()
     {
-        Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
+        // Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
         ShouldStateSwitch();
     }
 
@@ -27,12 +29,10 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        // if (Context.landedOnWalrus)
-        //     SwitchState(Factory.Jump());
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        // else if (Context.Input.JumpIsPressed)
-        //     SwitchState(Factory.Jump());
+        else if (Context.Input.JumpIsPressed)
+            SwitchState(Factory.Jump());
     }
 
     public sealed override void InitializeSubState()

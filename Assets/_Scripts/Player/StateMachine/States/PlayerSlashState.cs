@@ -17,8 +17,9 @@ public class PlayerSlashState : PlayerBaseState
 
     protected override void UpdateState()
     {
+        // Debug.LogWarning("CURRENT STATE: PlayerSlashState");
+        // Debug.Log(_animationTimer);
         _animationTimer -= Time.deltaTime;
-        Debug.Log(_animationTimer);
         ShouldStateSwitch();
     }
 
@@ -29,7 +30,7 @@ public class PlayerSlashState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (_animationTimer < 0)
+        if (_animationTimer < 0.0f)
             SwitchState(Factory.Idle());
     }
 

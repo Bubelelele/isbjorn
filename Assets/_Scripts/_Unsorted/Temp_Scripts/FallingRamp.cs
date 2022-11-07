@@ -12,7 +12,7 @@ public class FallingRamp : MonoBehaviour
     {
         if(!ice1.activeSelf && !ice2.activeSelf && !ice3.activeSelf)
         {
-            Debug.Log("yes");
+            // Debug.Log("yes");
             RampDown();
         }
     }
