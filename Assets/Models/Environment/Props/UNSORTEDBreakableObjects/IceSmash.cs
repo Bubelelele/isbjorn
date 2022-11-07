@@ -3,7 +3,7 @@ using UnityEngine;
 public class IceSmash : MonoBehaviour
 {
 	public GameObject originalGameObject;
-	public GameObject fracturedObject;
+	public GameObject[] fracturedObject;
 	public float originalSpawnDelay;
 
 	private bool isPressed;
@@ -23,7 +23,7 @@ public class IceSmash : MonoBehaviour
 		{
 			originalGameObject.SetActive(false);
 			
-			fracturedObject.SetActive(true);
+			fracturedObject[Random.Range(0,3)].SetActive(true);
 
 
 			isPressed = true;
