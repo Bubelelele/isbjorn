@@ -30,6 +30,7 @@ public class MovingPlatform : MonoBehaviour
         {
             MoveRigidbodiesOnPlatform(rb);
         }
+        Debug.Log(_platformRigidbody.position);
     }
 
     private void MoveRigidbodiesOnPlatform(Rigidbody rb)
