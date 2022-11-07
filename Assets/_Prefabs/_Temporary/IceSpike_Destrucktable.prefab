@@ -58,8 +58,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5497482795801169407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.3071, y: 3.3071, z: 3.3071}
+=======
+  m_LocalPosition: {x: 0, y: 5.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6654176471450721415}
@@ -111,17 +116,29 @@ PrefabInstance:
     - target: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
         type: 3}
@@ -172,6 +189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4d4871da666aaf449ddbf1365ce39bb, type: 3}
@@ -579,17 +601,29 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 203a29366692a8249a64ef3053fbb0a3,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 203a29366692a8249a64ef3053fbb0a3,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 203a29366692a8249a64ef3053fbb0a3,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 203a29366692a8249a64ef3053fbb0a3,
         type: 3}
@@ -640,6 +674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 203a29366692a8249a64ef3053fbb0a3,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7463090278638814262, guid: 203a29366692a8249a64ef3053fbb0a3,
         type: 3}
@@ -1157,17 +1196,29 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d00d833f114af254894e6c1f7c6a86ff,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00d833f114af254894e6c1f7c6a86ff,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00d833f114af254894e6c1f7c6a86ff,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< Updated upstream
       value: 50
+=======
+      value: 150
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00d833f114af254894e6c1f7c6a86ff,
         type: 3}
@@ -1218,6 +1269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d00d833f114af254894e6c1f7c6a86ff,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7997202395187607115, guid: d00d833f114af254894e6c1f7c6a86ff,
         type: 3}
