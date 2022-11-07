@@ -9,7 +9,7 @@ public class Explode : MonoBehaviour
 
     
 
-    public GameObject Spawn;
+    public GameObject spawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class Explode : MonoBehaviour
                 rb.AddExplosionForce(Random.Range(minForce, maxForce), transform.position, radius);
 			  
 		}
-        Destroy(Spawn, destroyDelay);
+        Destroy(spawnPoint, destroyDelay);
         
 	}
 }

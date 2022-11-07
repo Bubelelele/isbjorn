@@ -485,7 +485,7 @@ MonoBehaviour:
   minForce: 150
   maxForce: 300
   radius: 1.5
-  Spawn: {fileID: 5497482795801169407}
+  spawnPoint: {fileID: 5497482795801169407}
 --- !u!4 &6654176471450721415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5523175217082770066, guid: d4d4871da666aaf449ddbf1365ce39bb,
@@ -1018,7 +1018,7 @@ MonoBehaviour:
   minForce: 150
   maxForce: 300
   radius: 1.5
-  Spawn: {fileID: 5497482795801169407}
+  spawnPoint: {fileID: 5497482795801169407}
 --- !u!1 &6451602751094130691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7307775018687477515, guid: 203a29366692a8249a64ef3053fbb0a3,
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   minForce: 150
   maxForce: 300
   radius: 1.5
-  Spawn: {fileID: 5497482795801169407}
+  spawnPoint: {fileID: 5497482795801169407}
 --- !u!1 &7888010492898135709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5878617997402882761, guid: d00d833f114af254894e6c1f7c6a86ff,
