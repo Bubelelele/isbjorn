@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerHunger : MonoBehaviour
 {
-
     [Header("Player Hunger")]
 
     public float maxHunger = 100;

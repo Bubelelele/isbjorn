@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 1647278106955348915}
   - component: {fileID: 7798065293497874391}
   - component: {fileID: 4349987782273378641}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2322,6 +2322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bear_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 762bedd3d240604418d314d99044a4fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 762bedd3d240604418d314d99044a4fc,
         type: 3}

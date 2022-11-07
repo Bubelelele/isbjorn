@@ -9,15 +9,16 @@ TagManager:
   - Ground
   - Punch
   - Walrus
+  - Water
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
+  - Icicle Shards
   - 
   - 
   - 
