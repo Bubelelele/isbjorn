@@ -52,7 +52,7 @@ public class PlayerJumpState : PlayerBaseState
     
     private float HandleJump()
     {
-        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        Context.PlayerInAirTimer -= Time.deltaTime;
         if (Context.PlayerInAirTimer < 0.0f)
         {
             Context.CurrentGravity -= Context.RiseDecrementAmount;
