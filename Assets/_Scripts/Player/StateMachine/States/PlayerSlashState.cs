@@ -4,7 +4,7 @@ public class PlayerSlashState : PlayerBaseState
 {
     private float _animationTimer;
     private readonly int _slash = Animator.StringToHash("Slash");
-    private Collider[] _hitColliders;
+    private readonly Collider[] _hitColliders = new Collider[5];
 
     public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
