@@ -21,7 +21,7 @@ public class PlayerSlashState : PlayerBaseState
         // Debug.LogWarning("CURRENT STATE: PlayerSlashState");
         // Debug.Log(_animationTimer);
         _animationTimer -= Time.deltaTime;
-        if (_animationTimer < .2f) {
+        /*if (_animationTimer < .2f) {
             Physics.OverlapSphereNonAlloc(Context.PlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
             for (var i = 0; i < _hitColliders.Length; i++) {
                 var hitCollider = _hitColliders[i];
@@ -30,7 +30,7 @@ public class PlayerSlashState : PlayerBaseState
                     hittable.Hit();
                 }
             }
-        }
+        }*/
         ShouldStateSwitch();
     }
 
