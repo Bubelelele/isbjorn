@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IceSmash : MonoBehaviour
+public class IceSmash : MonoBehaviour, IHittable
 {
 	public GameObject[] fracturedObject;
 	
@@ -26,11 +26,11 @@ public class IceSmash : MonoBehaviour
 		else if (other.CompareTag("Snowball"))
 		{
 			SpawnFracturedObject();
-		}
-		else if (other.GetComponent<PlayerStateMachine>().Input.Slashing)
-		{
-			SpawnFracturedObject();
-		}
-		
+		}	
+	}
+
+	public void Hit()
+	{
+		SpawnFracturedObject();
 	}
 }
