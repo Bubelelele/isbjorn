@@ -23,6 +23,10 @@ public class IceSmash : MonoBehaviour
 		{
 			SpawnFracturedObject();
 		}
+		else if (other.CompareTag("Snowball"))
+		{
+			SpawnFracturedObject();
+		}
 		
 	}
 }
