@@ -249,7 +249,8 @@ public class PlayerStateMachine : MonoBehaviour
         return sphereCast;
     }
     
-    private void OnDrawGizmosSelected()
+    // This was the shit that fucked with the jumping
+   /* private void OnDrawGizmosSelected()
     {
         if (_capsuleCollider == null) return;
         var sphereCastRadius = _capsuleCollider.radius * sphereRadiusMultiplier;
@@ -257,7 +258,7 @@ public class PlayerStateMachine : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(_playerPosition + _capsuleCollider.center - sphereCastTravelDistance, sphereCastRadius);
     }
-    
+    */
     // Working as intended with values tweaked.
     private Vector3 MoveInput()
     {
