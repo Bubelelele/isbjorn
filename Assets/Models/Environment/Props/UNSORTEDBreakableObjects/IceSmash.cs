@@ -27,6 +27,10 @@ public class IceSmash : MonoBehaviour
 		{
 			SpawnFracturedObject();
 		}
+		else if (other.GetComponent<PlayerStateMachine>().Input.Slashing)
+		{
+			SpawnFracturedObject();
+		}
 		
 	}
 }

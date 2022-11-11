@@ -42,7 +42,6 @@ public class SlopeDetection : MonoBehaviour
             {
                 //rotatePivot.localRotation = Quaternion.Euler(currentAngle, 0, 0);
             }
-            
         }
     }
 
