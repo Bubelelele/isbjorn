@@ -4,6 +4,7 @@ public class PlayerSlashState : PlayerBaseState
 {
     private float _animationTimer;
     private readonly int _slash = Animator.StringToHash("Slash");
+    private Collider[] _hitColliders;
 
     public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
@@ -20,6 +21,14 @@ public class PlayerSlashState : PlayerBaseState
         // Debug.LogWarning("CURRENT STATE: PlayerSlashState");
         // Debug.Log(_animationTimer);
         _animationTimer -= Time.deltaTime;
+        if (_animationTimer < .2f) {
+            Physics.OverlapSphereNonAlloc(Context.PlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
+            foreach (var hitCollider in _hitColliders) {
+                if (hitCollider.TryGetComponent<IHittable>(out var hittable)) {
+                    hittable.Hit();
+                }
+            }
+        }
         ShouldStateSwitch();
     }
 
