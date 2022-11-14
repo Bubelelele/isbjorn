@@ -1,6 +1,7 @@
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Fishes : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class Fishes : MonoBehaviour
                 rb.AddForce(dir * Time.deltaTime * pushForce);
                 isDown = true;
                 icon.GetComponent<MeshRenderer>().material = slashIcon;
+                StartCoroutine("stopFish");
                 
             }
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3 && !isHit && isDown)
@@ -63,6 +65,14 @@ public class Fishes : MonoBehaviour
             }
         }
     }
+
+    IEnumerator stopFish()          //Kevin 
+    {
+        yield return new WaitForSeconds(3);
+        rb.isKinematic = true;
+    }
+
+
     public void CanRoar() { canRoar = true; icon.SetActive(true); }
     public void NoRoar() { canRoar = false; icon.SetActive(false); }
 }

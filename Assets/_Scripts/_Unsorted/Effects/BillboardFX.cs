@@ -12,6 +12,7 @@ public class BillboardFX : MonoBehaviour {
     }
 
     void Update() {
+        if (!_camTransform.gameObject.activeSelf) return;
         transform.rotation = _camTransform.rotation * _originalRotation;
     }
 }
