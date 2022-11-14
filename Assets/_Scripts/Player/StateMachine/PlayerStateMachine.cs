@@ -147,6 +147,10 @@ public class PlayerStateMachine : MonoBehaviour
     public float CoyoteTime { get => coyoteTime; set => coyoteTime = value; }
     // public float JumpBufferTimer { get => jumpBufferTimer; set => jumpBufferTimer = value; }
     // public float JumpBufferTime => jumpBufferTime;
+
+    public static Transform StaticPlayerTrans;
+
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -154,6 +158,7 @@ public class PlayerStateMachine : MonoBehaviour
         _state = new PlayerStateFactory(this);
         _currentState = _state.Grounded();
         _currentState.EnterState();
+        StaticPlayerTrans = PlayerTransform;
     }
 
     private void FixedUpdate()

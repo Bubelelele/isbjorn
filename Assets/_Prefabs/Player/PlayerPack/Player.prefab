@@ -1723,9 +1723,9 @@ MonoBehaviour:
   incrementFrequency: 0.05
   playerInAirTimer: 0
   appliedGravity: 0
-  initialVelocity: 70
+  initialVelocity: 25
   riseDecrementAmount: 3
-  fallIncrementAmount: -3
+  fallIncrementAmount: -5
   coyoteTime: 1
   coyoteTimer: 0
 --- !u!136 &1363953580
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8968036821010955924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45b2f8093e76358408daaed55de787eb, type: 3}
   m_Name: 

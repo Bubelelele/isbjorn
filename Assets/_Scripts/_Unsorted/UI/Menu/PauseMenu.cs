@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour {
 
     [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject teleportMenuUI;
     
     private bool _gamePaused;
 
@@ -23,6 +24,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume() {
         pauseMenuUI.SetActive(false);
+        teleportMenuUI.SetActive(false);
         Time.timeScale = 1f;
         _gamePaused = false;
     }
