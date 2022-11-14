@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Backups/Cycle 1 MIDTERM.unity
-    guid: b756a2c7904a2db4687cb8f29a9579dc
+    path: Assets/_Scenes/Cycle 1.unity
+    guid: a1583c21c5ed58c409ec0e378aa105bb
   - enabled: 1
     path: Assets/_Scenes/Cycle 3.unity
     guid: 4d0d64d3247e4c742b1a92127c52faa2
