@@ -184,10 +184,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void PlayerLookRelativeToCamera()
     {
-        var forward = _mainCameraTransform.forward.normalized;
-        var right = _mainCameraTransform.right.normalized;
+        var forward = _mainCameraTransform.forward;
+        var right = _mainCameraTransform.right;
         forward.y = 0;
         right.y = 0;
+        forward.Normalize();
+        right.Normalize();
     
         var relativeForwardLookDirection = _movementVector.z * forward;
         var relativeRightLookDirection = _movementVector.x * right;
@@ -285,4 +287,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+  
 }
