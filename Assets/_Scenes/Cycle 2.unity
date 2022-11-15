@@ -20067,7 +20067,7 @@ GameObject:
   - component: {fileID: 786274249}
   - component: {fileID: 786274248}
   - component: {fileID: 786274247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Water Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37581,7 +37581,7 @@ PrefabInstance:
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
