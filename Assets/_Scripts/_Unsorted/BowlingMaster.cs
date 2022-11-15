@@ -8,7 +8,12 @@ public class BowlingMaster : MonoBehaviour
 {
     public int score = 0; 
     public List<BowlingPin> pins;
-    public bool hasEntered;
+    //public bool hasEntered;
+    public Transform resetPosition;
+    private GameObject topDOG;
+
+    private GameObject player;
+    private PlayerStateMachine playerStateMachine;
 
 
     Vector3[] positions;
@@ -35,8 +40,11 @@ public class BowlingMaster : MonoBehaviour
         {
             positions[i] = pins[i].transform.position;
         }
-        
-        
+
+        player = GameObject.Find("Player");
+        playerStateMachine = player.GetComponent<PlayerStateMachine>();
+        topDOG = transform.parent.gameObject;
+
     }
 
     // Update is called once per frame
@@ -55,18 +63,120 @@ public class BowlingMaster : MonoBehaviour
         if (score == 10)
         {
             Debug.LogError("Win");
-            hasEntered = false;
+            //hasEntered = false;
+            playerStateMachine.enabled = true;
+            StartCoroutine(TurnOffWalrusi());
+
         }
         else
         {
             //StartCoroutine(ResetPins());
             ResetPins();
             score = 0;
-            hasEntered = false;
+            //hasEntered = false;
             
 
         }
     }
+
+    private IEnumerator StopPlayer()
+    {
+        yield return new WaitForSeconds(2);
+        playerStateMachine.enabled = false;
+
+    }
+    private IEnumerator TurnOffWalrusi()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(topDOG); 
+        //for (int i = 0; i < pins.Count; i++)
+        //{
+        //    Destroy(pins[i].gameObject);
+        //    Debug.LogError("TURNOFF");
+        //}
+
+    }
+
+
+
+    public void AddScore()
+    {
+        score++;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.RollIsPressed) //&& !hasEntered)
+        {
+            for (int i = 0; i < pins.Count; i++)
+            {
+                pins[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+                //other.GetComponent<PlayerStateMachine>().Input.enabled = false;
+                //other.GetComponent<PlayerStateMachine>().CurrentState =  ;
+                StartCoroutine(StopPlayer());
+            //playerStateMachine.enabled = false; 
+            Invoke("CalculateScore", 6f);
+            //hasEntered = true;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    void ResetPins()
+    {
+        for (int i = 0; i < pins.Count; i++)
+        {
+            //pins[i].gameObject.SetActive(false);
+            pins[i].transform.position = positions[i];
+            pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+            pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            pins[i].transform.rotation = Quaternion.identity;
+            pins[i].resetFall();
+            pins[i].GetComponent<Rigidbody>().isKinematic = true;
+
+            //pins[i].gameObject.SetActive(true);
+        }
+        //Something();
+        //Debug.LogError("Something");
+
+
+        //hasEntered = false;
+        //score = 0;
+        player.transform.position = resetPosition.position;
+        playerStateMachine.enabled = true;
+        this.gameObject.GetComponent<BoxCollider>().enabled = true;
+
+    }
+
+    //void Something()                          //IS THIS USED?
+    //{
+    //    foreach (BowlingPin pin in pins)
+    //    {
+    //        //pins.Add(pin);
+    //        pin.onPinFelled += AddScore;
+    //        //Debug.LogError("Que");
+    //    }
+    //}
+    //IEnumerator ResetPins()
+    //{
+    //    for (int i = 0; i < pins.Count; i++)
+    //    {
+    //        pins[i].gameObject.SetActive(false);
+    //        pins[i].transform.position = positions[i];
+    //        pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+    //        pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    //        pins[i].transform.rotation = Quaternion.identity;
+
+    //    }
+    //    for (int i = 0; i < pins.Count; i++)
+    //    {
+    //        yield return new WaitForSeconds(1f);
+    //        pins[i].gameObject.SetActive(true);
+    //    }
+
+    //    hasEntered = false;
+    //    score = 0;
+    //}
 
     //void CountPinsDown()
     //{
@@ -99,70 +209,5 @@ public class BowlingMaster : MonoBehaviour
 
     //    }
     //}
-
-    public void AddScore()
-    {
-        score++;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !hasEntered)
-        {
-            Invoke("CalculateScore", 5f);
-            hasEntered = true; 
-        }
-    }
-
-    void ResetPins()
-    {
-        for (int i = 0; i < pins.Count; i++)
-        {
-            //pins[i].gameObject.SetActive(false);
-            pins[i].transform.position = positions[i];
-            pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-            pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            pins[i].transform.rotation = Quaternion.identity;
-            pins[i].resetFall();
-            //pins[i].gameObject.SetActive(true);
-        }
-        //Something();
-        //Debug.LogError("Something");
-
-        
-        //hasEntered = false;
-        //score = 0;
-    }
-
-    void Something()
-    {
-        foreach (BowlingPin pin in pins)
-        {
-            //pins.Add(pin);
-            pin.onPinFelled += AddScore;
-            //Debug.LogError("Que");
-        }
-    }
-    //IEnumerator ResetPins()
-    //{
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        pins[i].gameObject.SetActive(false);
-    //        pins[i].transform.position = positions[i];
-    //        pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-    //        pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-    //        pins[i].transform.rotation = Quaternion.identity;
-
-    //    }
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        yield return new WaitForSeconds(1f);
-    //        pins[i].gameObject.SetActive(true);
-    //    }
-
-    //    hasEntered = false;
-    //    score = 0;
-    //}
-
-
 
 }
