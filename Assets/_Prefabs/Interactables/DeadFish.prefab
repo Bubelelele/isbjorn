@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodIsDropped: 0
-  howMuchFood: 20
+  howMuchFood: 10
 --- !u!114 &6030963846179590463
 MonoBehaviour:
   m_ObjectHideFlags: 0
