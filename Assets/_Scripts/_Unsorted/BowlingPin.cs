@@ -38,11 +38,12 @@ public class BowlingPin : MonoBehaviour
         fallen = false; 
     }
 
+
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.CompareTag("Player"))
     //    {
-    //        onPinFelled?.Invoke();
+    //        //onPinFelled?.Invoke();
     //        Debug.LogError("Hit!");
     //    }
     //}
