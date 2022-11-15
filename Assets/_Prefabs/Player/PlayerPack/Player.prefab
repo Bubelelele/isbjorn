@@ -1778,8 +1778,8 @@ MonoBehaviour:
   cinemachineFreeLook: {fileID: 0}
   maxSlopeBeforeDecelaration: 1
   turnSmoothTime: 0.1
-  accelerationForce: 0.6
-  decelerationForce: 20
+  accelerationForce: 0.8
+  decelerationForce: 30
   jumpBoost: 0
   animationMultiplier: 30
   camSpeed: 10
@@ -1857,8 +1857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHunger: 100
-  hunger: 100
-  hungerOverTime: 0.02
+  hunger: 50
+  hungerOverTime: 0.2
   hungerSlider: {fileID: 0}
 --- !u!114 &7120141138171228587
 MonoBehaviour:
