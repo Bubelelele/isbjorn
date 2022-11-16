@@ -2648,7 +2648,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 2070
     messageOptions: 0
 --- !u!114 &2219810916170909778
 MonoBehaviour:
