@@ -1,5 +1,115 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &596599889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596599890}
+  - component: {fileID: 596599894}
+  - component: {fileID: 596599893}
+  - component: {fileID: 596599892}
+  - component: {fileID: 596599891}
+  m_Layer: 0
+  m_Name: BowlingGameStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &596599890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596599889}
+  m_LocalRotation: {x: -0, y: -0.011799679, z: -0, w: 0.9999304}
+  m_LocalPosition: {x: -15.29, y: 122.37, z: 334.89}
+  m_LocalScale: {x: 38.30477, y: 6.663061, z: 10.088669}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7713441455410638301}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -1.352, z: 0}
+--- !u!33 &596599894
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596599889}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &596599893
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596599889}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &596599892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596599889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &596599891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596599889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae4ea054321d3a4a9502a1f2d8e47b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &78827649942513454
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825149536331296565}
   - component: {fileID: 6774253050946798720}
+  - component: {fileID: 1244938629}
   m_Layer: 0
   m_Name: StopPlayer
   m_TagString: Untagged
@@ -24,14 +135,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78827649942513454}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 0, z: -5.48}
-  m_LocalScale: {x: 16.696363, y: 16.696363, z: 16.696363}
+  m_LocalRotation: {x: -0, y: -0.018593384, z: -0, w: 0.9998271}
+  m_LocalPosition: {x: -4.21, y: 0, z: 72.26}
+  m_LocalScale: {x: 33.3, y: 27.550322, z: 27.550322}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7713441455410638301}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -2.131, z: 0}
 --- !u!65 &6774253050946798720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40,11 +151,28 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78827649942513454}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1244938629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78827649942513454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60c2bf96b0625446a9b8bf10527786e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowlingMasterObject: {fileID: 0}
+  pushForceWalk: 700
+  pushForceJump: 1500
+  stayTimer: 1
+  inTrigger: 0
 --- !u!1 &516725706701455443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,6 +2365,7 @@ GameObject:
   - component: {fileID: 7713441454849802208}
   - component: {fileID: 7713441454849802209}
   - component: {fileID: 7713441454849802210}
+  - component: {fileID: 2009848666}
   m_Layer: 0
   m_Name: BowlingMaster
   m_TagString: Untagged
@@ -2251,9 +2380,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7713441454849802215}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.011660189, z: -0, w: 0.99993205}
+  m_LocalPosition: {x: -3.2, y: 0, z: 77.4}
+  m_LocalScale: {x: 1.048648, y: 1.048648, z: 1.048648}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7713441455069375212}
@@ -2268,7 +2397,7 @@ Transform:
   - {fileID: 7713441454639027043}
   m_Father: {fileID: 7713441455410638301}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.336, z: 0}
 --- !u!114 &7713441454849802209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,6 +2413,7 @@ MonoBehaviour:
   score: 0
   pins: []
   resetPosition: {fileID: 7713441455516099634}
+  guard: {fileID: 0}
 --- !u!65 &7713441454849802210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2295,8 +2425,28 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.720703, y: 6.0093145, z: 38.37153}
-  m_Center: {x: -1.8775645, y: 2.5046573, z: 4.3686185}
+  m_Size: {x: 35.85363, y: 16.772154, z: 103.01248}
+  m_Center: {x: -1.6123846, y: 7.8860307, z: 36.689083}
+--- !u!95 &2009848666
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713441454849802215}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2e5a2b183a4e9843aa71f8ed8ba6393, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7713441454950442622
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,6 +3453,7 @@ Transform:
   - {fileID: 7713441455516099634}
   - {fileID: 7713441454849802208}
   - {fileID: 825149536331296565}
+  - {fileID: 596599890}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3660,7 +3811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7713441455516099633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -17.155434, y: 121.41, z: 334.6835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
