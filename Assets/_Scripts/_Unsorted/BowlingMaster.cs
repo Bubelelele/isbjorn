@@ -14,6 +14,8 @@ public class BowlingMaster : MonoBehaviour
 
     private GameObject player;
     private PlayerStateMachine playerStateMachine;
+    //public BowlingWalrusGuard guard;
+    public GameObject guard;
 
 
     Vector3[] positions;
@@ -44,6 +46,8 @@ public class BowlingMaster : MonoBehaviour
         player = GameObject.Find("Player");
         playerStateMachine = player.GetComponent<PlayerStateMachine>();
         topDOG = transform.parent.gameObject;
+        //guard = transform.parent.gameObject.transform.GetChild(2).GetComponent<BowlingWalrusGuard>();
+        guard = transform.parent.gameObject.transform.GetChild(2).gameObject;
 
     }
 
@@ -81,7 +85,7 @@ public class BowlingMaster : MonoBehaviour
 
     private IEnumerator StopPlayer()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         playerStateMachine.enabled = false;
 
     }
@@ -107,10 +111,13 @@ public class BowlingMaster : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.RollIsPressed) //&& !hasEntered)
         {
-            for (int i = 0; i < pins.Count; i++)
-            {
-                pins[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
+            //guard.enabled = false; 
+            guard.SetActive(false);
+            //for (int i = 0; i < pins.Count; i++) //Walrus falls over when roll
+            //{
+            //    pins[i].GetComponent<Rigidbody>().isKinematic = false;
+            //}
+            Invoke("KinematicOff", 1f);
 
                 //other.GetComponent<PlayerStateMachine>().Input.enabled = false;
                 //other.GetComponent<PlayerStateMachine>().CurrentState =  ;
@@ -121,9 +128,18 @@ public class BowlingMaster : MonoBehaviour
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
+    void KinematicOff()
+    {
+        for (int i = 0; i < pins.Count; i++) 
+        {
+            pins[i].GetComponent<Rigidbody>().isKinematic = false;
+        }
+    }
 
     void ResetPins()
     {
+        //guard.enabled = true; 
+        guard.SetActive(true);
         for (int i = 0; i < pins.Count; i++)
         {
             //pins[i].gameObject.SetActive(false);
