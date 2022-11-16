@@ -8,6 +8,7 @@ public class YearCounter : MonoBehaviour
 
     private bool IsCounting;
     private int year = 2000;
+    private int targetYear;
     private float timer;
     public AudioSource oddNumber;
     public AudioSource evenNumber;
@@ -18,13 +19,9 @@ public class YearCounter : MonoBehaviour
         yearText.text = "Year:" + year.ToString();
         timer += Time.deltaTime;
 
-        if (IsCounting && timer >= waitTime && year < 2070)
+        if (IsCounting && timer >= waitTime && year < targetYear)
         {
-			if (year >= 2020)
-			{
-                year += 2;
-			}
-			else if (year >= 2050)
+			if (year >= 2050)
 			{
                 year += 5;
 			}
@@ -45,15 +42,16 @@ public class YearCounter : MonoBehaviour
                 OddNumber();
 			}
             timer = 0;
-            if(waitTime > 0.045)
+            if(waitTime > 0.075)
             {
-                waitTime -= 0.015f;
+                waitTime -= 0.05f;
             }
 
         }
     }
-    public void StartCounting()
+    public void StartCounting(int desiredYear)
     {
+        targetYear = desiredYear;
         IsCounting = true;
     }
     private void OddNumber()
