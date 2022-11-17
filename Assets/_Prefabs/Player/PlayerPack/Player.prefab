@@ -1628,6 +1628,7 @@ GameObject:
   - component: {fileID: 7798065293497874391}
   - component: {fileID: 4349987782273378641}
   - component: {fileID: 7120141138171228587}
+  - component: {fileID: 7039338531466472326}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1872,6 +1873,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b2f8093e76358408daaed55de787eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7039338531466472326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968036821010955924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c247af330ecd6c1488291f95f41d3525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closestFoodLocation: {x: 0, y: 0, z: 0}
 --- !u!1001 &2105164934647053470
 PrefabInstance:
   m_ObjectHideFlags: 0
