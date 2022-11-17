@@ -39,6 +39,11 @@ public class PlayerHunger : MonoBehaviour
         this.hunger += Amount; 
     }
 
+    public void RemoveFood(float Amount)
+    {
+        this.hunger -= Amount;
+    }
+
 
     void UpdateSliders()
     {
