@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System;
 
 public class BowlingMaster : MonoBehaviour
@@ -15,17 +16,24 @@ public class BowlingMaster : MonoBehaviour
     private GameObject player;
     private PlayerStateMachine playerStateMachine;
     //public BowlingWalrusGuard guard;
-    public GameObject guard;
+    private GameObject guard;
+    private Text bowlingScore;
+    private GameObject _bowlScore;
+    public bool scoreIsActive = false;
 
 
     Vector3[] positions;
 
     private void Awake()
     {
+        bowlingScore = GameObject.Find("Game Canvas/BowlingScore").GetComponent<UnityEngine.UI.Text>();
+        _bowlScore = GameObject.Find("Game Canvas/BowlingScore");
+
         foreach (Transform child in transform)
         {
             pins.Add(child.gameObject.GetComponent<BowlingPin>());
         }
+
     }
 
     // Start is called before the first frame update
@@ -48,6 +56,7 @@ public class BowlingMaster : MonoBehaviour
         topDOG = transform.parent.gameObject;
         //guard = transform.parent.gameObject.transform.GetChild(2).GetComponent<BowlingWalrusGuard>();
         guard = transform.parent.gameObject.transform.GetChild(2).gameObject;
+        
 
     }
 
@@ -59,14 +68,19 @@ public class BowlingMaster : MonoBehaviour
             ResetPins();
             score = 0;
         }
-        
+        if (scoreIsActive)
+        {
+            bowlingScore.text = score + " / 10";
+
+        }
+
         //CountPinsDown();
     }
     void CalculateScore()
     {
         if (score == 10)
         {
-            Debug.LogError("Win");
+            //Debug.LogError("Win");
             //hasEntered = false;
             playerStateMachine.enabled = true;
             StartCoroutine(TurnOffWalrusi());
@@ -92,6 +106,7 @@ public class BowlingMaster : MonoBehaviour
     private IEnumerator TurnOffWalrusi()
     {
         yield return new WaitForSeconds(1);
+        _bowlScore.SetActive(false); 
         Destroy(topDOG); 
         //for (int i = 0; i < pins.Count; i++)
         //{
