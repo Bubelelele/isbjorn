@@ -3,6 +3,7 @@ using UnityEngine;
 public class IceSmash : MonoBehaviour, IHittable
 {
 	public GameObject[] fracturedObject;
+	public bool onTouch;
 	
     private void SpawnFracturedObject()
 	{
@@ -18,6 +19,10 @@ public class IceSmash : MonoBehaviour, IHittable
 			{
 				SpawnFracturedObject();
 			}
+			if (onTouch)
+			{
+				SpawnFracturedObject();
+			}
 		}
 		else if (other.CompareTag("Cutscene Player"))
 		{
@@ -26,7 +31,8 @@ public class IceSmash : MonoBehaviour, IHittable
 		else if (other.CompareTag("Snowball"))
 		{
 			SpawnFracturedObject();
-		}	
+		}
+		
 	}
 
 	public void Hit()
