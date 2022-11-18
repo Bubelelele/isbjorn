@@ -54,6 +54,7 @@ public class FishInMouth : MonoBehaviour
         hasFish = false; 
         playerHunger.AddFood(foodAmount);
         gameObject.SetActive(false);
+        IconSystem.instance.FishInMouth();
     }
 
     private void DropFish()
@@ -63,6 +64,7 @@ public class FishInMouth : MonoBehaviour
         Debug.Log("SpawnFish");
         Instantiate(fishPrefab, spawnPosition.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
+        IconSystem.instance.TextEnabled(false);
     }
 
 

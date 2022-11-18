@@ -97,6 +97,7 @@ public class AI_Animal : MonoBehaviour
         
         if(distance < 11f)
         {
+            IconSystem.instance.TextEnabled(false);
             walrusAnim.SetBool("Walking", false);
             walrusAnim.SetTrigger("Eating");
             _agent.isStopped = true;

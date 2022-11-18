@@ -30,18 +30,36 @@ public class DeadFish : MonoBehaviour
         StartCoroutine("TurnOffGravity");
 
     }
-   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            IconSystem.instance.PickUpFish();
+        }
+
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3)
             {
+                IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        //Kevin
                 fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
                 //onHit.Invoke();
                 Destroy(gameObject, 0.2f);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            IconSystem.instance.TextEnabled(false);
         }
     }
 
