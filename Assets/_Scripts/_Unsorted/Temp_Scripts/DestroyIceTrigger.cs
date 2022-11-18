@@ -5,6 +5,7 @@ public class DestroyIceTrigger : MonoBehaviour
 {
     public GameObject destroyableIce;
     public GameObject breakingIceEffectPrefab;
+    public Collider trigger;
     
     private bool canDestroy;
     private bool isDestroyed;
@@ -28,7 +29,9 @@ public class DestroyIceTrigger : MonoBehaviour
             GameObject effect = Instantiate(breakingIceEffectPrefab, transform.position + transform.up, Quaternion.identity);
             Destroy(effect, 1f);
             isDestroyed = true;
-                
+            trigger.enabled = false;
+            IconSystem.instance.TextEnabled(false);
+
         }
     }
     public void CanDestroy()
