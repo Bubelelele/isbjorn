@@ -18,6 +18,7 @@ public class RollingScript : MonoBehaviour
     public float jumpBoost = 10f;
     public float animationMultiplier = 10f;
     public float camSpeed = 10f;
+    public AudioSource rollingSFX;
 
     [HideInInspector]public bool isRolling;
 
@@ -36,7 +37,14 @@ public class RollingScript : MonoBehaviour
     private bool leap;
     private bool camBack;
 
-    private void Start()
+    //Rolling Sound
+	/*private void OnEnable()
+	{
+        rollingSFX.loop = true;
+        rollingSFX.Play();
+    }
+    */
+	private void Start()
     {
         jumpingScript = GetComponent<JumpingScript>();
         movementScript = GetComponent<MovementScript>();
@@ -74,6 +82,7 @@ public class RollingScript : MonoBehaviour
             {
                 rollingSpeed = 0f;
             }
+			
             
             
             //When you hit a slope
@@ -111,7 +120,7 @@ public class RollingScript : MonoBehaviour
         //     bearAnim.SetBool("IsRolling", false);
         //     cinemachineFreeLook.m_XAxis.m_MaxSpeed = normalCinemachineCamSpeed;
         // }
-
+     
         if (camBack)
         {
             cinemachineFreeLook.m_Lens.FieldOfView = Mathf.SmoothStep(cinemachineFreeLook.m_Lens.FieldOfView, 40, camSpeed * Time.deltaTime);
@@ -130,7 +139,11 @@ public class RollingScript : MonoBehaviour
 
     private void OnDisable()
     {
-        isRolling= false;
+        // Rolling sound
+        //rollingSFX.loop = false;
+        //rollingSFX.Stop();
+
+        isRolling = false;
         camBack = true;
         rollingSpeed = 0f;
         bearAnim.SetBool("IsRolling", false);
