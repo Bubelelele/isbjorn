@@ -16,6 +16,11 @@ public class IconSystem : MonoBehaviour
         TextEnabled(true);
         responseText.text = "Press LMB to smash the ice";
     }
+    public void RoarIcicle()
+    {
+        TextEnabled(true);
+        responseText.text = "Press E to roar \nto make the icicle dropp";
+    }
     public void PickUpFish()
     {
         TextEnabled(true);
