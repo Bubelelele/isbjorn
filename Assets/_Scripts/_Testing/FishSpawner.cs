@@ -25,7 +25,7 @@ public class FishSpawner : MonoBehaviour
         _respawnTimer -= Time.deltaTime;
         if (_respawnTimer >= 0.0f) return;
         Respawn();
-        // _respawnTimer = _respawnTime;
+         _respawnTimer = _respawnTime;
     }
 
     private void Respawn()
