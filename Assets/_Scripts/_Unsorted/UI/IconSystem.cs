@@ -29,7 +29,7 @@ public class IconSystem : MonoBehaviour
     public void FishInMouth()
     {
         TextEnabled(true);
-        responseText.text = "Press R to dropp the fish \nPress F to eat";
+        responseText.text = "Press R to drop the fish \nPress F to eat";
     }
     public void CustomText(string text)
     {
