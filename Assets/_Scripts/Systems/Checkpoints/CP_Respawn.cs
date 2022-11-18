@@ -5,8 +5,8 @@ using UnityEngine;
 public class CP_Respawn : MonoBehaviour
 {
 
-    public float maxDistance = 10f;
-    public float offset = 2f;
+    public float maxOffset = 10f;
+    public float minOffset = 2f;
     public Vector3 currentResLoc;
 
     private ClosestRespawnFinder closestRespawnFinder;
@@ -19,7 +19,7 @@ public class CP_Respawn : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        RespawnLoc = new(Random.Range(currentResLoc.x + offset, currentResLoc.x + maxDistance), currentResLoc.y, Random.Range(currentResLoc.z + offset, currentResLoc.z + maxDistance));
+        RespawnLoc = new(Random.Range(currentResLoc.x + minOffset, currentResLoc.x + maxOffset), currentResLoc.y, Random.Range(currentResLoc.z + minOffset, currentResLoc.z + maxOffset));
         transform.position = RespawnLoc;
     }
 

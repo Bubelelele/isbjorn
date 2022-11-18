@@ -25,7 +25,6 @@ public class SnowballSection : MonoBehaviour
         if (score >= 5 && !hasPlayed)
         {
             AnimStart();
-            //Debug.LogError("PlayCrash");
             hasPlayed = true;
         }
     }
@@ -33,8 +32,6 @@ public class SnowballSection : MonoBehaviour
 
     void AnimStart()
     {
-        //Setactive each icespike
-        //Play anim
         anim.SetBool("Play", true);
 
         

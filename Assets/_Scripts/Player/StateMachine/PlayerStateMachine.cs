@@ -288,5 +288,7 @@ public class PlayerStateMachine : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-  
+    private void OnDestroy() {
+        StaticPlayerTrans = null;
+    }
 }
