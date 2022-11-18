@@ -20,7 +20,10 @@ public class TutorialUI : MonoBehaviour
     void Start()
     {
         IconSystem.instance.CustomText("Move mouse to look around");
+        if (PlayerPrefs.GetInt("Cutscene Done") == 1) return;
         startCutscene.Invoke();
+        PlayerPrefs.SetInt("Cutscene Done", 1);
+        PlayerPrefs.Save();
     }
 
     private void Update()
