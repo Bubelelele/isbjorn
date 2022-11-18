@@ -1572,7 +1572,6 @@ GameObject:
   - component: {fileID: 7711852245381485408}
   - component: {fileID: 5972500182738294235}
   - component: {fileID: 2218407280612185345}
-  - component: {fileID: 6532037870188870068}
   m_Layer: 5
   m_Name: TeleportMenu
   m_TagString: Untagged
@@ -1647,23 +1646,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6532037870188870068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362834320108868975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f88de858df9ff34db831c085e180dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1731037496175336975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2291255711351839133}
   - component: {fileID: 2291255711351839132}
+  - component: {fileID: 3925921352001664353}
   m_Layer: 5
   m_Name: PauseMenuUI
   m_TagString: Untagged
@@ -2230,6 +2213,19 @@ MonoBehaviour:
   pauseKey: 27
   pauseMenuUI: {fileID: 2291255713211981705}
   teleportMenuUI: {fileID: 1362834320108868975}
+--- !u!114 &3925921352001664353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291255711351839130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f88de858df9ff34db831c085e180dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportLocations: []
 --- !u!1 &2291255711747975150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,9 +3651,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6532037870188870068}
+      - m_Target: {fileID: 3925921352001664353}
         m_TargetAssemblyTypeName: TeleportMenu, Assembly-CSharp
-        m_MethodName: Teleport
+        m_MethodName: RequestTeleport
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4043,9 +4039,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6532037870188870068}
+      - m_Target: {fileID: 3925921352001664353}
         m_TargetAssemblyTypeName: TeleportMenu, Assembly-CSharp
-        m_MethodName: Teleport
+        m_MethodName: RequestTeleport
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4502,9 +4498,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6532037870188870068}
+      - m_Target: {fileID: 3925921352001664353}
         m_TargetAssemblyTypeName: TeleportMenu, Assembly-CSharp
-        m_MethodName: Teleport
+        m_MethodName: RequestTeleport
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4636,9 +4632,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6532037870188870068}
+      - m_Target: {fileID: 3925921352001664353}
         m_TargetAssemblyTypeName: TeleportMenu, Assembly-CSharp
-        m_MethodName: Teleport
+        m_MethodName: RequestTeleport
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
