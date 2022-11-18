@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,13 +45,12 @@ public class FishInMouth : MonoBehaviour
             DropFish();
         }
 
-
+        
     }
-
-
+    
     public void Eat()
     {
-        hasEaten = false;
+        hasEaten = true;
         hasFish = false; 
         playerHunger.AddFood(foodAmount);
         gameObject.SetActive(false);
