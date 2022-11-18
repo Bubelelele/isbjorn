@@ -17,8 +17,10 @@ public class TeleportMenu : MonoBehaviour {
     public void RequestTeleport(int section) {
         PlayerPrefs.SetInt("Section", section);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Invoke(nameof(DelayedSceneLoad), .5f);
     }
+
+    private void DelayedSceneLoad() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private void Teleport(int section) {
         PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section - 1].position;
