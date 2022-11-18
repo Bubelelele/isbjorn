@@ -30,8 +30,8 @@ MonoBehaviour:
     m_ParentTrack: {fileID: -8764897600837189434}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 6
-    m_BlendOutDuration: -1
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 5.7
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -91,16 +91,16 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: StandardCam
   - m_Version: 1
-    m_Start: 0
+    m_Start: 0.3
     m_ClipIn: 0
     m_Asset: {fileID: -5193243944052561012}
-    m_Duration: 6
+    m_Duration: 5.7
     m_TimeScale: 1
     m_ParentTrack: {fileID: -8764897600837189434}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: 6
+    m_BlendInDuration: 5.7
+    m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
