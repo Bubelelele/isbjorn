@@ -11,6 +11,7 @@ TagManager:
   - Walrus
   - Water
   - Cutscene Player
+  - Snowball
   layers:
   - Default
   - TransparentFX

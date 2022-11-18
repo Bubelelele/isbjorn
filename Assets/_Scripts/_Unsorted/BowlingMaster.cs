@@ -26,8 +26,8 @@ public class BowlingMaster : MonoBehaviour
 
     private void Awake()
     {
-        bowlingScore = GameObject.Find("Game Canvas/BowlingScore").GetComponent<UnityEngine.UI.Text>();
-        _bowlScore = GameObject.Find("Game Canvas/BowlingScore");
+        bowlingScore = GameObject.Find("Game Canvas/HUD/BowlingScore").GetComponent<UnityEngine.UI.Text>();
+        _bowlScore = GameObject.Find("Game Canvas/HUD/BowlingScore");
 
         foreach (Transform child in transform)
         {

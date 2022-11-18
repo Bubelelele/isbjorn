@@ -12,7 +12,7 @@ public class BowlingGameStart : MonoBehaviour
     {
         bowlingCollider = transform.parent.gameObject.transform.GetChild(1).GetComponent<BoxCollider>();
         bowlingCollider.enabled = false;
-        bowlingScore = GameObject.Find("Game Canvas/BowlingScore");
+        bowlingScore = GameObject.Find("Game Canvas/HUD/BowlingScore");
         bowlingScore.SetActive(false);
         bowlingMaster = GameObject.Find("3- Bowling/Bowling Walrus/BowlingMaster").GetComponent<BowlingMaster>();
     }
