@@ -9,13 +9,13 @@ public class DeadFish : MonoBehaviour
     public Transform player;
 
 
-    private GameObject fishInMouth;                 //Kevin
+    public GameObject fishInMouth;                 //Kevin
     public Food food;                              //Kevin
     private Rigidbody _rB;
 
     private void Awake()
     {
-        
+        food = this.gameObject.GetComponent<Food>();     //Kevin
         fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
     }
 
@@ -23,7 +23,7 @@ public class DeadFish : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         fishInMouth.SetActive(false);       //Kevin
-        food = this.gameObject.GetComponent<Food>();     //Kevin
+        
         food.FoodIsDropped();
 
         _rB = gameObject.GetComponent<Rigidbody>();
@@ -40,6 +40,7 @@ public class DeadFish : MonoBehaviour
                 fishInMouth.SetActive(true);        //Kevin
                 fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
                 //onHit.Invoke();
+                // Destroy(gameObject, 0.2f);
                 Destroy(gameObject, 0.2f);
             }
         }

@@ -9,11 +9,11 @@ public class Food : MonoBehaviour
     public bool foodIsDropped;
     public float howMuchFood;
 
-    private PlayerHunger playerHunger;
+    public PlayerHunger playerHunger;
     private bool foodIsEaten;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         foodIsDropped = false;
 
