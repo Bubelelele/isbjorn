@@ -48,6 +48,7 @@ public class Icicle_Beahaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             iCanFall = true;
+            IconSystem.instance.RoarIcicle();
         }
 
     }
@@ -57,6 +58,7 @@ public class Icicle_Beahaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             iCanFall = false;
+            IconSystem.instance.TextEnabled(false);
         }
     }
 
@@ -83,7 +85,7 @@ public class Icicle_Beahaviour : MonoBehaviour
     private void ActivateFall()
     {
         falling = true;
-
+        IconSystem.instance.TextEnabled(false);
     }
 
     private void IcicleAudio()
