@@ -1,12 +1,27 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TeleportMenu : MonoBehaviour
-{
-    public Transform[] teleportLocations;
+public class TeleportMenu : MonoBehaviour {
+    
+    [SerializeField] private Transform[] teleportLocations;
 
-    public void Teleport(int section)
-    {
-        PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section-1].position;
-        PlayerStateMachine.StaticPlayerTrans.rotation = teleportLocations[section-1].rotation;
+    private void Start() {
+        if (PlayerPrefs.HasKey("Section")) {
+            Teleport(PlayerPrefs.GetInt("Section", 1));
+            PlayerPrefs.DeleteKey("Section");
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void RequestTeleport(int section) {
+        PlayerPrefs.SetInt("Section", section);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void Teleport(int section) {
+        PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section - 1].position;
+        PlayerStateMachine.StaticPlayerTrans.rotation = teleportLocations[section - 1].rotation;
     }
 }

@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cp_Respawn = GameObject.Find("Player").GetComponent<CP_Respawn>();
+        cp_Respawn = FindObjectOfType<CP_Respawn>();
     }
 
     private void OnTriggerEnter(Collider other)
