@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class TutorialUI : MonoBehaviour
 {
+    [SerializeField] private UnityEvent startCutscene;
+
+    private bool cutsceneDone;
     private bool camCheck;
     private bool moveCheck;
     private bool jumpCheck;
@@ -16,40 +20,48 @@ public class TutorialUI : MonoBehaviour
     void Start()
     {
         IconSystem.instance.CustomText("Move mouse to look around");
+        startCutscene.Invoke();
     }
 
     private void Update()
     {
-        if(!camCheck && (Input.GetAxis("Mouse X") > 0.1f || Input.GetAxisRaw("Mouse X") < -0.1f || Input.GetAxisRaw("Mouse Y") > 0.1f || Input.GetAxisRaw("Mouse Y") < -0.1f))
+        if (cutsceneDone)
         {
-            camCheck = true;
-            IconSystem.instance.CustomText("Press WASD to move around");
-            
-        }
-        if(!moveCheck && camCheck && (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame))
-        {
-            IconSystem.instance.TextEnabled(false);
-            moveCheck = true;
-        }
+            if (!camCheck && (Input.GetAxis("Mouse X") > 0.9f || Input.GetAxisRaw("Mouse X") < -0.9f || Input.GetAxisRaw("Mouse Y") > 0.9f || Input.GetAxisRaw("Mouse Y") < -0.9f))
+            {
+                Invoke("MoveDelay", 2);
 
-        if (canJump && Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            jumpCheck = true;
-            canJump = false;
-            IconSystem.instance.TextEnabled(false);
+            }
+            if (!moveCheck && camCheck && (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame))
+            {
+                IconSystem.instance.TextEnabled(false);
+                moveCheck = true;
+            }
+
+            if (canJump && Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                jumpCheck = true;
+                canJump = false;
+                IconSystem.instance.TextEnabled(false);
+            }
+            if (canRoll && Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                rollCheck = true;
+                canRoll = false;
+                IconSystem.instance.TextEnabled(false);
+            }
+            if (canSniff && Keyboard.current.qKey.wasPressedThisFrame)
+            {
+                sniffCheck = true;
+                canSniff = false;
+                IconSystem.instance.TextEnabled(false);
+            }
         }
-        if (canRoll && Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            rollCheck = true;
-            canRoll = false;
-            IconSystem.instance.TextEnabled(false);
-        }
-        if (canSniff && Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            sniffCheck = true;
-            canSniff = false;
-            IconSystem.instance.TextEnabled(false);
-        }
+    }
+    private void MoveDelay()
+    {
+        camCheck = true;
+        IconSystem.instance.CustomText("Press WASD to move around");
     }
 
     public void JumpTutorial()
@@ -75,5 +87,9 @@ public class TutorialUI : MonoBehaviour
             IconSystem.instance.CustomText("Press Q to sense food closeby");
             canSniff = true;
         }
+    }
+    public void CutsceneDone()
+    {
+        cutsceneDone = true;
     }
 }
