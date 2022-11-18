@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
+        PlayerPrefs.DeleteKey("Cutscene Done");
+        PlayerPrefs.Save();
         playableDirector.Play();
     }
 
