@@ -7,8 +7,12 @@ public class MainMenu : MonoBehaviour {
 
     [SerializeField] private PlayableDirector playableDirector;
 
-    private void Start() {
+    private void OnEnable() {
         playableDirector.stopped += LoadScene;
+    }
+
+    private void OnDisable() {
+        playableDirector.stopped -= LoadScene;
     }
 
     public void Play() {
@@ -20,7 +24,6 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void LoadScene(PlayableDirector director) {
-        playableDirector.stopped -= LoadScene;
         SceneManager.LoadScene("Cycle 1");
     }
 
