@@ -35,10 +35,12 @@ public class Food : MonoBehaviour
     public void EatFood()
     {
         playerHunger.AddFood(howMuchFood);
+        IconSystem.instance.TextEnabled(false);
         foodIsEaten = true;
     }
     public void FoodIsDropped()
     {
+        IconSystem.instance.TextEnabled(false);
         foodIsDropped = true;
     } 
 }
