@@ -86,6 +86,9 @@
         },
         {
             "m_Id": "d2891a40fb594ef3931ae1e6ee70b6c0"
+        },
+        {
+            "m_Id": "14c9c753a26440cabc44ed1b3afe329b"
         }
     ],
     "m_GroupDatas": [],
@@ -103,6 +106,20 @@
                     "m_Id": "d1768c0846fe44fca07763218bb3cf2f"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "14c9c753a26440cabc44ed1b3afe329b"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "f65d4b048ca5448c888cd301cd5be599"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -791,7 +808,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": -1.0,
+        "x": -0.5,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0
@@ -801,6 +818,41 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "14c9c753a26440cabc44ed1b3afe329b",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -462.0038146972656,
+            "y": 155.00946044921876,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "5002dcfb69e74715bb6cc581e14dc2ec"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "332eee6567e9413685a990d1df4b0ace"
     }
 }
 
@@ -1115,6 +1167,31 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "5002dcfb69e74715bb6cc581e14dc2ec",
+    "m_Id": 0,
+    "m_DisplayName": "GreenEmmisio",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {
