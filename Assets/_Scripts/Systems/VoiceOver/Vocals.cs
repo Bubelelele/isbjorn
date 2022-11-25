@@ -1,6 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Vocals : MonoBehaviour
 {
@@ -18,14 +19,22 @@ public class Vocals : MonoBehaviour
         source = gameObject.AddComponent<AudioSource>();
     }
 
-    public void Say(AudioObject clip)
+	public void Say(AudioObject clip)
 	{
 		if (source.isPlaying)
 		{
 			source.Stop();
 		}
-		source.PlayOneShot(clip.clip); 
+		source.PlayOneShot(clip.clip);
 		 
 		UI.instance.SetSubtitle(clip.subtitle, clip.clip.length);
 	}
+	
+#if UNITY_EDITOR
+	private void Update()
+	{
+		if (source.isPlaying && Keyboard.current.fKey.isPressed)
+			source.Stop();
+	}
+#endif
 }
