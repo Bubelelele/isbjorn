@@ -33,6 +33,8 @@ public class PlayerGroundedState : PlayerBaseState
             SwitchState(Factory.Fall());
         else if (Context.Input.JumpIsPressed)
             SwitchState(Factory.Jump());
+        else if (Context.Input.Roaring)
+            SwitchState(Factory.Roar());
     }
 
     public sealed override void InitializeSubState()
@@ -41,8 +43,6 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Idle());
         else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
-        // else if (Context.Input.Slashing)
-        //     SwitchState(Factory.Slash());
         else
             SetSubState(Factory.Walk());
     }

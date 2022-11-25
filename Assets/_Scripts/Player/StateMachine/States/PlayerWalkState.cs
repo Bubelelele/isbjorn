@@ -40,8 +40,6 @@ public class PlayerWalkState : PlayerBaseState
             SwitchState(Factory.Roll());
         else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());
-        else if (Context.Input.Roaring)
-            SwitchState(Factory.Roar());
         else if (Context.Input.Sniffing)
             SwitchState(Factory.Sniff());
     }

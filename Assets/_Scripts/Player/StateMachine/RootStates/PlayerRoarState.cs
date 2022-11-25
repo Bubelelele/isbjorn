@@ -7,16 +7,19 @@ public class PlayerRoarState : PlayerBaseState
 
     public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
+        IsRootState = true;
+        InitializeSubState();
     }
 
     public override void EnterState()
     {
         Context.Animator.SetTrigger(_roar);
-        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
+        _animationTimer = 2.2f;
     }
 
     protected override void UpdateState()
     {
+        Context.MovementVector = Vector3.zero;
         _animationTimer -= Time.deltaTime;
         ShouldStateSwitch();
     }
@@ -29,11 +32,11 @@ public class PlayerRoarState : PlayerBaseState
     public override void ShouldStateSwitch()
     {
         if (_animationTimer < 0.0f)
-            SwitchState(Factory.Idle());
+            SwitchState(Factory.Grounded());
     }
 
-    public override void InitializeSubState()
+    public sealed override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

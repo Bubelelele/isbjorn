@@ -14,7 +14,7 @@ public class DestroyIceTrigger : MonoBehaviour
     private void Start()
     {
         if(GetComponent<Animator>() != null)
-        blockAnim = GetComponent<Animator>();
+            blockAnim = GetComponent<Animator>();
     }
 
     void Update()
