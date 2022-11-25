@@ -53,7 +53,7 @@ public class PlayerFallState : PlayerBaseState
 
     private float HandleGravity()
     {
-        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        Context.PlayerInAirTimer -= Time.deltaTime;
         if (Context.PlayerInAirTimer < 0.0f)
         {
             if (Context.CurrentGravity > Context.MaximumGravity)
@@ -69,7 +69,7 @@ public class PlayerFallState : PlayerBaseState
 
     private float HandleFall()
     {
-        Context.PlayerInAirTimer -= Time.fixedDeltaTime;
+        Context.PlayerInAirTimer -= Time.deltaTime;
         if (Context.PlayerInAirTimer < 0.0f)
         {
             if (Context.CurrentGravity > Context.MaximumGravity)
@@ -85,7 +85,7 @@ public class PlayerFallState : PlayerBaseState
 
     private void CoyoteTimer()
     {
-        Context.CoyoteTimer -= Time.fixedDeltaTime;
+        Context.CoyoteTimer -= Time.deltaTime;
         if (Context.CoyoteTimer > 0.0f) return;
         Context.Animator.SetBool(_isFalling, true);
         Context.CoyoteTimer = 0.0f;
