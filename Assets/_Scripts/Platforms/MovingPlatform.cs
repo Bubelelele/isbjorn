@@ -7,6 +7,7 @@ public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private AnimationCurve positionOverTime;
     [SerializeField] private List<Rigidbody> rigidbodiesOnPlatform = new();
+    [SerializeField] private List<CharacterController> characterControllersOnPlatform = new();
     private Rigidbody _platformRigidbody;
     private Vector3 _startPosition;
     private GameObject _destinationPlatform;
@@ -30,24 +31,37 @@ public class MovingPlatform : MonoBehaviour
         {
             MoveRigidbodiesOnPlatform(rb);
         }
+        foreach (var characterController in characterControllersOnPlatform)
+        {
+            MoveCharacterControllersOnPlatform(characterController);
+        }
     }
 
     private void MoveRigidbodiesOnPlatform(Rigidbody rb)
     {
         rb.position += _platformRigidbody.position - _platformPositionLastFrame;
     }
+    
+    private void MoveCharacterControllersOnPlatform(Component characterController)
+    {
+        characterController.transform.position += _platformRigidbody.position - _platformPositionLastFrame;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody == null || other.attachedRigidbody.isKinematic) return;
-        if (!rigidbodiesOnPlatform.Contains(other.attachedRigidbody))
+        if (other.attachedRigidbody == null && other.GetComponent<CharacterController>() == null) return;
+        if (!rigidbodiesOnPlatform.Contains(other.attachedRigidbody) && !other.GetComponent<CharacterController>().enabled)
             rigidbodiesOnPlatform.Add(other.attachedRigidbody);
+        if (!characterControllersOnPlatform.Contains(other.GetComponent<CharacterController>()) && other.GetComponent<CharacterController>().enabled)
+            characterControllersOnPlatform.Add(other.GetComponent<CharacterController>());
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.attachedRigidbody == null) return;
+        if (other.attachedRigidbody == null && other.GetComponent<CharacterController>() == null) return;
         if (rigidbodiesOnPlatform.Contains(other.attachedRigidbody))
             rigidbodiesOnPlatform.Remove(other.attachedRigidbody);
+        if (characterControllersOnPlatform.Contains(other.GetComponent<CharacterController>()) && !other.GetComponent<CharacterController>().enabled)
+            characterControllersOnPlatform.Remove(other.GetComponent<CharacterController>());
     }
 }
