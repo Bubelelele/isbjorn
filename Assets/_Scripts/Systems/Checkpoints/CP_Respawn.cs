@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CP_Respawn : MonoBehaviour
 {
@@ -13,19 +15,17 @@ public class CP_Respawn : MonoBehaviour
 
     private Vector3 RespawnLoc;
 
-
-
-
+    private void Start()
+    {
+        currentResLoc = PlayerStateMachine.StaticPlayerTrans.position;
+    }
 
     public void RespawnPlayer()
     {
         RespawnLoc = new(Random.Range(currentResLoc.x + minOffset, currentResLoc.x + maxOffset), currentResLoc.y, Random.Range(currentResLoc.z + minOffset, currentResLoc.z + maxOffset));
         transform.position = RespawnLoc;
     }
-
-
-
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Water"))
