@@ -1781,10 +1781,11 @@ MonoBehaviour:
   maxSlopeBeforeDecelaration: 1
   turnSmoothTime: 0.1
   accelerationForce: 0.8
-  decelerationForce: 30
+  decelerationForce: 60
   jumpBoost: 0
   animationMultiplier: 30
   camSpeed: 10
+  rollingSFX: {fileID: 0}
   isRolling: 0
 --- !u!114 &8196229174410215744
 MonoBehaviour:
