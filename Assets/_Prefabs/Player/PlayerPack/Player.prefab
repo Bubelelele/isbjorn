@@ -1781,7 +1781,7 @@ MonoBehaviour:
   maxSlopeBeforeDecelaration: 1
   turnSmoothTime: 0.1
   accelerationForce: 0.8
-  decelerationForce: 60
+  decelerationForce: 30
   jumpBoost: 0
   animationMultiplier: 30
   camSpeed: 10
