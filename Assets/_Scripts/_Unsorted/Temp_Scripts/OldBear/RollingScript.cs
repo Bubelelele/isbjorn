@@ -44,7 +44,13 @@ public class RollingScript : MonoBehaviour
         rollingSFX.Play();
     }
     */
-	private void Start()
+
+    private void OnEnable()
+    {
+        rollingSpeed = 35f;
+    }
+
+    private void Start()
     {
         jumpingScript = GetComponent<JumpingScript>();
         movementScript = GetComponent<MovementScript>();
@@ -71,20 +77,14 @@ public class RollingScript : MonoBehaviour
             if(slopeDetection.targetAngle > maxSlopeBeforeDecelaration)
             {
                 rollingSpeed += slopeDetection.targetAngle * accelerationForce * Time.deltaTime;
-                
             }
             else if(slopeDetection.targetAngle <= maxSlopeBeforeDecelaration && rollingSpeed > 0f)
             {
-                rollingSpeed -= 1 * decelerationForce * Time.deltaTime;              
-                
+                rollingSpeed -= 1 * decelerationForce * Time.deltaTime;
             }
-            else
-            {
-                rollingSpeed = 0f;
-            }
-			
-            
-            
+            else if (Mathf.Abs(rollingSpeed) < 1.0f)
+                rollingSpeed = 0.0f;
+
             //When you hit a slope
             // if(slopeDetection.targetAngle < 0 && !UpSlope)
             // {
