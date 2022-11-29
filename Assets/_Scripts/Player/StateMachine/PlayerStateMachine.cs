@@ -29,12 +29,13 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _playerMovement;
     private bool _animationPlaying;
     private float _animationPlayingTimer;
-    private CapsuleCollider _capsuleCollider;
+
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
     private float _relativeSlopeAngle;
     private Transform _bearTransform;
     private float _fallAnimationTimer = 0.5f;
+    public CapsuleCollider capsuleCollider;
     public CharacterController characterController;
     public RollingScript rollingScript;
     public SlopeDetection slopeDetection;
@@ -211,7 +212,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Input = FindObjectOfType<PlayerInput>();
         _rigidbody = GetComponent<Rigidbody>();
-        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         Animator = GetComponentInChildren<Animator>();
         _rigidbody.drag = Drag;
 
@@ -249,9 +250,9 @@ public class PlayerStateMachine : MonoBehaviour
     private bool PlayerGroundCheck()
     {
         _playerPosition = _rigidbody.position;
-        var sphereCastRadius = _capsuleCollider.radius * sphereRadiusMultiplier;
-        var sphereCastTravelDistance = _capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance;
-        var sphereCast = Physics.SphereCast(_playerPosition + _capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, groundLayerMask);
+        var sphereCastRadius = capsuleCollider.radius * sphereRadiusMultiplier;
+        var sphereCastTravelDistance = capsuleCollider.bounds.extents.y - sphereCastRadius + groundCheckDistance;
+        var sphereCast = Physics.SphereCast(_playerPosition + capsuleCollider.center, sphereCastRadius, Vector3.down, out _groundCheckHit, sphereCastTravelDistance, groundLayerMask);
         LandedOn = sphereCast ? _groundCheckHit.transform.tag : null;
         return sphereCast;
     }
