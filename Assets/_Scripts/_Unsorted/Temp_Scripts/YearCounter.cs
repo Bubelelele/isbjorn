@@ -5,9 +5,11 @@ public class YearCounter : MonoBehaviour
 {
     public TextMeshProUGUI yearText;
     public float waitTime;
+    public float minWaitTime = 0.075f;
+    public int year = 2000;
 
     private bool IsCounting;
-    private int year = 2000;
+
     private int targetYear;
     private float timer;
     public AudioSource oddNumber;
@@ -21,14 +23,7 @@ public class YearCounter : MonoBehaviour
 
         if (IsCounting && timer >= waitTime && year < targetYear)
         {
-			if (year >= 2050)
-			{
-                year += 5;
-			}
-			else
-			{
-                year++;
-			}
+            year++;
             count++;
            
             //Even numbers
@@ -42,7 +37,7 @@ public class YearCounter : MonoBehaviour
                 OddNumber();
 			}
             timer = 0;
-            if(waitTime > 0.075)
+            if(waitTime > minWaitTime)
             {
                 waitTime -= 0.05f;
             }
