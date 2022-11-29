@@ -1711,7 +1711,6 @@ MonoBehaviour:
   walrusLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  modelTransform: {fileID: 6124578712785109686}
   sphereRadiusMultiplier: 0.9
   groundCheckDistance: 0.05
   groundLayerMask:
