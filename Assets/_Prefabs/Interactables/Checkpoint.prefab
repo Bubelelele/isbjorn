@@ -125,22 +125,22 @@ PrefabInstance:
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.45152
+      value: 616.13306
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 221.36343
+      value: 124.54378
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 625.85406
+      value: 1123.468
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5013024
+      value: 0.22863147
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.86527216
+      value: -0.97351307
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -119.828
+      value: -153.567
       objectReference: {fileID: 0}
     - target: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
         type: 3}
@@ -211,6 +211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200d08225e0c6b34da8ba9da65d6a5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCheckpointTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2006379174}
+        m_TargetAssemblyTypeName: UnityEngine.VFX.VisualEffect, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &4112941537229834119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8196253292656878356, guid: 2a96fed8800f44b449bd5ee3f83d96a8,
