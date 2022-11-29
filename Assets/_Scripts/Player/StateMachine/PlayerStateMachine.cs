@@ -46,6 +46,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool bouncing = false;
     public bool lastJumpWasBounce;
     public LayerMask walrusLayerMask;
+    public Transform modelTransform;
 
     // Getters and setters.
     public float RollMultiplier { get => rollMultiplier; set => rollMultiplier = value; }
