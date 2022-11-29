@@ -15,6 +15,9 @@ public class PlayerRoarState : PlayerBaseState
     {
         Context.Animator.SetTrigger(_roar);
         _animationTimer = 2.2f;
+        EffectSpawner.SpawnRoarFX(
+            Context.modelTransform.position + Context.modelTransform.forward * 2.5f + Vector3.up * 1.5f, 
+            Context.modelTransform.rotation);
     }
 
     protected override void UpdateState()

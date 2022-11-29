@@ -4,5 +4,6 @@ using UnityEngine;
 public class EffectCollectionSO : ScriptableObject {
     
     public GameObject bloodFX;
+    public GameObject roarFX;
 
 }
