@@ -29,13 +29,12 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _playerMovement;
     private bool _animationPlaying;
     private float _animationPlayingTimer;
-
+    public CapsuleCollider capsuleCollider;
     private Quaternion _slopeAngleRotation;
     private Vector3 _globalForward;
     private float _relativeSlopeAngle;
     private Transform _bearTransform;
     private float _fallAnimationTimer = 0.5f;
-    public CapsuleCollider capsuleCollider;
     public CharacterController characterController;
     public RollingScript rollingScript;
     public SlopeDetection slopeDetection;
@@ -47,6 +46,8 @@ public class PlayerStateMachine : MonoBehaviour
     public bool bouncing = false;
     public bool lastJumpWasBounce;
     public LayerMask walrusLayerMask;
+    public Transform modelTransform;
+    
 
     // Getters and setters.
     public float RollMultiplier { get => rollMultiplier; set => rollMultiplier = value; }
