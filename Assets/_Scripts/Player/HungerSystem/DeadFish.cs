@@ -24,7 +24,7 @@ public class DeadFish : MonoBehaviour
         player = GameObject.Find("Player").transform;
         fishInMouth.SetActive(false);       //Kevin
         
-        food.FoodIsDropped();
+        //food.FoodIsDropped();
 
         _rB = gameObject.GetComponent<Rigidbody>();
         StartCoroutine("TurnOffGravity");

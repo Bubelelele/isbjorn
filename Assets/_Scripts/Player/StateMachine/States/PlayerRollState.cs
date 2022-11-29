@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerRollState : PlayerBaseState
 {
+
     public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
     }
@@ -12,6 +13,7 @@ public class PlayerRollState : PlayerBaseState
 
     public override void EnterState()
     {
+        Context.capsuleCollider.radius = 1.7f;
         Context.MovementVector = Vector3.zero;
         Context.characterController.enabled = true;
         Context.rollingScript.enabled = true;
@@ -37,6 +39,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
+        Context.capsuleCollider.radius = 1;
         Context.characterController.enabled = false;
         Context.rollingScript.enabled = false;
         Context.slopeDetection.enabled = false;
