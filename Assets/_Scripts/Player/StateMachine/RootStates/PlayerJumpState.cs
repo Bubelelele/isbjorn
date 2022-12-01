@@ -16,6 +16,7 @@ public class PlayerJumpState : PlayerBaseState
         Context.Animator.SetBool(_isJumping, true);
         Context.CoyoteTimer = 0.0f;
         Context.CurrentGravity = Context.LandedOnWalrus ? Context.BounceVelocity : Context.InitialVelocity;
+        Context.JumpFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()

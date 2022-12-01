@@ -1,4 +1,5 @@
 using System;
+using MoreMountains.Feedbacks;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,7 +48,11 @@ public class PlayerStateMachine : MonoBehaviour
     public bool lastJumpWasBounce;
     public LayerMask walrusLayerMask;
     public Transform modelTransform;
-    
+
+    [field: SerializeField] public MMFeedbacks LandingFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks RoarFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks JumpFeedback { get; private set; }
+
 
     // Getters and setters.
     public float RollMultiplier { get => rollMultiplier; set => rollMultiplier = value; }
@@ -151,7 +156,6 @@ public class PlayerStateMachine : MonoBehaviour
     // public float JumpBufferTime => jumpBufferTime;
 
     public static Transform StaticPlayerTrans;
-
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
