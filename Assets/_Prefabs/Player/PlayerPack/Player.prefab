@@ -599,7 +599,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RemapPostExposureZero: 0
-  RemapPostExposureOne: 0.05
+  RemapPostExposureOne: 0.1
   ShakeHueShift:
     serializedVersion: 2
     m_Curve:
