@@ -37,8 +37,10 @@ public class PlayerFallState : PlayerBaseState
         {
             SwitchState(Factory.Jump());
         }
-        else if (Context.PlayerIsGrounded)
+        else if (Context.PlayerIsGrounded) {
+            Context.LandingFeedback?.PlayFeedbacks();
             SwitchState(Factory.Grounded());
+        }
     }
 
     public sealed override void InitializeSubState()
