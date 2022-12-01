@@ -8,8 +8,6 @@ public class CollisonPush : MonoBehaviour
     private PlayerStateMachine playerStateMachine;
     private Animator guardAnimation;
 
-    public AudioSource walrusPushSound;  //Mathias
-
 
 
 
@@ -27,7 +25,7 @@ public class CollisonPush : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PushPlayer();
-            walrusPushSound.Play();  //Mathias
+
         }
     }
 
