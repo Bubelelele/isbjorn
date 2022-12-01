@@ -8,7 +8,7 @@ public class DeadFish : MonoBehaviour
     //public UnityEvent onHit;
     public Transform player;
 
-
+    public GameObject fishDropPlace;                //Mathias
     public GameObject fishInMouth;                 //Kevin
     public Food food;                              //Kevin
     private Rigidbody _rB;
@@ -31,6 +31,7 @@ public class DeadFish : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -46,6 +47,8 @@ public class DeadFish : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3)
             {
+                fishDropPlace.gameObject.SetActive(true);           //Mathias
+
                 IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        //Kevin
                 fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin

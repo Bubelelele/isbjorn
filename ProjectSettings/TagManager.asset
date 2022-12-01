@@ -12,6 +12,7 @@ TagManager:
   - Water
   - Cutscene Player
   - Snowball
+  - Fish
   layers:
   - Default
   - TransparentFX
