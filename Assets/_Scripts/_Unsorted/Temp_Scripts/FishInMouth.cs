@@ -61,8 +61,9 @@ public class FishInMouth : MonoBehaviour
     {
         hasFish = false;
 
-        Debug.Log("SpawnFish");
-        Instantiate(fishPrefab, spawnPosition.transform.position, Quaternion.identity);
+        //Debug.Log("SpawnFish");
+        GameObject fish = Instantiate(fishPrefab, spawnPosition.transform.position, Quaternion.identity) as GameObject;
+        fish.GetComponent<Food>().foodIsDropped = true;
         gameObject.SetActive(false);
         IconSystem.instance.TextEnabled(false);
     }
