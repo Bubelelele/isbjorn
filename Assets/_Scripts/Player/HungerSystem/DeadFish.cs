@@ -5,32 +5,31 @@ using UnityEngine.InputSystem;
 
 public class DeadFish : MonoBehaviour
 {
-    //public UnityEvent onHit;
     public Transform player;
-
-    public GameObject fishDropPlace;                //Mathias
-    public GameObject fishInMouth;                 //Kevin
-    public Food food;                              //Kevin
+         
+    public GameObject fishInMouth;                 
+    public Food food;                              
     private Rigidbody _rB;
 
     private void Awake()
     {
-        food = this.gameObject.GetComponent<Food>();     //Kevin
-        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
+        food = this.gameObject.GetComponent<Food>();    
+        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
     }
 
     private void Start()
     {
+
         player = GameObject.Find("Player").transform;
-        fishInMouth.SetActive(false);       //Kevin
+        fishInMouth.SetActive(false);      
         
-        //food.FoodIsDropped();
 
         _rB = gameObject.GetComponent<Rigidbody>();
         StartCoroutine("TurnOffGravity");
 
-    }
 
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,13 +46,9 @@ public class DeadFish : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3)
             {
-                fishDropPlace.gameObject.SetActive(true);           //Mathias
-
                 IconSystem.instance.FishInMouth();
-                fishInMouth.SetActive(true);        //Kevin
-                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
-                //onHit.Invoke();
-                // Destroy(gameObject, 0.2f);
+                fishInMouth.SetActive(true);        
+                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      
                 Destroy(gameObject, 0.2f);
             }
         }
