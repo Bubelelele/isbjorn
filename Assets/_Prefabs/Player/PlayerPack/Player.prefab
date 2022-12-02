@@ -7801,6 +7801,7 @@ GameObject:
   - component: {fileID: 7120141138171228587}
   - component: {fileID: 7039338531466472326}
   - component: {fileID: 6720106044854206881}
+  - component: {fileID: -1107697286619784604}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -8080,6 +8081,18 @@ MonoBehaviour:
   maxOffset: 5
   minOffset: 1
   currentResLoc: {x: 0, y: 0, z: 0}
+--- !u!114 &-1107697286619784604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968036821010955924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26528f0b455da14f8443a09e901f8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1215395372821332846
 PrefabInstance:
   m_ObjectHideFlags: 0
