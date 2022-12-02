@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private UnityEvent onCheckpointTriggered;
+    [SerializeField] private AudioSource checkPointSound;
     
     private CP_Respawn cp_Respawn;
 
@@ -19,6 +20,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            checkPointSound.Play();
             cp_Respawn.currentResLoc = transform.position;
             onCheckpointTriggered.Invoke();
         }
