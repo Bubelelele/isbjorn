@@ -11,6 +11,8 @@ public class BowlingMaster : MonoBehaviour
     public List<BowlingPin> pins;
     //public bool hasEntered;
     public Transform resetPosition;
+    
+
     private GameObject topDOG;
 
     private GameObject player;

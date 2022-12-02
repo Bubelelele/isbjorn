@@ -4,6 +4,7 @@ public class CollisonPush : MonoBehaviour
 {
     public GameObject bowlingMasterObject;
     public float pushForce;
+    public AudioSource walrusPushSound;    //Mathias
     private GameObject player;
     private PlayerStateMachine playerStateMachine;
     private Animator guardAnimation;
@@ -32,6 +33,8 @@ public class CollisonPush : MonoBehaviour
 
     void PushPlayer()
     {
+        walrusPushSound.pitch = Random.Range(0.5f, 1.5f);
+        walrusPushSound.Play();
         guardAnimation.SetBool("Enter", true);
         Invoke("AnimReset", 0.3f);
         Vector3 dir = player.transform.position - transform.position;
