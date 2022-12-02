@@ -4,6 +4,7 @@ public class IceSmash : MonoBehaviour, IHittable
 {
     public GameObject[] fracturedObject;
     public bool onTouch;
+    public AudioSource iceShatterSound;
 
     [Header("Snowball Section")] //Kev
     public bool snowball;       // Kev
@@ -18,6 +19,8 @@ public class IceSmash : MonoBehaviour, IHittable
 
     private void SpawnFracturedObject()
     {
+        iceShatterSound.pitch = Random.Range(0.9f, 1.1f);
+        iceShatterSound.Play();
         if (snowball)   //Kev
         {
             snowballSection.score++;    //Kev
