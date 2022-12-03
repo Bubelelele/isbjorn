@@ -10,6 +10,7 @@ public class FishSpawner : MonoBehaviour
     private FishInMouth _fishInMouth;
     private float _respawnTime;
     private float _respawnTimer;
+    private bool timerCanStart;
 
     private void Start()
     {
@@ -21,11 +22,25 @@ public class FishSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!_fishInMouth.hasEaten) return;
-        _respawnTimer -= Time.deltaTime;
-        if (_respawnTimer >= 0.0f) return;
-        Respawn();
-         _respawnTimer = _respawnTime;
+        //if (!_fishInMouth.hasEaten && fishLandingLocation.childCount == 1) return;
+        if (fishLandingLocation.childCount == 0)
+        {
+            if (_fishInMouth.hasEaten)
+            {
+                timerCanStart = true; 
+            }
+        }
+
+        if (timerCanStart)
+        {
+            _respawnTimer -= Time.deltaTime;
+            _fishInMouth.hasEaten = false;
+
+            if (_respawnTimer >= 0.0f) return;
+            Respawn();
+
+        }
+        
     }
 
     private void Respawn()
@@ -33,7 +48,11 @@ public class FishSpawner : MonoBehaviour
         // var curveTimer = 1.0f;
         // curveTimer -= Time.deltaTime;
         // jumpCurve.Evaluate(curveTimer);
-        Instantiate(deadFishPrefab, fishLandingLocation);
-        _fishInMouth.hasEaten = false;
+
+        Instantiate(deadFishPrefab, (fishLandingLocation.position + new Vector3(0,1,0)), Quaternion.identity, fishLandingLocation);
+        
+        deadFish = deadFishPrefab;
+        _respawnTimer = _respawnTime;
+        timerCanStart = false; 
     }
 }

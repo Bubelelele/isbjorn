@@ -34,13 +34,14 @@ public class FishInMouth : MonoBehaviour
             hasFish = true; 
         }
 
-        if (Keyboard.current.fKey.wasPressedThisFrame && !hasEaten)
+        if (Keyboard.current.fKey.wasPressedThisFrame && hasFish)
         {
             //Debug.Log("Eat");
             Eat();
+            
         }
 
-        if (Keyboard.current.rKey.wasPressedThisFrame && hasFish)
+        else if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             DropFish();
         }
@@ -53,6 +54,7 @@ public class FishInMouth : MonoBehaviour
         hasEaten = true;
         hasFish = false; 
         playerHunger.AddFood(foodAmount);
+       //hasEaten = false; 
         gameObject.SetActive(false);
         IconSystem.instance.FishInMouth();
     }
