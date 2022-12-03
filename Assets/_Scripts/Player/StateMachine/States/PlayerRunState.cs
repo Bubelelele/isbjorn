@@ -1,47 +1,25 @@
-using UnityEngine;
-
 public class PlayerRunState : PlayerBaseState
 {
-    private readonly int _isRunning = Animator.StringToHash("IsRunning");
-    
-    public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
-    {
-    }
+    public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
 
-    public override void EnterState()
-    {
-        Context.Animator.SetBool(_isRunning, true);
-    }
+    public override void EnterState() { }
 
     protected override void UpdateState()
     {
         var runSpeed = Context.MovementSpeed * Context.RunMultiplier;
-        // Debug.LogWarning("CURRENT SUBSTATE: PlayerRunState");
-        Context.MovementVectorX *= runSpeed;
-        Context.MovementVectorZ *= runSpeed;
-        // Context.MovementVectorX = Context.MovementDirection.x * runSpeed;
-        // Context.MovementVectorZ = Context.MovementDirection.z * runSpeed;
+        Context.MovementVector *= runSpeed;
         ShouldStateSwitch();
-    }
-
-    protected override void ExitState()
-    {
-        Context.Animator.SetBool(_isRunning, false);
     }
 
     public override void ShouldStateSwitch()
     {
-        if (!Context.Input.MoveIsPressed)
-            SwitchState(Factory.Idle());
-        else if (!Context.Input.RunIsPressed)
+        if (!Context.Input.RunIsPressed)
             SwitchState(Factory.Walk());
-        else if (Context.Input.RollIsPressed)
-            SwitchState(Factory.Roll());
-        else if (Context.Input.Slashing)
-            SwitchState(Factory.Slash());
-        else if (Context.Input.Sniffing)
-            SwitchState(Factory.Sniff());
+        else if (!Context.Input.MoveIsPressed)
+            SwitchState(Factory.Idle());
     }
+    
+    protected override void ExitState() { }
 
     public override void InitializeSubState()
     {

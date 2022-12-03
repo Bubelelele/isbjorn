@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerGroundedState : PlayerBaseState
 {
     public PlayerGroundedState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
@@ -10,47 +8,41 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void EnterState()
     {
-        //Debug.Log("Entered grounded state.");
-        Context.MovementVectorY = ResetGravity();
-        Context.BounceVelocity = 0.0f;
+        ResetGravity();
         Context.CoyoteTimer = Context.CoyoteTime;
     }
 
     protected override void UpdateState()
     {
-        // Debug.LogWarning("CURRENT STATE: PlayerGroundedState");
         ShouldStateSwitch();
     }
-
-    protected override void ExitState()
-    {
-        
-    }
-
+    
     public override void ShouldStateSwitch()
     {
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        else if (Context.Input.JumpIsPressed)
+        else if (Context.JumpBufferTimer > 0.0f)
             SwitchState(Factory.Jump());
-        else if (Context.Input.Roaring)
-            SwitchState(Factory.Roar());
+        else if (Context.Input.JumpWasPressed)
+            SwitchState(Factory.Jump());
     }
 
+    protected override void ExitState() { }
+    
     public sealed override void InitializeSubState()
     {
-        if (!Context.Input.MoveIsPressed)
-            SetSubState(Factory.Idle());
+        if (Context.Input.RollIsPressed)
+            SetSubState(Factory.Roll());
         else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
-        else
+        else if (Context.Input.MoveIsPressed)
             SetSubState(Factory.Walk());
+        else
+            SetSubState(Factory.Idle());
     }
 
-    private float ResetGravity()
+    private void ResetGravity()
     {
-        Context.AppliedGravity = 0.0f;
-        Context.CurrentGravity = Context.MinimumGravity;
-        return Context.AppliedGravity;
+        Context.CurrentGravity = PlayerStateMachine.GroundedGravity;
     }
 }

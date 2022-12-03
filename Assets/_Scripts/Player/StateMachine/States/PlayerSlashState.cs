@@ -22,7 +22,7 @@ public class PlayerSlashState : PlayerBaseState
         // Debug.Log(_animationTimer);
         _animationTimer -= Time.deltaTime;
         if (_animationTimer < .2f) {
-            Physics.OverlapSphereNonAlloc(Context.PlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
+            // Physics.OverlapSphereNonAlloc(Context.PlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
             for (var i = 0; i < _hitColliders.Length; i++) {
                 var hitCollider = _hitColliders[i];
                 if (hitCollider == null) break;

@@ -2,65 +2,36 @@ using UnityEngine;
 
 public class PlayerRollState : PlayerBaseState
 {
-
-    public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
-    {
-    }
-
-    // private float _lastFrameAngle;
-    // private bool _groundedLastFrame;
-    // private float _eulerAngleVelocity = 10f;
+    private readonly int _isRolling = Animator.StringToHash("IsRolling");
+    
+    public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
 
     public override void EnterState()
     {
-        Context.capsuleCollider.radius = 1.7f;
-        Context.MovementVector = Vector3.zero;
-        Context.characterController.enabled = true;
-        Context.rollingScript.enabled = true;
-        Context.slopeDetection.enabled = true;
-        Context.movementScript.enabled = true;
-        Context.jumpingScript.enabled = true;
-        Context.groundCheck.SetActive(true);
-        Context.rotationPivot.SetActive(true);
-        Context.rollPivot.SetActive(false);
-        // Debug.LogWarning("CURRENT STATE: " + Context.CurrentState);
-        // Context.Animator.SetBool("IsRolling", true);
-        // Context.IsRolling = true;
+        Context.Animator.SetBool(_isRolling, true);
+        Context.CurrentRollingSpeed = Context.InitialRollingSpeed;
     }
 
     protected override void UpdateState()
     {
-        // Debug.LogWarning("CURRENT STATE: PlayerRollState");
-        // Debug.Log(Context.GroundAngleRollable);
-        // RotateBear();
-        // HandleRollingMovement();
+        OverrideInput();
+        Context.MovementVector = Context.BearTransform.forward * CalculateCurrentRollingSpeed();
+        if (Context.Animator.GetCurrentAnimatorStateInfo(0).IsName("RollingLoop"))
+            Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
         ShouldStateSwitch();
     }
-
-    protected override void ExitState()
-    {
-        Context.capsuleCollider.radius = 1;
-        Context.characterController.enabled = false;
-        Context.rollingScript.enabled = false;
-        Context.slopeDetection.enabled = false;
-        Context.movementScript.enabled = false;
-        Context.jumpingScript.enabled = false;
-        Context.groundCheck.SetActive(false);
-        Context.rotationPivot.SetActive(false);
-        Context.rollPivot.SetActive(true);
-        // Context.Animator.SetBool("IsRolling", false);
-        // Context.IsRolling = false;
-        // Debug.LogWarning("byebye");
-    }
-
+    
     public override void ShouldStateSwitch()
     {
         if (!Context.Input.RollIsPressed)
             SwitchState(Factory.Idle());
-        // if (Context.PlayerIsGrounded && !Context.Input.RollIsPressed)
-        //     SwitchState(Factory.Grounded());
-        // else if (!Context.PlayerIsGrounded && !Context.Input.RollIsPressed)
-        //     SwitchState(Factory.Fall());
+    }
+
+    protected override void ExitState()
+    {
+        Context.Animator.SetBool(_isRolling, false);
+        Context.CurrentRollingSpeed = 0.0f;
+        Context.Animator.speed = 1.0f;
     }
 
     public override void InitializeSubState()
@@ -68,35 +39,29 @@ public class PlayerRollState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    // private void HandleRollingMovement() {
-    //     
-    //     Context.PlayerMovement = Vector3.zero;
-    //     
-    //     Context.PlayerMovementZ = Context.RollMultiplier;
-    //     if (Context.RelativeSlopeAngle < 0f) Context.PlayerMovementZ = Context.RollMultiplier * 5;
-    //     
-    //     Context.PlayerMovementY = -10f;
-    //     if (!Context.PlayerIsGrounded) {
-    //         if (_groundedLastFrame && _lastFrameAngle < 0f) {
-    //             Context.PlayerMovement = Vector3.zero;
-    //             Context.PlayerMovementY = 100f;
-    //             return;
-    //         } else {
-    //             Context.PlayerMovementY = -1000f;
-    //         }
-    //
-    //         _groundedLastFrame = false;
-    //     } else {
-    //         _groundedLastFrame = true;
-    //     }
-    //     
-    //     _lastFrameAngle = Context.RelativeSlopeAngle;
-    //
-    //     Context.PlayerMovement = Context.SlopeAngleRotation * Context.PlayerMovement;
-    // }
-    //
-    // private void RotateBear()
-    // {
-    //     Context.PlayerTransform.GetChild(0).Rotate(Vector3.right * _eulerAngleVelocity, Space.Self);
-    // }
+    private void OverrideInput()
+    {
+        Context.MovementVector = Vector3.zero;
+        Context.BearTransform.forward = Vector3.Slerp(Context.BearTransform.forward, Context.MainCameraForward, Context.LookRotationSpeed * Time.deltaTime);
+    }
+
+    private float CalculateCurrentRollingSpeed()
+    {
+        switch (Context.RelativeSlopeAngle)
+        {
+            case < -1.0f when Context.CurrentRollingSpeed < Context.MaxRollingSpeed:
+                Context.CurrentRollingSpeed += Context.AccelerationRate * Time.deltaTime;
+                break;
+            case > 1.0f when Context.CurrentRollingSpeed > 0.0f:
+                Context.CurrentRollingSpeed -= Context.DecelerationRate * Time.deltaTime;
+                break;
+            case > 1.0f:
+                Context.CurrentRollingSpeed = 0.0f;
+                break;
+            default:
+                Context.CurrentRollingSpeed = Context.CurrentRollingSpeed;
+                break;
+        }
+        return Context.CurrentRollingSpeed;
+    }
 }

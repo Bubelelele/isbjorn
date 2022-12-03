@@ -24,7 +24,7 @@ public class Fishes : MonoBehaviour
 
     private void Awake()            
     {
-        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
+        fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
     }
 
     private void Start()

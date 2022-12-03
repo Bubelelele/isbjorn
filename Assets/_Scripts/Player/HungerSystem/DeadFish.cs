@@ -14,7 +14,7 @@ public class DeadFish : MonoBehaviour
     private void Awake()
     {
         food = this.gameObject.GetComponent<Food>();    
-        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
+        fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
     }
 
     private void Start()

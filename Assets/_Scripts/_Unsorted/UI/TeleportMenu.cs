@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +22,7 @@ public class TeleportMenu : MonoBehaviour {
     private void DelayedSceneLoad() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private void Teleport(int section) {
-        PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section - 1].position;
-        PlayerStateMachine.StaticPlayerTrans.rotation = teleportLocations[section - 1].rotation;
+        // PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section - 1].position;
+        // PlayerStateMachine.StaticPlayerTrans.rotation = teleportLocations[section - 1].rotation;
     }
 }

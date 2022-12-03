@@ -7,7 +7,8 @@ public class PlayerInput : MonoBehaviour
         public Vector2 MoveInput { get; private set; }
         public bool MoveIsPressed { get; private set; }
         public bool RunIsPressed { get; private set; }
-        public bool JumpIsPressed { get; private set; }
+        public bool JumpWasPressed { get; set; }
+        public bool JumpIsHeld { get; private set; }
         public bool RollIsPressed { get; private set; }
         public bool Roaring { get; private set; }
         public bool Slashing { get; private set; }
@@ -40,6 +41,12 @@ public class PlayerInput : MonoBehaviour
             _input.PlayerLand.Sniff.started += Sniff;
             _input.PlayerLand.Sniff.canceled += Sniff;
         }
+
+        private void Update()
+        {
+            CursorLockToggle();
+        }
+
         private void OnDisable()
         {
             _input.PlayerLand.Move.started -= StoreMoveInput;
@@ -75,31 +82,49 @@ public class PlayerInput : MonoBehaviour
 
         private void SetRun(InputAction.CallbackContext context)
         {
-            RunIsPressed = context.ReadValueAsButton();
+            RunIsPressed = context.started;
         }
         
         private void SetJump(InputAction.CallbackContext context)
         {
-            JumpIsPressed = context.ReadValueAsButton();
+            JumpWasPressed = JumpIsHeld = context.started;
         }
         
         private void SetRoll(InputAction.CallbackContext context)
         {
-            RollIsPressed = context.ReadValueAsButton();
+            RollIsPressed = context.started;
         }
 
         private void Slash(InputAction.CallbackContext context)
         {
-            Slashing = context.ReadValueAsButton();
+            Slashing = context.started;
         }
         
         private void Roar(InputAction.CallbackContext context)
         {
-            Roaring = context.ReadValueAsButton();
+            Roaring = context.started;
         }
 
         private void Sniff(InputAction.CallbackContext context)
         {
-            Sniffing = context.ReadValueAsButton();
+            Sniffing = context.started;
+        }
+        
+        private void CursorLockToggle()
+        {
+            switch (Cursor.lockState == CursorLockMode.Locked)
+            {
+                case true when Keyboard.current.escapeKey.wasPressedThisFrame:
+                    Cursor.lockState = CursorLockMode.None;
+                    break;
+                case false when Mouse.current.leftButton.wasPressedThisFrame:
+                    Invoke(nameof(LockCursor), 0.2f);
+                    break;
+            }
+        }
+        
+        private void LockCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
 }
