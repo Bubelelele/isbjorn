@@ -6,14 +6,20 @@ using UnityEngine.InputSystem;
 public class DeadFish : MonoBehaviour
 {
     public Transform player;
+    public bool foodInScene;
          
     public GameObject fishInMouth;                 
     public Food food;                              
     private Rigidbody _rB;
 
+
     private void Awake()
     {
-        food = this.gameObject.GetComponent<Food>();    
+        if (foodInScene)
+        {
+            food = this.gameObject.GetComponent<Food>();
+        }
+
         fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
     }
 

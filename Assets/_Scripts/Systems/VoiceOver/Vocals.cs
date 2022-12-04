@@ -30,7 +30,7 @@ public class Vocals : MonoBehaviour
 		UI.instance.SetSubtitle(clip.subtitle, clip.clip.length);
 	}
 	
-#if UNITY_EDITOR
+#if UNITY_EDITOR   //Vitoldas
 	private void Update()
 	{
 		if (source.isPlaying && Keyboard.current.fKey.isPressed)
