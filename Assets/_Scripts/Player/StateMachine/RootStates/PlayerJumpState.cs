@@ -34,7 +34,9 @@ public class PlayerJumpState : PlayerBaseState
     
     public sealed override void InitializeSubState()
     {
-        if (Context.Input.RunIsPressed)
+        if (Context.Input.RollIsPressed)
+            SwitchState(Factory.Roll());
+        else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());
         else if (Context.Input.MoveIsPressed)
             SetSubState(Factory.Walk());

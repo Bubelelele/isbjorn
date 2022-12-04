@@ -21,10 +21,13 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        else if (Context.JumpBufferTimer > 0.0f)
-            SwitchState(Factory.Jump());
-        else if (Context.Input.JumpWasPressed)
-            SwitchState(Factory.Jump());
+        else switch (Context.Input.RollIsPressed)
+        {
+            case false when Context.JumpBufferTimer > 0.0f:
+            case false when Context.Input.JumpWasPressed:
+                SwitchState(Factory.Jump());
+                break;
+        }
     }
 
     protected override void ExitState() { }

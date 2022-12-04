@@ -7822,7 +7822,7 @@ MonoBehaviour:
   runMultiplier: 1.75
   lookRotationSpeed: 5
   initialRollingSpeed: 5.5
-  maxRollingSpeed: 30
+  maxRollingSpeed: 50
   accelerationRate: 5.5
   decelerationRate: 5.5
   currentRollingSpeed: 0

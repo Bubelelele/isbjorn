@@ -48,6 +48,7 @@ public class PlayerHunger : MonoBehaviour
 
     void UpdateSliders()
     {
-        hungerSlider.value = hunger / maxHunger; 
+        if (hungerSlider != null)
+            hungerSlider.value = hunger / maxHunger; 
     }
 }

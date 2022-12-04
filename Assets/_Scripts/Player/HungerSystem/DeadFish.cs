@@ -44,7 +44,7 @@ public class DeadFish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        

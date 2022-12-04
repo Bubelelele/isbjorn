@@ -25,7 +25,7 @@ public class PlayerFallState : PlayerBaseState
     
     public override void ShouldStateSwitch()
     {
-        if (Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed || Context.Bounce)
+        if (!Context.Input.RollIsPressed && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
             SwitchState(Factory.Jump());
         else if (Context.PlayerIsGrounded)
             SwitchState(Factory.Grounded());

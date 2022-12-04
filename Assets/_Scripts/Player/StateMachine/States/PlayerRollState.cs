@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class PlayerRollState : PlayerBaseState
 {
-    private readonly int _isRolling = Animator.StringToHash("IsRolling");
-    
     public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
 
     public override void EnterState()
     {
-        Context.Animator.SetBool(_isRolling, true);
-        Context.CurrentRollingSpeed = Context.InitialRollingSpeed;
+        Context.Animator.SetBool("IsRolling", true);
+        Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
     }
 
     protected override void UpdateState()
@@ -23,13 +21,23 @@ public class PlayerRollState : PlayerBaseState
     
     public override void ShouldStateSwitch()
     {
-        if (!Context.Input.RollIsPressed)
-            SwitchState(Factory.Idle());
+        switch (Context.Input.RollIsPressed)
+        {
+            case false when Context.Input.RunIsPressed:
+                SwitchState(Factory.Run());
+                break;
+            case false when Context.Input.MoveIsPressed:
+                SwitchState(Factory.Walk());
+                break;
+            case false:
+                SwitchState(Factory.Idle());
+                break;
+        }
     }
 
     protected override void ExitState()
     {
-        Context.Animator.SetBool(_isRolling, false);
+        Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
     }

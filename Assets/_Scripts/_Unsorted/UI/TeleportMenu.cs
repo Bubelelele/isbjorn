@@ -22,7 +22,7 @@ public class TeleportMenu : MonoBehaviour {
     private void DelayedSceneLoad() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private void Teleport(int section) {
-        // PlayerStateMachine.StaticPlayerTrans.position = teleportLocations[section - 1].position;
-        // PlayerStateMachine.StaticPlayerTrans.rotation = teleportLocations[section - 1].rotation;
+        PlayerStateMachine.staticPlayerTransform.position = teleportLocations[section - 1].position;
+        PlayerStateMachine.staticPlayerTransform.rotation = teleportLocations[section - 1].rotation;
     }
 }
