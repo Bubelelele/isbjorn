@@ -55,7 +55,7 @@ public class Fishes : MonoBehaviour
                 StartCoroutine("stopFish");
                 
             }
-            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 5 && !isHit && isDown)
+            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 7 && !isHit && isDown)
             {
                 fishInMouth.SetActive(true);        //Kevin
                 fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin

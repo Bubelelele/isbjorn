@@ -6,6 +6,7 @@ public class SealPopUp : MonoBehaviour, IHittable
     public float distanceUntilShow = 20f;
     public float maxWaitTime = 10f;
     public int foodToAdd = 30;
+    public GameObject PoofEffect;
 
     private Animator sealAnim;
     private PlayerHunger playerHunger;
@@ -67,12 +68,16 @@ public class SealPopUp : MonoBehaviour, IHittable
 
     public void Hit()
     {
-        Debug.Log("1");
         if (showing)
         {
-            Debug.Log("2");
             playerHunger.AddFood(foodToAdd);
-            Destroy(gameObject);
+            sealAnim.SetTrigger("Die");
+            Destroy(gameObject, 4);
         }
+    }
+    private void OnDestroy()
+    {
+        GameObject effect = Instantiate(PoofEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        Destroy(effect, 1f);
     }
 }

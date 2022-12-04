@@ -5,10 +5,12 @@ public class IceSmash : MonoBehaviour, IHittable
     public GameObject[] fracturedObject;
     public bool onTouch;
     public AudioSource iceShatterSound;
+    public bool section2SlideIce;
 
     [Header("Snowball Section")] //Kev
     public bool snowball;       // Kev
     private SnowballSection snowballSection;    //Kev
+    
     private void Start()
     {
         if (snowball)   //Kev
@@ -19,15 +21,26 @@ public class IceSmash : MonoBehaviour, IHittable
 
     private void SpawnFracturedObject()
     {
-        iceShatterSound.pitch = Random.Range(0.9f, 1.1f);
-        iceShatterSound.Play();
+        if (section2SlideIce)
+        {
+            iceShatterSound.Play();
+        }
+		else
+		{
+            iceShatterSound.pitch = Random.Range(0.9f, 1.1f);
+            iceShatterSound.Play();
+        }
+        
         if (snowball)   //Kev
         {
             snowballSection.score++;    //Kev
         }
-        
+       
+
         fracturedObject[Random.Range(0, 3)].SetActive(true);
         gameObject.SetActive(false);
+
+		
     }
 
     private void OnTriggerEnter(Collider other)

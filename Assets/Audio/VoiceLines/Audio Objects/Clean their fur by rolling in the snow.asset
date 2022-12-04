@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Clean their fur by rolling in the snow
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: 334a904694415de4eae054bcfad7a1bc, type: 3}
+  subtitle: Polar bears clean their fur by rolling in the snow.

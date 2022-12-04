@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1743404374460344681}
   m_Layer: 0
-  m_Name: VoiceLinesPrefab Updated
+  m_Name: VoiceLinesPrefab  Cycle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
