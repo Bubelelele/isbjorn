@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 1054542293}
   - component: {fileID: 1054542295}
   - component: {fileID: 1054542294}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: JumpDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,7 +1034,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0.36862746}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.33333334}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1096,7 +1096,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5630,7 +5630,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 258ed6cefda52ae4baa4246f22ab1033, type: 2}
+  - {fileID: 2100000, guid: 9fcaaa0a5cab2404aaeb973ebaee6263, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6226,7 +6226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3563530900287207117}
   - component: {fileID: 2857432488470293632}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RollTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6367,7 +6367,7 @@ GameObject:
   - component: {fileID: 5292887530791054809}
   - component: {fileID: 4115808386810130258}
   - component: {fileID: 3643663169708530743}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LandingDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6579,7 +6579,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0.36862746}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.33333334}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6641,7 +6641,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11175,7 +11175,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 258ed6cefda52ae4baa4246f22ab1033, type: 2}
+  - {fileID: 2100000, guid: 9fcaaa0a5cab2404aaeb973ebaee6263, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
