@@ -174,7 +174,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void LookTowardsMovementVector()
     {
-        if (Input.RollIsPressed) return;
+        if (Input.RollIsPressed || _movementVector == Vector3.zero) return;
         BearTransform.forward = Vector3.Slerp(BearTransform.forward, _movementVector, lookRotationSpeed * Time.deltaTime);
     }
     

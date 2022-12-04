@@ -48,7 +48,8 @@ public class DeadFish : MonoBehaviour
             {
                 IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        
-                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      
+                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
+                transform.position = Vector3.zero;
                 Destroy(gameObject, 0.2f);
             }
         }
