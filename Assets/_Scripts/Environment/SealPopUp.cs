@@ -67,12 +67,11 @@ public class SealPopUp : MonoBehaviour, IHittable
 
     public void Hit()
     {
-        Debug.Log("1");
         if (showing)
         {
-            Debug.Log("2");
             playerHunger.AddFood(foodToAdd);
-            Destroy(gameObject);
+            sealAnim.SetTrigger("Die");
+            Destroy(gameObject, 4);
         }
     }
 }
