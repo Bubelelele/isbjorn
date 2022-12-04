@@ -44,8 +44,6 @@ public class PlayerGroundedState : PlayerBaseState
             SetSubState(Factory.Idle());
     }
 
-    public override void AnimationBehaviour() { }
-
     private void ResetGravity()
     {
         Context.CurrentGravity = PlayerStateMachine.GroundedGravity;

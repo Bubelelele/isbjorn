@@ -5,7 +5,7 @@ public abstract class PlayerBaseState
     protected PlayerStateFactory Factory { get; }
     
     private PlayerBaseState _currentRootState;
-    public PlayerBaseState currentSubState;
+    private PlayerBaseState _currentSubState;
 
     protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     {
@@ -20,7 +20,7 @@ public abstract class PlayerBaseState
     public void UpdateStates()
     {
         UpdateState();
-        currentSubState?.UpdateStates();
+        _currentSubState?.UpdateStates();
     }
     
     public abstract void ShouldStateSwitch();
@@ -40,8 +40,6 @@ public abstract class PlayerBaseState
     protected abstract void ExitState();
 
     public abstract void InitializeSubState();
-
-    public abstract void AnimationBehaviour();
     
     private void SetRootState(PlayerBaseState newRootState)
     {
@@ -50,7 +48,7 @@ public abstract class PlayerBaseState
     
     protected void SetSubState(PlayerBaseState newSubState)
     {
-        currentSubState = newSubState;
+        _currentSubState = newSubState;
         newSubState.SetRootState(this);
     }
 }

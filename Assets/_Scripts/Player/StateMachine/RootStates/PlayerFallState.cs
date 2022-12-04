@@ -54,12 +54,7 @@ public class PlayerFallState : PlayerBaseState
         else
             SetSubState(Factory.Idle());
     }
-
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     private void ApplyGravity(float fallGravity)
     {
         Context.CurrentGravity += fallGravity * Time.deltaTime;

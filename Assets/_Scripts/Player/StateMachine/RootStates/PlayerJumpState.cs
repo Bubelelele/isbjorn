@@ -48,12 +48,7 @@ public class PlayerJumpState : PlayerBaseState
         else
             SetSubState(Factory.Idle());
     }
-
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     private void Rise()
     {
         Context.CurrentGravity += Context.JumpRiseGravity * Time.deltaTime;

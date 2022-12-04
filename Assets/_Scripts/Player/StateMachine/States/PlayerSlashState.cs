@@ -2,44 +2,52 @@ using UnityEngine;
 
 public class PlayerSlashState : PlayerBaseState
 {
+    private float _animationTimer;
+    private readonly int _slash = Animator.StringToHash("Slash");
     private readonly Collider[] _hitColliders = new Collider[5];
 
-    public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
+    public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+    }
 
     public override void EnterState()
     {
-        Context.Animator.SetTrigger("Slash");
+        Context.Animator.SetTrigger(_slash);
+        _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     protected override void UpdateState()
     {
-        Context.Immovable = true;
+        // Debug.LogWarning("CURRENT STATE: PlayerSlashState");
+        // Debug.Log(_animationTimer);
+        _animationTimer -= Time.deltaTime;
+        if (_animationTimer < 1.5f) {
+            Physics.OverlapSphereNonAlloc(Context.transform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
+            for (var i = 0; i < _hitColliders.Length; i++)
+            {
+                var hitCollider = _hitColliders[i];
+                if (hitCollider == null) break;
+                if (hitCollider.TryGetComponent<IHittable>(out var hittable)) {
+                    hittable.Hit();
+                }
+            }
+        }
         ShouldStateSwitch();
+    }
+
+    protected override void ExitState()
+    {
+        
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.AnimationEnded)
+        if (_animationTimer < 0.0f)
             SwitchState(Factory.Idle());
     }
-    
-    protected override void ExitState()
-    {
-        Context.Immovable = false;
-        Context.AnimationEnded = false;
-    }
 
-    public override void InitializeSubState() { }
-
-    public override void AnimationBehaviour()
+    public override void InitializeSubState()
     {
-        Physics.OverlapSphereNonAlloc(PlayerStateMachine.staticPlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
-        foreach (var hitCollider in _hitColliders)
-        {
-            if (hitCollider == null) break;
-            if (hitCollider.TryGetComponent<IHittable>(out var hittable)) {
-                hittable.Hit();
-            }
-        }
+        throw new System.NotImplementedException();
     }
 }
