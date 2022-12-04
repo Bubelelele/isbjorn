@@ -9,7 +9,7 @@ public class PlayerRollState : PlayerBaseState
         Context.Animator.SetBool("IsRolling", true);
         Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
         Context.RollFeedback?.PlayFeedbacks();
-        Context.RollShakeFeedback?.PlayFeedbacks();
+        Context.RollContinuousImpulse.Active = true;
     }
 
     protected override void UpdateState()
@@ -19,6 +19,9 @@ public class PlayerRollState : PlayerBaseState
         if (Context.Animator.GetCurrentAnimatorStateInfo(0).IsName("RollingLoop"))
             Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
         ShouldStateSwitch();
+        var impulseStrength = Context.CurrentRollingSpeed.Remap(0, Context.MaxRollingSpeed,
+            Context.ImpulseStrengthRange.x, Context.ImpulseStrengthRange.y);
+        Context.RollContinuousImpulse.UpdateImpulseStrength(impulseStrength);
     }
     
     public override void ShouldStateSwitch()
@@ -43,7 +46,7 @@ public class PlayerRollState : PlayerBaseState
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
         Context.RollFeedback?.ResumeFeedbacks();
-        Context.RollShakeFeedback?.StopFeedbacks();
+        Context.RollContinuousImpulse.Active = false;
     }
 
     public override void InitializeSubState()
