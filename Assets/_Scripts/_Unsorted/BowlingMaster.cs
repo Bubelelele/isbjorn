@@ -23,6 +23,9 @@ public class BowlingMaster : MonoBehaviour
     private GameObject _bowlScore;
     public bool scoreIsActive = false;
 
+    //public ScriptableObject strikeVoiceLine;
+    public AudioObject strikeSound;
+
 
     Vector3[] positions;
 
@@ -85,7 +88,11 @@ public class BowlingMaster : MonoBehaviour
             //Debug.LogError("Win");
             //hasEntered = false;
             playerStateMachine.enabled = true;
+
+            Vocals.instance.Say(strikeSound);
+            
             StartCoroutine(TurnOffWalrusi());
+
 
         }
         else
