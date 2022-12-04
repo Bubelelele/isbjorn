@@ -43,6 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7824733148717201255}
   - component: {fileID: 7824733148717201252}
+  - component: {fileID: 3327848209573814903}
+  - component: {fileID: 4103046752040915415}
   m_Layer: 0
   m_Name: SealPopUp
   m_TagString: Untagged
@@ -86,6 +88,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3327848209573814903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824733148717201253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f959ea317f0e5e45b977893e689f56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceUntilShow: 20
+  maxWaitTime: 10
+  foodToAdd: 30
+--- !u!135 &4103046752040915415
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824733148717201253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7824733147173310147
 PrefabInstance:
   m_ObjectHideFlags: 0
