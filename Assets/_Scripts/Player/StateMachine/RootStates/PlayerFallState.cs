@@ -30,7 +30,13 @@ public class PlayerFallState : PlayerBaseState
     {
         if (!Context.Input.RollIsPressed && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
             SwitchState(Factory.Jump());
-        else if (Context.PlayerIsGrounded) {
+        else if (Context.Bounce) 
+        {
+            SwitchState(Factory.Jump());
+            Context.WalrusFeedback?.PlayFeedbacks();
+        }
+        else if (Context.PlayerIsGrounded) 
+        {
             SwitchState(Factory.Grounded());
             Context.LandingFeedback?.PlayFeedbacks();
         }

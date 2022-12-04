@@ -15,6 +15,7 @@ public class PlayerSniffState : PlayerBaseState
     {
         Context.Animator.SetTrigger(_sniff);
         _animationTimer = Context.Animator.GetCurrentAnimatorStateInfo(0).length;
+        Context.SniffFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()
