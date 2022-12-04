@@ -14,7 +14,7 @@ public class DeadFish : MonoBehaviour
     private void Awake()
     {
         food = this.gameObject.GetComponent<Food>();    
-        fishInMouth = GameObject.Find("Player/RollPivot/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
+        fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
     }
 
     private void Start()
@@ -44,7 +44,7 @@ public class DeadFish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 3)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        

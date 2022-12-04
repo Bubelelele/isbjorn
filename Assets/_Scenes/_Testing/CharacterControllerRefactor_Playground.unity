@@ -1912,7 +1912,7 @@ Transform:
   m_GameObject: {fileID: 1794309438}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 3.75, y: 0, z: -5}
-  m_LocalScale: {x: 2.5, y: 1, z: 10}
+  m_LocalScale: {x: 2.5, y: 1, z: 182.32}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381678474}
@@ -4246,12 +4246,12 @@ PrefabInstance:
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000042968895
+      value: -0.0000000042854964
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.5777373e-10
+      value: 3.5682507e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147604478214, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
@@ -4301,12 +4301,12 @@ PrefabInstance:
     - target: {fileID: 5372679148202967686, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1.3932284e-23
+      value: 4.8936375e-31
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148202967686, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.0033677e-23
+      value: 4.173475e-32
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148379437240, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
@@ -4331,12 +4331,12 @@ PrefabInstance:
     - target: {fileID: 5372679148379437240, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000042711257
+      value: -0.000000004275611
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148379437240, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.761483e-10
+      value: 4.7664833e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148708106684, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
@@ -4376,12 +4376,12 @@ PrefabInstance:
     - target: {fileID: 5372679149030773957, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008548231
+      value: -0.000000008550472
       objectReference: {fileID: 0}
     - target: {fileID: 5372679149030773957, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.529634e-10
+      value: 9.532133e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5372679149298110152, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
@@ -4636,6 +4636,7 @@ MonoBehaviour:
   jumpBoost: 0
   animationMultiplier: 30
   camSpeed: 10
+  rollingSFX: {fileID: 0}
   isRolling: 0
 --- !u!143 &894641085009321628
 CharacterController:
@@ -4705,50 +4706,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe82afb700d764ab28af1771a6c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  isOnSlope: 0
-  continualJumpForceMultiplier: 0.1
-  jumpTime: 0.175
-  jumpTimeCounter: 0
-  playerIsJumping: 0
-  maximumJumpHeight: 1
-  maximumJumpTime: 0.5
-  isFalling: 0
-  groundAngleRollable: 0
-  isRolling: 0
-  groundSlopeAngle: 0
-  maxRollableSlopeAngle: -45
-  rollMultiplier: 80
-  characterController: {fileID: 0}
-  rollingScript: {fileID: 0}
-  slopeDetection: {fileID: 0}
-  movementScript: {fileID: 0}
-  jumpingScript: {fileID: 0}
-  groundCheck: {fileID: 5126629253944448706}
-  rotationPivot: {fileID: 945682443012474263}
-  rollPivot: {fileID: 1736147468886404775}
-  bouncing: 0
-  lastJumpWasBounce: 0
-  walrusLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  sphereRadiusMultiplier: 0.9
-  groundCheckDistance: 0.05
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   movementSpeed: 5.5
   runMultiplier: 2
+  lookRotationSpeed: 0
+  initialRollingSpeed: 0
+  maxRollingSpeed: 0
+  accelerationRate: 0
+  decelerationRate: 0
+  currentRollingSpeed: 0
+  fallGravity: 0
   currentGravity: 0
-  minimumGravity: 0
-  maximumGravity: -100
-  incrementAmount: -5
-  incrementFrequency: 0.05
-  playerInAirTimer: 0
-  appliedGravity: 0
-  initialVelocity: 35
-  riseDecrementAmount: 5
-  fallIncrementAmount: -10
+  groundCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerIsGrounded: 0
+  initialJumpVelocity: 0
+  jumpRiseGravity: 0
+  jumpFallGravity: 0
+  jumpBufferTime: 0
+  jumpBufferTimer: 0
   coyoteTime: 0.15
   coyoteTimer: 0
 --- !u!54 &894641085086557279
@@ -7311,21 +7287,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1647278106955348915, guid: 164faaa1bee7d6748af98f1366edb627,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 196035513}
-    - target: {fileID: 5417099620478373762, guid: 164faaa1bee7d6748af98f1366edb627,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 196035513}
-    - target: {fileID: 5417099620478373762, guid: 164faaa1bee7d6748af98f1366edb627,
-        type: 3}
-      propertyPath: cinemachineFreeLook
-      value: 
-      objectReference: {fileID: 336465752}
     - target: {fileID: 8968036821010955924, guid: 164faaa1bee7d6748af98f1366edb627,
         type: 3}
       propertyPath: m_Name
@@ -11391,50 +11352,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe82afb700d764ab28af1771a6c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  isOnSlope: 0
-  continualJumpForceMultiplier: 0.1
-  jumpTime: 0.175
-  jumpTimeCounter: 0
-  playerIsJumping: 0
-  maximumJumpHeight: 1
-  maximumJumpTime: 0.5
-  isFalling: 0
-  groundAngleRollable: 0
-  isRolling: 0
-  groundSlopeAngle: 0
-  maxRollableSlopeAngle: -45
-  rollMultiplier: 80
-  characterController: {fileID: 0}
-  rollingScript: {fileID: 0}
-  slopeDetection: {fileID: 0}
-  movementScript: {fileID: 0}
-  jumpingScript: {fileID: 0}
-  groundCheck: {fileID: 3650388024799424367}
-  rotationPivot: {fileID: 8688015008366033978}
-  rollPivot: {fileID: 7896413617897379594}
-  bouncing: 0
-  lastJumpWasBounce: 0
-  walrusLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  sphereRadiusMultiplier: 0.9
-  groundCheckDistance: 0.05
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   movementSpeed: 5.5
   runMultiplier: 2
+  lookRotationSpeed: 0
+  initialRollingSpeed: 0
+  maxRollingSpeed: 0
+  accelerationRate: 0
+  decelerationRate: 0
+  currentRollingSpeed: 0
+  fallGravity: 0
   currentGravity: 0
-  minimumGravity: 0
-  maximumGravity: -100
-  incrementAmount: -5
-  incrementFrequency: 0.05
-  playerInAirTimer: 0
-  appliedGravity: 0
-  initialVelocity: 50
-  riseDecrementAmount: 5
-  fallIncrementAmount: -5
+  groundCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerIsGrounded: 0
+  initialJumpVelocity: 0
+  jumpRiseGravity: 0
+  jumpFallGravity: 0
+  jumpBufferTime: 0
+  jumpBufferTimer: 0
   coyoteTime: 1
   coyoteTimer: 0
 --- !u!54 &8784233578942930418

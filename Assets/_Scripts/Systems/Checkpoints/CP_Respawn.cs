@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +14,7 @@ public class CP_Respawn : MonoBehaviour
 
     private void Start()
     {
-        currentResLoc = PlayerStateMachine.StaticPlayerTrans.position;
+        currentResLoc = PlayerStateMachine.staticPlayerTransform.position;
     }
 
     public void RespawnPlayer()

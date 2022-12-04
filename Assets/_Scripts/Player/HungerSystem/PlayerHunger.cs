@@ -15,6 +15,7 @@ public class PlayerHunger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hungerSlider = FindObjectOfType<Slider>();
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class PlayerHunger : MonoBehaviour
 
     void UpdateSliders()
     {
-        hungerSlider.value = hunger / maxHunger; 
+        if (hungerSlider != null)
+            hungerSlider.value = hunger / maxHunger; 
     }
 }

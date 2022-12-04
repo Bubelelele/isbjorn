@@ -17,7 +17,7 @@ public class ClosestFoodFinder : MonoBehaviour
     {
         float distanceToClosestFood = Mathf.Infinity;
         Food closestFood = null;
-        Food[] allFood = GameObject.FindObjectsOfType<Food>();
+        Food[] allFood = FindObjectsOfType<Food>();
 
         foreach (Food currentFood in allFood)
         {
@@ -29,6 +29,8 @@ public class ClosestFoodFinder : MonoBehaviour
                 closestFoodLocation = closestFood.transform.position;
             }
         }
-        Debug.DrawLine(this.transform.position, closestFood.transform.position); 
+
+        if (closestFood != null)
+            Debug.DrawLine(this.transform.position, closestFood.transform.position); 
     }
 }

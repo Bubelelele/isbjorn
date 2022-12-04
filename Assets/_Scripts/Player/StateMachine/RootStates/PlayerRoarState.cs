@@ -15,7 +15,7 @@ public class PlayerRoarState : PlayerBaseState
     {
         Context.Animator.SetTrigger(_roar);
         _animationTimer = 2.2f;
-        Context.RoarFeedback?.PlayFeedbacks();
+        // Context.RoarFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()

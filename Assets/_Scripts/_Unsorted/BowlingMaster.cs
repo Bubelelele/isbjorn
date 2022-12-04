@@ -138,9 +138,9 @@ public class BowlingMaster : MonoBehaviour
 
                 //other.GetComponent<PlayerStateMachine>().Input.enabled = false;
                 //other.GetComponent<PlayerStateMachine>().CurrentState =  ;
-                StartCoroutine(StopPlayer());
+                // StartCoroutine(StopPlayer());
             //playerStateMachine.enabled = false; 
-            Invoke("CalculateScore", 6f);
+            // Invoke("CalculateScore", 6f);
             //hasEntered = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
