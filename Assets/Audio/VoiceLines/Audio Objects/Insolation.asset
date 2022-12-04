@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
   m_Name: Insolation
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  subtitle: 
+  clip: {fileID: 8300000, guid: b228485abc02e9e4e869fdc4a372223c, type: 3}
+  subtitle: Staying clean also helps the insulating properties of their fur.
