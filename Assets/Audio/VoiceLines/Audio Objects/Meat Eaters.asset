@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa070150a0231114b9b0f4b7404a9ad2, type: 3}
+  m_Name: Meat Eaters
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 1c805eabfab18a148bf8c6ccce972ab5, type: 3}
+  subtitle: Unlike other bear species, polar bears almost only eat meat
