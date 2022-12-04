@@ -51,6 +51,8 @@ public class PlayerStateMachine : MonoBehaviour
     [field: SerializeField] public MMFeedbacks LandingFeedback { get; private set; }
     [field: SerializeField] public MMFeedbacks RoarFeedback { get; private set; }
     [field: SerializeField] public MMFeedbacks JumpFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks RollFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks RollShakeFeedback { get; private set; }
 
     [Header("Basic Movement")]
     [SerializeField] private float movementSpeed;

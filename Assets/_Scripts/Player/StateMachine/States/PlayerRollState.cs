@@ -8,6 +8,8 @@ public class PlayerRollState : PlayerBaseState
     {
         Context.Animator.SetBool("IsRolling", true);
         Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
+        Context.RollFeedback?.PlayFeedbacks();
+        Context.RollShakeFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()
@@ -40,6 +42,8 @@ public class PlayerRollState : PlayerBaseState
         Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
+        Context.RollFeedback?.ResumeFeedbacks();
+        Context.RollShakeFeedback?.StopFeedbacks();
     }
 
     public override void InitializeSubState()
