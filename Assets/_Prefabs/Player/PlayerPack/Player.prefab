@@ -7818,6 +7818,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe82afb700d764ab28af1771a6c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LandingFeedback>k__BackingField: {fileID: 24700896}
+  <RoarFeedback>k__BackingField: {fileID: 282275992}
+  <JumpFeedback>k__BackingField: {fileID: 1969628347}
   movementSpeed: 10
   runMultiplier: 1.75
   lookRotationSpeed: 5
