@@ -23,8 +23,10 @@ public class BowlingMaster : MonoBehaviour
     private GameObject _bowlScore;
     public bool scoreIsActive = false;
 
-    //public ScriptableObject strikeVoiceLine;
-    public AudioObject strikeSound;
+    
+    public AudioObject strikeSound;     //Mathias
+    public AudioObject bowlingFail;     //Mathias
+    public GameObject speedVoiceLine;   //Mathias
 
 
     Vector3[] positions;
@@ -89,8 +91,8 @@ public class BowlingMaster : MonoBehaviour
             //hasEntered = false;
             playerStateMachine.enabled = true;
 
-            Vocals.instance.Say(strikeSound);
-            
+            Vocals.instance.Say(strikeSound);     //Mathias
+
             StartCoroutine(TurnOffWalrusi());
 
 
@@ -135,6 +137,7 @@ public class BowlingMaster : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.RollIsPressed) //&& !hasEntered)
         {
+            speedVoiceLine.SetActive(false);
             //guard.enabled = false; 
             guard.SetActive(false);
             //for (int i = 0; i < pins.Count; i++) //Walrus falls over when roll
@@ -162,6 +165,8 @@ public class BowlingMaster : MonoBehaviour
 
     void ResetPins()
     {
+        Vocals.instance.Say(bowlingFail); //Mathias
+        speedVoiceLine.SetActive(true);   //Mathias
         //guard.enabled = true; 
         guard.SetActive(true);
         for (int i = 0; i < pins.Count; i++)
