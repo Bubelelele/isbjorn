@@ -10,12 +10,14 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector3 MainCameraForward => _mainCameraForward;
     public Transform BearTransform { get; private set; }
     public Animator Animator { get; private set; }
-    
+    public bool AnimationEnded { get; set; }
+
     // Basic Movement.
     public Vector3 MovementVector { get => _movementVector; set => _movementVector = value; }
     public float MovementSpeed => movementSpeed;
     public float RunMultiplier => runMultiplier;
     public float LookRotationSpeed => lookRotationSpeed;
+    public bool Immovable { get; set; }
     
     // Rolling.
     public float InitialRollingSpeed => initialRollingSpeed;
@@ -94,7 +96,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Rigidbody _rigidbody;
     private Transform _mainCameraTransform;
     private Vector3 _mainCameraForward;
-    
+
     // Basic Movement.
     private Vector3 _movementVector;
     private const float Drag = 25.0f;
@@ -119,7 +121,8 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        _movementVector = MoveInput();
+        if (!Immovable)
+            _movementVector = MoveInput();
         ProjectVectorToCameraCoordinateSpace(ref _movementVector);
         LookTowardsMovementVector();
         CurrentState.UpdateStates();
@@ -174,7 +177,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void LookTowardsMovementVector()
     {
-        if (Input.RollIsPressed || _movementVector == Vector3.zero) return;
+        if (Immovable) return;
         BearTransform.forward = Vector3.Slerp(BearTransform.forward, _movementVector, lookRotationSpeed * Time.deltaTime);
     }
     
@@ -187,5 +190,16 @@ public class PlayerStateMachine : MonoBehaviour
             vectorToProject = slopeAngleRotation * vectorToProject;
             RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, BearTransform.forward) - 90.0f;
         }
+    }
+
+    public void AnimationEvent()
+    {
+        CurrentState.AnimationBehaviour();
+        CurrentState.currentSubState.AnimationBehaviour();
+    }
+
+    public void AnimationEndedEvent()
+    {
+        AnimationEnded = true;
     }
 }

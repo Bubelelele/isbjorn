@@ -11,7 +11,9 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.Slashing)
+        if (Context.Input.Sniffing)
+            SwitchState(Factory.Sniff());
+        else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());
         else if (Context.Input.RollIsPressed)
             SwitchState(Factory.Roll());
@@ -24,6 +26,11 @@ public class PlayerIdleState : PlayerBaseState
     protected override void ExitState() { }
 
     public override void InitializeSubState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AnimationBehaviour()
     {
         throw new System.NotImplementedException();
     }
