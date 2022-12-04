@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -46,6 +47,10 @@ public class PlayerStateMachine : MonoBehaviour
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
 
     #region Inspector
+    
+    [field: SerializeField] public MMFeedbacks LandingFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks RoarFeedback { get; private set; }
+    [field: SerializeField] public MMFeedbacks JumpFeedback { get; private set; }
 
     [Header("Basic Movement")]
     [SerializeField] private float movementSpeed;

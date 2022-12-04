@@ -14,6 +14,7 @@ public class PlayerJumpState : PlayerBaseState
         Context.JumpBufferTimer = 0.0f;
         Context.CoyoteTimer = 0.0f;
         Context.Input.JumpWasPressed = false;
+        Context.JumpFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()
