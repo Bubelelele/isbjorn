@@ -128,8 +128,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.129548, y: 1.2225704, z: 4.9660907}
-  m_Center: {x: -0.019279957, y: 2.9703345, z: -0.034406424}
+  m_Size: {x: 5.129548, y: 11.2704735, z: 4.9660907}
+  m_Center: {x: -0.019279957, y: 7.9942875, z: -0.034406424}
 --- !u!114 &68320551582472571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,6 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   rigidbodiesOnPlatform: []
-  characterControllersOnPlatform: []
 --- !u!1 &4011525359100156010
 GameObject:
   m_ObjectHideFlags: 0
