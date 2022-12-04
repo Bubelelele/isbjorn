@@ -8,7 +8,10 @@ public class PlayerFallState : PlayerBaseState
         InitializeSubState();
     }
 
-    public override void EnterState() { }
+    public override void EnterState()
+    {
+        Context.Animator.SetBool("IsFalling", true);
+    }
     
     protected override void UpdateState()
     {
@@ -36,6 +39,8 @@ public class PlayerFallState : PlayerBaseState
     protected override void ExitState()
     {
         Context.PlayerIsLandingJump = false;
+        Context.Animator.SetBool("IsFalling", false);
+
     }
 
     public sealed override void InitializeSubState()

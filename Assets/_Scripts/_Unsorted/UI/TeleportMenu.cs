@@ -23,6 +23,6 @@ public class TeleportMenu : MonoBehaviour {
 
     private void Teleport(int section) {
         PlayerStateMachine.staticPlayerTransform.position = teleportLocations[section - 1].position;
-        PlayerStateMachine.staticPlayerTransform.rotation = teleportLocations[section - 1].rotation;
+        PlayerStateMachine.staticPlayerTransform.GetChild(0).rotation = teleportLocations[section - 1].rotation;
     }
 }

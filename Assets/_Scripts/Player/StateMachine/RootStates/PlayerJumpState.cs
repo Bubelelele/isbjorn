@@ -14,6 +14,7 @@ public class PlayerJumpState : PlayerBaseState
         Context.JumpBufferTimer = 0.0f;
         Context.CoyoteTimer = 0.0f;
         Context.Input.JumpWasPressed = false;
+        Context.Animator.SetBool("IsJumping", true);
         Context.JumpFeedback?.PlayFeedbacks();
     }
 
@@ -30,8 +31,11 @@ public class PlayerJumpState : PlayerBaseState
         Context.PlayerIsLandingJump = true;
         SwitchState(Factory.Fall());
     }
-    
-    protected override void ExitState() { }
+
+    protected override void ExitState()
+    {
+        Context.Animator.SetBool("IsJumping", false);
+    }
     
     public sealed override void InitializeSubState()
     {
