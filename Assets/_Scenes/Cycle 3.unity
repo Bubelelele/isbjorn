@@ -4041,6 +4041,11 @@ PrefabInstance:
       propertyPath: blackOutSquare
       value: 
       objectReference: {fileID: 813186555}
+    - target: {fileID: 5891074104611019595, guid: 17f076e1b985ebf4ca678df94bbdaa55,
+        type: 3}
+      propertyPath: blackSquareImage
+      value: 
+      objectReference: {fileID: 813186555}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17f076e1b985ebf4ca678df94bbdaa55, type: 3}
 --- !u!1001 &2031385190
@@ -4541,17 +4546,17 @@ PrefabInstance:
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.069525346
+      value: 0.06952535
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017693017
+      value: 0.00000001769302
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147407665506, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000012330971
+      value: -0.0000000012330974
       objectReference: {fileID: 0}
     - target: {fileID: 5372679147407665507, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
