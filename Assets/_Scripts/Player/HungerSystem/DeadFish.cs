@@ -18,6 +18,8 @@ public class DeadFish : MonoBehaviour
         if (foodInScene)
         {
             food = this.gameObject.GetComponent<Food>();
+            _rB = gameObject.GetComponent<Rigidbody>();
+
         }
 
         fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
@@ -30,8 +32,12 @@ public class DeadFish : MonoBehaviour
         fishInMouth.SetActive(false);      
         
 
-        _rB = gameObject.GetComponent<Rigidbody>();
-        StartCoroutine("TurnOffGravity");
+        //_rB = gameObject.GetComponent<Rigidbody>();
+        if (foodInScene)
+        {
+            StartCoroutine("TurnOffGravity");
+
+        }
 
 
 
@@ -50,11 +56,17 @@ public class DeadFish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            IconSystem.instance.PickUpFish();
+
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                IconSystem.instance.FishInMouth();
+                //IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        
-                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
+                if (foodInScene)
+                {
+                    fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
+
+                }
                 transform.position = Vector3.zero;
                 Destroy(gameObject, 0.2f);
             }

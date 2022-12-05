@@ -31,7 +31,9 @@ public class FishInMouth : MonoBehaviour
     {
         if (myGameObject.activeInHierarchy)
         {
-            hasFish = true; 
+            hasFish = true;
+            IconSystem.instance.FishInMouth();
+
         }
 
         if (Keyboard.current.fKey.wasPressedThisFrame && hasFish)
@@ -56,7 +58,9 @@ public class FishInMouth : MonoBehaviour
         playerHunger.AddFood(foodAmount);
        //hasEaten = false; 
         gameObject.SetActive(false);
-        IconSystem.instance.FishInMouth();
+        //IconSystem.instance.FishInMouth();
+        IconSystem.instance.TextEnabled(false);
+
     }
 
     private void DropFish()
