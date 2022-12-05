@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Cycle 2.unity
     guid: 6338bbb9f519ece4bbbb1b8d39a7efc5
   - enabled: 1
-    path: Assets/_Scenes/Cycle 3 (Deprecated).unity
-    guid: 4d0d64d3247e4c742b1a92127c52faa2
-  - enabled: 1
-    path: Assets/Imports/Feel/MMTools/Demos/MMSceneLoading/MMSceneLoadingDemoSceneB.unity
-    guid: 352d34cac2435634fb99618d19a3929c
+    path: Assets/_Scenes/Cycle 3.unity
+    guid: 630f3f12720bcc541a2bb696f97b101c
   m_configObjects: {}
