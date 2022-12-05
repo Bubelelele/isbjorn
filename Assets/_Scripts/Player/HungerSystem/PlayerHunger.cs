@@ -65,8 +65,8 @@ public class PlayerHunger : MonoBehaviour {
 
     private void UpdateFeedback() {
         if (lowFoodFeedback.IsPlaying) {
-            if (hunger >= 20) lowFoodFeedback.StopFeedbacks();
-        } else if (hunger < 20) {
+            if (hunger >= lowFoodPoint) lowFoodFeedback.StopFeedbacks();
+        } else if (hunger < lowFoodPoint) {
             lowFoodFeedback.PlayFeedbacks();
         }
     }
