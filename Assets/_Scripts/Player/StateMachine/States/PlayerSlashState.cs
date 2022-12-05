@@ -46,7 +46,7 @@ public class PlayerSlashState : PlayerBaseState
 
     public override void AnimationBehaviour()
     {
-        Physics.OverlapSphereNonAlloc(PlayerStateMachine.staticPlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
+        Physics.OverlapSphereNonAlloc(PlayerStateMachine.StaticPlayerTransform.position + new Vector3(0, 1.5f, 1.8f), 4f, _hitColliders);
         foreach (var hitCollider in _hitColliders)
         {
             if (hitCollider == null) break;

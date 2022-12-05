@@ -1,11 +1,10 @@
-using System;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
     // General.
-    public static Transform staticPlayerTransform;
+    public static Transform StaticPlayerTransform;
     public PlayerBaseState CurrentState { get; set; }
     public PlayerInput Input { get; private set; }
     public Vector3 MainCameraForward => _mainCameraForward;
@@ -29,7 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float CurrentRollingSpeed { get => currentRollingSpeed; set => currentRollingSpeed = value; }
     
     // Gravity.
-    public const float GroundedGravity = 0.0f;
+    public const float GroundedGravity = -0.25f;
     public float FallGravity => fallGravity;
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
     
@@ -102,12 +101,13 @@ public class PlayerStateMachine : MonoBehaviour
     private Rigidbody _rigidbody;
     private Transform _mainCameraTransform;
     private Vector3 _mainCameraForward;
+    private Vector3 _mainCameraRight;
 
     // Basic Movement.
     private Vector3 _movementVector;
-    private const float Drag = 25.0f;
-    private const float CounterDragMultiplier = Drag * 2.0f;
-    
+    private const float _drag = 25.0f;
+    private const float _counterDragMultiplier = _drag * 2.0f;
+
     // Ground Info.
     private RaycastHit _groundCheckHitInfo;
     
@@ -122,16 +122,15 @@ public class PlayerStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         playerIsGrounded = GroundCheck();
-        _rigidbody.AddRelativeForce(_movementVector * CounterDragMultiplier, ForceMode.Force);
+        _rigidbody.AddRelativeForce(_movementVector * _counterDragMultiplier, ForceMode.Force);
     }
     
     private void Update()
     {
+        CreateCameraCoordinateSpaceVectors();
         // if (RequiresInput)
             _movementVector = MoveInput();
-        // Need to decouple the camera direction code from the projection code so that we can combine the above and below if statements.
-        ProjectVectorToCameraCoordinateSpace(ref _movementVector);
-        // if (RequiresInput)
+            ProjectVectorToCameraCoordinateSpace(ref _movementVector);
             LookTowardsMovementVector();
         CurrentState.UpdateStates();
         _movementVector.y = currentGravity;
@@ -147,11 +146,11 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void InitializeVariables()
     {
-        staticPlayerTransform = transform;
+        StaticPlayerTransform = transform;
         Input = FindObjectOfType<PlayerInput>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.drag = Drag;
+        _rigidbody.drag = _drag;
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
         BearTransform = isBearThin ? transform.GetChild(1) : transform.GetChild(0);
@@ -164,7 +163,7 @@ public class PlayerStateMachine : MonoBehaviour
         var capsuleColliderRadius = _capsuleCollider.radius;
         var origin = transform.position + new Vector3(0.0f, capsuleColliderRadius, 0.0f);
         var sphereCastRadius = capsuleColliderRadius * 0.9f;
-        var sphereCastTravelDistance = capsuleColliderRadius - sphereCastRadius + 0.05f;
+        var sphereCastTravelDistance = capsuleColliderRadius - sphereCastRadius + 0.25f;
         return Physics.SphereCast(origin, sphereCastRadius, Vector3.down, out _groundCheckHitInfo, sphereCastTravelDistance, groundCheckLayerMask);
     }
     
@@ -172,20 +171,25 @@ public class PlayerStateMachine : MonoBehaviour
     {
         return new Vector3(Input.MoveInput.x, 0.0f, Input.MoveInput.y);
     }
+
+    private void CreateCameraCoordinateSpaceVectors()
+    {
+        _mainCameraForward = _mainCameraTransform.forward;
+        _mainCameraRight = _mainCameraTransform.right;
+        _mainCameraForward.y = 0.0f;
+        _mainCameraRight.y = 0.0f;
+        _mainCameraForward.Normalize();
+        _mainCameraRight.Normalize();
+    }
     
     private void ProjectVectorToCameraCoordinateSpace(ref Vector3 vectorToProject)
     {
-        _mainCameraForward = _mainCameraTransform.forward;
-        var right = _mainCameraTransform.right;
-        _mainCameraForward.y = 0.0f;
-        right.y = 0.0f;
-        _mainCameraForward.Normalize();
-        right.Normalize();
-        vectorToProject = vectorToProject.x * right + vectorToProject.z * _mainCameraForward;
+        vectorToProject = vectorToProject.x * _mainCameraRight + vectorToProject.z * _mainCameraForward;
     }
     
     private void LookTowardsMovementVector()
     {
+        if (_movementVector == Vector3.zero) return;
         BearTransform.forward = Vector3.Slerp(BearTransform.forward, _movementVector, lookRotationSpeed * Time.deltaTime);
     }
     
@@ -194,7 +198,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (playerIsGrounded && !Input.JumpWasPressed)
         {
             var localGroundCheckHitInfoNormal = transform.InverseTransformDirection(_groundCheckHitInfo.normal);
-            var slopeAngleRotation = Quaternion.FromToRotation(staticPlayerTransform.up, localGroundCheckHitInfoNormal);
+            var slopeAngleRotation = Quaternion.FromToRotation(StaticPlayerTransform.up, localGroundCheckHitInfoNormal);
             vectorToProject = slopeAngleRotation * vectorToProject;
             RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, BearTransform.forward) - 90.0f;
         }

@@ -4,8 +4,8 @@ public class PlayerRoarState : PlayerBaseState
 
     public override void EnterState()
     {
+        Context.Input.RoarWasPressed = false;
         Context.Animator.SetTrigger("Roar");
-        Context.RoarFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()
@@ -15,7 +15,7 @@ public class PlayerRoarState : PlayerBaseState
 
     protected override void ExitState()
     {
-        
+        Context.Animator.ResetTrigger("Roar");
     }
 
     public override void ShouldStateSwitch()
@@ -38,6 +38,6 @@ public class PlayerRoarState : PlayerBaseState
 
     public override void AnimationBehaviour()
     {
-        throw new System.NotImplementedException();
+        Context.RoarFeedback?.PlayFeedbacks();
     }
 }

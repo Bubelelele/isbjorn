@@ -14,7 +14,7 @@ public class CP_Respawn : MonoBehaviour
 
     private void Start()
     {
-        currentResLoc = PlayerStateMachine.staticPlayerTransform.position;
+        currentResLoc = PlayerStateMachine.StaticPlayerTransform.position;
     }
 
     public void RespawnPlayer()

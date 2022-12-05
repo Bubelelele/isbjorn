@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         if (Context.Input.Sniffing)
             SwitchState(Factory.Sniff());
-        else if (Context.Input.Roaring)
+        else if (Context.Input.RoarWasPressed)
             SwitchState(Factory.Roar());
         else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());

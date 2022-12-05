@@ -19,12 +19,12 @@ public class SealPopUp : MonoBehaviour, IHittable
     private void Start()
     {
         sealAnim = GetComponent<Animator>();
-        playerHunger = PlayerStateMachine.staticPlayerTransform.gameObject.GetComponent<PlayerHunger>();
+        playerHunger = PlayerStateMachine.StaticPlayerTransform.gameObject.GetComponent<PlayerHunger>();
 
     }
     private void Update()
     {
-        distance = Vector3.Distance(transform.position, PlayerStateMachine.staticPlayerTransform.position);
+        distance = Vector3.Distance(transform.position, PlayerStateMachine.StaticPlayerTransform.position);
 
         if(distance < distanceUntilShow)
         {

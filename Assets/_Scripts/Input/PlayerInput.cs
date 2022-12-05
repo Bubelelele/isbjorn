@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
         public bool JumpWasPressed { get; set; }
         public bool JumpIsHeld { get; private set; }
         public bool RollIsPressed { get; private set; }
-        public bool Roaring { get; private set; }
+        public bool RoarWasPressed { get; set; }
         public bool Slashing { get; private set; }
         public bool Sniffing { get; private set; }
 
@@ -103,7 +103,7 @@ public class PlayerInput : MonoBehaviour
         
         private void Roar(InputAction.CallbackContext context)
         {
-            Roaring = context.started;
+            RoarWasPressed = context.started;
         }
 
         private void Sniff(InputAction.CallbackContext context)

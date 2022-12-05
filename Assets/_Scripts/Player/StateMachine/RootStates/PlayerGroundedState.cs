@@ -36,7 +36,7 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (Context.Input.Sniffing)
             SetSubState(Factory.Sniff());
-        else if (Context.Input.Roaring)
+        else if (Context.Input.RoarWasPressed)
             SetSubState(Factory.Roar());
         else if (Context.Input.Slashing)
             SetSubState(Factory.Slash());
