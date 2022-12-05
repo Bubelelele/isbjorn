@@ -17,10 +17,15 @@ public class PlayerIdleState : PlayerBaseState
             SwitchState(Factory.Slash());
         else if (Context.Input.RollIsPressed)
             SwitchState(Factory.Roll());
-        else if (Context.Input.RunIsPressed)
-            SwitchState(Factory.Run());
-        else if (Context.Input.MoveIsPressed)
-            SwitchState(Factory.Walk());
+        else switch (Context.Input.MoveIsPressed)
+        {
+            case true when Context.Input.RunIsPressed:
+                SwitchState(Factory.Run());
+                break;
+            case true:
+                SwitchState(Factory.Walk());
+                break;
+        }
     }
     
     protected override void ExitState() { }
