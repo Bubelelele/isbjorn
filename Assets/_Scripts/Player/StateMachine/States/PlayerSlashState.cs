@@ -39,7 +39,10 @@ public class PlayerSlashState : PlayerBaseState
         Context.AnimationEnded = false;
     }
 
-    public override void InitializeSubState() { }
+    public override void InitializeSubState()
+    {       
+        throw new System.NotImplementedException();
+    }
 
     public override void AnimationBehaviour()
     {

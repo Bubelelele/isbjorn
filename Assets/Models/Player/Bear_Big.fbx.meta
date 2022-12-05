@@ -191,14 +191,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.9925924
-        functionName: Call
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
-          type: 3}
-        floatParameter: 0
-        intParameter: 4
-        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -235,14 +227,6 @@ ModelImporter:
           type: 3}
         floatParameter: 0
         intParameter: 7
-        messageOptions: 0
-      - time: 0.9925928
-        functionName: Call
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
-          type: 3}
-        floatParameter: 0
-        intParameter: 8
         messageOptions: 0
       transformMask: []
       maskType: 3
@@ -374,7 +358,7 @@ ModelImporter:
         objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
           type: 3}
         floatParameter: 0
-        intParameter: 10
+        intParameter: 6
         messageOptions: 0
       transformMask: []
       maskType: 3
@@ -405,14 +389,6 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3407402
-        functionName: Call
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
-          type: 3}
-        floatParameter: 0
-        intParameter: 11
-        messageOptions: 0
       - time: 0.46825397
         functionName: Call
         data: 
@@ -421,13 +397,21 @@ ModelImporter:
         floatParameter: 0
         intParameter: 5
         messageOptions: 0
+      - time: 0.49808285
+        functionName: Call
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
+          type: 3}
+        floatParameter: 0
+        intParameter: 4
+        messageOptions: 0
       - time: 0.54595464
         functionName: Call
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
           type: 3}
         floatParameter: 0
-        intParameter: 12
+        intParameter: 11
         messageOptions: 0
       - time: 0.99324626
         functionName: Call
@@ -435,7 +419,7 @@ ModelImporter:
         objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
           type: 3}
         floatParameter: 0
-        intParameter: 13
+        intParameter: 12
         messageOptions: 0
       transformMask: []
       maskType: 3
@@ -465,7 +449,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.9769509
+        functionName: Call
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 8
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -552,7 +543,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.84615386
+        functionName: Call
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
+          type: 3}
+        floatParameter: 0
+        intParameter: 10
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

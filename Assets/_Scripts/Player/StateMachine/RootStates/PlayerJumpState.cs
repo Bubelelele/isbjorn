@@ -49,10 +49,7 @@ public class PlayerJumpState : PlayerBaseState
             SetSubState(Factory.Idle());
     }
 
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimationBehaviour() { }
 
     private void Rise()
     {
