@@ -13,6 +13,7 @@ TagManager:
   - Cutscene Player
   - Snowball
   - Fish
+  - Icicle
   layers:
   - Default
   - TransparentFX

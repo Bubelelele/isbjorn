@@ -88,4 +88,11 @@ public class PlayerHunger : MonoBehaviour {
         fadeToBlack?.StopFade();
         hasHappened = false; 
     }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Icicle"))
+		{
+            hunger--;
+		}
+	}
 }

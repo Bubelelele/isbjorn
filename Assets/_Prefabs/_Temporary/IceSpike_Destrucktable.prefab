@@ -2964,7 +2964,7 @@ GameObject:
   - component: {fileID: 1800426401}
   m_Layer: 0
   m_Name: IceSpike1
-  m_TagString: Untagged
+  m_TagString: Icicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3066,6 +3066,7 @@ MonoBehaviour:
   - {fileID: 9182363351743624563}
   onTouch: 0
   iceShatterSound: {fileID: 1779740946748964687}
+  section2SlideIce: 0
   snowball: 0
 --- !u!65 &1800426401
 BoxCollider:
