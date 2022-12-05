@@ -23,7 +23,7 @@ public class PlayerRunState : PlayerBaseState
             Context.AudioSources[4].Play();
             _runningTimer = BreatheTime;
         }
-            
+        ShouldStateSwitch();
     }
 
     public override void ShouldStateSwitch()
@@ -44,12 +44,9 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void InitializeSubState()
-    {
+    {       
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimationBehaviour() { }
 }

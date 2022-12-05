@@ -5955,7 +5955,7 @@ Transform:
   - {fileID: 627648290}
   - {fileID: 1915311657}
   m_Father: {fileID: 8968036821010955931}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8714085403010652823
 MonoBehaviour:
@@ -22306,20 +22306,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e378bcacf37110646ae41fe421e9d133, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c71642e6ab782b4c98618417df6e67e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
+  m_Volume: 0.75
+  m_Pitch: 0.5
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -22352,7 +22352,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -23263,7 +23263,7 @@ Transform:
   - {fileID: 8794625033715323519}
   - {fileID: 8794625034264488949}
   m_Father: {fileID: 8968036821010955931}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8794625034256535172
 GameObject:
@@ -23719,9 +23719,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6124578712785109686}
+  - {fileID: 3695327364007268830}
   - {fileID: 8794625034143096661}
   - {fileID: 1211367445}
-  - {fileID: 3695327364007268830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23753,6 +23753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe82afb700d764ab28af1771a6c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBearThin: 0
   <LandingFeedback>k__BackingField: {fileID: 24700896}
   <RoarFeedback>k__BackingField: {fileID: 282275992}
   <SniffFeedback>k__BackingField: {fileID: 1915311660}
@@ -23978,7 +23979,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 707c86dd46c8c894dbc139c108a92b4f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 707c86dd46c8c894dbc139c108a92b4f,
         type: 3}
@@ -25015,9 +25016,9 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8794625032480357553}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: 
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

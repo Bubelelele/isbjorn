@@ -31,12 +31,9 @@ public class PlayerWalkState : PlayerBaseState
     }
 
     public override void InitializeSubState()
-    {
+    {       
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimationBehaviour() { }
 }
