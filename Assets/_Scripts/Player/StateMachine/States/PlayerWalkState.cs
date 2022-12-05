@@ -15,7 +15,11 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.Slashing)
+        if (Context.Input.Sniffing)
+            SwitchState(Factory.Sniff());
+        else if (Context.Input.Roaring)
+            SwitchState(Factory.Roar());
+        else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());
         else if (Context.Input.RollIsPressed)
             SwitchState(Factory.Roll());
