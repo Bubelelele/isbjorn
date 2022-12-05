@@ -413,6 +413,30 @@ ModelImporter:
         floatParameter: 0
         intParameter: 11
         messageOptions: 0
+      - time: 0.46825397
+        functionName: Call
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
+          type: 3}
+        floatParameter: 0
+        intParameter: 5
+        messageOptions: 0
+      - time: 0.54595464
+        functionName: Call
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
+          type: 3}
+        floatParameter: 0
+        intParameter: 12
+        messageOptions: 0
+      - time: 0.99324626
+        functionName: Call
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 119a064c1023eb043a78dd8ae275f868,
+          type: 3}
+        floatParameter: 0
+        intParameter: 13
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
