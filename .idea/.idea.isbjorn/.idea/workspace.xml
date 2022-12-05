@@ -11,7 +11,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Environment/BuoyRandomizeCycleOffset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Input/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Player/StateMachine/PlayerStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Visual/ToggleTrailEmitting.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/_Testing/FishSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_RichTextTagsCommon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
@@ -119,7 +118,7 @@
       <workItem from="1670092259817" duration="9897000" />
       <workItem from="1670152081198" duration="7951000" />
       <workItem from="1670164476920" duration="1913000" />
-      <workItem from="1670238709946" duration="1345000" />
+      <workItem from="1670238709946" duration="2474000" />
     </task>
     <servers />
   </component>
