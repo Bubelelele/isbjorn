@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,7 @@ public class AI_Animal : MonoBehaviour
     public Food _food;
 
     public AudioSource walrusBounceSound;   //Mathias
-
-
+    
     //private bool goToFood;
     private Vector3 closestFoodLocation;
     private int _index = 0;
@@ -119,7 +119,6 @@ public class AI_Animal : MonoBehaviour
         walrusAnim.SetTrigger("JumpedOn");
         walrusBounceSound.Play();   //Mathias
     }
-
 
 
     private void FindClosestFood()

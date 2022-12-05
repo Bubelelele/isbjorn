@@ -10,7 +10,8 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.CurrentGravity = Context.InitialJumpVelocity;
+        Debug.Log(Context.Bounce);
+        Context.CurrentGravity = Context.Bounce ? Context.InitialJumpVelocity * 2.0f - Context.CurrentGravity * 0.5f: Context.InitialJumpVelocity;
         Context.JumpBufferTimer = 0.0f;
         Context.CoyoteTimer = 0.0f;
         Context.Input.JumpWasPressed = false;
@@ -34,6 +35,7 @@ public class PlayerJumpState : PlayerBaseState
 
     protected override void ExitState()
     {
+        Context.Bounce = false;
         Context.Animator.SetBool("IsJumping", false);
     }
     

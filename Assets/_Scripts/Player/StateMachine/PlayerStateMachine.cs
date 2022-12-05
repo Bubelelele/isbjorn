@@ -1,3 +1,4 @@
+using System;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpRiseGravity => jumpRiseGravity;
     public float JumpFallGravity => jumpFallGravity;
     public bool PlayerIsLandingJump { get; set; }
-    public bool Bounce { get; private set; }
+    public bool Bounce { get; set; }
     
     // Jump Timers.
     public float JumpBufferTime => jumpBufferTime;
@@ -137,13 +138,13 @@ public class PlayerStateMachine : MonoBehaviour
         ProjectVectorOnPlane(ref _movementVector);
         Debug.DrawRay(transform.position, _movementVector, Color.red);
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (!other.CompareTag("Walrus")) return;
+        if (!collision.collider.CompareTag("Walrus")) return;
         Bounce = true;
     }
-    
+
     private void InitializeVariables()
     {
         staticPlayerTransform = transform;
