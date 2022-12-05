@@ -23,8 +23,8 @@ public class PlayerGroundedState : PlayerBaseState
             SwitchState(Factory.Fall());
         else switch (Context.Input.RollIsPressed)
         {
-            case false when Context.JumpBufferTimer > 0.0f:
-            case false when Context.Input.JumpWasPressed:
+            case false when /*Context.RequiresInput && */Context.JumpBufferTimer > 0.0f:
+            case false when /*Context.RequiresInput && */Context.Input.JumpWasPressed:
                 SwitchState(Factory.Jump());
                 break;
         }
