@@ -19,7 +19,7 @@ public class PlayerHunger : MonoBehaviour {
     private void Awake()
     {
         cp_Respawn = this.gameObject.GetComponent<CP_Respawn>();
-        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<FadeToBlack>();
+        fadeToBlack = FindObjectOfType<FadeToBlack>();
     }
 
     // Start is called before the first frame update
@@ -65,8 +65,8 @@ public class PlayerHunger : MonoBehaviour {
 
     private void UpdateFeedback() {
         if (lowFoodFeedback.IsPlaying) {
-            if (hunger >= 20) lowFoodFeedback.StopFeedbacks();
-        } else if (hunger < 20) {
+            if (hunger >= lowFoodPoint) lowFoodFeedback.StopFeedbacks();
+        } else if (hunger < lowFoodPoint) {
             lowFoodFeedback.PlayFeedbacks();
         }
     }
@@ -74,11 +74,11 @@ public class PlayerHunger : MonoBehaviour {
 
     private IEnumerator Death()
     {
-        fadeToBlack.StartFade();
+        fadeToBlack?.StartFade();
         yield return new WaitForSeconds(3);
         cp_Respawn.RespawnPlayer();
         AddFood(50);
-        fadeToBlack.StopFade();
+        fadeToBlack?.StopFade();
         hasHappened = false; 
     }
 }
