@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSniffState : PlayerBaseState
@@ -38,5 +36,10 @@ public class PlayerSniffState : PlayerBaseState
     public override void InitializeSubState()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void AnimationBehaviour()
+    {
+        Debug.LogWarning("sniff sniff");
     }
 }
