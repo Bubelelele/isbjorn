@@ -1,27 +1,15 @@
-using UnityEngine;
-
 public class PlayerRoarState : PlayerBaseState
 {
-    private float _animationTimer;
-    private readonly int _roar = Animator.StringToHash("Roar");
-
-    public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
-    {
-        IsRootState = true;
-        InitializeSubState();
-    }
+    public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
 
     public override void EnterState()
     {
-        Context.Animator.SetTrigger(_roar);
-        _animationTimer = 2.2f;
+        Context.Animator.SetTrigger("Roar");
         Context.RoarFeedback?.PlayFeedbacks();
     }
 
     protected override void UpdateState()
     {
-        Context.MovementVector = Vector3.zero;
-        _animationTimer -= Time.deltaTime;
         ShouldStateSwitch();
     }
 
@@ -32,14 +20,10 @@ public class PlayerRoarState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (_animationTimer < 0.0f)
-            SwitchState(Factory.Grounded());
-    }
-
-    public sealed override void InitializeSubState()
-    {
         
     }
+
+    public sealed override void InitializeSubState() { }
 
     public override void AnimationBehaviour()
     {

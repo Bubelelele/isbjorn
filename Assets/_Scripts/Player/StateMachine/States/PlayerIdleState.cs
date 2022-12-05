@@ -30,13 +30,10 @@ public class PlayerIdleState : PlayerBaseState
     
     protected override void ExitState() { }
 
-    public override void InitializeSubState()
-    {
+    public override void InitializeSubState() 
+    {       
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimationBehaviour() { }
 }

@@ -57,10 +57,7 @@ public class PlayerRollState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimationBehaviour() { }
 
     private void LookTowardsCameraForwardVector()
     {
