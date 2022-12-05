@@ -11,13 +11,14 @@ public class PlayerStateMachine : MonoBehaviour
     public Transform BearTransform { get; private set; }
     public Animator Animator { get; private set; }
     public bool AnimationEnded { get; set; }
+    public AudioSource[] AudioSources { get; private set; }
 
     // Basic Movement.
     public Vector3 MovementVector { get => _movementVector; set => _movementVector = value; }
     public float MovementSpeed => movementSpeed;
     public float RunMultiplier => runMultiplier;
     public float LookRotationSpeed => lookRotationSpeed;
-    public bool Immovable { get; set; }
+    public bool RequiresInput { get; set; }
     
     // Rolling.
     public float InitialRollingSpeed => initialRollingSpeed;
@@ -49,7 +50,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
 
     #region Inspector
-    
+
+    [Header("General")]
+    [SerializeField] private bool isBearThin;
     [field: SerializeField] public MMFeedbacks LandingFeedback { get; private set; }
     [field: SerializeField] public MMFeedbacks RoarFeedback { get; private set; }
     [field: SerializeField] public MMFeedbacks SniffFeedback { get; private set; }
@@ -123,10 +126,12 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        if (!Immovable)
+        if (RequiresInput)
             _movementVector = MoveInput();
+        // Need to decouple the camera direction code from the projection code so that we can combine the above and below if statements.
         ProjectVectorToCameraCoordinateSpace(ref _movementVector);
-        LookTowardsMovementVector();
+        if (RequiresInput)
+            LookTowardsMovementVector();
         CurrentState.UpdateStates();
         _movementVector.y = currentGravity;
         ProjectVectorOnPlane(ref _movementVector);
@@ -148,8 +153,9 @@ public class PlayerStateMachine : MonoBehaviour
         _rigidbody.drag = Drag;
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
-        BearTransform = transform.GetChild(0);
+        BearTransform = isBearThin ? transform.GetChild(1) : transform.GetChild(0);
         Animator = BearTransform.GetComponent<Animator>();
+        AudioSources = transform.GetChild(2).GetComponentsInChildren<AudioSource>();
     }
     
     private bool GroundCheck()
@@ -179,7 +185,6 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void LookTowardsMovementVector()
     {
-        if (Immovable) return;
         BearTransform.forward = Vector3.Slerp(BearTransform.forward, _movementVector, lookRotationSpeed * Time.deltaTime);
     }
     

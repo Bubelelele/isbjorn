@@ -34,7 +34,9 @@ public class PlayerGroundedState : PlayerBaseState
     
     public sealed override void InitializeSubState()
     {
-        if (Context.Input.RollIsPressed)
+        if (Context.Input.Slashing)
+            SetSubState(Factory.Slash());
+        else if (Context.Input.RollIsPressed)
             SetSubState(Factory.Roll());
         else if (Context.Input.RunIsPressed)
             SetSubState(Factory.Run());

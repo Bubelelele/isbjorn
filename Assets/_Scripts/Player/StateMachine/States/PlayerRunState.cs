@@ -1,6 +1,11 @@
+using UnityEngine;
+
 public class PlayerRunState : PlayerBaseState
 {
     public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
+
+    private const float BreatheTime = 3.0f;
+    private float _runningTimer = 10.0f;
 
     public override void EnterState()
     {
@@ -11,7 +16,14 @@ public class PlayerRunState : PlayerBaseState
     {
         var runSpeed = Context.MovementSpeed * Context.RunMultiplier;
         Context.MovementVector *= runSpeed;
-        ShouldStateSwitch();
+        if (_runningTimer > 0.0f)
+            _runningTimer -= Time.deltaTime;
+        else
+        {
+            Context.AudioSources[4].Play();
+            _runningTimer = BreatheTime;
+        }
+            
     }
 
     public override void ShouldStateSwitch()
@@ -29,7 +41,6 @@ public class PlayerRunState : PlayerBaseState
     protected override void ExitState()
     {
         Context.Animator.SetBool("IsRunning", false);
-
     }
 
     public override void InitializeSubState()
