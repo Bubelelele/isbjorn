@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class FadeToBlack : MonoBehaviour
 {
 
-    public GameObject blackOutSquare;
+    public GameObject blackSquareImage;
     public GameObject deathText;
 
     
@@ -46,29 +46,29 @@ public class FadeToBlack : MonoBehaviour
 
     public IEnumerator FadeBlackOutSquare(bool fadeToBlack = true, int fadeSpeed = 5)
     {
-        Color objectColor = blackOutSquare.GetComponent<Image>().color;
+        Color objectColor = blackSquareImage.GetComponent<Image>().color;
         float fadeAmount; 
 
         if (fadeToBlack)
         {
-            while (blackOutSquare.GetComponent<Image>().color.a < 1)
+            while (blackSquareImage.GetComponent<Image>().color.a < 1)
             {
                 fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime); 
 
                 objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-                blackOutSquare.GetComponent<Image>().color = objectColor;
+                blackSquareImage.GetComponent<Image>().color = objectColor;
                 Invoke("ActivateText", 1);
                 yield return null;
             }
         }
         else
         {
-            while (blackOutSquare.GetComponent<Image>().color.a > 0)
+            while (blackSquareImage.GetComponent<Image>().color.a > 0)
             {
                 fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
                 
                 objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-                blackOutSquare.GetComponent<Image>().color = objectColor;
+                blackSquareImage.GetComponent<Image>().color = objectColor;
                 deathText.SetActive(false);
                 yield return null;
 
