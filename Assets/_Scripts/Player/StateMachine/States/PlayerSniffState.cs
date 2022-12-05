@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerSniffState : PlayerBaseState
 {
     public PlayerSniffState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
@@ -24,7 +22,18 @@ public class PlayerSniffState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        
+        switch (Context.AnimationEnded)
+        {
+            case true when Context.Input.RunIsPressed:
+                SwitchState(Factory.Run());
+                break;
+            case true when Context.Input.MoveIsPressed:
+                SwitchState(Factory.Walk());
+                break;
+            case true:
+                SwitchState(Factory.Idle());
+                break;
+        }
     }
 
     public override void InitializeSubState()

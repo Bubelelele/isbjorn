@@ -7,7 +7,7 @@ public class PlayerRollState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.RequiresInput = false;
+        // Context.RequiresInput = false;
         Context.Animator.SetBool("IsRolling", true);
         Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
         Context.RollFeedback?.PlayFeedbacks();
@@ -44,7 +44,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
-        Context.RequiresInput = true;
+        // Context.RequiresInput = true;
         Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
