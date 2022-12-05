@@ -31,6 +31,7 @@ public class Icicle_Beahaviour : MonoBehaviour
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 //falling = true;
+                rB.isKinematic = false;
                 Invoke("ActivateFall", waitTime);
             }
         }
