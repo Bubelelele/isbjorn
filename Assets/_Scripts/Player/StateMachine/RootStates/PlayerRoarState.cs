@@ -40,4 +40,9 @@ public class PlayerRoarState : PlayerBaseState
     {
         
     }
+
+    public override void AnimationBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -19,7 +19,7 @@ public class PlayerRollState : PlayerBaseState
         if (Context.Animator.GetCurrentAnimatorStateInfo(0).IsName("RollingLoop"))
             Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
         ShouldStateSwitch();
-        var impulseStrength = Context.CurrentRollingSpeed.Remap(0, Context.MaxRollingSpeed,
+        var impulseStrength = CalculateCurrentRollingSpeed().Remap(0, Context.MaxRollingSpeed,
             Context.ImpulseStrengthRange.x, Context.ImpulseStrengthRange.y);
         Context.RollContinuousImpulse.UpdateImpulseStrength(impulseStrength);
     }
@@ -42,6 +42,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
+        Context.Immovable = false;
         Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
@@ -54,9 +55,14 @@ public class PlayerRollState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
+    public override void AnimationBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void OverrideInput()
     {
-        Context.MovementVector = Vector3.zero;
+        Context.Immovable = true;
         Context.BearTransform.forward = Vector3.Slerp(Context.BearTransform.forward, Context.MainCameraForward, Context.LookRotationSpeed * Time.deltaTime);
     }
 

@@ -15,7 +15,9 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.RollIsPressed)
+        if (Context.Input.Slashing)
+            SwitchState(Factory.Slash());
+        else if (Context.Input.RollIsPressed)
             SwitchState(Factory.Roll());
         else if (Context.Input.RunIsPressed)
             SwitchState(Factory.Run());
@@ -29,6 +31,11 @@ public class PlayerWalkState : PlayerBaseState
     }
 
     public override void InitializeSubState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AnimationBehaviour()
     {
         throw new System.NotImplementedException();
     }
