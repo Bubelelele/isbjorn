@@ -6,6 +6,7 @@ public class PlayerRollState : PlayerBaseState
 
     public override void EnterState()
     {
+        Context.RequiresInput = false;
         Context.Animator.SetBool("IsRolling", true);
         Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
         Context.RollFeedback?.PlayFeedbacks();
@@ -14,7 +15,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void UpdateState()
     {
-        OverrideInput();
+        LookTowardsCameraForwardVector();
         Context.MovementVector = Context.BearTransform.forward * CalculateCurrentRollingSpeed();
         if (Context.Animator.GetCurrentAnimatorStateInfo(0).IsName("RollingLoop"))
             Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
@@ -42,7 +43,7 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
-        Context.Immovable = false;
+        Context.RequiresInput = true;
         Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
@@ -60,9 +61,8 @@ public class PlayerRollState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    private void OverrideInput()
+    private void LookTowardsCameraForwardVector()
     {
-        Context.Immovable = true;
         Context.BearTransform.forward = Vector3.Slerp(Context.BearTransform.forward, Context.MainCameraForward, Context.LookRotationSpeed * Time.deltaTime);
     }
 

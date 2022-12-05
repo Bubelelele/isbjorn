@@ -8,24 +8,34 @@ public class PlayerSlashState : PlayerBaseState
 
     public override void EnterState()
     {
+        Context.RequiresInput = false;
         Context.Animator.SetTrigger("Slash");
     }
 
     protected override void UpdateState()
     {
-        Context.Immovable = true;
         ShouldStateSwitch();
     }
 
     public override void ShouldStateSwitch()
     {
-        if (Context.AnimationEnded)
-            SwitchState(Factory.Idle());
+        switch (Context.AnimationEnded)
+        {
+            case true when Context.Input.RunIsPressed:
+                SwitchState(Factory.Run());
+                break;
+            case true when Context.Input.MoveIsPressed:
+                SwitchState(Factory.Walk());
+                break;
+            case true:
+                SwitchState(Factory.Idle());
+                break;
+        }
     }
     
     protected override void ExitState()
     {
-        Context.Immovable = false;
+        Context.RequiresInput = true;
         Context.AnimationEnded = false;
     }
 
