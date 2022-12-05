@@ -268,13 +268,14 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a1d81d35bee4584b9c1f7a56a464f54, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1320303212255212232, guid: 8a1d81d35bee4584b9c1f7a56a464f54,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835173
+    rgba: 4281940025
   m_fontColor: {r: 0.22352941, g: 0.21960784, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -796,13 +797,14 @@ MonoBehaviour:
   m_text: BACK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a1d81d35bee4584b9c1f7a56a464f54, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1320303212255212232, guid: 8a1d81d35bee4584b9c1f7a56a464f54,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835173
+    rgba: 4281940025
   m_fontColor: {r: 0.22352941, g: 0.21960784, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1859,13 +1861,14 @@ MonoBehaviour:
   m_text: Mathias Riksheim
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a1d81d35bee4584b9c1f7a56a464f54, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1320303212255212232, guid: 8a1d81d35bee4584b9c1f7a56a464f54,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835173
+    rgba: 4281940025
   m_fontColor: {r: 0.22352941, g: 0.21960784, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2991,13 +2994,14 @@ MonoBehaviour:
     Tormod Geving'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a1d81d35bee4584b9c1f7a56a464f54, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1320303212255212232, guid: 8a1d81d35bee4584b9c1f7a56a464f54,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835173
+    rgba: 4281940025
   m_fontColor: {r: 0.22352941, g: 0.21960784, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3269,17 +3273,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ibj\xF8rn is a game that was made by the student group if Games in one
-    semester."
+  m_text: "Isbj\xF8rn is a game that was made by the student group <i>if Games</i>
+    in one semester."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a1d81d35bee4584b9c1f7a56a464f54, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1320303212255212232, guid: 8a1d81d35bee4584b9c1f7a56a464f54,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4281940025
   m_fontColor: {r: 0.22352941, g: 0.21960784, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3336,7 +3341,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1909238568
