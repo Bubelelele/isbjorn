@@ -14,12 +14,14 @@ public class CutsceneManager : MonoBehaviour {
 
     private void Update() {
         if (_activePlayableDirector == null) return;
-        
+
+#if UNITY_EDITOR
         if (Input.GetKey(fastForwardCutsceneKey)) {
             _activePlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(fastForwardMultiplier);
         } else {
             _activePlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
         }
+#endif
     }
 
     public static void PlayCutscene(PlayableDirector activePlayableDirector, bool hideHud) {
