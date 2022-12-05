@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -112,6 +113,8 @@ public class PlayerInput : MonoBehaviour
         
         private void CursorLockToggle()
         {
+            if (SceneManager.GetActiveScene().buildIndex == 0) return;
+            
             switch (Cursor.lockState == CursorLockMode.Locked)
             {
                 case true when Keyboard.current.escapeKey.wasPressedThisFrame:
