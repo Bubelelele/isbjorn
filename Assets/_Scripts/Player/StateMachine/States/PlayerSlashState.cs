@@ -8,7 +8,7 @@ public class PlayerSlashState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.RequiresInput = false;
+        // Context.RequiresInput = false;
         Context.Animator.SetTrigger("Slash");
     }
 
@@ -35,7 +35,7 @@ public class PlayerSlashState : PlayerBaseState
     
     protected override void ExitState()
     {
-        Context.RequiresInput = true;
+        // Context.RequiresInput = true;
         Context.AnimationEnded = false;
     }
 

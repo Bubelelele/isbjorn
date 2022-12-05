@@ -126,11 +126,11 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        if (RequiresInput)
+        // if (RequiresInput)
             _movementVector = MoveInput();
         // Need to decouple the camera direction code from the projection code so that we can combine the above and below if statements.
         ProjectVectorToCameraCoordinateSpace(ref _movementVector);
-        if (RequiresInput)
+        // if (RequiresInput)
             LookTowardsMovementVector();
         CurrentState.UpdateStates();
         _movementVector.y = currentGravity;
