@@ -11,7 +11,9 @@ public class PlayerHunger : MonoBehaviour {
     public Slider hungerSlider;
     public MMFeedbacks lowFoodFeedback;
     public float lowFoodPoint = 20;
+    public Animator playerAnim;
 
+    private PlayerStateMachine playerStateMachine;
     private CP_Respawn cp_Respawn;
     private FadeToBlack fadeToBlack;
     private bool hasHappened = false;
@@ -20,6 +22,7 @@ public class PlayerHunger : MonoBehaviour {
     {
         cp_Respawn = this.gameObject.GetComponent<CP_Respawn>();
         fadeToBlack = FindObjectOfType<FadeToBlack>();
+        playerStateMachine= GetComponent<PlayerStateMachine>();
     }
 
     // Start is called before the first frame update
@@ -74,8 +77,12 @@ public class PlayerHunger : MonoBehaviour {
 
     private IEnumerator Death()
     {
+        playerAnim.SetTrigger("Die");
+        playerStateMachine.enabled = false;
+        yield return new WaitForSeconds(2.5f);
         fadeToBlack?.StartFade();
         yield return new WaitForSeconds(3);
+        playerStateMachine.enabled = true;
         cp_Respawn.RespawnPlayer();
         AddFood(50);
         fadeToBlack?.StopFade();
