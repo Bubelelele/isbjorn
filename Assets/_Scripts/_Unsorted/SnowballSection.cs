@@ -6,9 +6,11 @@ public class SnowballSection : MonoBehaviour
 {
     public List<GameObject> iceSpikes;
     public int score;
+    
     private bool hasPlayed;
     private Animator anim;
     private GameObject cliff, ogWalrus, fakeWalrus;
+
 
 
     private void Start()
@@ -48,4 +50,5 @@ public class SnowballSection : MonoBehaviour
             iceSpikes[i].gameObject.SetActive(false);
         }
     }
+
 }
