@@ -3523,6 +3523,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!95 &1618157623 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 688876884, guid: 164faaa1bee7d6748af98f1366edb627,
+    type: 3}
+  m_PrefabInstance: {fileID: 1215395372729370502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653546805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4409,6 +4415,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4349987782273378641, guid: 164faaa1bee7d6748af98f1366edb627,
         type: 3}
+      propertyPath: playerAnim
+      value: 
+      objectReference: {fileID: 1618157623}
+    - target: {fileID: 4349987782273378641, guid: 164faaa1bee7d6748af98f1366edb627,
+        type: 3}
       propertyPath: hungerSlider
       value: 
       objectReference: {fileID: 75009528}
@@ -4611,17 +4622,17 @@ PrefabInstance:
     - target: {fileID: 5372679148202967686, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07449427
+      value: -0.074494325
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148202967686, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7031718
+      value: 0.70317185
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148202967686, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.074494265
+      value: 0.07449431
       objectReference: {fileID: 0}
     - target: {fileID: 5372679148202967687, guid: 607156b99a3daae4f8edd143779d9467,
         type: 3}
