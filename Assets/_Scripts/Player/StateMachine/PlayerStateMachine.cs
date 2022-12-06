@@ -18,8 +18,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float MovementSpeed => movementSpeed;
     public float RunMultiplier => runMultiplier;
     public float LookRotationSpeed => lookRotationSpeed;
-    public bool RequiresInput { get; set; }
-    
+
     // Rolling.
     public float InitialRollingSpeed => initialRollingSpeed;
     public float MaxRollingSpeed => maxRollingSpeed;
@@ -128,14 +127,14 @@ public class PlayerStateMachine : MonoBehaviour
     private void Update()
     {
         CreateCameraCoordinateSpaceVectors();
-        // if (RequiresInput)
-            _movementVector = MoveInput();
-            ProjectVectorToCameraCoordinateSpace(ref _movementVector);
-            LookTowardsMovementVector();
+        _movementVector = MoveInput();
+        ProjectVectorToCameraCoordinateSpace(ref _movementVector);
+        LookTowardsMovementVector();
         CurrentState.UpdateStates();
         _movementVector.y = currentGravity;
         ProjectVectorOnPlane(ref _movementVector);
         Debug.DrawRay(transform.position, _movementVector, Color.red);
+        Debug.Log(CurrentState + " -> " + CurrentState.CurrentSubState);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -153,11 +152,20 @@ public class PlayerStateMachine : MonoBehaviour
         _rigidbody.drag = _drag;
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
-        BearTransform = isBearThin ? transform.GetChild(1) : transform.GetChild(0);
+        SelectBear(isBearThin);
         Animator = BearTransform.GetComponent<Animator>();
         AudioSources = transform.GetChild(2).GetComponentsInChildren<AudioSource>();
     }
-    
+
+    private void SelectBear(bool isThin)
+    {
+        var selectedBear = isThin ? 1 : 0;
+        var otherBear = 1 - selectedBear;
+        BearTransform = transform.GetChild(selectedBear);
+        BearTransform.gameObject.SetActive(true);
+        transform.GetChild(otherBear).gameObject.SetActive(false);
+    }
+
     private bool GroundCheck()
     {
         var capsuleColliderRadius = _capsuleCollider.radius;
@@ -195,19 +203,16 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void ProjectVectorOnPlane(ref Vector3 vectorToProject)
     {
-        if (playerIsGrounded && !Input.JumpWasPressed)
-        {
-            var localGroundCheckHitInfoNormal = transform.InverseTransformDirection(_groundCheckHitInfo.normal);
-            var slopeAngleRotation = Quaternion.FromToRotation(StaticPlayerTransform.up, localGroundCheckHitInfoNormal);
-            vectorToProject = slopeAngleRotation * vectorToProject;
-            RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, BearTransform.forward) - 90.0f;
-        }
+        if (!playerIsGrounded || Input.JumpWasPressed) return;
+        var localGroundCheckHitInfoNormal = transform.InverseTransformDirection(_groundCheckHitInfo.normal);
+        var slopeAngleRotation = Quaternion.FromToRotation(StaticPlayerTransform.up, localGroundCheckHitInfoNormal);
+        vectorToProject = slopeAngleRotation * vectorToProject;
+        RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, BearTransform.forward) - 90.0f;
     }
 
     public void AnimationEvent()
     {
-        CurrentState.AnimationBehaviour();
-        CurrentState.currentSubState.AnimationBehaviour();
+        CurrentState.CurrentSubState.OnAnimationEvent();
     }
 
     public void AnimationEndedEvent()

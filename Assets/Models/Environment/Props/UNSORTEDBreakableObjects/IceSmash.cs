@@ -47,7 +47,7 @@ public class IceSmash : MonoBehaviour, IHittable
     {
         if (other.CompareTag("Player"))
         {
-            if (other.GetComponent<PlayerStateMachine>().Input.RollIsPressed)
+            if (other.GetComponent<PlayerStateMachine>().Input.Rolling)
             {
                 SpawnFracturedObject();
             }

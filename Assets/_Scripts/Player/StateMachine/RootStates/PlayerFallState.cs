@@ -28,7 +28,7 @@ public class PlayerFallState : PlayerBaseState
     
     public override void ShouldStateSwitch()
     {
-        if (!Context.Input.RollIsPressed && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
+        if (!Context.Input.Rolling && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
             SwitchState(Factory.Jump());
         else if (Context.Bounce)
         {
@@ -51,17 +51,17 @@ public class PlayerFallState : PlayerBaseState
 
     public sealed override void InitializeSubState()
     {
-        if (Context.Input.RollIsPressed)
+        if (Context.Input.Rolling)
             SetSubState(Factory.Roll());
-        else if (Context.Input.RunIsPressed)
+        else if (Context.Input.Running)
             SetSubState(Factory.Run());
-        else if (Context.Input.MoveIsPressed)
+        else if (Context.Input.Moving)
             SetSubState(Factory.Walk());
         else
             SetSubState(Factory.Idle());
     }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 
     private void ApplyGravity(float fallGravity)
     {

@@ -17,15 +17,15 @@ public class PlayerWalkState : PlayerBaseState
     {
         if (Context.Input.Sniffing)
             SwitchState(Factory.Sniff());
-        else if (Context.Input.RoarWasPressed)
+        else if (Context.Input.Roaring)
             SwitchState(Factory.Roar());
         else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());
-        else if (Context.Input.RollIsPressed)
+        else if (Context.Input.Rolling)
             SwitchState(Factory.Roll());
-        else if (Context.Input.RunIsPressed)
+        else if (Context.Input.Running)
             SwitchState(Factory.Run());
-        else if (!Context.Input.MoveIsPressed)
+        else if (!Context.Input.Moving)
             SwitchState(Factory.Idle());
     }
 
@@ -39,5 +39,5 @@ public class PlayerWalkState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 }

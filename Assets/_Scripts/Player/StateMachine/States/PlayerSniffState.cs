@@ -2,6 +2,7 @@ public class PlayerSniffState : PlayerBaseState
 {
     public PlayerSniffState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
+        RequiresAnimationEnd = true;
     }
 
     public override void EnterState()
@@ -15,31 +16,19 @@ public class PlayerSniffState : PlayerBaseState
         ShouldStateSwitch();
     }
 
-    protected override void ExitState()
-    {
-        
-    }
+    protected override void ExitState() { }
 
     public override void ShouldStateSwitch()
     {
-        switch (Context.AnimationEnded)
-        {
-            case true when Context.Input.RunIsPressed:
-                SwitchState(Factory.Run());
-                break;
-            case true when Context.Input.MoveIsPressed:
-                SwitchState(Factory.Walk());
-                break;
-            case true:
-                SwitchState(Factory.Idle());
-                break;
-        }
+        if (Context.Input.Running)
+            SwitchState(Factory.Run());
+        else if (Context.Input.Moving)
+            SwitchState(Factory.Walk());
+        else
+            SwitchState(Factory.Idle());
     }
 
-    public override void InitializeSubState()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void InitializeSubState() { }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 }

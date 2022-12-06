@@ -7,7 +7,6 @@ public class PlayerRollState : PlayerBaseState
 
     public override void EnterState()
     {
-        // Context.RequiresInput = false;
         Context.Animator.SetBool("IsRolling", true);
         Context.CurrentRollingSpeed = Context.MovementVector.magnitude < Context.InitialRollingSpeed ? Context.InitialRollingSpeed : Context.MovementVector.magnitude;
         Context.RollFeedback?.PlayFeedbacks();
@@ -18,22 +17,20 @@ public class PlayerRollState : PlayerBaseState
     {
         LookTowardsCameraForwardVector();
         Context.MovementVector = Context.BearTransform.forward * CalculateCurrentRollingSpeed();
-        if (Context.Animator.GetCurrentAnimatorStateInfo(0).IsName("RollingLoop"))
-            Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
-        ShouldStateSwitch();
-        var impulseStrength = CalculateCurrentRollingSpeed().Remap(0, Context.MaxRollingSpeed,
-            Context.ImpulseStrengthRange.x, Context.ImpulseStrengthRange.y);
+        Context.Animator.speed = Context.CurrentRollingSpeed / (3.0f * Mathf.PI);
+        var impulseStrength = CalculateCurrentRollingSpeed().Remap(0, Context.MaxRollingSpeed, Context.ImpulseStrengthRange.x, Context.ImpulseStrengthRange.y);
         Context.RollContinuousImpulse.UpdateImpulseStrength(impulseStrength);
+        ShouldStateSwitch();
     }
     
     public override void ShouldStateSwitch()
     {
-        switch (Context.Input.RollIsPressed)
+        switch (Context.Input.Rolling)
         {
-            case false when Context.Input.RunIsPressed:
+            case false when Context.Input.Running:
                 SwitchState(Factory.Run());
                 break;
-            case false when Context.Input.MoveIsPressed:
+            case false when Context.Input.Moving:
                 SwitchState(Factory.Walk());
                 break;
             case false:
@@ -44,7 +41,6 @@ public class PlayerRollState : PlayerBaseState
 
     protected override void ExitState()
     {
-        // Context.RequiresInput = true;
         Context.Animator.SetBool("IsRolling", false);
         Context.CurrentRollingSpeed = 0.0f;
         Context.Animator.speed = 1.0f;
@@ -57,7 +53,7 @@ public class PlayerRollState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 
     private void LookTowardsCameraForwardVector()
     {

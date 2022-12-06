@@ -38,7 +38,7 @@ public class BowlingWalrusGuard : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            if (playerStateMachine.Input.MoveIsPressed || playerStateMachine.Input.RunIsPressed)
+            if (playerStateMachine.Input.Moving || playerStateMachine.Input.Running)
             {
                 Invoke("PushPlayerWalk", 0.5f);
                 inTrigger = true;

@@ -20,7 +20,7 @@ public class BowlingForceJump : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && playerStateMachine.Input.RollIsPressed)
+        if (other.CompareTag("Player") && playerStateMachine.Input.Rolling)
         {
             Vector3 dir = player.transform.position - transform.position;
             dir = dir.normalized;

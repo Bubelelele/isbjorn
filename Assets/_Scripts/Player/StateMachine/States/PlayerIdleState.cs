@@ -13,15 +13,15 @@ public class PlayerIdleState : PlayerBaseState
     {
         if (Context.Input.Sniffing)
             SwitchState(Factory.Sniff());
-        else if (Context.Input.RoarWasPressed)
+        else if (Context.Input.Roaring)
             SwitchState(Factory.Roar());
         else if (Context.Input.Slashing)
             SwitchState(Factory.Slash());
-        else if (Context.Input.RollIsPressed)
+        else if (Context.Input.Rolling)
             SwitchState(Factory.Roll());
-        else switch (Context.Input.MoveIsPressed)
+        else switch (Context.Input.Moving)
         {
-            case true when Context.Input.RunIsPressed:
+            case true when Context.Input.Running:
                 SwitchState(Factory.Run());
                 break;
             case true:
@@ -37,5 +37,5 @@ public class PlayerIdleState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 }

@@ -135,7 +135,7 @@ public class BowlingMaster : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.RollIsPressed) //&& !hasEntered)
+        if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.Rolling) //&& !hasEntered)
         {
             speedVoiceLine.SetActive(false);
             //guard.enabled = false; 

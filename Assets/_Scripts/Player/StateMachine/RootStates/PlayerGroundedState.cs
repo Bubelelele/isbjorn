@@ -21,13 +21,21 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        else switch (Context.Input.RollIsPressed)
+        else switch (Context.Input.Rolling)
         {
-            case false when /*Context.RequiresInput && */Context.JumpBufferTimer > 0.0f:
-            case false when /*Context.RequiresInput && */Context.Input.JumpWasPressed:
+            case false when !RequiresAnimationEnd && Context.JumpBufferTimer > 0.0f:
+            case false when !RequiresAnimationEnd && Context.Input.JumpWasPressed:
                 SwitchState(Factory.Jump());
                 break;
         }
+
+        // else switch (Context.Input.Rolling)
+        // {
+        //     case false when Context.JumpBufferTimer > 0.0f:
+        //     case false when Context.Input.JumpWasPressed:
+        //         SwitchState(Factory.Jump());
+        //         break;
+        // }
     }
 
     protected override void ExitState() { }
@@ -36,21 +44,21 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (Context.Input.Sniffing)
             SetSubState(Factory.Sniff());
-        else if (Context.Input.RoarWasPressed)
+        else if (Context.Input.Roaring)
             SetSubState(Factory.Roar());
         else if (Context.Input.Slashing)
             SetSubState(Factory.Slash());
-        else if (Context.Input.RollIsPressed)
+        else if (Context.Input.Rolling)
             SetSubState(Factory.Roll());
-        else if (Context.Input.RunIsPressed)
+        else if (Context.Input.Running)
             SetSubState(Factory.Run());
-        else if (Context.Input.MoveIsPressed)
+        else if (Context.Input.Moving)
             SetSubState(Factory.Walk());
         else
             SetSubState(Factory.Idle());
     }
 
-    public override void AnimationBehaviour() { }
+    public override void OnAnimationEvent() { }
 
     private void ResetGravity()
     {

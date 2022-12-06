@@ -1,11 +1,15 @@
+using UnityEngine;
+
 public abstract class PlayerBaseState
 {
-    protected bool IsRootState { get; set; }
+    public PlayerBaseState CurrentSubState;
+    
     protected PlayerStateMachine Context { get; }
     protected PlayerStateFactory Factory { get; }
-    
+    protected bool IsRootState { get; set; }
+    protected bool RequiresAnimationEnd { get; set; }
+
     private PlayerBaseState _currentRootState;
-    public PlayerBaseState currentSubState;
 
     protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     {
@@ -20,12 +24,28 @@ public abstract class PlayerBaseState
     public void UpdateStates()
     {
         UpdateState();
-        currentSubState?.UpdateStates();
+        CurrentSubState?.UpdateStates();
     }
     
     public abstract void ShouldStateSwitch();
     
     protected void SwitchState(PlayerBaseState newState)
+    {
+        if (RequiresAnimationEnd)
+        {
+            if (Context.Input.InputActions.PlayerLand.enabled)
+                Context.Input.InputActions.PlayerLand.Disable();
+            if (!Context.AnimationEnded) return;
+            Switch(newState);
+            Context.AnimationEnded = false;
+            Context.Input.InputActions.PlayerLand.Enable();
+        }
+        else
+            Switch(newState);
+        
+    }
+
+    private void Switch(PlayerBaseState newState)
     {
         ExitState();
         
@@ -41,7 +61,7 @@ public abstract class PlayerBaseState
 
     public abstract void InitializeSubState();
 
-    public abstract void AnimationBehaviour();
+    public abstract void OnAnimationEvent();
     
     private void SetRootState(PlayerBaseState newRootState)
     {
@@ -50,7 +70,7 @@ public abstract class PlayerBaseState
     
     protected void SetSubState(PlayerBaseState newSubState)
     {
-        currentSubState = newSubState;
+        CurrentSubState = newSubState;
         newSubState.SetRootState(this);
     }
 }
