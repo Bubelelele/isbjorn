@@ -16,7 +16,10 @@ public class PlayerSniffState : PlayerBaseState
         ShouldStateSwitch();
     }
 
-    protected override void ExitState() { }
+    protected override void ExitState()
+    {
+        Context.ShowPath.myLineRenderer.SetActive(false);
+    }
 
     public override void ShouldStateSwitch()
     {
@@ -30,5 +33,8 @@ public class PlayerSniffState : PlayerBaseState
 
     public override void InitializeSubState() { }
 
-    public override void OnAnimationEvent() { }
+    public override void OnAnimationEvent()
+    {
+        Context.ShowPath.FindFood();
+    }
 }

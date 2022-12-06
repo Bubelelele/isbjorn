@@ -48,6 +48,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpBufferTimer { get => jumpBufferTimer; set => jumpBufferTimer = value; }
     public float CoyoteTime => coyoteTime;
     public float CoyoteTimer { get => coyoteTimer; set => coyoteTimer = value; }
+    
+    // Sniffing.
+    public ShowPath ShowPath { get; private set; }
 
     #region Inspector
 
@@ -156,6 +159,7 @@ public class PlayerStateMachine : MonoBehaviour
         SelectBear(isBearThin);
         Animator = BearTransform.GetComponent<Animator>();
         AudioSources = transform.GetChild(2).GetComponentsInChildren<AudioSource>();
+        ShowPath = FindObjectOfType<ShowPath>();
     }
 
     private void SelectBear(bool isThin)

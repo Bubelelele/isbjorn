@@ -11,8 +11,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log(Context.Bounce);
-        Context.CurrentGravity = Context.Bounce ? Context.InitialJumpVelocity * 2.0f - Context.CurrentGravity * 0.5f: Context.InitialJumpVelocity;
+        Context.CurrentGravity = Context.Bounce ? Context.InitialJumpVelocity * 2.0f - Context.CurrentGravity * 0.5f : Context.InitialJumpVelocity;
         Context.JumpBufferTimer = 0.0f;
         Context.CoyoteTimer = 0.0f;
         Context.Input.JumpWasPressed = false;
@@ -43,7 +42,7 @@ public class PlayerJumpState : PlayerBaseState
     public sealed override void InitializeSubState()
     {
         if (Context.Input.Rolling)
-            SwitchState(Factory.Roll());
+            SetSubState(Factory.Roll());
         else if (Context.Input.Running)
             SetSubState(Factory.Run());
         else if (Context.Input.Moving)

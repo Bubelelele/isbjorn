@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -8,6 +7,7 @@ public class ShowPath : MonoBehaviour
 {
     private ClosestFoodFinder closestFoodFinder;
     private Vector3 closestFoodLoc;
+    private Transform pathStartTransform;
     //public GameObject closestFoodLoc;
     public bool hunterSense;
 
@@ -26,65 +26,53 @@ public class ShowPath : MonoBehaviour
     [SerializeField]
     private float smellDuration = 5f;
 
-    [SerializeField]
-    private GameObject myLineRenderer;
+    public GameObject myLineRenderer;
 
     private NavMeshTriangulation triangulation;
     private Coroutine DrawpathCoroutine;
-
 
     private void Start()
     {
         closestFoodFinder = GameObject.Find("Player").GetComponent<ClosestFoodFinder>();
         triangulation = NavMesh.CalculateTriangulation();
-
+        pathStartTransform = player.Find("Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/Jaw2");
     }
 
     private void Update()
     {
         closestFoodLoc = closestFoodFinder.closestFoodLocation;
 
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            if (!hunterSense)
-            {
-                hunterSense = true;
-                FindFood();
+        // if (Keyboard.current.qKey.wasPressedThisFrame)
+        // {
+        //     if (!hunterSense)
+        //     {
+        //         hunterSense = true;
+        //         FindFood();
+        //     }
+        // }
 
-            }
-
-
-
-        }
-
-        if (!hunterSense)
-        {
-            
-            //    StopCoroutine(DrawPathToFood());
-            myLineRenderer.SetActive(false); 
-            
-        }
-
-        
+        // if (!hunterSense)
+        // {
+        //     //    StopCoroutine(DrawPathToFood());
+        //     myLineRenderer.SetActive(false);
+        // }
     }
-
 
     public void FindFood()
     {
-        if (hunterSense)
-        {
+        // if (hunterSense)
+        // {
             if (DrawpathCoroutine != null)
             {
                 StopCoroutine(DrawpathCoroutine);
             }
             DrawpathCoroutine = StartCoroutine(DrawPathToFood());
 
-            Invoke("TurnOffSense", smellDuration);
-        }
-        
+            Invoke(nameof(TurnOffSense), smellDuration);
+        // }
     }
 
-    void TurnOffSense()
+    private void TurnOffSense()
     {
         hunterSense = false;
         myLineRenderer.SetActive(false); 
@@ -95,12 +83,12 @@ public class ShowPath : MonoBehaviour
         WaitForSeconds wait = new WaitForSeconds(pathUpdateSpeed);
         NavMeshPath path = new NavMeshPath();
         
-        if (hunterSense)
-        {
+        // if (hunterSense)
+        // {
             myLineRenderer.SetActive(true); 
-            while (closestFoodLoc != null)
-            {
-                if (NavMesh.CalculatePath(player.position, closestFoodLoc, NavMesh.AllAreas, path))
+            // while (closestFoodLoc != null)
+            // {
+                if (NavMesh.CalculatePath(pathStartTransform.position, closestFoodLoc, NavMesh.AllAreas, path))
                 {
                     linePath.positionCount = path.corners.Length;
 
@@ -113,10 +101,8 @@ public class ShowPath : MonoBehaviour
                 //{
                 //    Debug.LogError($"Unable to calculate a path on the NavMesh between {playerOffset.position} and {closestFoodLoc}!");
                 //}
-
                 yield return wait;
-            }
-        }
-        
+            // }
+        // }
     }
 }

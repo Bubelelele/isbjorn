@@ -12,6 +12,7 @@ public class Fishes : MonoBehaviour
     public Material slashIcon;
 
     private Rigidbody rb;
+    private SphereCollider _sphereCollider;
     private Animator fishAnim;
     private Vector3 dir;
     private bool canRoar;
@@ -25,6 +26,7 @@ public class Fishes : MonoBehaviour
     private void Awake()            
     {
         fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");            //Kevin
+        _sphereCollider = GetComponent<SphereCollider>();
     }
 
     private void Start()
@@ -51,11 +53,12 @@ public class Fishes : MonoBehaviour
                 fishAnim.enabled = false;
                 rb.AddForce(dir * Time.deltaTime * pushForce);
                 isDown = true;
+                _sphereCollider.radius = 7.0f;
                 icon.GetComponent<MeshRenderer>().material = slashIcon;
-                StartCoroutine("stopFish");
+                StartCoroutine(nameof(StopFish));
                 
             }
-            if (Mouse.current.leftButton.wasPressedThisFrame && Vector3.Distance(transform.position, player.transform.position) < 7 && !isHit && isDown)
+            if (Mouse.current.leftButton.wasPressedThisFrame && !isHit && isDown)
             {
                 fishInMouth.SetActive(true);        //Kevin
                 fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
@@ -66,7 +69,7 @@ public class Fishes : MonoBehaviour
         }
     }
 
-    IEnumerator stopFish()          //Kevin 
+    private IEnumerator StopFish()          //Kevin 
     {
         yield return new WaitForSeconds(3);
         rb.isKinematic = true;

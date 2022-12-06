@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerBaseState
     {
         ResetGravity();
         Context.CoyoteTimer = Context.CoyoteTime;
+        Context.AudioSources[7].Play();
     }
 
     protected override void UpdateState()
@@ -21,21 +22,8 @@ public class PlayerGroundedState : PlayerBaseState
     {
         if (!Context.PlayerIsGrounded)
             SwitchState(Factory.Fall());
-        else switch (Context.Input.Rolling)
-        {
-            case false when !RequiresAnimationEnd && Context.JumpBufferTimer > 0.0f:
-            case false when !RequiresAnimationEnd && Context.Input.JumpWasPressed:
-                SwitchState(Factory.Jump());
-                break;
-        }
-
-        // else switch (Context.Input.Rolling)
-        // {
-        //     case false when Context.JumpBufferTimer > 0.0f:
-        //     case false when Context.Input.JumpWasPressed:
-        //         SwitchState(Factory.Jump());
-        //         break;
-        // }
+        else if (Context.JumpBufferTimer > 0.0f || Context.Input.JumpWasPressed)
+            SwitchState(Factory.Jump());
     }
 
     protected override void ExitState() { }
