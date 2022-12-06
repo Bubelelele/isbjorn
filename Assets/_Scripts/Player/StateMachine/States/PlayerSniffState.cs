@@ -1,6 +1,6 @@
 public class PlayerSniffState : PlayerBaseState
 {
-    public PlayerSniffState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    public PlayerSniffState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
     {
         RequiresAnimationEnd = true;
     }

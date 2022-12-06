@@ -1,6 +1,6 @@
 public class PlayerRoarState : PlayerBaseState
 {
-    public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
     {
         RequiresAnimationEnd = true;
     }

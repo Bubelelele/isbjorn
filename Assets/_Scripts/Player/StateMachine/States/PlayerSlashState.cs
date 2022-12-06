@@ -4,7 +4,7 @@ public class PlayerSlashState : PlayerBaseState
 {
     private readonly Collider[] _hitColliders = new Collider[5];
 
-    public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    public PlayerSlashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
     {
         RequiresAnimationEnd = true;
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerRunState : PlayerBaseState
 {
-    public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
+    public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement) { }
 
     private const float BreatheTime = 3.0f;
     private float _runningTimer = 10.0f;

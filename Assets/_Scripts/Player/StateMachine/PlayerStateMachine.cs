@@ -40,6 +40,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpRiseGravity => jumpRiseGravity;
     public float JumpFallGravity => jumpFallGravity;
     public bool PlayerIsLandingJump { get; set; }
+    // Look into.
     public bool Bounce { get; set; }
     
     // Jump Timers.
@@ -127,7 +128,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Update()
     {
         CreateCameraCoordinateSpaceVectors();
-        _movementVector = MoveInput();
+        _movementVector = CurrentState.CurrentSubState.LocksMovement ? Vector3.zero : MoveInput();
         ProjectVectorToCameraCoordinateSpace(ref _movementVector);
         LookTowardsMovementVector();
         CurrentState.UpdateStates();

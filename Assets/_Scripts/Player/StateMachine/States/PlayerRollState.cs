@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PlayerRollState : PlayerBaseState
 {
-    public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
+    public PlayerRollState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
+    {
+        IsMomentumBased = true;
+    }
     
 
     public override void EnterState()

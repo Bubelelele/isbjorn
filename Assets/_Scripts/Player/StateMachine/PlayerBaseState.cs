@@ -1,20 +1,21 @@
-using UnityEngine;
-
 public abstract class PlayerBaseState
 {
     public PlayerBaseState CurrentSubState;
+    public readonly bool LocksMovement;
     
     protected PlayerStateMachine Context { get; }
     protected PlayerStateFactory Factory { get; }
     protected bool IsRootState { get; set; }
     protected bool RequiresAnimationEnd { get; set; }
+    protected bool IsMomentumBased { get; set; }
 
     private PlayerBaseState _currentRootState;
 
-    protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+    protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement)
     {
         Context = currentContext;
         Factory = playerStateFactory;
+        LocksMovement = locksMovement;
     }
     
     public abstract void EnterState();
@@ -31,18 +32,16 @@ public abstract class PlayerBaseState
     
     protected void SwitchState(PlayerBaseState newState)
     {
+        if (Context.CurrentState.IsMomentumBased && !newState.IsMomentumBased && newState.LocksMovement) return;
+
         if (RequiresAnimationEnd)
         {
-            if (Context.Input.InputActions.PlayerLand.enabled)
-                Context.Input.InputActions.PlayerLand.Disable();
             if (!Context.AnimationEnded) return;
             Switch(newState);
             Context.AnimationEnded = false;
-            Context.Input.InputActions.PlayerLand.Enable();
         }
         else
             Switch(newState);
-        
     }
 
     private void Switch(PlayerBaseState newState)
