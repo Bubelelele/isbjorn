@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 002697d49e952084088bfb430c81c013, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 7703686327855295255}
   - component: {fileID: 6200413301850862339}
   - component: {fileID: 5820804136273690137}
+  - component: {fileID: 8604362383284493721}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Walrus
@@ -349,14 +350,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7993479173142677636}
-  m_LocalRotation: {x: -0.29839104, y: -0, z: 0, w: 0.9544437}
-  m_LocalPosition: {x: 0, y: 0.261, z: 0.291}
+  m_LocalRotation: {x: -0.18875605, y: -0, z: -0, w: 0.9820241}
+  m_LocalPosition: {x: 0, y: 0.26, z: 0.29}
   m_LocalScale: {x: 3.0251, y: 0.6672845, z: 4.296105}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4926893591875760595}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -34.722, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -21.76, y: 0, z: 0}
 --- !u!33 &7703686327855295255
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -418,8 +419,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.56719875, y: 1, z: 0.73727065}
+  m_Center: {x: -0.002722276, y: 0.0000017118645, z: 0.03537243}
+--- !u!114 &8604362383284493721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993479173142677636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad566d6b90675949af05eb75c0c7437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walrusSFX: {fileID: 7581086862532188298}
 --- !u!1001 &4887934893081384504
 PrefabInstance:
   m_ObjectHideFlags: 0

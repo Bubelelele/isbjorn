@@ -13,8 +13,6 @@ public class AI_Animal : MonoBehaviour
 
     public float distance;
     public Food _food;
-
-    public AudioSource walrusBounceSound;   //Mathias
     
     //private bool goToFood;
     private Vector3 closestFoodLocation;
@@ -116,8 +114,7 @@ public class AI_Animal : MonoBehaviour
 
     public void JumpedOn()
     {
-        walrusAnim.SetTrigger("JumpedOn");
-        walrusBounceSound.Play();   //Mathias
+        walrusAnim.SetTrigger("JumpedOn");    
     }
 
 
