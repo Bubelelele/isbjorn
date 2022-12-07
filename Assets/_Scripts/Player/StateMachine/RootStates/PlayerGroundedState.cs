@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerGroundedState : PlayerBaseState
 {
     public PlayerGroundedState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
@@ -30,13 +32,7 @@ public class PlayerGroundedState : PlayerBaseState
     
     public sealed override void InitializeSubState()
     {
-        if (Context.Input.Sniffing)
-            SetSubState(Factory.Sniff());
-        else if (Context.Input.Roaring)
-            SetSubState(Factory.Roar());
-        else if (Context.Input.Slashing)
-            SetSubState(Factory.Slash());
-        else if (Context.Input.Rolling)
+        if (Context.Input.Rolling)
             SetSubState(Factory.Roll());
         else if (Context.Input.Running)
             SetSubState(Factory.Run());

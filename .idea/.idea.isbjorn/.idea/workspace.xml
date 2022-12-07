@@ -8,6 +8,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/95646d41081849d8b71d41c224b049eb7400/9a/65355d7c/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/StateMachine/PlayerBaseState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/StateMachine/PlayerStateFactory.cs" root0="SKIP_HIGHLIGHTING" />
@@ -144,6 +151,8 @@
       <workItem from="1670265526052" duration="227000" />
       <workItem from="1670267341000" duration="3475000" />
       <workItem from="1670282701079" duration="12842000" />
+      <workItem from="1670409669726" duration="27826000" />
+      <workItem from="1670444220560" duration="7032000" />
     </task>
     <servers />
   </component>

@@ -43,24 +43,24 @@ public class IceSmash : MonoBehaviour, IHittable
 		
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
-            if (other.GetComponent<PlayerStateMachine>().Input.Rolling)
+            if (collision.gameObject.GetComponent<PlayerStateMachine>().Input.Rolling)
             {
                 SpawnFracturedObject();
             }
-            if (onTouch)
+            else if (onTouch)
             {
                 SpawnFracturedObject();
             }
         }
-        else if (other.CompareTag("Cutscene Player"))
+        else if (collision.collider.CompareTag("Cutscene Player"))
         {
             SpawnFracturedObject();
         }
-        else if (other.CompareTag("Snowball"))
+        else if (collision.collider.CompareTag("Snowball"))
         {
             SpawnFracturedObject();
         }

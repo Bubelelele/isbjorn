@@ -1,7 +1,9 @@
+using UnityEngine;
+
 public abstract class PlayerBaseState
 {
     public PlayerBaseState CurrentSubState;
-    public readonly bool LocksMovement;
+    public readonly bool LocksInput;
     
     protected PlayerStateMachine Context { get; }
     protected PlayerStateFactory Factory { get; }
@@ -11,11 +13,11 @@ public abstract class PlayerBaseState
 
     private PlayerBaseState _currentRootState;
 
-    protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement)
+    protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksInput)
     {
         Context = currentContext;
         Factory = playerStateFactory;
-        LocksMovement = locksMovement;
+        LocksInput = locksInput;
     }
     
     public abstract void EnterState();
@@ -32,7 +34,15 @@ public abstract class PlayerBaseState
     
     protected void SwitchState(PlayerBaseState newState)
     {
-        if (Context.CurrentState.IsMomentumBased && !newState.IsMomentumBased && newState.LocksMovement) return;
+        var currentRootState = Context.CurrentState;
+        var currentSubState = currentRootState.CurrentSubState;
+
+        switch (newState.IsMomentumBased)
+        {
+            case false when currentRootState.IsMomentumBased && newState.LocksInput:
+            case true when !currentSubState.IsMomentumBased && currentSubState.LocksInput:
+                return;
+        }
 
         if (RequiresAnimationEnd)
         {
@@ -49,11 +59,13 @@ public abstract class PlayerBaseState
         ExitState();
         
         newState.EnterState();
-
+        
         if (IsRootState)
             Context.CurrentState = newState;
         else
+        {
             _currentRootState?.SetSubState(newState);
+        }
     }
     
     protected abstract void ExitState();
@@ -69,6 +81,7 @@ public abstract class PlayerBaseState
     
     protected void SetSubState(PlayerBaseState newSubState)
     {
+        // if (Context.CurrentState.CurrentSubState.IsMomentumBased && newSubState.LocksInput) return;
         CurrentSubState = newSubState;
         newSubState.SetRootState(this);
     }

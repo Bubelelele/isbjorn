@@ -11,12 +11,15 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Context.CurrentGravity = Context.Bounce ? Context.InitialJumpVelocity * 2.0f - Context.CurrentGravity * 0.5f : Context.InitialJumpVelocity;
+        var bounceVelocity = Mathf.Clamp(Context.InitialJumpVelocity - Context.CurrentGravity, Context.InitialJumpVelocity, -Context.MaximumGravity);
+        Context.CurrentGravity = Context.LandedOnWalrus ? bounceVelocity : Context.InitialJumpVelocity;
         Context.JumpBufferTimer = 0.0f;
         Context.CoyoteTimer = 0.0f;
         Context.Input.JumpWasPressed = false;
+        Context.Animator.SetTrigger("Jump");
         Context.Animator.SetBool("IsJumping", true);
         Context.JumpFeedback?.PlayFeedbacks();
+        Context.AudioSources[8].Play();
     }
 
     protected override void UpdateState()
@@ -35,7 +38,7 @@ public class PlayerJumpState : PlayerBaseState
 
     protected override void ExitState()
     {
-        Context.Bounce = false;
+        Context.LandedOnWalrus = false;
         Context.Animator.SetBool("IsJumping", false);
     }
     

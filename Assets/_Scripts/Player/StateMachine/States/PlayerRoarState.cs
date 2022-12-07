@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerRoarState : PlayerBaseState
 {
     public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
@@ -23,12 +25,18 @@ public class PlayerRoarState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.Running)
-            SwitchState(Factory.Run());
-        else if (Context.Input.Moving)
-            SwitchState(Factory.Walk());
-        else
-            SwitchState(Factory.Idle());
+        switch (Context.Input.Moving)
+        {
+            case true when Context.Input.Running:
+                SwitchState(Factory.Run());
+                break;
+            case true:
+                SwitchState(Factory.Walk());
+                break;
+            default:
+                SwitchState(Factory.Idle());
+                break;
+        }
     }
 
     public sealed override void InitializeSubState() { }

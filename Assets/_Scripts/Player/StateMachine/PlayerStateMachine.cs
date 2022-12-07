@@ -27,8 +27,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float CurrentRollingSpeed { get => currentRollingSpeed; set => currentRollingSpeed = value; }
     
     // Gravity.
-    public const float GroundedGravity = -0.25f;
+    public const float GroundedGravity = -1.0f;
     public float FallGravity => fallGravity;
+    public float MaximumGravity => maximumGravity;
     public float CurrentGravity { get => currentGravity; set => currentGravity = value; }
     
     // Ground Info.
@@ -40,8 +41,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpRiseGravity => jumpRiseGravity;
     public float JumpFallGravity => jumpFallGravity;
     public bool PlayerIsLandingJump { get; set; }
-    // Look into.
-    public bool Bounce { get; set; }
+    public bool LandedOnWalrus { get; set; }
     
     // Jump Timers.
     public float JumpBufferTime => jumpBufferTime;
@@ -79,6 +79,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [Header("Gravity")]
     [SerializeField] private float fallGravity;
+    [SerializeField] private float maximumGravity;
     [SerializeField] private float currentGravity;
 
     [Header("Ground Info")]
@@ -104,12 +105,12 @@ public class PlayerStateMachine : MonoBehaviour
     private Rigidbody _rigidbody;
     private Transform _mainCameraTransform;
     private Vector3 _mainCameraForward;
-    private Vector3 _mainCameraRight;
 
     // Basic Movement.
     private Vector3 _movementVector;
     private const float _drag = 25.0f;
     private const float _counterDragMultiplier = _drag * 2.0f;
+    private Quaternion _lastLookRotation;
 
     // Ground Info.
     private RaycastHit _groundCheckHitInfo;
@@ -130,8 +131,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        CreateCameraCoordinateSpaceVectors();
-        _movementVector = CurrentState.CurrentSubState.LocksMovement ? Vector3.zero : MoveInput();
+        _movementVector = CurrentState.CurrentSubState.LocksInput ? Vector3.zero : MoveInput();
         ProjectVectorToCameraCoordinateSpace(ref _movementVector);
         LookTowardsMovementVector();
         CurrentState.UpdateStates();
@@ -144,7 +144,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.collider.CompareTag("Walrus")) return;
-        Bounce = true;
+        LandedOnWalrus = true;
     }
 
     private void InitializeVariables()
@@ -157,6 +157,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (Camera.main != null)
             _mainCameraTransform = Camera.main.transform;
         SelectBear(isBearThin);
+        _lastLookRotation = BearTransform.rotation;
         Animator = BearTransform.GetComponent<Animator>();
         AudioSources = transform.GetChild(2).GetComponentsInChildren<AudioSource>();
         ShowPath = FindObjectOfType<ShowPath>();
@@ -175,35 +176,36 @@ public class PlayerStateMachine : MonoBehaviour
     {
         var capsuleColliderRadius = _capsuleCollider.radius;
         var origin = transform.position + new Vector3(0.0f, capsuleColliderRadius, 0.0f);
+        const float rayCastTravelDistance = 2.0f;
         var sphereCastRadius = capsuleColliderRadius * 0.9f;
-        var sphereCastTravelDistance = capsuleColliderRadius - sphereCastRadius + 0.25f;
-        return Physics.SphereCast(origin, sphereCastRadius, Vector3.down, out _groundCheckHitInfo, sphereCastTravelDistance, groundCheckLayerMask);
+        var sphereCastTravelDistance = capsuleColliderRadius - sphereCastRadius + 0.45f;
+        Physics.Raycast(origin, Vector3.down, out _groundCheckHitInfo, rayCastTravelDistance, groundCheckLayerMask);
+        return Physics.SphereCast(origin, sphereCastRadius, Vector3.down, out _, sphereCastTravelDistance, groundCheckLayerMask);
     }
     
     private Vector3 MoveInput()
     {
         return new Vector3(Input.MoveInput.x, 0.0f, Input.MoveInput.y);
     }
-
-    private void CreateCameraCoordinateSpaceVectors()
-    {
-        _mainCameraForward = _mainCameraTransform.forward;
-        _mainCameraRight = _mainCameraTransform.right;
-        _mainCameraForward.y = 0.0f;
-        _mainCameraRight.y = 0.0f;
-        _mainCameraForward.Normalize();
-        _mainCameraRight.Normalize();
-    }
     
     private void ProjectVectorToCameraCoordinateSpace(ref Vector3 vectorToProject)
     {
-        vectorToProject = vectorToProject.x * _mainCameraRight + vectorToProject.z * _mainCameraForward;
+        _mainCameraForward = _mainCameraTransform.forward;
+        var right = _mainCameraTransform.right;
+        _mainCameraForward.y = 0.0f;
+        right.y = 0.0f;
+        _mainCameraForward.Normalize();
+        right.Normalize();
+        vectorToProject = vectorToProject.x * right + vectorToProject.z * _mainCameraForward;
     }
     
     private void LookTowardsMovementVector()
     {
-        if (_movementVector == Vector3.zero) return;
-        BearTransform.forward = Vector3.Slerp(BearTransform.forward, _movementVector, lookRotationSpeed * Time.deltaTime);
+        ProjectVectorOnPlane(ref _movementVector);
+        var targetLookRotation = _movementVector == Vector3.zero ? _lastLookRotation : Quaternion.LookRotation(_movementVector);
+        var currentLookRotation = BearTransform.rotation;
+        BearTransform.rotation = Quaternion.Slerp(currentLookRotation, targetLookRotation, lookRotationSpeed * Time.deltaTime);
+        _lastLookRotation = currentLookRotation;
     }
     
     private void ProjectVectorOnPlane(ref Vector3 vectorToProject)
@@ -212,7 +214,9 @@ public class PlayerStateMachine : MonoBehaviour
         var localGroundCheckHitInfoNormal = transform.InverseTransformDirection(_groundCheckHitInfo.normal);
         var slopeAngleRotation = Quaternion.FromToRotation(StaticPlayerTransform.up, localGroundCheckHitInfoNormal);
         vectorToProject = slopeAngleRotation * vectorToProject;
-        RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, BearTransform.forward) - 90.0f;
+        var bearForward = BearTransform.forward;
+        bearForward.y = 0.0f;
+        RelativeSlopeAngle = Vector3.Angle(localGroundCheckHitInfoNormal, bearForward) - 90.0f;
     }
 
     public void AnimationEvent()

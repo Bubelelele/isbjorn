@@ -31,7 +31,7 @@ public class PlayerFallState : PlayerBaseState
     {
         if (!Context.Input.Rolling && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
             SwitchState(Factory.Jump());
-        else if (Context.Bounce)
+        else if (Context.LandedOnWalrus)
         {
             SwitchState(Factory.Jump());
             Context.WalrusFeedback?.PlayFeedbacks();
@@ -66,6 +66,7 @@ public class PlayerFallState : PlayerBaseState
 
     private void ApplyGravity(float fallGravity)
     {
+        if (Context.CurrentGravity < Context.MaximumGravity) return;
         Context.CurrentGravity += fallGravity * Time.deltaTime;
     }
 

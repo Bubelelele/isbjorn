@@ -24024,6 +24024,7 @@ MonoBehaviour:
   decelerationRate: 1
   currentRollingSpeed: 0
   fallGravity: -30
+  maximumGravity: -70
   currentGravity: 0
   groundCheckLayerMask:
     serializedVersion: 2

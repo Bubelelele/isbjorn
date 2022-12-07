@@ -23,12 +23,18 @@ public class PlayerSniffState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.Input.Running)
-            SwitchState(Factory.Run());
-        else if (Context.Input.Moving)
-            SwitchState(Factory.Walk());
-        else
-            SwitchState(Factory.Idle());
+        switch (Context.Input.Moving)
+        {
+            case true when Context.Input.Running:
+                SwitchState(Factory.Run());
+                break;
+            case true:
+                SwitchState(Factory.Walk());
+                break;
+            default:
+                SwitchState(Factory.Idle());
+                break;
+        }
     }
 
     public override void InitializeSubState() { }
