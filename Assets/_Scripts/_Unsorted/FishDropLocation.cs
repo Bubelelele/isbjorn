@@ -8,7 +8,6 @@ public class FishDropLocation : MonoBehaviour
     private void Start()
     {
         fishLocation = this.gameObject.transform.GetChild(0).GetChild(0).gameObject; //Kevin
-        // Invoke("FishLocationOff", 2);                                                  //Kevin
     }
 
     // Start is called before the first frame update

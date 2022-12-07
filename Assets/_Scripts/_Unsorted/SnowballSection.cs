@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +9,6 @@ public class SnowballSection : MonoBehaviour
     private bool hasPlayed;
     private Animator anim;
     private GameObject cliff, ogWalrus, fakeWalrus;
-
-
 
     private void Start()
     {
@@ -35,8 +32,6 @@ public class SnowballSection : MonoBehaviour
     void AnimStart()
     {
         anim.SetBool("Play", true);
-
-        
         Invoke("DeactivateItems", 9);
     }
 
@@ -50,5 +45,4 @@ public class SnowballSection : MonoBehaviour
             iceSpikes[i].gameObject.SetActive(false);
         }
     }
-
 }

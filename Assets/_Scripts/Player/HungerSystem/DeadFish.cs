@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +6,9 @@ public class DeadFish : MonoBehaviour
 {
     public Transform player;
     public bool foodInScene;
-         
     public GameObject fishInMouth;                 
-    public Food food;                              
+    public Food food;  
+    
     private Rigidbody _rB;
 
 
@@ -19,28 +18,19 @@ public class DeadFish : MonoBehaviour
         {
             food = this.gameObject.GetComponent<Food>();
             _rB = gameObject.GetComponent<Rigidbody>();
-
         }
-
         fishInMouth = GameObject.Find("Player/Bear_Big/Spine/Spine2/Spine3/Spine4/Neck1/Neck2/Jaw1/FishInMouth");           
     }
 
     private void Start()
     {
-
         player = GameObject.Find("Player").transform;
         fishInMouth.SetActive(false);      
         
-
-        //_rB = gameObject.GetComponent<Rigidbody>();
         if (foodInScene)
         {
             StartCoroutine("TurnOffGravity");
-
         }
-
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,12 +50,10 @@ public class DeadFish : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                //IconSystem.instance.FishInMouth();
                 fishInMouth.SetActive(true);        
                 if (foodInScene)
                 {
                     fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
-
                 }
                 transform.position = Vector3.zero;
                 Destroy(gameObject, 0.2f);

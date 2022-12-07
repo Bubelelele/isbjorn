@@ -11,7 +11,6 @@ public class AI_AnimalWaypoints : MonoBehaviour
 
     private int _index = 0;
     private NavMeshAgent _agent;
-
     private GameObject pathOne;
 
 
@@ -52,6 +51,5 @@ public class AI_AnimalWaypoints : MonoBehaviour
         {
             GoToNextWaypoint();
         }
-        //transform.LookAt(waypoint[_index].position);
     }
 }

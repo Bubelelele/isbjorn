@@ -15,7 +15,6 @@ public class BowlingForceJump : MonoBehaviour
     {
         player = GameObject.Find("Player"); 
         playerStateMachine = player.GetComponent<PlayerStateMachine>();
-
     }
 
     private void OnTriggerEnter(Collider other)

@@ -8,10 +8,10 @@ public class CP_Respawn : MonoBehaviour
     public float minOffset = 2f;
     public Vector3 currentResLoc;
     public AudioObject respawnVoiceLine;
+
+
     private int voiceLineCounter;
-
     private ClosestRespawnFinder closestRespawnFinder;
-
     private Vector3 RespawnLoc;
 
     private void Start()

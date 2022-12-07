@@ -6,6 +6,7 @@ public class CollisonPush : MonoBehaviour
     public float pushForce;
     public AudioSource walrusPushSound;    //Mathias
     public AudioObject voiceLineWalrus;   //Mathias
+
     private bool voiceLineIsTriggered;
     private GameObject player;
     private PlayerStateMachine playerStateMachine;
@@ -29,7 +30,6 @@ public class CollisonPush : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PushPlayer();
-
         }
     }
 
@@ -50,14 +50,10 @@ public class CollisonPush : MonoBehaviour
         Vector3 dir = player.transform.position - transform.position;
         dir = dir.normalized;
         player.GetComponent<Rigidbody>().AddForce((dir * pushForce), ForceMode.Impulse);
-
-
-
     }
 
     void AnimReset()
     {
         guardAnimation.SetBool("Enter", false);
-
     }
 }

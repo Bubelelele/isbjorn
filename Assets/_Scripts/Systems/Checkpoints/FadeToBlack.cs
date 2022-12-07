@@ -1,47 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 
 public class FadeToBlack : MonoBehaviour
 {
-
     public GameObject blackSquareImage;
     public GameObject deathText;
-
-    
-
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.oKey.wasPressedThisFrame)
-        {
-            StartCoroutine(FadeBlackOutSquare());
-            Debug.LogError("FadeTrue");
-        }
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            StartCoroutine(FadeBlackOutSquare(false));
-            Debug.LogError("FadeFalse");
-
-        }
-    }
-
 
     public void StartFade()
     {
         StartCoroutine(FadeBlackOutSquare());
-
     }
 
     public void StopFade()
     {
         StartCoroutine(FadeBlackOutSquare(false));
-
     }
 
     public IEnumerator FadeBlackOutSquare(bool fadeToBlack = true, int fadeSpeed = 5)

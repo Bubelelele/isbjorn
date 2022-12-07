@@ -8,13 +8,10 @@ public class AI_Animal : MonoBehaviour
 {
     public string animalNumber;
     public List<Transform> waypoint;
-    public bool stationary;//, foodIsDropped;
-    public float maxDistanceToFood;
-
-    public float distance;
+    public bool stationary;
+    public float maxDistanceToFood, distance;
     public Food _food;
     
-    //private bool goToFood;
     private Vector3 closestFoodLocation;
     private int _index = 0;
     private NavMeshAgent _agent;
@@ -26,7 +23,6 @@ public class AI_Animal : MonoBehaviour
 
     private void Awake()
     {
-        //goToFood = false;
         if (!stationary)
         {
             pathOne = GameObject.Find("Paths/PathOne");
@@ -69,29 +65,20 @@ public class AI_Animal : MonoBehaviour
             {
                 GoToNextWaypoint();
             }
-            //transform.LookAt(waypoint[_index].position);
         }
 
         if (stationary)
         {
             FindClosestFood();
         }
-        //if (goToFood)
-        //{
-        //    _agent.SetDestination(closestFoodLocation);
-
-        //}
         if ((closestFoodLocation - this.transform.position).sqrMagnitude < maxDistanceToFood)
         {
-            //if (foodIsDropped)
             if (_food.foodIsDropped)
             {
                 _agent.SetDestination(closestFoodLocation);
                 walrusAnim.SetBool("Walking", true);
             }
-
         }
-        //float distanceToFood = (currentFood.transform.position - this.transform.position).sqrMagnitude;
 
         distance = (closestFoodLocation - this.transform.position).sqrMagnitude;
         
@@ -102,8 +89,6 @@ public class AI_Animal : MonoBehaviour
             walrusAnim.SetTrigger("Eating");
             _agent.isStopped = true;
             foodObject.SetActive(false);
-
-
         }
         else
         {
@@ -135,19 +120,11 @@ public class AI_Animal : MonoBehaviour
                 _food = currentFood.GetComponent<Food>();
                 foodObject = _food.gameObject;
             }
-            //if (distanceToFood < maxDistanceToFood)
-            //{
-            //    goToFood = true;
-            //}
         }
 
         if (closestFood != null)
         {
             Debug.DrawLine(this.transform.position, closestFood.transform.position);
-
         }
-
-
-
     }
 }

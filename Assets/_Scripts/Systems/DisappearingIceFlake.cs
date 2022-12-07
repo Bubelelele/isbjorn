@@ -11,23 +11,17 @@ public class DisappearingIceFlake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         myAnimation = GetComponent<Animator>();
         parent = transform.parent.gameObject;
-
     }
-
-
 
     public void ActivateAnim()
     {
         myAnimation.SetBool("PlayerContact", true);
         Invoke("ResetAnim", 2f);
-
     }
     private void ResetAnim()
     {
         myAnimation.SetBool("PlayerContact", false);
-
     }
 }

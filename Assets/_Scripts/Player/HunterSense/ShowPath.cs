@@ -5,11 +5,13 @@ using UnityEngine.InputSystem;
 
 public class ShowPath : MonoBehaviour
 {
+    public GameObject myLineRenderer;
+    public bool hunterSense;
+
+
     private ClosestFoodFinder closestFoodFinder;
     private Vector3 closestFoodLoc;
     private Transform pathStartTransform;
-    //public GameObject closestFoodLoc;
-    public bool hunterSense;
 
     [SerializeField]
     private Transform player;
@@ -26,7 +28,6 @@ public class ShowPath : MonoBehaviour
     [SerializeField]
     private float smellDuration = 5f;
 
-    public GameObject myLineRenderer;
 
     private NavMeshTriangulation triangulation;
     private Coroutine DrawpathCoroutine;
@@ -41,27 +42,10 @@ public class ShowPath : MonoBehaviour
     private void Update()
     {
         closestFoodLoc = closestFoodFinder.closestFoodLocation;
-
-        // if (Keyboard.current.qKey.wasPressedThisFrame)
-        // {
-        //     if (!hunterSense)
-        //     {
-        //         hunterSense = true;
-        //         FindFood();
-        //     }
-        // }
-
-        // if (!hunterSense)
-        // {
-        //     //    StopCoroutine(DrawPathToFood());
-        //     myLineRenderer.SetActive(false);
-        // }
     }
 
     public void FindFood()
     {
-        // if (hunterSense)
-        // {
             if (DrawpathCoroutine != null)
             {
                 StopCoroutine(DrawpathCoroutine);
@@ -69,7 +53,6 @@ public class ShowPath : MonoBehaviour
             DrawpathCoroutine = StartCoroutine(DrawPathToFood());
 
             Invoke(nameof(TurnOffSense), smellDuration);
-        // }
     }
 
     private void TurnOffSense()
@@ -83,11 +66,7 @@ public class ShowPath : MonoBehaviour
         WaitForSeconds wait = new WaitForSeconds(pathUpdateSpeed);
         NavMeshPath path = new NavMeshPath();
         
-        // if (hunterSense)
-        // {
             myLineRenderer.SetActive(true); 
-            // while (closestFoodLoc != null)
-            // {
                 if (NavMesh.CalculatePath(pathStartTransform.position, closestFoodLoc, NavMesh.AllAreas, path))
                 {
                     linePath.positionCount = path.corners.Length;
@@ -97,12 +76,6 @@ public class ShowPath : MonoBehaviour
                         linePath.SetPosition(i, path.corners[i] + Vector3.up * pathHeightOffset);
                     }
                 }
-                //else
-                //{
-                //    Debug.LogError($"Unable to calculate a path on the NavMesh between {playerOffset.position} and {closestFoodLoc}!");
-                //}
                 yield return wait;
-            // }
-        // }
     }
 }

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_FIndClosest : MonoBehaviour
+public class AI_FindClosest : MonoBehaviour
 {
     public float lifeSpan;
 

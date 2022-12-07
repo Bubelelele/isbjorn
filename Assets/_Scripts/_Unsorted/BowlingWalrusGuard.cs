@@ -1,12 +1,9 @@
-
 using UnityEngine;
 
 public class BowlingWalrusGuard : MonoBehaviour
 {
     public GameObject bowlingMasterObject;
-    public float pushForceWalk, pushForceJump;
-    
-    public float stayTimer;
+    public float pushForceWalk, pushForceJump, stayTimer;
     public bool inTrigger = false;
 
 
@@ -42,14 +39,12 @@ public class BowlingWalrusGuard : MonoBehaviour
             {
                 Invoke("PushPlayerWalk", 0.5f);
                 inTrigger = true;
-
             }
 
             if (!playerStateMachine.PlayerIsGrounded)
             {
                 Invoke("PushPlayerJump", 0.5f);
                 inTrigger = true;
-
             }
         }
     }
@@ -59,7 +54,6 @@ public class BowlingWalrusGuard : MonoBehaviour
         {
             PushPlayerWalk();
             stayTimer = 1f; 
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -75,9 +69,6 @@ public class BowlingWalrusGuard : MonoBehaviour
         Vector3 dir = player.transform.position - transform.position;
         dir = dir.normalized;
         player.GetComponent<Rigidbody>().AddForce((dir * pushForceWalk), ForceMode.Impulse);
-        
-
-
     }
 
     void PushPlayerJump()
@@ -92,6 +83,5 @@ public class BowlingWalrusGuard : MonoBehaviour
     void AnimReset()
     {
         guardAnimation.SetBool("Enter", false);
-
     }
 }

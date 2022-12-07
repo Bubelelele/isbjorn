@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Snowball : MonoBehaviour
 {
     public GameObject prefabSnowBall;
-    public float throwForce;
-    private bool contactWithPlayer;
-    public float waitTimer;
+    public float throwForce, waitTimer;
 
+    private bool contactWithPlayer;
 
     private void Update()
     {
@@ -27,7 +24,6 @@ public class Snowball : MonoBehaviour
                 waitTimer = 2;
             }
         }
-        
     }
 
 
@@ -40,7 +36,6 @@ public class Snowball : MonoBehaviour
         temp.GetComponent<Rigidbody>().AddRelativeForce(Camera.main.transform.forward  * throwForce, ForceMode.Impulse);
         temp.transform.parent = gameObject.transform;
         Destroy(temp, 4); 
-       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +53,4 @@ public class Snowball : MonoBehaviour
             contactWithPlayer = false;
         }
     }
-
-
 }

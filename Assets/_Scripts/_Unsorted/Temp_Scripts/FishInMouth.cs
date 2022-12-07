@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class FishInMouth : MonoBehaviour
 {
     public float foodAmount;
-
     public PlayerHunger playerHunger;
     public bool hasEaten, hasFish;
     public GameObject fishPrefab;
@@ -23,7 +22,6 @@ public class FishInMouth : MonoBehaviour
         hasEaten = false;
         hasFish = true;
         myGameObject = this.gameObject;
-
     }
 
     // Update is called once per frame
@@ -33,32 +31,25 @@ public class FishInMouth : MonoBehaviour
         {
             hasFish = true;
             IconSystem.instance.FishInMouth();
-
         }
 
         if (Keyboard.current.fKey.wasPressedThisFrame && hasFish)
         {
-            //Debug.Log("Eat");
             Eat();
-            
         }
 
         else if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             DropFish();
         }
-
-        
     }
     
     public void Eat()
     {
         hasEaten = true;
         hasFish = false; 
-        playerHunger.AddFood(foodAmount);
-       //hasEaten = false; 
+        playerHunger.AddFood(foodAmount);      
         gameObject.SetActive(false);
-        //IconSystem.instance.FishInMouth();
         IconSystem.instance.TextEnabled(false);
 
     }
@@ -67,7 +58,6 @@ public class FishInMouth : MonoBehaviour
     {
         hasFish = false;
 
-        //Debug.Log("SpawnFish");
         GameObject fish = Instantiate(fishPrefab, spawnPosition.transform.position, Quaternion.identity) as GameObject;
         fish.GetComponent<Food>().foodIsDropped = true;
         gameObject.SetActive(false);

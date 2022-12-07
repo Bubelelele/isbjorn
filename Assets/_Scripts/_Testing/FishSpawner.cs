@@ -22,7 +22,6 @@ public class FishSpawner : MonoBehaviour
 
     private void Update()
     {
-        //if (!_fishInMouth.hasEaten && fishLandingLocation.childCount == 1) return;
         if (fishLandingLocation.childCount == 0)
         {
             if (_fishInMouth.hasEaten)

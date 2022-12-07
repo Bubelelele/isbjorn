@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClosestFoodFinder : MonoBehaviour
 {
-    
-
     public Vector3 closestFoodLocation;
 
     private void Update()

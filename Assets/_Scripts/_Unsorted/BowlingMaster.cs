@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System;
 
 public class BowlingMaster : MonoBehaviour
 {
     public int score = 0; 
     public List<BowlingPin> pins;
-    //public bool hasEntered;
     public Transform resetPosition;
-    
-
-    private GameObject topDOG;
-
-    private GameObject player;
-    private PlayerStateMachine playerStateMachine;
-    //public BowlingWalrusGuard guard;
-    private GameObject guard;
-    private Text bowlingScore;
-    private GameObject _bowlScore;
     public bool scoreIsActive = false;
 
-    
     public AudioObject strikeSound;     //Mathias
     public AudioObject bowlingFail;     //Mathias
     public GameObject speedVoiceLine;   //Mathias
+
+    private GameObject topDOG;
+    private GameObject player;
+    private PlayerStateMachine playerStateMachine;
+    private GameObject guard;
+    private Text bowlingScore;
+    private GameObject _bowlScore;
+
+    
+    
 
 
     Vector3[] positions;
@@ -48,9 +45,7 @@ public class BowlingMaster : MonoBehaviour
     {
         foreach (BowlingPin pin in pins)
         {
-            //pins.Add(pin);
             pin.onPinFelled += AddScore;
-            //Debug.LogError("Que");
         }
         positions = new Vector3[pins.Count];
         for (int i = 0; i < pins.Count; i++)
@@ -61,7 +56,6 @@ public class BowlingMaster : MonoBehaviour
         player = GameObject.Find("Player");
         playerStateMachine = player.GetComponent<PlayerStateMachine>();
         topDOG = transform.parent.gameObject;
-        //guard = transform.parent.gameObject.transform.GetChild(2).GetComponent<BowlingWalrusGuard>();
         guard = transform.parent.gameObject.transform.GetChild(2).gameObject;
         
 
@@ -80,31 +74,21 @@ public class BowlingMaster : MonoBehaviour
             bowlingScore.text = score + " / 10";
 
         }
-
-        //CountPinsDown();
     }
     void CalculateScore()
     {
         if (score == 10)
         {
-            //Debug.LogError("Win");
-            //hasEntered = false;
             playerStateMachine.enabled = true;
 
             Vocals.instance.Say(strikeSound);     //Mathias
 
             StartCoroutine(TurnOffWalrusi());
-
-
         }
         else
         {
-            //StartCoroutine(ResetPins());
             ResetPins();
             score = 0;
-            //hasEntered = false;
-            
-
         }
     }
 
@@ -112,22 +96,13 @@ public class BowlingMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         playerStateMachine.enabled = false;
-
     }
     private IEnumerator TurnOffWalrusi()
     {
         yield return new WaitForSeconds(1);
         _bowlScore.SetActive(false); 
-        Destroy(topDOG); 
-        //for (int i = 0; i < pins.Count; i++)
-        //{
-        //    Destroy(pins[i].gameObject);
-        //    Debug.LogError("TURNOFF");
-        //}
-
+        Destroy(topDOG);
     }
-
-
 
     public void AddScore()
     {
@@ -135,23 +110,14 @@ public class BowlingMaster : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.Rolling) //&& !hasEntered)
+        if (other.gameObject.CompareTag("Player") && playerStateMachine.Input.Rolling)
         {
             speedVoiceLine.SetActive(false);
-            //guard.enabled = false; 
             guard.SetActive(false);
-            //for (int i = 0; i < pins.Count; i++) //Walrus falls over when roll
-            //{
-            //    pins[i].GetComponent<Rigidbody>().isKinematic = false;
-            //}
             Invoke("KinematicOff", 1f);
 
-                //other.GetComponent<PlayerStateMachine>().Input.enabled = false;
-                //other.GetComponent<PlayerStateMachine>().CurrentState =  ;
                  StartCoroutine(StopPlayer());
-            //playerStateMachine.enabled = false; 
              Invoke("CalculateScore", 8f);
-            //hasEntered = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
@@ -167,11 +133,9 @@ public class BowlingMaster : MonoBehaviour
     {
         Vocals.instance.Say(bowlingFail); //Mathias
         speedVoiceLine.SetActive(true);   //Mathias
-        //guard.enabled = true; 
         guard.SetActive(true);
         for (int i = 0; i < pins.Count; i++)
         {
-            //pins[i].gameObject.SetActive(false);
             pins[i].transform.position = positions[i];
             pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
             pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -179,80 +143,9 @@ public class BowlingMaster : MonoBehaviour
             pins[i].resetFall();
             pins[i].GetComponent<Rigidbody>().isKinematic = true;
 
-            //pins[i].gameObject.SetActive(true);
         }
-        //Something();
-        //Debug.LogError("Something");
-
-
-        //hasEntered = false;
-        //score = 0;
         player.transform.position = resetPosition.position;
         playerStateMachine.enabled = true;
         this.gameObject.GetComponent<BoxCollider>().enabled = true;
-
     }
-
-    //void Something()                          //IS THIS USED?
-    //{
-    //    foreach (BowlingPin pin in pins)
-    //    {
-    //        //pins.Add(pin);
-    //        pin.onPinFelled += AddScore;
-    //        //Debug.LogError("Que");
-    //    }
-    //}
-    //IEnumerator ResetPins()
-    //{
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        pins[i].gameObject.SetActive(false);
-    //        pins[i].transform.position = positions[i];
-    //        pins[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-    //        pins[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-    //        pins[i].transform.rotation = Quaternion.identity;
-
-    //    }
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        yield return new WaitForSeconds(1f);
-    //        pins[i].gameObject.SetActive(true);
-    //    }
-
-    //    hasEntered = false;
-    //    score = 0;
-    //}
-
-    //void CountPinsDown()
-    //{
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        if (pins[i].transform.eulerAngles.z > 5 &&
-    //            transform && pins[i].transform.eulerAngles.z < 355
-    //            && pins[i].activeSelf)
-    //        {
-    //            score++;
-    //            pins[i].SetActive(false);
-    //            Debug.LogError(score);
-
-    //        }
-
-    //    }
-    //}
-
-    //public void CountPinsDown()
-    //{
-    //    for (int i = 0; i < pins.Count; i++)
-    //    {
-    //        if (pins[i].transform.eulerAngles.z > 5 &&
-    //            transform && pins[i].transform.eulerAngles.z < 355
-    //            )
-    //        {
-    //            Debug.LogError(score);
-
-    //        }
-
-    //    }
-    //}
-
 }
