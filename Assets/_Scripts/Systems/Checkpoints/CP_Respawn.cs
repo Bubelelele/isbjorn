@@ -23,7 +23,7 @@ public class CP_Respawn : MonoBehaviour
     {
         RespawnLoc = new(Random.Range(currentResLoc.x + minOffset, currentResLoc.x + maxOffset), currentResLoc.y, Random.Range(currentResLoc.z + minOffset, currentResLoc.z + maxOffset));
         transform.position = RespawnLoc;
-        voiceLineCounter++;
+        
         if (voiceLineCounter == 3)
         {
             Vocals.instance.Say(respawnVoiceLine);
@@ -38,7 +38,9 @@ public class CP_Respawn : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Water"))
         {
+            voiceLineCounter++;
             RespawnPlayer();
+            
         }
     }
 
