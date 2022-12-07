@@ -18,6 +18,7 @@ public class Fishes : MonoBehaviour
     private bool canRoar;
     private bool isDown;
     private bool isHit;
+    private bool canHit;
     private AudioSource audioSound;
 
     private GameObject fishInMouth;                 //Kevin
@@ -42,6 +43,17 @@ public class Fishes : MonoBehaviour
     private void Update()
     {
         dir = transform.position - player.position;
+
+
+        if (canHit)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Invoke("PickUpFish", 0.5f);
+                canHit = false; 
+            }
+        }
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -58,13 +70,21 @@ public class Fishes : MonoBehaviour
                 StartCoroutine(nameof(StopFish));
                 
             }
-            if (Mouse.current.leftButton.wasPressedThisFrame && !isHit && isDown)
+            //if (Mouse.current.leftButton.wasPressedThisFrame && !isHit && isDown)
+            //{
+            //    fishInMouth.SetActive(true);        //Kevin
+            //    fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
+            //    onHit.Invoke();
+            //    Destroy(gameObject, 0.2f);
+            //    isHit = true;
+            //}
+            if (!isHit && isDown)           //Kevin
             {
-                fishInMouth.SetActive(true);        //Kevin
-                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
-                onHit.Invoke();
-                Destroy(gameObject, 0.2f);
-                isHit = true;
+                canHit = true; 
+            }
+            else                        //Kevin
+            {
+                canHit = false;
             }
         }
     }
@@ -73,6 +93,15 @@ public class Fishes : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         rb.isKinematic = true;
+    }
+
+    private void PickUpFish()               //Kevin
+    {
+        fishInMouth.SetActive(true);        //Kevin
+        fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
+        onHit.Invoke();
+        Destroy(gameObject, 0.2f);
+        isHit = true;
     }
 
 

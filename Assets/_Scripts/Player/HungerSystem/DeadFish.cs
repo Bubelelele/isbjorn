@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class DeadFish : MonoBehaviour
 {
     public Transform player;
-    public bool foodInScene;
+    public bool foodInScene, canHit = false;
     public GameObject fishInMouth;                 
     public Food food;  
     
@@ -38,34 +38,49 @@ public class DeadFish : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             IconSystem.instance.PickUpFish();
+            canHit = true;
         }
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (canHit)
         {
             IconSystem.instance.PickUpFish();
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                fishInMouth.SetActive(true);        
-                if (foodInScene)
-                {
-                    fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
-                }
-                transform.position = Vector3.zero;
-                Destroy(gameObject, 0.2f);
+                Invoke("PickUpFish", 0.5f);
             }
         }
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        IconSystem.instance.PickUpFish();
+
+    //        if (Mouse.current.leftButton.wasPressedThisFrame)
+    //        {
+    //            fishInMouth.SetActive(true);        
+    //            if (foodInScene)
+    //            {
+    //                fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
+    //            }
+    //            transform.position = Vector3.zero;
+    //            Destroy(gameObject, 0.2f);
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             IconSystem.instance.TextEnabled(false);
+            canHit = false; 
         }
     }
 
@@ -73,5 +88,17 @@ public class DeadFish : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _rB.isKinematic = true;
+    }
+
+
+    private void PickUpFish()
+    {
+        fishInMouth.SetActive(true);
+        if (foodInScene)
+        {
+            fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;
+        }
+        transform.position = Vector3.zero;
+        Destroy(gameObject, 0.2f);
     }
 }
