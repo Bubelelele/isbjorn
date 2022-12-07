@@ -7,6 +7,8 @@ public class CP_Respawn : MonoBehaviour
     public float maxOffset = 10f;
     public float minOffset = 2f;
     public Vector3 currentResLoc;
+    public AudioObject respawnVoiceLine;
+    private int voiceLineCounter;
 
     private ClosestRespawnFinder closestRespawnFinder;
 
@@ -21,6 +23,15 @@ public class CP_Respawn : MonoBehaviour
     {
         RespawnLoc = new(Random.Range(currentResLoc.x + minOffset, currentResLoc.x + maxOffset), currentResLoc.y, Random.Range(currentResLoc.z + minOffset, currentResLoc.z + maxOffset));
         transform.position = RespawnLoc;
+        voiceLineCounter++;
+        if (voiceLineCounter == 3)
+        {
+            Vocals.instance.Say(respawnVoiceLine);
+        }
+        if (voiceLineCounter == 4)
+        {
+            voiceLineCounter = 0;
+        }
     }
     
     private void OnCollisionEnter(Collision collision)

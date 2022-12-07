@@ -24109,6 +24109,7 @@ MonoBehaviour:
   maxOffset: 5
   minOffset: 1
   currentResLoc: {x: 0, y: 0, z: 0}
+  respawnVoiceLine: {fileID: 11400000, guid: cb076d561fd3d3b41b71bb4bd2fcf80a, type: 2}
 --- !u!114 &-1107697286619784604
 MonoBehaviour:
   m_ObjectHideFlags: 0
