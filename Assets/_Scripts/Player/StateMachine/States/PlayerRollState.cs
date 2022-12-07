@@ -6,7 +6,6 @@ public class PlayerRollState : PlayerBaseState
     {
         IsMomentumBased = true;
     }
-    
 
     public override void EnterState()
     {

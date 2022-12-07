@@ -16,22 +16,14 @@ public class PlayerFallState : PlayerBaseState
     
     protected override void UpdateState()
     {
-        if (Context.PlayerIsLandingJump)
-            ApplyGravity(Context.JumpFallGravity);
-        else
-        {
-            ApplyGravity(Context.FallGravity);
-            Context.CoyoteTimer -= Time.deltaTime;
-        }
+        ApplyGravity(Context.PlayerIsLandingJump ? Context.JumpFallGravity : Context.FallGravity);
         JumpBufferTimer();
         ShouldStateSwitch();
     }
     
     public override void ShouldStateSwitch()
     {
-        if (!Context.Input.Rolling && Context.CoyoteTimer > 0.0f && Context.Input.JumpWasPressed)
-            SwitchState(Factory.Jump());
-        else if (Context.LandedOnWalrus)
+        if (Context.LandedOnWalrus)
         {
             SwitchState(Factory.Jump());
             Context.WalrusFeedback?.PlayFeedbacks();

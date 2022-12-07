@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerRoarState : PlayerBaseState
 {
     public PlayerRoarState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement)
