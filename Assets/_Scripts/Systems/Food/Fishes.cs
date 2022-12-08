@@ -19,7 +19,7 @@ public class Fishes : MonoBehaviour
     private bool canRoar;
     private bool isDown;
     private bool isHit;
-    private bool canHit;
+    private bool canHit, pickUpOnce = false;
     private AudioSource audioSound;
 
     private GameObject fishInMouth;                 //Kevin
@@ -104,11 +104,17 @@ public class Fishes : MonoBehaviour
 
     private void PickUpFish()               //Kevin
     {
-        fishInMouth.SetActive(true);        //Kevin
-        fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
-        onHit.Invoke();
-        Destroy(gameObject, 0.2f);
-        isHit = true;
+        if (!pickUpOnce)
+        {
+            //Debug.LogError("Pickup!");
+            fishInMouth.SetActive(true);        //Kevin
+            fishInMouth.GetComponent<FishInMouth>().foodAmount = food.howMuchFood;      //Kevin
+            onHit.Invoke();
+            Destroy(gameObject, 0.2f);
+            isHit = true;
+            pickUpOnce = true;
+        }
+        
     }
 
 
