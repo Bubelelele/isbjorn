@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Effect Collection
   m_EditorClassIdentifier: 
   bloodFX: {fileID: 0}
-  roarFX: {fileID: 9174189595109660013, guid: d1314c2b1cc7fa045996726d967ade43, type: 3}
+  roarFX: {fileID: 0}

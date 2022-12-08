@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Their habitat is melting away
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: c9285fa52b9c4b24986af0f53a5cb3a0, type: 3}
-  subtitle: For a polar bear. Home is on the artic sea ice. They rely on the ice
-    for their survival. Sadly their habitat is literally melting away.
+  subtitle: For a polar bear home is on the Artic sea ice. They rely on the ice for
+    their survival. Sadly, their habitat is literally melting away.
