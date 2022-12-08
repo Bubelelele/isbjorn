@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: It Looks Like This Bear Is Hydrophobic
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: a2cea14ee07f5be4688bfe8727dd260c, type: 3}
-  subtitle: It seems like this bear is hydrophobic
+  subtitle: It seems like this bear is hydrophobic.
