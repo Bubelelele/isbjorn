@@ -4,8 +4,8 @@ public class PlayerRunState : PlayerBaseState
 {
     public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, bool locksMovement) : base(currentContext, playerStateFactory, locksMovement) { }
 
-    private const float BreatheTime = 3.0f;
-    private float _runningTimer = 10.0f;
+    private const float _breatheTime = 3.0f;
+    private float _runningTimer = 5.0f;
 
     public override void EnterState()
     {
@@ -21,7 +21,7 @@ public class PlayerRunState : PlayerBaseState
         else
         {
             Context.AudioSources[4].Play();
-            _runningTimer = BreatheTime;
+            _runningTimer = _breatheTime;
         }
         ShouldStateSwitch();
     }
