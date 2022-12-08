@@ -6517,8 +6517,8 @@ MonoBehaviour:
   Channel: 0
   ZoomMode: 0
   ZoomFieldOfView: 55
-  ZoomTransitionDuration: 0.66
-  ZoomDuration: 0.66
+  ZoomTransitionDuration: 1
+  ZoomDuration: 1
   RelativeFieldOfView: 0
 --- !u!114 &1915311658
 MonoBehaviour:
@@ -6557,7 +6557,7 @@ MonoBehaviour:
     TargetBPM: 120
   DebugActive: 0
   Channel: 0
-  ShakeDuration: 1.5
+  ShakeDuration: 2.5
   RelativeIntensity: 1
   ResetShakerValuesAfterShake: 1
   ResetTargetValuesAfterShake: 1
