@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5772456886361190728}
   - component: {fileID: 2915033738404234518}
   - component: {fileID: 1900054068749119913}
+  - component: {fileID: -7732156298027446288}
   m_Layer: 0
   m_Name: PoofFX
   m_TagString: Untagged
@@ -4870,3 +4871,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-7732156298027446288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042007671816840182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a33d2aee79c91e4ba574d9cfea87804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

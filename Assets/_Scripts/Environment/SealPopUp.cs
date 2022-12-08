@@ -78,6 +78,5 @@ public class SealPopUp : MonoBehaviour, IHittable
     private void OnDestroy()
     {
         GameObject effect = Instantiate(PoofEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        Destroy(effect, 1f);
     }
 }
