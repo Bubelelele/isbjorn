@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f959ea317f0e5e45b977893e689f56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceUntilShow: 20
+  distanceUntilShow: 100
   maxWaitTime: 10
   foodToAdd: 30
   PoofEffect: {fileID: 4042007671816840182, guid: a1cfcb635fd85ac4680bb23d592bfbf1,
