@@ -23,10 +23,10 @@ public class MovingPlatform : MonoBehaviour
         _destinationPlatform.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _platformPositionLastFrame = _platformRigidbody.position;
-        _platformRigidbody.position = Vector3.Lerp(_startPosition, _endPosition, positionOverTime.Evaluate(Time.fixedTime));
+        _platformRigidbody.position = Vector3.Lerp(_startPosition, _endPosition, positionOverTime.Evaluate(Time.time));
         foreach (var rb in rigidbodiesOnPlatform)
         {
             MoveRigidbodiesOnPlatform(rb);
