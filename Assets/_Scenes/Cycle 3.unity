@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 928691141302299938, guid: 778bd18ce6b87e24e8882ff7b40c0317,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2291255712262909365, guid: 778bd18ce6b87e24e8882ff7b40c0317,
         type: 3}
@@ -2799,6 +2799,11 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5836982589004983940, guid: 28a2ae778ad1cb048a54d31eecca4b35,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5836982589110558596, guid: 28a2ae778ad1cb048a54d31eecca4b35,
         type: 3}
       propertyPath: m_Name
@@ -2859,6 +2864,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5836982589709297873, guid: 28a2ae778ad1cb048a54d31eecca4b35,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836982589815614087, guid: 28a2ae778ad1cb048a54d31eecca4b35,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5836982589977128902, guid: 28a2ae778ad1cb048a54d31eecca4b35,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
@@ -2885,6 +2900,11 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[22].value
       value: 
       objectReference: {fileID: 1550104653}
+    - target: {fileID: 5836982590048868915, guid: 28a2ae778ad1cb048a54d31eecca4b35,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5836982590270278554, guid: 28a2ae778ad1cb048a54d31eecca4b35,
         type: 3}
       propertyPath: onCutsceneFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
