@@ -5,7 +5,8 @@ using UnityEngine;
 public class IconSystem : MonoBehaviour
 {
     public static IconSystem instance;
-    public TextMeshProUGUI responseText; 
+    public TextMeshProUGUI responseText;
+    [SerializeField] private GameObject background;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class IconSystem : MonoBehaviour
     public void RoarIcicle()
     {
         TextEnabled(true);
-        responseText.text = "Press E to roar \nto make the icicle dropp";
+        responseText.text = "Press E to roar \nto make the icicle drop";
     }
     public void PickUpFish()
     {
@@ -38,7 +39,7 @@ public class IconSystem : MonoBehaviour
     }
     public void TextEnabled(bool state)
     {
-        responseText.enabled = state;
+        background.SetActive(state);
     }
 
 

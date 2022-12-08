@@ -7,7 +7,8 @@ using TMPro;
 public class UI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI subtitleText = default;
-
+    [SerializeField] private GameObject background;
+    
 	public static UI instance; 
 
 	private void Awake()
@@ -20,6 +21,7 @@ public class UI : MonoBehaviour
 	public void SetSubtitle(string subtitle, float delay)
 	{
 		subtitleText.text = subtitle;
+		background.SetActive(true);
 
 		StartCoroutine(ClearAfterSeconds(delay));
 	}
@@ -27,6 +29,7 @@ public class UI : MonoBehaviour
 	public void ClearSubtitle()
 	{
 		subtitleText.text = "";
+		background.SetActive(false);
 	}
 
 	private IEnumerator ClearAfterSeconds(float delay)

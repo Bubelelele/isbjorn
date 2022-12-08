@@ -73,9 +73,10 @@ public class SealPopUp : MonoBehaviour, IHittable
             playerHunger.AddFood(foodToAdd);
             sealAnim.SetTrigger("Die");
             Destroy(gameObject, 4);
+            Invoke("DieFX", 4);
         }
     }
-    private void OnDestroy()
+    private void DieFX()
     {
         GameObject effect = Instantiate(PoofEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
     }
