@@ -30,7 +30,12 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void ShouldStateSwitch()
     {
-        if (Context.CurrentGravity >= 0.0f && Context.Input.JumpIsHeld) return;
+        switch (Context.CurrentGravity >= 0.0f)
+        {
+            case true when Context.Input.JumpIsHeld:
+            case true when Context.LandedOnWalrus:
+                return;
+        }
         Context.CurrentGravity = 0.0f;
         Context.PlayerIsLandingJump = true;
         SwitchState(Factory.Fall());

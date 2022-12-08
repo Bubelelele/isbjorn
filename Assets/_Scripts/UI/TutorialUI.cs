@@ -79,7 +79,7 @@ public class TutorialUI : MonoBehaviour
     {
         if (!rollCheck)
         {
-            IconSystem.instance.CustomText("Hold RMB while you're on \nslopes to roll");
+            IconSystem.instance.CustomText("Hold Right Click while you're \non slopes to roll");
             canRoll = true;
         }
     }

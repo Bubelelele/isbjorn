@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -67,7 +68,7 @@ public class Fishes : MonoBehaviour
                 isDown = true;
                 _sphereCollider.radius = 7.0f;
                 icon.GetComponent<MeshRenderer>().material = slashIcon;
-                StartCoroutine(nameof(StopFish));
+                // StartCoroutine(nameof(StopFish));
                 
             }
             //if (Mouse.current.leftButton.wasPressedThisFrame && !isHit && isDown)
@@ -87,6 +88,12 @@ public class Fishes : MonoBehaviour
                 canHit = false;
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.collider.CompareTag("Ground")) return;
+        rb.isKinematic = true;
     }
 
     private IEnumerator StopFish()          //Kevin 
