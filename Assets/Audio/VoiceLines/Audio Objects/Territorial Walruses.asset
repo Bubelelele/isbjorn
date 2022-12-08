@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Territorial Walruses
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: ec90dee86ad78e347999668df151e421, type: 3}
-  subtitle: "Walruses are territorial creatures\u2026 Maybe you can force your way
-    through somehow."
+  subtitle: Walruses are territorial creature. Maybe you can force your way through
+    somehow...

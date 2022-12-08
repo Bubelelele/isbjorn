@@ -26,7 +26,7 @@ public class Vocals : MonoBehaviour
 			source.Stop();
 		}
 		source.PlayOneShot(clip.clip);
-		 
+		
 		UI.instance.SetSubtitle(clip.subtitle, clip.clip.length);
 	}
 	

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Adapted to hunt marrine mammals
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 97e137c07985e3d4b80c49b5238be119, type: 3}
-  subtitle: "Polar bears has adapted to hunt marine mammals. There\u2019s no reason
+  subtitle: "Polar bears have adapted to hunt marine mammals. There\u2019s no reason
     to think they would survive if they had to forage and hunt on the tundra or in
     wooded areas on land."

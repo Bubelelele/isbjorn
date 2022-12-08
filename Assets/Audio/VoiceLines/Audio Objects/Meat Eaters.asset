@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Meat Eaters
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 1c805eabfab18a148bf8c6ccce972ab5, type: 3}
-  subtitle: Unlike other bear species, polar bears almost only eat meat
+  subtitle: Unlike other bear species, polar bears almost only eat meat.
