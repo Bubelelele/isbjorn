@@ -21,8 +21,6 @@ public class IceSmash : MonoBehaviour, IHittable
 
     private void SpawnFracturedObject()
     {
-        fracturedObject[Random.Range(0, 3)].SetActive(true);
-        gameObject.SetActive(false);
         if (section2SlideIce)
         {
             iceShatterSound.Play();
@@ -36,7 +34,13 @@ public class IceSmash : MonoBehaviour, IHittable
         if (snowball)   //Kev
         {
             snowballSection.score++;    //Kev
-        }	
+        }
+       
+
+        fracturedObject[Random.Range(0, 3)].SetActive(true);
+        gameObject.SetActive(false);
+
+		
     }
 
     private void OnCollisionEnter(Collision collision)
