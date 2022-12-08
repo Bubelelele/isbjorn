@@ -17394,7 +17394,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RemapIntensityZero: 0
-  RemapIntensityOne: 0.3
+  RemapIntensityOne: 0.4
   RelativeIntensity: 0
 --- !u!1 &7940920117900953194
 GameObject:
