@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,10 +28,10 @@ public class DeadFish : MonoBehaviour
         player = GameObject.Find("Player").transform;
         fishInMouth.SetActive(false);      
         
-        if (foodInScene)
-        {
-            StartCoroutine("TurnOffGravity");
-        }
+        // if (foodInScene)
+        // {
+        //     StartCoroutine("TurnOffGravity");
+        // }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +75,12 @@ public class DeadFish : MonoBehaviour
     //        }
     //    }
     //}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.collider.CompareTag("Ground")) return;
+        _rB.isKinematic = true;
+    }
 
     private void OnTriggerExit(Collider other)
     {
