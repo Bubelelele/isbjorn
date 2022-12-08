@@ -15,7 +15,7 @@ public class IconSystem : MonoBehaviour
     public void SmashIce()
     {
         TextEnabled(true);
-        responseText.text = "Press LMB to smash the ice";
+        responseText.text = "Press Left Click to smash the ice";
     }
     public void RoarIcicle()
     {
