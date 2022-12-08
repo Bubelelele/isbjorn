@@ -63,9 +63,7 @@ public abstract class PlayerBaseState
         if (IsRootState)
             Context.CurrentState = newState;
         else
-        {
             _currentRootState?.SetSubState(newState);
-        }
     }
     
     protected abstract void ExitState();
@@ -81,7 +79,6 @@ public abstract class PlayerBaseState
     
     protected void SetSubState(PlayerBaseState newSubState)
     {
-        // if (Context.CurrentState.CurrentSubState.IsMomentumBased && newSubState.LocksInput) return;
         CurrentSubState = newSubState;
         newSubState.SetRootState(this);
     }
