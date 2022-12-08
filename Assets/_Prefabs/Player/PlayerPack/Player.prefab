@@ -16856,8 +16856,8 @@ MonoBehaviour:
   - {fileID: 7957574085070708620}
   - {fileID: 2090659707}
   - {fileID: 606211430215052082}
-  - {fileID: 7283282561437391863}
   - {fileID: 7330638478675634684}
+  - {fileID: 7283282561437391863}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -17004,7 +17004,7 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  PauseDuration: 0
+  PauseDuration: 0.15
   RandomizePauseDuration: 0
   MinPauseDuration: 1
   MaxPauseDuration: 3
