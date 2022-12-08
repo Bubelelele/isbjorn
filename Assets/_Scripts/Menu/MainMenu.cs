@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private PlayableDirector playableDirector;
 
     private void OnEnable() {
+        Cursor.lockState = CursorLockMode.None;
         playableDirector.stopped += LoadScene;
     }
 
