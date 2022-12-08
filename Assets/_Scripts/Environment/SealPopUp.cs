@@ -62,8 +62,12 @@ public class SealPopUp : MonoBehaviour, IHittable
     }
     public void HideSeal()
     {
-        showing = false;
+        Invoke("NotShowing", 1f)
         invoked = false;
+    }
+    private void NotShowing()
+    {
+        showing = false;
     }
 
     public void Hit()
